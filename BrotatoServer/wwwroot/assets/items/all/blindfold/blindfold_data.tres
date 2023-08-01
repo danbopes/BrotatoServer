@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/all/blindfold/blindfold_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=2]
+[ext_resource path="res://items/all/blindfold/blindfold_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/blindfold/blindfold_effect_1.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/blindfold/blindfold_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/blindfold/blindfold_effect_3.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "item_blindfold"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_BLINDFOLD"
+tier = 1
+value = 45
+effects = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_crit_chance", "stat_dodge" ]

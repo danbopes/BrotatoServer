@@ -1,0 +1,41 @@
+[gd_resource type="Resource" load_steps=24 format=2]
+
+[ext_resource path="res://weapons/ranged/ghost_scepter/1/ghost_scepter_data.tres" type="Resource" id=1]
+[ext_resource path="res://items/characters/lich/lich_effect_0c.tres" type="Resource" id=2]
+[ext_resource path="res://items/characters/lich/lich_effect_3.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/ranged/wand/1/wand_data.tres" type="Resource" id=4]
+[ext_resource path="res://items/characters/character_data.gd" type="Script" id=5]
+[ext_resource path="res://items/characters/lich/lich_icon.png" type="Texture" id=6]
+[ext_resource path="res://items/characters/lich/lich_eyes_appearance.tres" type="Resource" id=7]
+[ext_resource path="res://items/characters/lich/lich_diadem_appearance.tres" type="Resource" id=8]
+[ext_resource path="res://items/characters/lich/lich_mouth_appearance.tres" type="Resource" id=9]
+[ext_resource path="res://weapons/ranged/slingshot/1/slingshot_data.tres" type="Resource" id=10]
+[ext_resource path="res://weapons/melee/hatchet/1/hatchet_data.tres" type="Resource" id=11]
+[ext_resource path="res://weapons/ranged/medical_gun/1/medical_gun_data.tres" type="Resource" id=12]
+[ext_resource path="res://weapons/melee/pruner/1/pruner_data.tres" type="Resource" id=13]
+[ext_resource path="res://weapons/melee/knife/1/knife_data.tres" type="Resource" id=14]
+[ext_resource path="res://weapons/ranged/smg/1/smg_data.tres" type="Resource" id=15]
+[ext_resource path="res://weapons/melee/ghost_flint/1/ghost_flint_data.tres" type="Resource" id=16]
+[ext_resource path="res://weapons/melee/scissors/1/scissors_data.tres" type="Resource" id=17]
+[ext_resource path="res://weapons/melee/dagger/1/dagger_data.tres" type="Resource" id=18]
+[ext_resource path="res://weapons/melee/chopper/1/chopper_data.tres" type="Resource" id=19]
+[ext_resource path="res://items/characters/lich/lich_effect_0.tres" type="Resource" id=20]
+[ext_resource path="res://items/characters/lich/lich_effect_0b.tres" type="Resource" id=21]
+[ext_resource path="res://weapons/ranged/crossbow/1/crossbow_data.tres" type="Resource" id=22]
+[ext_resource path="res://weapons/melee/stick/1/stick_data.tres" type="Resource" id=23]
+
+[resource]
+script = ExtResource( 5 )
+my_id = "character_lich"
+unlocked_by_default = false
+icon = ExtResource( 6 )
+name = "CHARACTER_LICH"
+tier = 0
+value = 1
+effects = [ ExtResource( 20 ), ExtResource( 21 ), ExtResource( 2 ), ExtResource( 3 ) ]
+tracking_text = "DAMAGE_DEALT"
+max_nb = -1
+item_appearances = [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 9 ) ]
+tags = [  ]
+wanted_tags = [ "stat_max_hp", "stat_hp_regeneration", "stat_lifesteal" ]
+starting_weapons = [ ExtResource( 17 ), ExtResource( 19 ), ExtResource( 18 ), ExtResource( 23 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 11 ), ExtResource( 1 ), ExtResource( 12 ), ExtResource( 15 ), ExtResource( 4 ), ExtResource( 10 ), ExtResource( 22 ) ]

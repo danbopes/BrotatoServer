@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/lightning_shiv/3/lightning_shiv_3_data.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/melee/lightning_shiv/lightning_shiv.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/lightning_shiv/2/lightning_shiv_2_stats.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/melee/lightning_shiv/lightning_shiv_icon.png" type="Texture" id=5]
+[ext_resource path="res://weapons/melee/lightning_shiv/2/lightning_shiv_2_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/fire/fire_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/precise/precise_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_lightning_shiv_2"
+unlocked_by_default = true
+icon = ExtResource( 5 )
+name = "WEAPON_LIGHTNING_SHIV"
+tier = 1
+value = 31
+effects = [ ExtResource( 6 ) ]
+tracking_text = ""
+weapon_id = "weapon_lightning_shiv"
+type = 0
+sets = [ ExtResource( 8 ), ExtResource( 7 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
+upgrades_into = ExtResource( 2 )

@@ -1,0 +1,47 @@
+﻿@using BrotatoServer.Data.Game;
+@using BrotatoServer.Models.JSON;
+@using Newtonsoft.Json.Linq;
+
+<div class="stats-container">
+    <h5>Primary Stats:</h5>
+
+    <table class="stats">
+        <tr class="current-level">
+            <td><img src="assets/items/upgrades/upgrade_icon.png" /></td>
+            <td>Current Level</td>
+            <td align="right">@RunData.Level</td>
+        </tr>
+        @foreach (var statId in _primaryStats)
+        {
+            var stat = Assets.Stats[statId];
+            var value = EffectsAsJson.Value<int>(statId);
+
+            var statClass = value > 0 ? "pos" : value < 0 ? "neg" : "";
+
+            <tr class="@statClass">
+                <td><img src="@stat.SmallIcon.GetAssetPath()" /></td>
+                <td>@stat.Name</td>
+                <td align="right">@value</td>
+            </tr>
+        }
+    </table>
+</div>
+
+@code {
+    [Parameter]
+    public RunData RunData { get; set; }
+    public JObject EffectsAsJson { get; private set; }
+
+    protected override void OnParametersSet()
+    {
+        EffectsAsJson = JObject.FromObject(RunData.Effects);
+        base.OnParametersSet();
+    }
+
+    private string[] _primaryStats = new[] {
+        "stat_max_hp", "stat_hp_regeneration", "stat_lifesteal", "stat_percent_damage", "stat_melee_damage",
+        "stat_ranged_damage", "stat_elemental_damage", "stat_attack_speed", "stat_crit_chance", "stat_engineering",
+        "stat_range", "stat_armor", "stat_dodge", "stat_speed", "stat_luck",
+        "stat_harvesting"
+    };
+}

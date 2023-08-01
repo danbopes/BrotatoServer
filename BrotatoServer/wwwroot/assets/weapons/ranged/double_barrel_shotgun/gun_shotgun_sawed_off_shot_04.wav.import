@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gun_shotgun_sawed_off_shot_04.wav-ea54484b67369cd84b0fb871b71c45d9.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/double_barrel_shotgun/gun_shotgun_sawed_off_shot_04.wav"
+dest_files=[ "res://.import/gun_shotgun_sawed_off_shot_04.wav-ea54484b67369cd84b0fb871b71c45d9.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

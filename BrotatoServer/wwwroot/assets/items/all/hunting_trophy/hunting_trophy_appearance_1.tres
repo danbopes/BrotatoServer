@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://items/all/hunting_trophy/hunting_trophy_1.png" type="Texture" id=1]
+[ext_resource path="res://items/global/item_appearance_data.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+sprite = ExtResource( 1 )
+position = 2
+display_priority = 3
+depth = 1000.0

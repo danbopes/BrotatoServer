@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gun_submachine_auto_shot_05.wav-56c8691cbd9a91d4a54f4b436a27bd1f.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/smg/gun_submachine_auto_shot_05.wav"
+dest_files=[ "res://.import/gun_submachine_auto_shot_05.wav-56c8691cbd9a91d4a54f4b436a27bd1f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

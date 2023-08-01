@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/triangle_of_power/triangle_of_power_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/triangle_of_power/triangle_of_power_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/triangle_of_power/triangle_of_power_effect_3.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/triangle_of_power/triangle_of_power_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/triangle_of_power/triangle_of_power_appearance.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_triangle_of_power"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_TRIANGLE_OF_POWER"
+tier = 2
+value = 65
+effects = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 6 ) ]
+tags = [ "stat_percent_damage", "stat_armor" ]

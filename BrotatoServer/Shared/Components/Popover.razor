@@ -1,0 +1,16 @@
+﻿<div class="popover__wrapper">
+    @TriggerContent
+    <div class="popover__content @Class">
+        @PopoverContent
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment TriggerContent { get; set; }
+    [Parameter]
+    public RenderFragment PopoverContent { get; set; }
+
+    [Parameter]
+    public string? Class { get; set; } = "";
+}

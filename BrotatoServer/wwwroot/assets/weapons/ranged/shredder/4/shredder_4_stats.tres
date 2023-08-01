@@ -1,0 +1,38 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://weapons/weapon_stats/ranged_weapon_stats.gd" type="Script" id=1]
+[ext_resource path="res://projectiles/bullet_shredder/bullet_shredder.tscn" type="PackedScene" id=2]
+[ext_resource path="res://weapons/ranged/shredder/gun_silenced_AR_sniper_shot_03.wav" type="AudioStream" id=3]
+[ext_resource path="res://weapons/ranged/shredder/gun_silenced_AR_sniper_shot_01.wav" type="AudioStream" id=4]
+[ext_resource path="res://weapons/ranged/shredder/gun_silenced_AR_sniper_shot_04.wav" type="AudioStream" id=5]
+[ext_resource path="res://weapons/ranged/shredder/gun_silenced_AR_sniper_shot_02.wav" type="AudioStream" id=6]
+
+[resource]
+script = ExtResource( 1 )
+cooldown = 45
+damage = 25
+accuracy = 1.0
+crit_chance = 0.03
+crit_damage = 2.0
+min_range = 0
+max_range = 450
+knockback = 0
+effect_scale = 0.5
+scaling_stats = [ [ "stat_ranged_damage", 0.5 ] ]
+lifesteal = 0.0
+shooting_sounds = [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 3 ), ExtResource( 5 ) ]
+sound_db_mod = -8
+is_healing = false
+recoil = 40
+recoil_duration = 0.15
+additional_cooldown_every_x_shots = -1
+additional_cooldown_multiplier = -1.0
+nb_projectiles = 1
+projectile_spread = 0.0
+piercing = 3
+piercing_dmg_reduction = 0.0
+bounce = 0
+bounce_dmg_reduction = 0.5
+projectile_speed = 3000
+increase_projectile_speed_with_range = false
+projectile_scene = ExtResource( 2 )

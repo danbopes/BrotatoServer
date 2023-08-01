@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=12 format=2]
+
+[ext_resource path="res://items/sets/blade/5/set_5_effect_1.tres" type="Resource" id=1]
+[ext_resource path="res://items/sets/blade/2/set_2_effect_2.tres" type="Resource" id=2]
+[ext_resource path="res://items/sets/blade/3/set_3_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/sets/blade/4/set_4_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/blade/5/set_5_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/blade/4/set_4_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/blade/6/set_6_effect_1.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/blade/3/set_3_effect_1.tres" type="Resource" id=8]
+[ext_resource path="res://items/sets/blade/6/set_6_effect_2.tres" type="Resource" id=9]
+[ext_resource path="res://items/sets/blade/2/set_2_effect_1.tres" type="Resource" id=10]
+[ext_resource path="res://items/sets/set_data.gd" type="Script" id=13]
+
+[resource]
+script = ExtResource( 13 )
+my_id = "set_blade"
+name = "WEAPON_CLASS_BLADE"
+set_bonuses = [ [ ExtResource( 10 ), ExtResource( 2 ) ], [ ExtResource( 8 ), ExtResource( 3 ) ], [ ExtResource( 6 ), ExtResource( 4 ) ], [ ExtResource( 1 ), ExtResource( 5 ) ], [ ExtResource( 7 ), ExtResource( 9 ) ] ]

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/injection/injection_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/injection/injection_appearance.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/injection/injection_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/injection/injection_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_injection"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_INJECTION"
+tier = 0
+value = 20
+effects = [ ExtResource( 5 ), ExtResource( 4 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 3 ) ]
+tags = [ "stat_percent_damage" ]

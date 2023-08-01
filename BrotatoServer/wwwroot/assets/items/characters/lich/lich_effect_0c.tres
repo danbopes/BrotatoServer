@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://effects/items/chance_stat_damage_effect.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+key = "stat_max_hp"
+text_key = "EFFECT_DEAL_DMG_WHEN_HEAL"
+value = 100
+custom_key = "dmg_when_heal"
+storage_method = 0
+effect_sign = 3
+custom_args = [  ]
+chance = 100

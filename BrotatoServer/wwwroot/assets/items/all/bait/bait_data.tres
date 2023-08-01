@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/bait/bait_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/bait/bait_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/bait/bait_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/bait/bait_appearance_0.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/bait/bait_appearance_1.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_bait"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_BAIT"
+tier = 1
+value = 25
+effects = [ ExtResource( 3 ), ExtResource( 4 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 5 ), ExtResource( 6 ) ]
+tags = [ "stat_percent_damage", "number_of_enemies" ]

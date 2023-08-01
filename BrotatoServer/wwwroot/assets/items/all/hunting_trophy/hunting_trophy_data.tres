@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/all/hunting_trophy/hunting_trophy_appearance_1.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/hunting_trophy/hunting_trophy_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/hunting_trophy/hunting_trophy_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=4]
+[ext_resource path="res://items/all/hunting_trophy/hunting_trophy_appearance_2.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "item_hunting_trophy"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "ITEM_HUNTING_TROPHY"
+tier = 2
+value = 55
+effects = [ ExtResource( 3 ) ]
+tracking_text = "MATERIALS_GAINED"
+max_nb = 3
+item_appearances = [ ExtResource( 1 ), ExtResource( 6 ) ]
+tags = [ "stat_crit_chance" ]

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://weapons/melee/plasma_sledgehammer/4/plasma_sledgehammer_4_stats.tres" type="Resource" id=1]
+[ext_resource path="res://weapons/melee/plasma_sledgehammer/plasma_sledgehammer_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=3]
+[ext_resource path="res://weapons/melee/plasma_sledgehammer/plasma_sledgehammer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://weapons/melee/plasma_sledgehammer/4/plasma_sledgehammer_4_effect.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/fire/fire_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/explosive/explosive_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 3 )
+my_id = "weapon_plasma_sledgehammer_4"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "WEAPON_PLASMA_SLEDGEHAMMER"
+tier = 3
+value = 272
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_plasma_sledgehammer"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 7 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 1 )

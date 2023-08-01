@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://items/upgrades/upgrade_data.gd" type="Script" id=1]
+[ext_resource path="res://items/upgrades/crit_chance/crit_chance.png" type="Texture" id=2]
+[ext_resource path="res://items/upgrades/crit_chance/2/crit_chance_2_effect.tres" type="Resource" id=3]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "upgrade_crit_chance_2"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "UPGRADE_CRIT_CHANCE"
+tier = 1
+value = 1
+effects = [ ExtResource( 3 ) ]
+has_gameplay_modifications = false
+tracking_text = ""
+unique = false
+max_nb = -1
+item_appearances = [  ]
+tags = [  ]
+upgrade_id = "upgrade_crit_chance"

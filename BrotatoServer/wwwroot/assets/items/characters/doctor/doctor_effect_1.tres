@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://effects/items/class_bonus_effect.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+key = "EFFECT_WEAPON_CLASS_BONUS"
+text_key = ""
+value = 200
+custom_key = ""
+storage_method = 0
+effect_sign = 3
+custom_args = [  ]
+set_id = "set_medical"
+stat_displayed_name = "stat_attack_speed"
+stat_name = "attack_speed_mod"

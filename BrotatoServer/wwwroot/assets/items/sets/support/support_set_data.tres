@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/sets/set_data.gd" type="Script" id=1]
+[ext_resource path="res://items/sets/support/2/set_2_effect_1.tres" type="Resource" id=2]
+[ext_resource path="res://items/sets/support/5/set_5_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/sets/support/6/set_6_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/support/4/set_4_effect_1.tres" type="Resource" id=10]
+[ext_resource path="res://items/sets/support/3/set_3_effect_1.tres" type="Resource" id=11]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "set_support"
+name = "WEAPON_CLASS_SUPPORT"
+set_bonuses = [ [ ExtResource( 2 ) ], [ ExtResource( 11 ) ], [ ExtResource( 10 ) ], [ ExtResource( 3 ) ], [ ExtResource( 5 ) ] ]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/dynamite/dynamite_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/dynamite/dynamite_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/dynamite/dynamite_appearance.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_dynamite"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_DYNAMITE"
+tier = 0
+value = 20
+effects = [ ExtResource( 3 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 4 ) ]
+tags = [ "explosive" ]

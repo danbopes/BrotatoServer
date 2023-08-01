@@ -1,0 +1,31 @@
+﻿@using BrotatoServer.Data.Game;
+
+<div class="weapon inventory tier-@Tier"
+    <a href="@WikiUrl" target="_blank">
+        <img src="@Icon" title="@Name" />
+    </a>
+</div>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    public Weapon Weapon { get; private set; }
+
+    public int Tier => Weapon.Tier;
+    public string Name => Weapon.Name + Weapon.Tier switch
+    {
+        1 => " II",
+        2 => " III",
+        3 => " IV",
+        _ => "",
+    };
+    public string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Weapon.Name.Replace(' ', '_');
+    public string Icon => Weapon.Icon.GetAssetPath();
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Weapon = Assets.Weapons[Id];
+    }
+}

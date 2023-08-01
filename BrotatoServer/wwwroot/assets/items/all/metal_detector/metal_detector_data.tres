@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/metal_detector/metal_detector_effect_3.tres" type="Resource" id=2]
+[ext_resource path="res://items/all/metal_detector/metal_detector_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/metal_detector/metal_detector_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/metal_detector/metal_detector_appearance.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/metal_detector/metal_detector_icon.png" type="Texture" id=6]
+[ext_resource path="res://items/all/metal_detector/metal_detector_effect_4.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_metal_detector"
+unlocked_by_default = true
+icon = ExtResource( 6 )
+name = "ITEM_METAL_DETECTOR"
+tier = 1
+value = 40
+effects = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 7 ) ]
+tracking_text = "MATERIALS_GAINED"
+max_nb = 20
+item_appearances = [ ExtResource( 5 ) ]
+tags = [ "stat_luck", "stat_engineering", "pickup", "economy" ]

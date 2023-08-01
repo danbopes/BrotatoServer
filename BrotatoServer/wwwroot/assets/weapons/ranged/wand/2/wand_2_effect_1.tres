@@ -1,0 +1,15 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://effects/weapons/burning_effect.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/wand/2/wand_2_burning_data.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+key = "effect_burning"
+text_key = ""
+value = 0
+custom_key = ""
+storage_method = 0
+effect_sign = 0
+custom_args = [  ]
+burning_data = ExtResource( 2 )

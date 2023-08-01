@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://weapons/weapon.tscn" type="PackedScene" id=1]
+[ext_resource path="res://weapons/ranged/ghost_scepter/ghost_scepter.png" type="Texture" id=2]
+[ext_resource path="res://particles/ghost_scepter_particles.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/ranged_weapon.gd" type="Script" id=13]
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+radius = 72.4431
+
+[node name="GhostScepter" instance=ExtResource( 1 )]
+position = Vector2( 9, -1 )
+script = ExtResource( 13 )
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 26, -2 )
+texture = ExtResource( 2 )
+
+[node name="Muzzle" parent="Sprite" index="1"]
+position = Vector2( 38, 7 )
+
+[node name="GhostScepterParticles" parent="Sprite/Muzzle" index="0" instance=ExtResource( 3 )]
+scale = Vector2( 0.75, 0.75 )
+
+[node name="Attach" parent="." index="1"]
+position = Vector2( -9, 1 )
+
+[node name="CollisionShape2D" parent="Range" index="0"]
+shape = SubResource( 1 )
+
+[editable path="Sprite/Hitbox"]

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/all/recycling_machine/recycling_machine_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/recycling_machine/recycling_machine_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=3]
+[ext_resource path="res://items/all/recycling_machine/recycling_machine_effect_1.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 3 )
+my_id = "item_recycling_machine"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_RECYCLING_MACHINE"
+tier = 1
+value = 35
+effects = [ ExtResource( 4 ) ]
+tracking_text = "MATERIALS_GAINED"
+max_nb = 1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "economy" ]

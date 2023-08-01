@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/consumables/consumable_data.gd" type="Script" id=1]
+[ext_resource path="res://items/consumables/fruit/fruit.png" type="Texture" id=2]
+[ext_resource path="res://items/consumables/fruit/comedy_bite_chew_01.wav" type="AudioStream" id=3]
+[ext_resource path="res://items/consumables/fruit/comedy_bite_chew_02.wav" type="AudioStream" id=4]
+[ext_resource path="res://items/consumables/fruit/comedy_bite_chew_03.wav" type="AudioStream" id=5]
+[ext_resource path="res://items/consumables/fruit/fruit_effect.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "consumable_fruit"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "CONSUMABLE_FRUIT"
+tier = 0
+value = 1
+effects = [ ExtResource( 6 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [  ]
+tags = [  ]
+to_be_processed_at_end_of_wave = false
+pickup_sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]

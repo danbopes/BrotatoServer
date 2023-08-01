@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gas_small_flame_ignite_01.wav-dcdbe7f9e5b879dd3f3703f37ea662c4.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/flamethrower/gas_small_flame_ignite_01.wav"
+dest_files=[ "res://.import/gas_small_flame_ignite_01.wav-dcdbe7f9e5b879dd3f3703f37ea662c4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/heavy_bullets/heavy_bullets_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/heavy_bullets/heavy_bullets_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/heavy_bullets/heavy_bullets_effect_5.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/heavy_bullets/heavy_bullets_effect_3.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/heavy_bullets/heavy_bullets_effect_4.tres" type="Resource" id=6]
+[ext_resource path="res://items/all/heavy_bullets/heavy_bullets_effect_2.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_heavy_bullets"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_HEAVY_BULLETS"
+tier = 3
+value = 100
+effects = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 4 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [  ]
+tags = [ "stat_ranged_damage", "stat_percent_damage", "stat_range" ]

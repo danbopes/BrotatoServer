@@ -1,0 +1,95 @@
+{
+  "stat_armor": {
+    "icon": "res://items/upgrades/armor/flat_dmg_reduction.png",
+    "small_icon": "res://items/stats/armor.png",
+    "name": "Armor"
+  },
+  "stat_attack_speed": {
+    "icon": "res://items/upgrades/attack_speed/attack_speed.png",
+    "small_icon": "res://items/stats/attack_speed.png",
+    "name": "% Attack Speed"
+  },
+  "stat_crit_chance": {
+    "icon": "res://items/upgrades/crit_chance/crit_chance.png",
+    "small_icon": "res://items/stats/crit_chance.png",
+    "name": "% Crit Chance"
+  },
+  "stat_dodge": {
+    "icon": "res://items/upgrades/dodge/dodge.png",
+    "small_icon": "res://items/stats/dodge.png",
+    "name": "% Dodge"
+  },
+  "stat_elemental_damage": {
+    "icon": "res://items/upgrades/elemental_damage/elemental_dmg.png",
+    "small_icon": "res://items/stats/elemental_damage.png",
+    "name": "Elemental Damage"
+  },
+  "stat_engineering": {
+    "icon": "res://items/upgrades/engineering/engineering.png",
+    "small_icon": "res://items/stats/engineering.png",
+    "name": "Engineering"
+  },
+  "stat_harvesting": {
+    "icon": "res://items/upgrades/harvesting/harvesting.png",
+    "small_icon": "res://items/stats/harvesting.png",
+    "name": "Harvesting"
+  },
+  "stat_max_hp": {
+    "icon": "res://items/upgrades/health/health.png",
+    "small_icon": "res://items/stats/max_hp.png",
+    "name": "Max HP"
+  },
+  "stat_hp_regeneration": {
+    "icon": "res://items/upgrades/health_regeneration/health_regen.png",
+    "small_icon": "res://items/stats/hp_regeneration.png",
+    "name": "HP Regeneration"
+  },
+  "stat_lifesteal": {
+    "icon": "res://items/upgrades/lifesteal/lifesteal.png",
+    "small_icon": "res://items/stats/lifesteal.png",
+    "name": "% Life Steal"
+  },
+  "stat_luck": {
+    "icon": "res://items/upgrades/luck/consumable_drop_chance.png",
+    "small_icon": "res://items/stats/luck.png",
+    "name": "Luck"
+  },
+  "stat_melee_damage": {
+    "icon": "res://items/upgrades/melee_damage/melee_dmg.png",
+    "small_icon": "res://items/stats/melee_damage.png",
+    "name": "Melee Damage"
+  },
+  "stat_percent_damage": {
+    "icon": "res://items/upgrades/percent_damage/percent_dmg.png",
+    "small_icon": "res://items/stats/percent_damage.png",
+    "name": "% Damage"
+  },
+  "stat_range": {
+    "icon": "res://items/upgrades/range/range.png",
+    "small_icon": "res://items/stats/range.png",
+    "name": "Range"
+  },
+  "stat_ranged_damage": {
+    "icon": "res://items/upgrades/ranged_damage/ranged_dmg.png",
+    "small_icon": "res://items/stats/ranged_damage.png",
+    "name": "Ranged Damage"
+  },
+  "stat_speed": {
+    "icon": "res://items/upgrades/speed/speed.png",
+    "small_icon": "res://items/stats/speed.png",
+    "name": "% Speed"
+  },
+  "stat_materials": {
+    "icon": "res://items/materials/harvesting_icon.png",
+    "small_icon": "res://items/materials/harvesting_icon.png"
+  },
+  "explosion_damage": {
+    "icon": "res://items/all/dynamite/dynamite_icon.png",
+    "small_icon": "res://items/all/dynamite/dynamite_icon.png",
+    "name": "% Explosion Damage"
+  },
+  "stat_levels": {
+    "icon": "res://items/upgrades/upgrade_icon.png",
+    "small_icon": "res://items/upgrades/upgrade_icon.png"
+  }
+}

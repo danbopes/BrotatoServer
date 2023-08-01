@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/jousting_lance/jousting_lance_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/jousting_lance/jousting_lance.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/jousting_lance/2/jousting_lance_2_stats.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/melee/jousting_lance/3/jousting_lance_3_data.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/melee/jousting_lance/2/jousting_lance_2_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://weapons/melee/jousting_lance/2/jousting_lance_2_effect_2.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/medieval/medieval_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_jousting_lance_2"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_JOUSTING_LANCE"
+tier = 1
+value = 34
+effects = [ ExtResource( 6 ), ExtResource( 7 ) ]
+tracking_text = ""
+weapon_id = "weapon_jousting_lance"
+type = 0
+sets = [ ExtResource( 8 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
+upgrades_into = ExtResource( 5 )

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=10 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/alloy/alloy_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/alloy/alloy_appearance.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/alloy/alloy_effect_3.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/alloy/alloy_effect_4.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/alloy/alloy_effect_2.tres" type="Resource" id=6]
+[ext_resource path="res://items/all/alloy/alloy_effect_1.tres" type="Resource" id=7]
+[ext_resource path="res://items/all/alloy/alloy_effect_5.tres" type="Resource" id=8]
+[ext_resource path="res://items/all/alloy/alloy_effect_2b.tres" type="Resource" id=9]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_alloy"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_ALLOY"
+tier = 2
+value = 80
+effects = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 8 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 3 ) ]
+tags = [ "stat_melee_damage", "stat_ranged_damage", "stat_engineering", "stat_crit_chance" ]

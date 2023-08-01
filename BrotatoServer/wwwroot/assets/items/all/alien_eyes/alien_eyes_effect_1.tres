@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://effects/items/projectile_effect.gd" type="Script" id=1]
+[ext_resource path="res://items/all/alien_eyes/alien_eyes_stats.tres" type="Resource" id=2]
+
+[resource]
+script = ExtResource( 1 )
+key = "alien_eyes"
+text_key = "effect_alien_eyes"
+value = 6
+custom_key = ""
+storage_method = 0
+effect_sign = 3
+custom_args = [  ]
+weapon_stats = ExtResource( 2 )
+auto_target_enemy = false
+cooldown = 3

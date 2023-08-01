@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/potato_thrower/potato_thrower_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/ranged/potato_thrower/potato_thrower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/potato_thrower/2/potato_thrower_2_stats.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/ranged/potato_thrower/3/potato_thrower_3_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/support/support_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_potato_thrower_2"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "WEAPON_POTATO_THROWER"
+tier = 1
+value = 36
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_potato_thrower"
+type = 1
+sets = [ ExtResource( 6 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
+upgrades_into = ExtResource( 5 )

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/all/cute_monkey/cute_monkey_appearance_1.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/cute_monkey/cute_monkey_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/cute_monkey/cute_monkey_appearance_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=4]
+[ext_resource path="res://items/all/cute_monkey/cute_monkey_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/cute_monkey/cute_monkey_effect_2.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "item_cute_monkey"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_CUTE_MONKEY"
+tier = 0
+value = 25
+effects = [ ExtResource( 5 ), ExtResource( 6 ) ]
+tracking_text = "HEALTH_RECOVERED"
+max_nb = 13
+item_appearances = [ ExtResource( 1 ), ExtResource( 3 ) ]
+tags = [ "pickup" ]

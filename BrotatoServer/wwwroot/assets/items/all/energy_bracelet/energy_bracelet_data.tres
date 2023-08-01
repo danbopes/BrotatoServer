@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/all/energy_bracelet/energy_bracelet_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/energy_bracelet/energy_bracelet_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/energy_bracelet/energy_bracelet_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=4]
+[ext_resource path="res://items/all/energy_bracelet/energy_bracelet_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/energy_bracelet/energy_bracelet_effect_3.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "item_energy_bracelet"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_ENERGY_BRACELET"
+tier = 1
+value = 55
+effects = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_crit_chance", "stat_elemental_damage" ]

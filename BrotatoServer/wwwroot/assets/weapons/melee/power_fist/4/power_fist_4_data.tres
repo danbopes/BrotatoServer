@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/power_fist/power_fist_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/power_fist/4/power_fist_4_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/power_fist/power_fist.tscn" type="PackedScene" id=4]
+[ext_resource path="res://weapons/melee/power_fist/4/power_fist_4_exploding_effect.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/unarmed/unarmed_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/explosive/explosive_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_power_fist_4"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "WEAPON_POWER_FIST"
+tier = 3
+value = 221
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_power_fist"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 7 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 3 )

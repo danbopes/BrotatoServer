@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://items/global/effect.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+key = "xp_gain"
+text_key = "effect_stat_next_wave"
+value = 100
+custom_key = "stats_next_wave"
+storage_method = 1
+effect_sign = 3
+custom_args = [  ]

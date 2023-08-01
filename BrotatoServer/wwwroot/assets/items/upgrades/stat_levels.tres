@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://items/upgrades/stat_data.gd" type="Script" id=1]
+[ext_resource path="res://items/upgrades/upgrade_icon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+stat_name = "stat_levels"
+icon = ExtResource( 2 )
+small_icon = ExtResource( 2 )

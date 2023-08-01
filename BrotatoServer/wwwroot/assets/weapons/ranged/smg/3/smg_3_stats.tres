@@ -1,0 +1,41 @@
+[gd_resource type="Resource" load_steps=11 format=2]
+
+[ext_resource path="res://weapons/weapon_stats/ranged_weapon_stats.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_01.wav" type="AudioStream" id=3]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_08.wav" type="AudioStream" id=4]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_05.wav" type="AudioStream" id=5]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_03.wav" type="AudioStream" id=6]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_09.wav" type="AudioStream" id=7]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_04.wav" type="AudioStream" id=8]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_06.wav" type="AudioStream" id=9]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_07.wav" type="AudioStream" id=10]
+[ext_resource path="res://weapons/ranged/smg/gun_submachine_auto_shot_02.wav" type="AudioStream" id=11]
+
+[resource]
+script = ExtResource( 1 )
+cooldown = 4
+damage = 5
+accuracy = 0.8
+crit_chance = 0.01
+crit_damage = 1.5
+min_range = 0
+max_range = 400
+knockback = 0
+effect_scale = 0.2
+scaling_stats = [ [ "stat_ranged_damage", 0.7 ] ]
+lifesteal = 0.0
+shooting_sounds = [ ExtResource( 3 ), ExtResource( 11 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 7 ) ]
+sound_db_mod = -8
+is_healing = false
+recoil = 10
+recoil_duration = 0.05
+additional_cooldown_every_x_shots = -1
+additional_cooldown_multiplier = -1.0
+nb_projectiles = 1
+projectile_spread = 0.0
+piercing = 0
+piercing_dmg_reduction = 0.5
+bounce = 0
+bounce_dmg_reduction = 0.5
+projectile_speed = 3000
+increase_projectile_speed_with_range = false

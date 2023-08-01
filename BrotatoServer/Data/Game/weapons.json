@@ -1,0 +1,1290 @@
+﻿{
+  "weapon_circular_saw_2": {
+    "weapon_id": "weapon_circular_saw",
+    "icon": "res://weapons/melee/circular_saw/circular_saw_icon.png",
+    "tier": 1,
+    "name": "Circular Saw",
+    "effects_text": ""
+  },
+  "weapon_fist_1": {
+    "weapon_id": "weapon_fist",
+    "icon": "res://weapons/melee/fist/fist_icon.png",
+    "tier": 0,
+    "name": "Fist",
+    "effects_text": ""
+  },
+  "weapon_hand_1": {
+    "weapon_id": "weapon_hand",
+    "icon": "res://weapons/melee/hand/hand_icon.png",
+    "tier": 0,
+    "name": "Hand",
+    "effects_text": "[color=#00ff00]+3[/color] Harvesting"
+  },
+  "weapon_flaming_brass_knuckles_3": {
+    "weapon_id": "weapon_flaming_brass_knuckles",
+    "icon": "res://weapons/melee/flaming_knuckles/flaming_knuckles_icon.png",
+    "tier": 2,
+    "name": "Flaming Brass Knuckles",
+    "effects_text": "Deals [color=#00ff00]12[/color]x[color=#00ff00]6[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_hammer_2": {
+    "weapon_id": "weapon_hammer",
+    "icon": "res://weapons/melee/hammer/hammer_icon.png",
+    "tier": 1,
+    "name": "Hammer",
+    "effects_text": ""
+  },
+  "weapon_knife_1": {
+    "weapon_id": "weapon_knife",
+    "icon": "res://weapons/melee/knife/knife_icon.png",
+    "tier": 0,
+    "name": "Knife",
+    "effects_text": ""
+  },
+  "weapon_rock_1": {
+    "weapon_id": "weapon_rock",
+    "icon": "res://weapons/melee/rock/rock_icon.png",
+    "tier": 0,
+    "name": "Rock",
+    "effects_text": ""
+  },
+  "weapon_spear_1": {
+    "weapon_id": "weapon_spear",
+    "icon": "res://weapons/melee/spear/spear_icon.png",
+    "tier": 0,
+    "name": "Spear",
+    "effects_text": ""
+  },
+  "weapon_stick_1": {
+    "weapon_id": "weapon_stick",
+    "icon": "res://weapons/melee/stick/stick_icon.png",
+    "tier": 0,
+    "name": "Stick",
+    "effects_text": "Deals [color=#00ff00]+4[/color] [color=#00ff00]Damage[/color] for every additional [color=#00ff00]Stick[/color] you have [[color=#00ff00]+0[/color]]"
+  },
+  "weapon_torch_1": {
+    "weapon_id": "weapon_torch",
+    "icon": "res://weapons/melee/torch/torch_icon.png",
+    "tier": 0,
+    "name": "Torch",
+    "effects_text": "Deals [color=#00ff00]3[/color]x[color=#00ff00]3[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_double_barrel_shotgun_1": {
+    "weapon_id": "weapon_double_barrel_shotgun",
+    "icon": "res://weapons/ranged/double_barrel_shotgun/double_barrel_shotgun_icon.png",
+    "tier": 0,
+    "name": "Double Barrel Shotgun",
+    "effects_text": ""
+  },
+  "weapon_flamethrower_2": {
+    "weapon_id": "weapon_flamethrower",
+    "icon": "res://weapons/ranged/flamethrower/flamethrower_icon.png",
+    "tier": 1,
+    "name": "Flamethrower",
+    "effects_text": "Deals [color=#00ff00]3[/color]x[color=#00ff00]5[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_minigun_3": {
+    "weapon_id": "weapon_minigun",
+    "icon": "res://weapons/ranged/minigun/minigun_icon.png",
+    "tier": 2,
+    "name": "Minigun",
+    "effects_text": ""
+  },
+  "weapon_pistol_1": {
+    "weapon_id": "weapon_pistol",
+    "icon": "res://weapons/ranged/pistol/pistol_icon.png",
+    "tier": 0,
+    "name": "Pistol",
+    "effects_text": ""
+  },
+  "weapon_rocket_launcher_2": {
+    "weapon_id": "weapon_rocket_launcher",
+    "icon": "res://weapons/ranged/rocket_launcher/rocket_launcher_icon.png",
+    "tier": 1,
+    "name": "Rocket Launcher",
+    "effects_text": "Projectiles explode on hit"
+  },
+  "weapon_smg_1": {
+    "weapon_id": "weapon_smg",
+    "icon": "res://weapons/ranged/smg/smg_icon.png",
+    "tier": 0,
+    "name": "SMG",
+    "effects_text": ""
+  },
+  "weapon_taser_1": {
+    "weapon_id": "weapon_taser",
+    "icon": "res://weapons/ranged/taser/taser_icon.png",
+    "tier": 0,
+    "name": "Taser",
+    "effects_text": "Slows enemies in a radius around the projectile"
+  },
+  "weapon_fist_2": {
+    "weapon_id": "weapon_fist",
+    "icon": "res://weapons/melee/fist/fist_icon.png",
+    "tier": 1,
+    "name": "Fist",
+    "effects_text": ""
+  },
+  "weapon_fist_3": {
+    "weapon_id": "weapon_fist",
+    "icon": "res://weapons/melee/fist/fist_icon.png",
+    "tier": 2,
+    "name": "Fist",
+    "effects_text": ""
+  },
+  "weapon_double_barrel_shotgun_2": {
+    "weapon_id": "weapon_double_barrel_shotgun",
+    "icon": "res://weapons/ranged/double_barrel_shotgun/double_barrel_shotgun_icon.png",
+    "tier": 1,
+    "name": "Double Barrel Shotgun",
+    "effects_text": ""
+  },
+  "weapon_double_barrel_shotgun_3": {
+    "weapon_id": "weapon_double_barrel_shotgun",
+    "icon": "res://weapons/ranged/double_barrel_shotgun/double_barrel_shotgun_icon.png",
+    "tier": 2,
+    "name": "Double Barrel Shotgun",
+    "effects_text": ""
+  },
+  "weapon_flamethrower_3": {
+    "weapon_id": "weapon_flamethrower",
+    "icon": "res://weapons/ranged/flamethrower/flamethrower_icon.png",
+    "tier": 2,
+    "name": "Flamethrower",
+    "effects_text": "Deals [color=#00ff00]4[/color]x[color=#00ff00]6[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_pistol_2": {
+    "weapon_id": "weapon_pistol",
+    "icon": "res://weapons/ranged/pistol/pistol_icon.png",
+    "tier": 1,
+    "name": "Pistol",
+    "effects_text": ""
+  },
+  "weapon_pistol_3": {
+    "weapon_id": "weapon_pistol",
+    "icon": "res://weapons/ranged/pistol/pistol_icon.png",
+    "tier": 2,
+    "name": "Pistol",
+    "effects_text": ""
+  },
+  "weapon_rocket_launcher_3": {
+    "weapon_id": "weapon_rocket_launcher",
+    "icon": "res://weapons/ranged/rocket_launcher/rocket_launcher_icon.png",
+    "tier": 2,
+    "name": "Rocket Launcher",
+    "effects_text": "Projectiles explode on hit"
+  },
+  "weapon_smg_2": {
+    "weapon_id": "weapon_smg",
+    "icon": "res://weapons/ranged/smg/smg_icon.png",
+    "tier": 1,
+    "name": "SMG",
+    "effects_text": ""
+  },
+  "weapon_smg_3": {
+    "weapon_id": "weapon_smg",
+    "icon": "res://weapons/ranged/smg/smg_icon.png",
+    "tier": 2,
+    "name": "SMG",
+    "effects_text": ""
+  },
+  "weapon_taser_2": {
+    "weapon_id": "weapon_taser",
+    "icon": "res://weapons/ranged/taser/taser_icon.png",
+    "tier": 1,
+    "name": "Taser",
+    "effects_text": "Slows enemies in a radius around the projectile"
+  },
+  "weapon_taser_3": {
+    "weapon_id": "weapon_taser",
+    "icon": "res://weapons/ranged/taser/taser_icon.png",
+    "tier": 2,
+    "name": "Taser",
+    "effects_text": "Slows enemies in a radius around the projectile"
+  },
+  "weapon_circular_saw_3": {
+    "weapon_id": "weapon_circular_saw",
+    "icon": "res://weapons/melee/circular_saw/circular_saw_icon.png",
+    "tier": 2,
+    "name": "Circular Saw",
+    "effects_text": ""
+  },
+  "weapon_hammer_3": {
+    "weapon_id": "weapon_hammer",
+    "icon": "res://weapons/melee/hammer/hammer_icon.png",
+    "tier": 2,
+    "name": "Hammer",
+    "effects_text": ""
+  },
+  "weapon_hand_2": {
+    "weapon_id": "weapon_hand",
+    "icon": "res://weapons/melee/hand/hand_icon.png",
+    "tier": 1,
+    "name": "Hand",
+    "effects_text": "[color=#00ff00]+6[/color] Harvesting"
+  },
+  "weapon_hand_3": {
+    "weapon_id": "weapon_hand",
+    "icon": "res://weapons/melee/hand/hand_icon.png",
+    "tier": 2,
+    "name": "Hand",
+    "effects_text": "[color=#00ff00]+9[/color] Harvesting"
+  },
+  "weapon_knife_2": {
+    "weapon_id": "weapon_knife",
+    "icon": "res://weapons/melee/knife/knife_icon.png",
+    "tier": 1,
+    "name": "Knife",
+    "effects_text": ""
+  },
+  "weapon_knife_3": {
+    "weapon_id": "weapon_knife",
+    "icon": "res://weapons/melee/knife/knife_icon.png",
+    "tier": 2,
+    "name": "Knife",
+    "effects_text": ""
+  },
+  "weapon_rock_2": {
+    "weapon_id": "weapon_rock",
+    "icon": "res://weapons/melee/rock/rock_icon.png",
+    "tier": 1,
+    "name": "Rock",
+    "effects_text": "[color=#00ff00]+1[/color] Armor"
+  },
+  "weapon_rock_3": {
+    "weapon_id": "weapon_rock",
+    "icon": "res://weapons/melee/rock/rock_icon.png",
+    "tier": 2,
+    "name": "Rock",
+    "effects_text": "[color=#00ff00]+1[/color] Armor\n[color=#00ff00]+2[/color] Max HP"
+  },
+  "weapon_spear_2": {
+    "weapon_id": "weapon_spear",
+    "icon": "res://weapons/melee/spear/spear_icon.png",
+    "tier": 1,
+    "name": "Spear",
+    "effects_text": ""
+  },
+  "weapon_spear_3": {
+    "weapon_id": "weapon_spear",
+    "icon": "res://weapons/melee/spear/spear_icon.png",
+    "tier": 2,
+    "name": "Spear",
+    "effects_text": ""
+  },
+  "weapon_stick_2": {
+    "weapon_id": "weapon_stick",
+    "icon": "res://weapons/melee/stick/stick_icon.png",
+    "tier": 1,
+    "name": "Stick",
+    "effects_text": "Deals [color=#00ff00]+6[/color] [color=#00ff00]Damage[/color] for every additional [color=#00ff00]Stick[/color] you have [[color=#00ff00]+0[/color]]"
+  },
+  "weapon_stick_3": {
+    "weapon_id": "weapon_stick",
+    "icon": "res://weapons/melee/stick/stick_icon.png",
+    "tier": 2,
+    "name": "Stick",
+    "effects_text": "Deals [color=#00ff00]+8[/color] [color=#00ff00]Damage[/color] for every additional [color=#00ff00]Stick[/color] you have [[color=#00ff00]+0[/color]]"
+  },
+  "weapon_torch_2": {
+    "weapon_id": "weapon_torch",
+    "icon": "res://weapons/melee/torch/torch_icon.png",
+    "tier": 1,
+    "name": "Torch",
+    "effects_text": "Deals [color=#00ff00]5[/color]x[color=#00ff00]4[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_torch_3": {
+    "weapon_id": "weapon_torch",
+    "icon": "res://weapons/melee/torch/torch_icon.png",
+    "tier": 2,
+    "name": "Torch",
+    "effects_text": "Deals [color=#00ff00]8[/color]x[color=#00ff00]5[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_wand_1": {
+    "weapon_id": "weapon_wand",
+    "icon": "res://weapons/ranged/wand/wand_icon.png",
+    "tier": 0,
+    "name": "Wand",
+    "effects_text": "Deals [color=#00ff00]3[/color]x[color=#00ff00]3[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_wand_2": {
+    "weapon_id": "weapon_wand",
+    "icon": "res://weapons/ranged/wand/wand_icon.png",
+    "tier": 1,
+    "name": "Wand",
+    "effects_text": "Deals [color=#00ff00]5[/color]x[color=#00ff00]4[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_wand_3": {
+    "weapon_id": "weapon_wand",
+    "icon": "res://weapons/ranged/wand/wand_icon.png",
+    "tier": 2,
+    "name": "Wand",
+    "effects_text": "Deals [color=#00ff00]8[/color]x[color=#00ff00]5[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_lightning_shiv_1": {
+    "weapon_id": "weapon_lightning_shiv",
+    "icon": "res://weapons/melee/lightning_shiv/lightning_shiv_icon.png",
+    "tier": 0,
+    "name": "Lightning Shiv",
+    "effects_text": "Hitting an enemy spawns a lightning projectile that bounces [color=#00ff00]1[/color] times and deals [color=#00ff00]5[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) damage"
+  },
+  "weapon_lightning_shiv_2": {
+    "weapon_id": "weapon_lightning_shiv",
+    "icon": "res://weapons/melee/lightning_shiv/lightning_shiv_icon.png",
+    "tier": 1,
+    "name": "Lightning Shiv",
+    "effects_text": "Hitting an enemy spawns a lightning projectile that bounces [color=#00ff00]2[/color] times and deals [color=#00ff00]8[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) damage"
+  },
+  "weapon_lightning_shiv_3": {
+    "weapon_id": "weapon_lightning_shiv",
+    "icon": "res://weapons/melee/lightning_shiv/lightning_shiv_icon.png",
+    "tier": 2,
+    "name": "Lightning Shiv",
+    "effects_text": "Hitting an enemy spawns a lightning projectile that bounces [color=#00ff00]3[/color] times and deals [color=#00ff00]12[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) damage"
+  },
+  "weapon_cacti_club_1": {
+    "weapon_id": "weapon_cacti_club",
+    "icon": "res://weapons/melee/cactus_mace/cactus_mace_icon.png",
+    "tier": 0,
+    "name": "Cacti Club",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]3[/color] projectiles dealing [color=#00ff00]1[/color] ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/ranged_damage.png[/img][/color]) damage"
+  },
+  "weapon_cacti_club_2": {
+    "weapon_id": "weapon_cacti_club",
+    "icon": "res://weapons/melee/cactus_mace/cactus_mace_icon.png",
+    "tier": 1,
+    "name": "Cacti Club",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]4[/color] projectiles dealing [color=#00ff00]1[/color] ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/ranged_damage.png[/img][/color]) damage"
+  },
+  "weapon_cacti_club_3": {
+    "weapon_id": "weapon_cacti_club",
+    "icon": "res://weapons/melee/cactus_mace/cactus_mace_icon.png",
+    "tier": 2,
+    "name": "Cacti Club",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]5[/color] projectiles dealing [color=#00ff00]1[/color] ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/ranged_damage.png[/img][/color]) damage"
+  },
+  "weapon_dagger_1": {
+    "weapon_id": "weapon_dagger",
+    "icon": "res://weapons/melee/dagger/dagger_icon.png",
+    "tier": 0,
+    "name": "Thief Dagger",
+    "effects_text": "[color=#00ff00]50%[/color] chance to gain 1 material when killing an enemy with a critical hit\n[color=#ffeae2b0]Materials gained: 0[/color]"
+  },
+  "weapon_dagger_2": {
+    "weapon_id": "weapon_dagger",
+    "icon": "res://weapons/melee/dagger/dagger_icon.png",
+    "tier": 1,
+    "name": "Thief Dagger",
+    "effects_text": "[color=#00ff00]56%[/color] chance to gain 1 material when killing an enemy with a critical hit\n[color=#ffeae2b0]Materials gained: 0[/color]"
+  },
+  "weapon_dagger_3": {
+    "weapon_id": "weapon_dagger",
+    "icon": "res://weapons/melee/dagger/dagger_icon.png",
+    "tier": 2,
+    "name": "Thief Dagger",
+    "effects_text": "[color=#00ff00]62%[/color] chance to gain 1 material when killing an enemy with a critical hit\n[color=#ffeae2b0]Materials gained: 0[/color]"
+  },
+  "weapon_ghost_flint_1": {
+    "weapon_id": "weapon_ghost_flint",
+    "icon": "res://weapons/melee/ghost_flint/ghost_flint_icon.png",
+    "tier": 0,
+    "name": "Ghost Flint",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Attack Speed[/color] for every [color=#00ff00]20[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_flint_2": {
+    "weapon_id": "weapon_ghost_flint",
+    "icon": "res://weapons/melee/ghost_flint/ghost_flint_icon.png",
+    "tier": 1,
+    "name": "Ghost Flint",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Attack Speed[/color] for every [color=#00ff00]18[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_flint_3": {
+    "weapon_id": "weapon_ghost_flint",
+    "icon": "res://weapons/melee/ghost_flint/ghost_flint_icon.png",
+    "tier": 2,
+    "name": "Ghost Flint",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Attack Speed[/color] for every [color=#00ff00]16[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_scissors_1": {
+    "weapon_id": "weapon_scissors",
+    "icon": "res://weapons/melee/scissors/scissors_icon.png",
+    "tier": 0,
+    "name": "Scissors",
+    "effects_text": ""
+  },
+  "weapon_scissors_2": {
+    "weapon_id": "weapon_scissors",
+    "icon": "res://weapons/melee/scissors/scissors_icon.png",
+    "tier": 1,
+    "name": "Scissors",
+    "effects_text": ""
+  },
+  "weapon_scissors_3": {
+    "weapon_id": "weapon_scissors",
+    "icon": "res://weapons/melee/scissors/scissors_icon.png",
+    "tier": 2,
+    "name": "Scissors",
+    "effects_text": ""
+  },
+  "weapon_screwdriver_1": {
+    "weapon_id": "weapon_screwdriver",
+    "icon": "res://weapons/melee/screwdriver/screwdriver_icon.png",
+    "tier": 0,
+    "name": "Screwdriver",
+    "effects_text": "A landmine spawns every [color=#00ff00]12[/color] seconds dealing [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area"
+  },
+  "weapon_screwdriver_2": {
+    "weapon_id": "weapon_screwdriver",
+    "icon": "res://weapons/melee/screwdriver/screwdriver_icon.png",
+    "tier": 1,
+    "name": "Screwdriver",
+    "effects_text": "A landmine spawns every [color=#00ff00]9[/color] seconds dealing [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area"
+  },
+  "weapon_screwdriver_3": {
+    "weapon_id": "weapon_screwdriver",
+    "icon": "res://weapons/melee/screwdriver/screwdriver_icon.png",
+    "tier": 2,
+    "name": "Screwdriver",
+    "effects_text": "A landmine spawns every [color=#00ff00]6[/color] seconds dealing [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area"
+  },
+  "weapon_sword_2": {
+    "weapon_id": "weapon_sword",
+    "icon": "res://weapons/melee/sword/sword_icon.png",
+    "tier": 1,
+    "name": "Sword",
+    "effects_text": ""
+  },
+  "weapon_sword_3": {
+    "weapon_id": "weapon_sword",
+    "icon": "res://weapons/melee/sword/sword_icon.png",
+    "tier": 2,
+    "name": "Sword",
+    "effects_text": ""
+  },
+  "weapon_wrench_1": {
+    "weapon_id": "weapon_wrench",
+    "icon": "res://weapons/melee/wrench/wrench_icon.png",
+    "tier": 0,
+    "name": "Wrench",
+    "effects_text": "Spawns a turret that shoots bullets dealing [color=#00ff00]10[/color] ([color=#00ff00][color=white]80%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) damage"
+  },
+  "weapon_wrench_2": {
+    "weapon_id": "weapon_wrench",
+    "icon": "res://weapons/melee/wrench/wrench_icon.png",
+    "tier": 1,
+    "name": "Wrench",
+    "effects_text": "Spawns a turret that shoots flames dealing [color=#00ff00]5[/color]x[color=#00ff00]8[/color] ([color=#00ff00][color=white]33%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) burning damage"
+  },
+  "weapon_wrench_3": {
+    "weapon_id": "weapon_wrench",
+    "icon": "res://weapons/melee/wrench/wrench_icon.png",
+    "tier": 2,
+    "name": "Wrench",
+    "effects_text": "Spawns a turret that shoots piercing bullets dealing [color=#00ff00]20[/color] ([color=#00ff00][color=white]125%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) damage"
+  },
+  "weapon_laser_gun_1": {
+    "weapon_id": "weapon_laser_gun",
+    "icon": "res://weapons/ranged/laser_gun/laser_gun_icon.png",
+    "tier": 0,
+    "name": "Laser Gun",
+    "effects_text": ""
+  },
+  "weapon_laser_gun_2": {
+    "weapon_id": "weapon_laser_gun",
+    "icon": "res://weapons/ranged/laser_gun/laser_gun_icon.png",
+    "tier": 1,
+    "name": "Laser Gun",
+    "effects_text": ""
+  },
+  "weapon_laser_gun_3": {
+    "weapon_id": "weapon_laser_gun",
+    "icon": "res://weapons/ranged/laser_gun/laser_gun_icon.png",
+    "tier": 2,
+    "name": "Laser Gun",
+    "effects_text": ""
+  },
+  "weapon_medical_gun_1": {
+    "weapon_id": "weapon_medical_gun",
+    "icon": "res://weapons/ranged/medical_gun/medical_gun_icon.png",
+    "tier": 0,
+    "name": "Medical Gun",
+    "effects_text": ""
+  },
+  "weapon_medical_gun_2": {
+    "weapon_id": "weapon_medical_gun",
+    "icon": "res://weapons/ranged/medical_gun/medical_gun_icon.png",
+    "tier": 1,
+    "name": "Medical Gun",
+    "effects_text": ""
+  },
+  "weapon_medical_gun_3": {
+    "weapon_id": "weapon_medical_gun",
+    "icon": "res://weapons/ranged/medical_gun/medical_gun_icon.png",
+    "tier": 2,
+    "name": "Medical Gun",
+    "effects_text": ""
+  },
+  "weapon_shredder_1": {
+    "weapon_id": "weapon_shredder",
+    "icon": "res://weapons/ranged/shredder/shredder_icon.png",
+    "tier": 0,
+    "name": "Shredder",
+    "effects_text": "Projectiles have [color=#00ff00]50%[/color] chance to explode on hit"
+  },
+  "weapon_shredder_2": {
+    "weapon_id": "weapon_shredder",
+    "icon": "res://weapons/ranged/shredder/shredder_icon.png",
+    "tier": 1,
+    "name": "Shredder",
+    "effects_text": "Projectiles have [color=#00ff00]65%[/color] chance to explode on hit"
+  },
+  "weapon_shredder_3": {
+    "weapon_id": "weapon_shredder",
+    "icon": "res://weapons/ranged/shredder/shredder_icon.png",
+    "tier": 2,
+    "name": "Shredder",
+    "effects_text": "Projectiles have [color=#00ff00]80%[/color] chance to explode on hit"
+  },
+  "weapon_shuriken_1": {
+    "weapon_id": "weapon_shuriken",
+    "icon": "res://weapons/ranged/shuriken/shuriken_icon.png",
+    "tier": 0,
+    "name": "Shuriken",
+    "effects_text": "Bounces up to [color=#00ff00]1[/color] times on critical hit"
+  },
+  "weapon_shuriken_2": {
+    "weapon_id": "weapon_shuriken",
+    "icon": "res://weapons/ranged/shuriken/shuriken_icon.png",
+    "tier": 1,
+    "name": "Shuriken",
+    "effects_text": "Bounces up to [color=#00ff00]2[/color] times on critical hit"
+  },
+  "weapon_shuriken_3": {
+    "weapon_id": "weapon_shuriken",
+    "icon": "res://weapons/ranged/shuriken/shuriken_icon.png",
+    "tier": 2,
+    "name": "Shuriken",
+    "effects_text": "Bounces up to [color=#00ff00]3[/color] times on critical hit"
+  },
+  "weapon_slingshot_1": {
+    "weapon_id": "weapon_slingshot",
+    "icon": "res://weapons/ranged/slingshot/slingshot_icon.png",
+    "tier": 0,
+    "name": "Slingshot",
+    "effects_text": ""
+  },
+  "weapon_slingshot_2": {
+    "weapon_id": "weapon_slingshot",
+    "icon": "res://weapons/ranged/slingshot/slingshot_icon.png",
+    "tier": 1,
+    "name": "Slingshot",
+    "effects_text": ""
+  },
+  "weapon_slingshot_3": {
+    "weapon_id": "weapon_slingshot",
+    "icon": "res://weapons/ranged/slingshot/slingshot_icon.png",
+    "tier": 2,
+    "name": "Slingshot",
+    "effects_text": ""
+  },
+  "weapon_cacti_club_4": {
+    "weapon_id": "weapon_cacti_club",
+    "icon": "res://weapons/melee/cactus_mace/cactus_mace_icon.png",
+    "tier": 3,
+    "name": "Cacti Club",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]6[/color] projectiles dealing [color=#00ff00]1[/color] ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/ranged_damage.png[/img][/color]) damage"
+  },
+  "weapon_circular_saw_4": {
+    "weapon_id": "weapon_circular_saw",
+    "icon": "res://weapons/melee/circular_saw/circular_saw_icon.png",
+    "tier": 3,
+    "name": "Circular Saw",
+    "effects_text": ""
+  },
+  "weapon_dagger_4": {
+    "weapon_id": "weapon_dagger",
+    "icon": "res://weapons/melee/dagger/dagger_icon.png",
+    "tier": 3,
+    "name": "Thief Dagger",
+    "effects_text": "[color=#00ff00]80%[/color] chance to gain 1 material when killing an enemy with a critical hit\n[color=#ffeae2b0]Materials gained: 0[/color]"
+  },
+  "weapon_fist_4": {
+    "weapon_id": "weapon_fist",
+    "icon": "res://weapons/melee/fist/fist_icon.png",
+    "tier": 3,
+    "name": "Fist",
+    "effects_text": ""
+  },
+  "weapon_flaming_brass_knuckles_4": {
+    "weapon_id": "weapon_flaming_brass_knuckles",
+    "icon": "res://weapons/melee/flaming_knuckles/flaming_knuckles_icon.png",
+    "tier": 3,
+    "name": "Flaming Brass Knuckles",
+    "effects_text": "Deals [color=#00ff00]15[/color]x[color=#00ff00]7[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_ghost_flint_4": {
+    "weapon_id": "weapon_ghost_flint",
+    "icon": "res://weapons/melee/ghost_flint/ghost_flint_icon.png",
+    "tier": 3,
+    "name": "Ghost Flint",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Attack Speed[/color] for every [color=#00ff00]12[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_hammer_4": {
+    "weapon_id": "weapon_hammer",
+    "icon": "res://weapons/melee/hammer/hammer_icon.png",
+    "tier": 3,
+    "name": "Hammer",
+    "effects_text": ""
+  },
+  "weapon_hand_4": {
+    "weapon_id": "weapon_hand",
+    "icon": "res://weapons/melee/hand/hand_icon.png",
+    "tier": 3,
+    "name": "Hand",
+    "effects_text": "[color=#00ff00]+18[/color] Harvesting"
+  },
+  "weapon_knife_4": {
+    "weapon_id": "weapon_knife",
+    "icon": "res://weapons/melee/knife/knife_icon.png",
+    "tier": 3,
+    "name": "Knife",
+    "effects_text": ""
+  },
+  "weapon_rock_4": {
+    "weapon_id": "weapon_rock",
+    "icon": "res://weapons/melee/rock/rock_icon.png",
+    "tier": 3,
+    "name": "Rock",
+    "effects_text": "[color=#00ff00]+2[/color] Armor\n[color=#00ff00]+2[/color] Max HP"
+  },
+  "weapon_scissors_4": {
+    "weapon_id": "weapon_scissors",
+    "icon": "res://weapons/melee/scissors/scissors_icon.png",
+    "tier": 3,
+    "name": "Scissors",
+    "effects_text": ""
+  },
+  "weapon_screwdriver_4": {
+    "weapon_id": "weapon_screwdriver",
+    "icon": "res://weapons/melee/screwdriver/screwdriver_icon.png",
+    "tier": 3,
+    "name": "Screwdriver",
+    "effects_text": "A landmine spawns every [color=#00ff00]3[/color] seconds dealing [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area"
+  },
+  "weapon_spear_4": {
+    "weapon_id": "weapon_spear",
+    "icon": "res://weapons/melee/spear/spear_icon.png",
+    "tier": 3,
+    "name": "Spear",
+    "effects_text": ""
+  },
+  "weapon_stick_4": {
+    "weapon_id": "weapon_stick",
+    "icon": "res://weapons/melee/stick/stick_icon.png",
+    "tier": 3,
+    "name": "Stick",
+    "effects_text": "Deals [color=#00ff00]+10[/color] [color=#00ff00]Damage[/color] for every additional [color=#00ff00]Stick[/color] you have [[color=#00ff00]+0[/color]]"
+  },
+  "weapon_sword_4": {
+    "weapon_id": "weapon_sword",
+    "icon": "res://weapons/melee/sword/sword_icon.png",
+    "tier": 3,
+    "name": "Sword",
+    "effects_text": ""
+  },
+  "weapon_lightning_shiv_4": {
+    "weapon_id": "weapon_lightning_shiv",
+    "icon": "res://weapons/melee/lightning_shiv/lightning_shiv_icon.png",
+    "tier": 3,
+    "name": "Lightning Shiv",
+    "effects_text": "Hitting an enemy spawns a lightning projectile that bounces [color=#00ff00]4[/color] times and deals [color=#00ff00]15[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) damage"
+  },
+  "weapon_torch_4": {
+    "weapon_id": "weapon_torch",
+    "icon": "res://weapons/melee/torch/torch_icon.png",
+    "tier": 3,
+    "name": "Torch",
+    "effects_text": "Deals [color=#00ff00]12[/color]x[color=#00ff00]8[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_wrench_4": {
+    "weapon_id": "weapon_wrench",
+    "icon": "res://weapons/melee/wrench/wrench_icon.png",
+    "tier": 3,
+    "name": "Wrench",
+    "effects_text": "Spawns a turret that shoots explosive bullets dealing [color=#00ff00]25[/color] ([color=#00ff00][color=white]150%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area"
+  },
+  "weapon_double_barrel_shotgun_4": {
+    "weapon_id": "weapon_double_barrel_shotgun",
+    "icon": "res://weapons/ranged/double_barrel_shotgun/double_barrel_shotgun_icon.png",
+    "tier": 3,
+    "name": "Double Barrel Shotgun",
+    "effects_text": ""
+  },
+  "weapon_flamethrower_4": {
+    "weapon_id": "weapon_flamethrower",
+    "icon": "res://weapons/ranged/flamethrower/flamethrower_icon.png",
+    "tier": 3,
+    "name": "Flamethrower",
+    "effects_text": "Deals [color=#00ff00]5[/color]x[color=#00ff00]8[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_laser_gun_4": {
+    "weapon_id": "weapon_laser_gun",
+    "icon": "res://weapons/ranged/laser_gun/laser_gun_icon.png",
+    "tier": 3,
+    "name": "Laser Gun",
+    "effects_text": ""
+  },
+  "weapon_medical_gun_4": {
+    "weapon_id": "weapon_medical_gun",
+    "icon": "res://weapons/ranged/medical_gun/medical_gun_icon.png",
+    "tier": 3,
+    "name": "Medical Gun",
+    "effects_text": ""
+  },
+  "weapon_minigun_4": {
+    "weapon_id": "weapon_minigun",
+    "icon": "res://weapons/ranged/minigun/minigun_icon.png",
+    "tier": 3,
+    "name": "Minigun",
+    "effects_text": ""
+  },
+  "weapon_pistol_4": {
+    "weapon_id": "weapon_pistol",
+    "icon": "res://weapons/ranged/pistol/pistol_icon.png",
+    "tier": 3,
+    "name": "Pistol",
+    "effects_text": ""
+  },
+  "weapon_rocket_launcher_4": {
+    "weapon_id": "weapon_rocket_launcher",
+    "icon": "res://weapons/ranged/rocket_launcher/rocket_launcher_icon.png",
+    "tier": 3,
+    "name": "Rocket Launcher",
+    "effects_text": "Projectiles explode on hit"
+  },
+  "weapon_shredder_4": {
+    "weapon_id": "weapon_shredder",
+    "icon": "res://weapons/ranged/shredder/shredder_icon.png",
+    "tier": 3,
+    "name": "Shredder",
+    "effects_text": "Projectiles explode on hit"
+  },
+  "weapon_shuriken_4": {
+    "weapon_id": "weapon_shuriken",
+    "icon": "res://weapons/ranged/shuriken/shuriken_icon.png",
+    "tier": 3,
+    "name": "Shuriken",
+    "effects_text": "Bounces up to [color=#00ff00]4[/color] times on critical hit"
+  },
+  "weapon_slingshot_4": {
+    "weapon_id": "weapon_slingshot",
+    "icon": "res://weapons/ranged/slingshot/slingshot_icon.png",
+    "tier": 3,
+    "name": "Slingshot",
+    "effects_text": ""
+  },
+  "weapon_smg_4": {
+    "weapon_id": "weapon_smg",
+    "icon": "res://weapons/ranged/smg/smg_icon.png",
+    "tier": 3,
+    "name": "SMG",
+    "effects_text": ""
+  },
+  "weapon_taser_4": {
+    "weapon_id": "weapon_taser",
+    "icon": "res://weapons/ranged/taser/taser_icon.png",
+    "tier": 3,
+    "name": "Taser",
+    "effects_text": "Slows enemies in a radius around the projectile"
+  },
+  "weapon_wand_4": {
+    "weapon_id": "weapon_wand",
+    "icon": "res://weapons/ranged/wand/wand_icon.png",
+    "tier": 3,
+    "name": "Wand",
+    "effects_text": "Deals [color=#00ff00]12[/color]x[color=#00ff00]6[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_ghost_axe_1": {
+    "weapon_id": "weapon_ghost_axe",
+    "icon": "res://weapons/melee/ghost_axe/ghost_axe_icon.png",
+    "tier": 0,
+    "name": "Ghost Axe",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Damage[/color] for every [color=#00ff00]20[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_axe_2": {
+    "weapon_id": "weapon_ghost_axe",
+    "icon": "res://weapons/melee/ghost_axe/ghost_axe_icon.png",
+    "tier": 1,
+    "name": "Ghost Axe",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Damage[/color] for every [color=#00ff00]18[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_axe_3": {
+    "weapon_id": "weapon_ghost_axe",
+    "icon": "res://weapons/melee/ghost_axe/ghost_axe_icon.png",
+    "tier": 2,
+    "name": "Ghost Axe",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Damage[/color] for every [color=#00ff00]16[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_axe_4": {
+    "weapon_id": "weapon_ghost_axe",
+    "icon": "res://weapons/melee/ghost_axe/ghost_axe_icon.png",
+    "tier": 3,
+    "name": "Ghost Axe",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Damage[/color] for every [color=#00ff00]12[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_scepter_1": {
+    "weapon_id": "weapon_ghost_scepter",
+    "icon": "res://weapons/ranged/ghost_scepter/ghost_scepter_icon.png",
+    "tier": 0,
+    "name": "Ghost Scepter",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] for every [color=#00ff00]20[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_scepter_2": {
+    "weapon_id": "weapon_ghost_scepter",
+    "icon": "res://weapons/ranged/ghost_scepter/ghost_scepter_icon.png",
+    "tier": 1,
+    "name": "Ghost Scepter",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] for every [color=#00ff00]18[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_scepter_3": {
+    "weapon_id": "weapon_ghost_scepter",
+    "icon": "res://weapons/ranged/ghost_scepter/ghost_scepter_icon.png",
+    "tier": 2,
+    "name": "Ghost Scepter",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] for every [color=#00ff00]16[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_ghost_scepter_4": {
+    "weapon_id": "weapon_ghost_scepter",
+    "icon": "res://weapons/ranged/ghost_scepter/ghost_scepter_icon.png",
+    "tier": 3,
+    "name": "Ghost Scepter",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] for every [color=#00ff00]12[/color] enemies you kill during a wave with this weapon\n[color=#ffeae2b0]Stats gained: 0[/color]"
+  },
+  "weapon_hatchet_1": {
+    "weapon_id": "weapon_hatchet",
+    "icon": "res://weapons/melee/hatchet/hatchet_icon.png",
+    "tier": 0,
+    "name": "Hatchet",
+    "effects_text": ""
+  },
+  "weapon_hatchet_2": {
+    "weapon_id": "weapon_hatchet",
+    "icon": "res://weapons/melee/hatchet/hatchet_icon.png",
+    "tier": 1,
+    "name": "Hatchet",
+    "effects_text": ""
+  },
+  "weapon_hatchet_3": {
+    "weapon_id": "weapon_hatchet",
+    "icon": "res://weapons/melee/hatchet/hatchet_icon.png",
+    "tier": 2,
+    "name": "Hatchet",
+    "effects_text": ""
+  },
+  "weapon_hatchet_4": {
+    "weapon_id": "weapon_hatchet",
+    "icon": "res://weapons/melee/hatchet/hatchet_icon.png",
+    "tier": 3,
+    "name": "Hatchet",
+    "effects_text": ""
+  },
+  "weapon_chopper_1": {
+    "weapon_id": "weapon_chopper",
+    "icon": "res://weapons/melee/chopper/chopper_icon.png",
+    "tier": 0,
+    "name": "Chopper",
+    "effects_text": "[color=#00ff00]+1[/color] HP recovered from consumables"
+  },
+  "weapon_chopper_2": {
+    "weapon_id": "weapon_chopper",
+    "icon": "res://weapons/melee/chopper/chopper_icon.png",
+    "tier": 1,
+    "name": "Chopper",
+    "effects_text": "[color=#00ff00]+1[/color] HP recovered from consumables"
+  },
+  "weapon_chopper_3": {
+    "weapon_id": "weapon_chopper",
+    "icon": "res://weapons/melee/chopper/chopper_icon.png",
+    "tier": 2,
+    "name": "Chopper",
+    "effects_text": "[color=#00ff00]+1[/color] HP recovered from consumables"
+  },
+  "weapon_chopper_4": {
+    "weapon_id": "weapon_chopper",
+    "icon": "res://weapons/melee/chopper/chopper_icon.png",
+    "tier": 3,
+    "name": "Chopper",
+    "effects_text": "[color=#00ff00]+2[/color] HP recovered from consumables"
+  },
+  "weapon_plasma_sledgehammer_3": {
+    "weapon_id": "weapon_plasma_sledgehammer",
+    "icon": "res://weapons/melee/plasma_sledgehammer/plasma_sledgehammer_icon.png",
+    "tier": 2,
+    "name": "Plasma Sledgehammer",
+    "effects_text": "[color=#00ff00]25%[/color] chance to explode on hit"
+  },
+  "weapon_plasma_sledgehammer_4": {
+    "weapon_id": "weapon_plasma_sledgehammer",
+    "icon": "res://weapons/melee/plasma_sledgehammer/plasma_sledgehammer_icon.png",
+    "tier": 3,
+    "name": "Plasma Sledgehammer",
+    "effects_text": "[color=#00ff00]50%[/color] chance to explode on hit"
+  },
+  "weapon_power_fist_3": {
+    "weapon_id": "weapon_power_fist",
+    "icon": "res://weapons/melee/power_fist/power_fist_icon.png",
+    "tier": 2,
+    "name": "Power Fist",
+    "effects_text": "[color=#00ff00]25%[/color] chance to explode on hit"
+  },
+  "weapon_power_fist_4": {
+    "weapon_id": "weapon_power_fist",
+    "icon": "res://weapons/melee/power_fist/power_fist_icon.png",
+    "tier": 3,
+    "name": "Power Fist",
+    "effects_text": "[color=#00ff00]50%[/color] chance to explode on hit"
+  },
+  "weapon_spiky_shield_1": {
+    "weapon_id": "weapon_spiky_shield",
+    "icon": "res://weapons/melee/spiky_shield/spiky_shield_icon.png",
+    "tier": 0,
+    "name": "Spiky Shield",
+    "effects_text": ""
+  },
+  "weapon_spiky_shield_2": {
+    "weapon_id": "weapon_spiky_shield",
+    "icon": "res://weapons/melee/spiky_shield/spiky_shield_icon.png",
+    "tier": 1,
+    "name": "Spiky Shield",
+    "effects_text": ""
+  },
+  "weapon_spiky_shield_3": {
+    "weapon_id": "weapon_spiky_shield",
+    "icon": "res://weapons/melee/spiky_shield/spiky_shield_icon.png",
+    "tier": 2,
+    "name": "Spiky Shield",
+    "effects_text": ""
+  },
+  "weapon_spiky_shield_4": {
+    "weapon_id": "weapon_spiky_shield",
+    "icon": "res://weapons/melee/spiky_shield/spiky_shield_icon.png",
+    "tier": 3,
+    "name": "Spiky Shield",
+    "effects_text": ""
+  },
+  "weapon_thunder_sword_3": {
+    "weapon_id": "weapon_thunder_sword",
+    "icon": "res://weapons/melee/thunder_sword/thunder_sword_icon.png",
+    "tier": 2,
+    "name": "Thunder Sword",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]2[/color] projectiles that deal [color=#00ff00]1[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) damage and slow enemies around them"
+  },
+  "weapon_thunder_sword_4": {
+    "weapon_id": "weapon_thunder_sword",
+    "icon": "res://weapons/melee/thunder_sword/thunder_sword_icon.png",
+    "tier": 3,
+    "name": "Thunder Sword",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]4[/color] projectiles that deal [color=#00ff00]1[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) damage and slow enemies around them"
+  },
+  "weapon_nuclear_launcher_3": {
+    "weapon_id": "weapon_nuclear_launcher",
+    "icon": "res://weapons/ranged/nuclear_launcher/nuclear_launcher_icon.png",
+    "tier": 2,
+    "name": "Nuclear Launcher",
+    "effects_text": "Projectiles explode on hit"
+  },
+  "weapon_nuclear_launcher_4": {
+    "weapon_id": "weapon_nuclear_launcher",
+    "icon": "res://weapons/ranged/nuclear_launcher/nuclear_launcher_icon.png",
+    "tier": 3,
+    "name": "Nuclear Launcher",
+    "effects_text": "Projectiles explode on hit"
+  },
+  "weapon_potato_thrower_2": {
+    "weapon_id": "weapon_potato_thrower",
+    "icon": "res://weapons/ranged/potato_thrower/potato_thrower_icon.png",
+    "tier": 1,
+    "name": "Potato Thrower",
+    "effects_text": ""
+  },
+  "weapon_potato_thrower_3": {
+    "weapon_id": "weapon_potato_thrower",
+    "icon": "res://weapons/ranged/potato_thrower/potato_thrower_icon.png",
+    "tier": 2,
+    "name": "Potato Thrower",
+    "effects_text": ""
+  },
+  "weapon_potato_thrower_4": {
+    "weapon_id": "weapon_potato_thrower",
+    "icon": "res://weapons/ranged/potato_thrower/potato_thrower_icon.png",
+    "tier": 3,
+    "name": "Potato Thrower",
+    "effects_text": ""
+  },
+  "weapon_obliterator_3": {
+    "weapon_id": "weapon_obliterator",
+    "icon": "res://weapons/ranged/obliterator/obliterator_icon.png",
+    "tier": 2,
+    "name": "Obliterator",
+    "effects_text": ""
+  },
+  "weapon_obliterator_4": {
+    "weapon_id": "weapon_obliterator",
+    "icon": "res://weapons/ranged/obliterator/obliterator_icon.png",
+    "tier": 3,
+    "name": "Obliterator",
+    "effects_text": ""
+  },
+  "weapon_flaming_brass_knuckles_2": {
+    "weapon_id": "weapon_flaming_brass_knuckles",
+    "icon": "res://weapons/melee/flaming_knuckles/flaming_knuckles_icon.png",
+    "tier": 1,
+    "name": "Flaming Brass Knuckles",
+    "effects_text": "Deals [color=#00ff00]8[/color]x[color=#00ff00]5[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage"
+  },
+  "weapon_crossbow_1": {
+    "weapon_id": "weapon_crossbow",
+    "icon": "res://weapons/ranged/crossbow/crossbow_icon.png",
+    "tier": 0,
+    "name": "Crossbow",
+    "effects_text": "Pierces up to [color=#00ff00]1[/color] times on critical hit"
+  },
+  "weapon_crossbow_2": {
+    "weapon_id": "weapon_crossbow",
+    "icon": "res://weapons/ranged/crossbow/crossbow_icon.png",
+    "tier": 1,
+    "name": "Crossbow",
+    "effects_text": "Pierces up to [color=#00ff00]2[/color] times on critical hit"
+  },
+  "weapon_crossbow_3": {
+    "weapon_id": "weapon_crossbow",
+    "icon": "res://weapons/ranged/crossbow/crossbow_icon.png",
+    "tier": 2,
+    "name": "Crossbow",
+    "effects_text": "Pierces up to [color=#00ff00]3[/color] times on critical hit"
+  },
+  "weapon_crossbow_4": {
+    "weapon_id": "weapon_crossbow",
+    "icon": "res://weapons/ranged/crossbow/crossbow_icon.png",
+    "tier": 3,
+    "name": "Crossbow",
+    "effects_text": "Pierces up to [color=#00ff00]4[/color] times on critical hit"
+  },
+  "weapon_sniper_gun_3": {
+    "weapon_id": "weapon_sniper_gun",
+    "icon": "res://weapons/ranged/sniper_gun/sniper_icon.png",
+    "tier": 2,
+    "name": "Sniper Gun",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]5[/color] projectiles dealing [color=#00ff00]5[/color] ([color=#00ff00][color=white]10%[/color][img=20x20]res://items/stats/range.png[/img][/color]) damage"
+  },
+  "weapon_sniper_gun_4": {
+    "weapon_id": "weapon_sniper_gun",
+    "icon": "res://weapons/ranged/sniper_gun/sniper_icon.png",
+    "tier": 3,
+    "name": "Sniper Gun",
+    "effects_text": "Hitting an enemy spawns [color=#00ff00]8[/color] projectiles dealing [color=#00ff00]5[/color] ([color=#00ff00][color=white]15%[/color][img=20x20]res://items/stats/range.png[/img][/color]) damage"
+  },
+  "weapon_plank_1": {
+    "weapon_id": "weapon_plank",
+    "icon": "res://weapons/melee/plank/plank_icon.png",
+    "tier": 0,
+    "name": "Plank",
+    "effects_text": "[color=#00ff00]25%[/color] chance to explode on hit"
+  },
+  "weapon_plank_2": {
+    "weapon_id": "weapon_plank",
+    "icon": "res://weapons/melee/plank/plank_icon.png",
+    "tier": 1,
+    "name": "Plank",
+    "effects_text": "[color=#00ff00]30%[/color] chance to explode on hit"
+  },
+  "weapon_plank_3": {
+    "weapon_id": "weapon_plank",
+    "icon": "res://weapons/melee/plank/plank_icon.png",
+    "tier": 2,
+    "name": "Plank",
+    "effects_text": "[color=#00ff00]35%[/color] chance to explode on hit"
+  },
+  "weapon_plank_4": {
+    "weapon_id": "weapon_plank",
+    "icon": "res://weapons/melee/plank/plank_icon.png",
+    "tier": 3,
+    "name": "Plank",
+    "effects_text": "[color=#00ff00]40%[/color] chance to explode on hit"
+  },
+  "weapon_jousting_lance_1": {
+    "weapon_id": "weapon_jousting_lance",
+    "icon": "res://weapons/melee/jousting_lance/jousting_lance_icon.png",
+    "tier": 0,
+    "name": "Jousting Lance",
+    "effects_text": "[color=#00ff00]+2[/color] % Speed\n[color=red]-10[/color] [color=red]% Damage[/color] while standing still"
+  },
+  "weapon_jousting_lance_2": {
+    "weapon_id": "weapon_jousting_lance",
+    "icon": "res://weapons/melee/jousting_lance/jousting_lance_icon.png",
+    "tier": 1,
+    "name": "Jousting Lance",
+    "effects_text": "[color=#00ff00]+3[/color] % Speed\n[color=red]-15[/color] [color=red]% Damage[/color] while standing still"
+  },
+  "weapon_jousting_lance_3": {
+    "weapon_id": "weapon_jousting_lance",
+    "icon": "res://weapons/melee/jousting_lance/jousting_lance_icon.png",
+    "tier": 2,
+    "name": "Jousting Lance",
+    "effects_text": "[color=#00ff00]+4[/color] % Speed\n[color=red]-20[/color] [color=red]% Damage[/color] while standing still"
+  },
+  "weapon_jousting_lance_4": {
+    "weapon_id": "weapon_jousting_lance",
+    "icon": "res://weapons/melee/jousting_lance/jousting_lance_icon.png",
+    "tier": 3,
+    "name": "Jousting Lance",
+    "effects_text": "[color=#00ff00]+5[/color] % Speed\n[color=red]-25[/color] [color=red]% Damage[/color] while standing still"
+  },
+  "weapon_pruner_1": {
+    "weapon_id": "weapon_pruner",
+    "icon": "res://weapons/melee/pruner/pruner_icon.png",
+    "tier": 0,
+    "name": "Pruner",
+    "effects_text": "Spawns a garden that creates a fruit every [color=#00ff00]15[/color] seconds"
+  },
+  "weapon_pruner_2": {
+    "weapon_id": "weapon_pruner",
+    "icon": "res://weapons/melee/pruner/pruner_icon.png",
+    "tier": 1,
+    "name": "Pruner",
+    "effects_text": "Spawns a garden that creates a fruit every [color=#00ff00]14[/color] seconds"
+  },
+  "weapon_pruner_3": {
+    "weapon_id": "weapon_pruner",
+    "icon": "res://weapons/melee/pruner/pruner_icon.png",
+    "tier": 2,
+    "name": "Pruner",
+    "effects_text": "Spawns a garden that creates a fruit every [color=#00ff00]12[/color] seconds"
+  },
+  "weapon_pruner_4": {
+    "weapon_id": "weapon_pruner",
+    "icon": "res://weapons/melee/pruner/pruner_icon.png",
+    "tier": 3,
+    "name": "Pruner",
+    "effects_text": "Spawns a garden that creates a fruit every [color=#00ff00]10[/color] seconds"
+  },
+  "weapon_revolver_1": {
+    "weapon_id": "weapon_revolver",
+    "icon": "res://weapons/ranged/revolver/revolver_icon.png",
+    "tier": 0,
+    "name": "Revolver",
+    "effects_text": ""
+  },
+  "weapon_revolver_2": {
+    "weapon_id": "weapon_revolver",
+    "icon": "res://weapons/ranged/revolver/revolver_icon.png",
+    "tier": 1,
+    "name": "Revolver",
+    "effects_text": ""
+  },
+  "weapon_revolver_3": {
+    "weapon_id": "weapon_revolver",
+    "icon": "res://weapons/ranged/revolver/revolver_icon.png",
+    "tier": 2,
+    "name": "Revolver",
+    "effects_text": ""
+  },
+  "weapon_revolver_4": {
+    "weapon_id": "weapon_revolver",
+    "icon": "res://weapons/ranged/revolver/revolver_icon.png",
+    "tier": 3,
+    "name": "Revolver",
+    "effects_text": ""
+  },
+  "weapon_gatling_laser_4": {
+    "weapon_id": "weapon_gatling_laser",
+    "icon": "res://weapons/ranged/gatling_laser/gatling_laser_icon.png",
+    "tier": 3,
+    "name": "Gatling Laser",
+    "effects_text": ""
+  },
+  "weapon_chain_gun_4": {
+    "weapon_id": "weapon_chain_gun",
+    "icon": "res://weapons/ranged/chain_gun/chain_gun_icon.png",
+    "tier": 3,
+    "name": "Chain Gun",
+    "effects_text": ""
+  },
+  "weapon_claw_1": {
+    "weapon_id": "weapon_claw",
+    "icon": "res://weapons/melee/claw/claw_icon.png",
+    "tier": 0,
+    "name": "Claw",
+    "effects_text": ""
+  },
+  "weapon_claw_2": {
+    "weapon_id": "weapon_claw",
+    "icon": "res://weapons/melee/claw/claw_icon.png",
+    "tier": 1,
+    "name": "Claw",
+    "effects_text": ""
+  },
+  "weapon_claw_3": {
+    "weapon_id": "weapon_claw",
+    "icon": "res://weapons/melee/claw/claw_icon.png",
+    "tier": 2,
+    "name": "Claw",
+    "effects_text": ""
+  },
+  "weapon_claw_4": {
+    "weapon_id": "weapon_claw",
+    "icon": "res://weapons/melee/claw/claw_icon.png",
+    "tier": 3,
+    "name": "Claw",
+    "effects_text": ""
+  },
+  "weapon_excalibur_4": {
+    "weapon_id": "weapon_excalibur",
+    "icon": "res://weapons/melee/excalibur/excalibur_icon.png",
+    "tier": 3,
+    "name": "Excalibur",
+    "effects_text": "[color=red]-3[/color] [color=red]Armor[/color] for every weapon you have [+0]"
+  },
+  "weapon_drill_4": {
+    "weapon_id": "weapon_drill",
+    "icon": "res://weapons/melee/drill/drill_icon.png",
+    "tier": 3,
+    "name": "Drill",
+    "effects_text": "[color=#00ff00]100%[/color] chance to gain 1 material when killing an enemy with a critical hit\n[color=#00ff00]+10[/color] [color=#00ff00]% Attack Speed[/color] every 5 seconds until the end of the wave\n[color=#ffeae2b0]Materials gained: 0[/color]"
+  },
+  "weapon_scythe_4": {
+    "weapon_id": "weapon_scythe",
+    "icon": "res://weapons/melee/scythe/scythe_icon.png",
+    "tier": 3,
+    "name": "Scythe",
+    "effects_text": "You take [color=red]3[/color] damage per second (does not give invulnerability time)\n[color=#00ff00]+3[/color] [color=#00ff00]% Damage[/color] when you take damage until the end of the wave"
+  },
+  "weapon_fighting_stick_1": {
+    "weapon_id": "weapon_fighting_stick",
+    "icon": "res://weapons/melee/fighting_stick/fighting_stick_icon.png",
+    "tier": 0,
+    "name": "Fighting Stick",
+    "effects_text": ""
+  },
+  "weapon_fighting_stick_2": {
+    "weapon_id": "weapon_fighting_stick",
+    "icon": "res://weapons/melee/fighting_stick/fighting_stick_icon.png",
+    "tier": 1,
+    "name": "Fighting Stick",
+    "effects_text": ""
+  },
+  "weapon_fighting_stick_3": {
+    "weapon_id": "weapon_fighting_stick",
+    "icon": "res://weapons/melee/fighting_stick/fighting_stick_icon.png",
+    "tier": 2,
+    "name": "Fighting Stick",
+    "effects_text": ""
+  },
+  "weapon_fighting_stick_4": {
+    "weapon_id": "weapon_fighting_stick",
+    "icon": "res://weapons/melee/fighting_stick/fighting_stick_icon.png",
+    "tier": 3,
+    "name": "Fighting Stick",
+    "effects_text": ""
+  }
+}

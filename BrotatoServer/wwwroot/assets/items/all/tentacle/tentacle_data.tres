@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/tentacle/tentacle_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/tentacle/tentacle_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/tentacle/tentacle_appearance.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/tentacle/tentacle_effect_0.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_tentacle"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "ITEM_TENTACLE"
+tier = 1
+value = 32
+effects = [ ExtResource( 5 ), ExtResource( 3 ) ]
+tracking_text = "HEALTH_RECOVERED"
+max_nb = 5
+item_appearances = [ ExtResource( 4 ) ]
+tags = [ "stat_crit_chance" ]

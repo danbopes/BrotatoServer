@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://weapons/melee/hammer/4/hammer_4_data.tres" type="Resource" id=1]
+[ext_resource path="res://weapons/melee/hammer/hammer_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=3]
+[ext_resource path="res://weapons/melee/hammer/hammer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://weapons/melee/hammer/3/hammer_3_stats.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/blunt/blunt_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/heavy/heavy_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 3 )
+my_id = "weapon_hammer_3"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_HAMMER"
+tier = 2
+value = 95
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_hammer"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 7 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 5 )
+upgrades_into = ExtResource( 1 )

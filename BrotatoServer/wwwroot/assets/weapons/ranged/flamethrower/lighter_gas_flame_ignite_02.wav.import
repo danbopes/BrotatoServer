@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lighter_gas_flame_ignite_02.wav-c291ec72be1c6887701fc27699d14b02.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/flamethrower/lighter_gas_flame_ignite_02.wav"
+dest_files=[ "res://.import/lighter_gas_flame_ignite_02.wav-c291ec72be1c6887701fc27699d14b02.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

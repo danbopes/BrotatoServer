@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/hand/hand_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/hand/hand.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/hand/3/hand_3_stats.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/melee/hand/3/hand_3_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/melee/hand/4/hand_4_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/support/support_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/unarmed/unarmed_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_hand_3"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_HAND"
+tier = 2
+value = 45
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_hand"
+type = 0
+sets = [ ExtResource( 8 ), ExtResource( 7 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
+upgrades_into = ExtResource( 6 )

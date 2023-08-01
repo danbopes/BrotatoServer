@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/all/coffee/coffee_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/coffee/coffee_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/coffee/coffee_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=4]
+[ext_resource path="res://items/all/coffee/coffee_effect_2.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "item_coffee"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_COFFEE"
+tier = 0
+value = 15
+effects = [ ExtResource( 3 ), ExtResource( 5 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_attack_speed" ]

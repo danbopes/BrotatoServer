@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/whoosh_swish_high_fast_04.wav-29a5f0deb74c23d189eb9a97e01c2e6b.sample"
+
+[deps]
+
+source_file="res://weapons/melee_sounds/whoosh_swish_high_fast_04.wav"
+dest_files=[ "res://.import/whoosh_swish_high_fast_04.wav-29a5f0deb74c23d189eb9a97e01c2e6b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

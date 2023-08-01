@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/baby_with_a_beard/baby_with_a_beard_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/baby_with_a_beard/baby_with_a_beard_appearance.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/baby_with_a_beard/baby_with_a_beard_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/baby_with_a_beard/baby_with_a_beard_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_baby_with_a_beard"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_BABY_WITH_A_BEARD"
+tier = 2
+value = 100
+effects = [ ExtResource( 5 ), ExtResource( 4 ) ]
+tracking_text = "DAMAGE_DEALT"
+max_nb = -1
+item_appearances = [ ExtResource( 3 ) ]
+tags = [ "stat_ranged_damage" ]

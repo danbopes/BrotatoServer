@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/sets/primitive/4/set_4_effect_1.tres" type="Resource" id=1]
+[ext_resource path="res://items/sets/primitive/2/set_2_effect_1.tres" type="Resource" id=2]
+[ext_resource path="res://items/sets/primitive/6/set_6_effect_1.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/primitive/3/set_3_effect_1.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/primitive/5/set_5_effect_1.tres" type="Resource" id=8]
+[ext_resource path="res://items/sets/set_data.gd" type="Script" id=15]
+
+[resource]
+script = ExtResource( 15 )
+my_id = "set_primitive"
+name = "WEAPON_CLASS_PRIMITIVE"
+set_bonuses = [ [ ExtResource( 2 ) ], [ ExtResource( 7 ) ], [ ExtResource( 1 ) ], [ ExtResource( 8 ) ], [ ExtResource( 4 ) ] ]

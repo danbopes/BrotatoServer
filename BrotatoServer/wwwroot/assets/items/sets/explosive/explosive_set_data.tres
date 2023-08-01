@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/sets/set_data.gd" type="Script" id=1]
+[ext_resource path="res://items/sets/explosive/5/set_5_effect_2.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/explosive/6/set_6_effect_2.tres" type="Resource" id=8]
+[ext_resource path="res://items/sets/explosive/3/set_3_effect_2.tres" type="Resource" id=9]
+[ext_resource path="res://items/sets/explosive/2/set_2_effect_2.tres" type="Resource" id=10]
+[ext_resource path="res://items/sets/explosive/4/set_4_effect_2.tres" type="Resource" id=11]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "set_explosive"
+name = "WEAPON_CLASS_EXPLOSIVE"
+set_bonuses = [ [ ExtResource( 10 ) ], [ ExtResource( 9 ) ], [ ExtResource( 11 ) ], [ ExtResource( 7 ) ], [ ExtResource( 8 ) ] ]

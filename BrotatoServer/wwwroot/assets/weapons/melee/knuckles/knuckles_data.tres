@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/knuckles/knuckles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://weapons/melee/knuckles/knuckles_icon.png" type="Texture" id=3]
+[ext_resource path="res://weapons/melee/knuckles/knuckles_stats.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_knuckles"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "WEAPON_BRASS_KNUCKLES"
+tier = 1
+value = 40
+effects = [  ]
+weapon_id = ""
+type = 0
+weapon_classes = [ 4 ]
+scene = ExtResource( 2 )
+stats = ExtResource( 4 )

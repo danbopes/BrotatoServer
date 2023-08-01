@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/bow_crossbow_arrow_shoot_type1_01.wav-22185257b7f414ec9b54e13084761848.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/crossbow/bow_crossbow_arrow_shoot_type1_01.wav"
+dest_files=[ "res://.import/bow_crossbow_arrow_shoot_type1_01.wav-22185257b7f414ec9b54e13084761848.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

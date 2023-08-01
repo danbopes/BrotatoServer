@@ -1,0 +1,1096 @@
+{
+  "item_acid": {
+    "icon": "res://items/all/acid/acid_icon.png",
+    "tier": 1,
+    "name": "Acid",
+    "effects_text": "[color=#00ff00]+8[/color] Max HP\n[color=red]-4[/color] % Dodge"
+  },
+  "item_alien_baby": {
+    "icon": "res://items/all/alien_baby/alien_baby_icon.png",
+    "tier": 2,
+    "name": "Alien Baby",
+    "effects_text": "[color=#00ff00]+15[/color] Max HP\n[color=red]+8[/color] % Enemy Speed"
+  },
+  "item_alien_eyes": {
+    "icon": "res://items/all/alien_eyes/alien_eyes_icon.png",
+    "tier": 1,
+    "name": "Alien Eyes",
+    "effects_text": "Shoots [color=#00ff00]6[/color] alien eyes around you every [color=#00ff00]3[/color] seconds dealing [color=#00ff00]6[/color] ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/max_hp.png[/img][/color]) damage each",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_alien_magic": {
+    "icon": "res://items/all/alien_magic/alien_magic_icon.png",
+    "tier": 2,
+    "name": "Alien Magic",
+    "effects_text": "[color=#00ff00]+8[/color] Max HP\n[color=#00ff00]+3[/color] HP Regeneration\n[color=red]-8[/color] Luck"
+  },
+  "item_alien_tongue": {
+    "icon": "res://items/all/alien_tongue/alien_tongue_icon.png",
+    "tier": 0,
+    "name": "Alien Tongue",
+    "effects_text": "[color=#00ff00]+30%[/color] pickup range"
+  },
+  "item_alien_worm": {
+    "icon": "res://items/all/alien_worm/alien_worm_icon.png",
+    "tier": 0,
+    "name": "Alien Worm",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\n[color=#00ff00]+2[/color] HP Regeneration\n[color=red]-1[/color] HP recovered from consumables"
+  },
+  "item_alloy": {
+    "icon": "res://items/all/alloy/alloy_icon.png",
+    "tier": 2,
+    "name": "Alloy",
+    "effects_text": "[color=#00ff00]+3[/color] Melee Damage\n[color=#00ff00]+3[/color] Ranged Damage\n[color=#00ff00]+3[/color] Elemental Damage\n[color=#00ff00]+3[/color] Engineering\n[color=#00ff00]+5[/color] % Crit Chance\n[color=red]-6[/color] % Dodge"
+  },
+  "item_baby_elephant": {
+    "icon": "res://items/all/baby_elephant/baby_elephant_icon.png",
+    "tier": 0,
+    "name": "Baby Elephant",
+    "effects_text": "[color=#00ff00]25%[/color] chance to deal [color=#00ff00]1[/color] ([color=#00ff00][color=white]25%[/color][img=20x20]res://items/stats/luck.png[/img][/color]) damage to a random enemy when you pick up a material",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_baby_gecko": {
+    "icon": "res://items/all/baby_gecko/baby_gecko_icon.png",
+    "tier": 0,
+    "name": "Baby Gecko",
+    "effects_text": "[color=#00ff00]+20%[/color] chance to instantly attract a material when it’s dropped\n[color=#00ff00]+10[/color] Range"
+  },
+  "item_baby_with_a_beard": {
+    "icon": "res://items/all/baby_with_a_beard/baby_with_a_beard_icon.png",
+    "tier": 2,
+    "name": "Baby with a Beard",
+    "effects_text": "One bullet dealing [color=#00ff00]1[/color] ([color=#00ff00][img=20x20]res://items/stats/ranged_damage.png[/img][/color]) damage is fired from an enemy corpse when they die\n[color=red]-50[/color] Range",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_bag": {
+    "icon": "res://items/all/bag/bag_icon.png",
+    "tier": 0,
+    "name": "Bag",
+    "effects_text": "[color=#00ff00]+15[/color] materials when you pick up a crate\n[color=red]-1[/color] % Speed",
+    "tracking_text": "Materials gained: {0}"
+  },
+  "item_bandana": {
+    "icon": "res://items/all/bandana/bandana_icon.png",
+    "tier": 2,
+    "name": "Bandana",
+    "effects_text": "Projectiles pierce through [color=#00ff00]1[/color] additional target\n[color=red]-10[/color] % Damage"
+  },
+  "item_banner": {
+    "icon": "res://items/all/banner/banner_icon.png",
+    "tier": 1,
+    "name": "Banner",
+    "effects_text": "[color=#00ff00]+20[/color] Range\n[color=#00ff00]+10[/color] % Attack Speed\n[color=red]-2[/color] % Life Steal"
+  },
+  "item_barricade": {
+    "icon": "res://items/all/barricade/barricade_icon.png",
+    "tier": 2,
+    "name": "Barricade",
+    "effects_text": "[color=#00ff00]+8[/color] [color=#00ff00]Armor[/color] while standing still\n[color=red]-5[/color] % Speed"
+  },
+  "item_bat": {
+    "icon": "res://items/all/bat/bat_icon.png",
+    "tier": 0,
+    "name": "Bat",
+    "effects_text": "[color=#00ff00]+2[/color] % Life Steal\n[color=red]-2[/color] Harvesting"
+  },
+  "item_beanie": {
+    "icon": "res://items/all/beanie/beanie_icon.png",
+    "tier": 0,
+    "name": "Beanie",
+    "effects_text": "[color=#00ff00]+4[/color] % Speed\n[color=red]-6[/color] Range"
+  },
+  "item_bean_teacher": {
+    "icon": "res://items/all/bean_teacher/bean_teacher_icon.png",
+    "tier": 2,
+    "name": "Bean Teacher",
+    "effects_text": "[color=#00ff00]+40[/color] % XP Gain\n[color=red]-2[/color] % Life Steal"
+  },
+  "item_big_arms": {
+    "icon": "res://items/all/big_arms/big_arms_icon.png",
+    "tier": 3,
+    "name": "Big Arms",
+    "effects_text": "[color=#00ff00]+12[/color] Melee Damage\n[color=#00ff00]+6[/color] Ranged Damage\n[color=red]-1[/color] Armor\n[color=red]-5[/color] % Speed"
+  },
+  "item_black_belt": {
+    "icon": "res://items/all/black_belt/black_belt_icon.png",
+    "tier": 1,
+    "name": "Black Belt",
+    "effects_text": "[color=#00ff00]+25[/color] % XP Gain\n[color=#00ff00]+3[/color] Melee Damage\n[color=red]-8[/color] Luck"
+  },
+  "item_blindfold": {
+    "icon": "res://items/all/blindfold/blindfold_icon.png",
+    "tier": 1,
+    "name": "Blindfold",
+    "effects_text": "[color=#00ff00]+5[/color] % Crit Chance\n[color=#00ff00]+5[/color] % Dodge\n[color=red]-15[/color] Range"
+  },
+  "item_blood_donation": {
+    "icon": "res://items/all/blood_donation/blood_donation_icon.png",
+    "tier": 2,
+    "name": "Blood Donation",
+    "effects_text": "[color=#00ff00]+40[/color] Harvesting\nYou take [color=red]1[/color] damage per second (does not give invulnerability time)"
+  },
+  "item_blood_leech": {
+    "icon": "res://items/all/blood_leech/blood_leech_icon.png",
+    "tier": 1,
+    "name": "Blood Leech",
+    "effects_text": "[color=#00ff00]+2[/color] % Life Steal\n[color=#00ff00]+2[/color] HP Regeneration\n[color=red]-4[/color] Harvesting"
+  },
+  "item_boiling_water": {
+    "icon": "res://items/all/boiling_water/boiling_water_icon.png",
+    "tier": 0,
+    "name": "Boiling Water",
+    "effects_text": "[color=#00ff00]+2[/color] Elemental Damage\n[color=red]-1[/color] Max HP"
+  },
+  "item_book": {
+    "icon": "res://items/all/book/book_icon.png",
+    "tier": 0,
+    "name": "Book",
+    "effects_text": "[color=#00ff00]+1[/color] Engineering"
+  },
+  "item_bowler_hat": {
+    "icon": "res://items/all/bowler_hat/bowler_hat_icon.png",
+    "tier": 2,
+    "name": "Bowler Hat",
+    "effects_text": "[color=#00ff00]+15[/color] Luck\n[color=#00ff00]+18[/color] Harvesting\n[color=red]-5[/color] % Attack Speed\n[color=red]-3[/color] % Crit Chance"
+  },
+  "item_boxing_glove": {
+    "icon": "res://items/all/boxing_glove/boxing_glove_icon.png",
+    "tier": 0,
+    "name": "Boxing Glove",
+    "effects_text": "[color=#00ff00]+3[/color] Knockback"
+  },
+  "item_broken_mouth": {
+    "icon": "res://items/all/broken_mouth/broken_mouth_icon.png",
+    "tier": 0,
+    "name": "Broken Mouth",
+    "effects_text": "[color=#00ff00]+5[/color] Max HP\n[color=red]-1[/color] HP Regeneration"
+  },
+  "item_butterfly": {
+    "icon": "res://items/all/butterfly/butterfly_icon.png",
+    "tier": 0,
+    "name": "Butterfly",
+    "effects_text": "[color=#00ff00]+2[/color] % Life Steal\n[color=red]-1[/color] Elemental Damage"
+  },
+  "item_cake": {
+    "icon": "res://items/all/cake/cake_icon.png",
+    "tier": 0,
+    "name": "Cake",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\n[color=red]-1[/color] % Damage"
+  },
+  "item_campfire": {
+    "icon": "res://items/all/campfire/campfire_icon.png",
+    "tier": 1,
+    "name": "Campfire",
+    "effects_text": "[color=#00ff00]+2[/color] Elemental Damage\n[color=#00ff00]+2[/color] HP Regeneration\n[color=red]-2[/color] % Speed"
+  },
+  "item_candle": {
+    "icon": "res://items/all/candle/candle_icon.png",
+    "tier": 2,
+    "name": "Candle",
+    "effects_text": "[color=#00ff00]+4[/color] Elemental Damage\n[color=#00ff00]+1[/color] HP Regeneration\n-10% Enemies\n[color=red]-5[/color] % Damage"
+  },
+  "item_cape": {
+    "icon": "res://items/all/cape/cape_icon.png",
+    "tier": 3,
+    "name": "Cape",
+    "effects_text": "[color=#00ff00]+5[/color] % Life Steal\n[color=#00ff00]+20[/color] % Dodge\n[color=red]-2[/color] Melee Damage\n[color=red]-2[/color] Ranged Damage\n[color=red]-2[/color] Elemental Damage"
+  },
+  "item_chameleon": {
+    "icon": "res://items/all/chameleon/chameleon_icon.png",
+    "tier": 2,
+    "name": "Chameleon",
+    "effects_text": "[color=#00ff00]+3[/color] % Dodge\n[color=#00ff00]+20[/color] [color=#00ff00]% Dodge[/color] while standing still\n[color=red]-4[/color] % Damage"
+  },
+  "item_charcoal": {
+    "icon": "res://items/all/charcoal/charcoal_icon.png",
+    "tier": 0,
+    "name": "Charcoal",
+    "effects_text": "[color=#00ff00]+1[/color] Elemental Damage\n[color=#00ff00]+2[/color] Melee Damage\n[color=red]-2[/color] Harvesting"
+  },
+  "item_claw_tree": {
+    "icon": "res://items/all/claw_tree/claw_tree_icon.png",
+    "tier": 0,
+    "name": "Claw Tree",
+    "effects_text": "[color=#00ff00]+1[/color] Melee Damage\n[color=#00ff00]+3[/color] % Crit Chance\n[color=red]-1[/color] Max HP"
+  },
+  "item_clover": {
+    "icon": "res://items/all/clover/clover_icon.png",
+    "tier": 2,
+    "name": "Clover",
+    "effects_text": "[color=#00ff00]+20[/color] Luck\n[color=#00ff00]+6[/color] % Dodge\n[color=red]-2[/color] % Life Steal"
+  },
+  "item_coffee": {
+    "icon": "res://items/all/coffee/coffee_icon.png",
+    "tier": 0,
+    "name": "Coffee",
+    "effects_text": "[color=#00ff00]+10[/color] % Attack Speed\n[color=red]-2[/color] % Damage"
+  },
+  "item_cog": {
+    "icon": "res://items/all/cog/cog_icon.png",
+    "tier": 1,
+    "name": "Cog",
+    "effects_text": "[color=#00ff00]+4[/color] Engineering\n[color=red]-4[/color] % Damage"
+  },
+  "item_compass": {
+    "icon": "res://items/all/compass/compass_icon.png",
+    "tier": 1,
+    "name": "Compass",
+    "effects_text": "[color=#00ff00]+5[/color] % Speed\n[color=#00ff00]+3[/color] Engineering\n[color=red]-3[/color] % Crit Chance"
+  },
+  "item_coupon": {
+    "icon": "res://items/all/coupon/coupon_icon.png",
+    "tier": 0,
+    "name": "Coupon",
+    "effects_text": "[color=#00ff00]-5[/color] % Items Price",
+    "tracking_text": "Materials saved: {0}"
+  },
+  "item_crown": {
+    "icon": "res://items/all/crown/crown_icon.png",
+    "tier": 2,
+    "name": "Crown",
+    "effects_text": "Harvesting increases by an additional [color=#00ff00]8%[/color] at the end of a wave",
+    "tracking_text": "Stats gained: {0}"
+  },
+  "item_cute_monkey": {
+    "icon": "res://items/all/cute_monkey/cute_monkey_icon.png",
+    "tier": 0,
+    "name": "Cute Monkey",
+    "effects_text": "[color=#00ff00]+8%[/color] chance to heal 1 HP when picking up a material\n[color=red]-1[/color] Ranged Damage",
+    "tracking_text": "HP recovered: {0}"
+  },
+  "item_cyberball": {
+    "icon": "res://items/all/cyberball/cyberball_icon.png",
+    "tier": 1,
+    "name": "Cyberball",
+    "effects_text": "[color=#00ff00]25%[/color] chance to deal [color=#00ff00]1[/color] ([color=#00ff00][color=white]25%[/color][img=20x20]res://items/stats/luck.png[/img][/color]) damage to a random enemy when an enemy dies",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_cyclops_worm": {
+    "icon": "res://items/all/cyclops_worm/cyclops_worm_icon.png",
+    "tier": 1,
+    "name": "Cyclops Worm",
+    "effects_text": "[color=#00ff00]+12[/color] % Damage\n[color=red]-12[/color] Range"
+  },
+  "item_defective_steroids": {
+    "icon": "res://items/all/defective_steroids/defective_steroids_icon.png",
+    "tier": 0,
+    "name": "Defective Steroids",
+    "effects_text": "[color=#00ff00]+2[/color] Max HP\n[color=#00ff00]+2[/color] Melee Damage\n[color=red]-3[/color] % Attack Speed"
+  },
+  "item_diploma": {
+    "icon": "res://items/all/diploma/diploma_icon.png",
+    "tier": 3,
+    "name": "Diploma",
+    "effects_text": "[color=#00ff00]+10[/color] Engineering\n[color=#00ff00]+20[/color] % XP Gain\n[color=red]-3[/color] Max HP"
+  },
+  "item_duct_tape": {
+    "icon": "res://items/all/duct_tape/duct_tape_icon.png",
+    "tier": 0,
+    "name": "Duct Tape",
+    "effects_text": "[color=#00ff00]+1[/color] Armor\n[color=#00ff00]+1[/color] Engineering\n[color=red]-2[/color] Max HP"
+  },
+  "item_dynamite": {
+    "icon": "res://items/all/dynamite/dynamite_icon.png",
+    "tier": 0,
+    "name": "Dynamite",
+    "effects_text": "[color=#00ff00]+15[/color] % Explosion Damage"
+  },
+  "item_energy_bracelet": {
+    "icon": "res://items/all/energy_bracelet/energy_bracelet_icon.png",
+    "tier": 1,
+    "name": "Energy Bracelet",
+    "effects_text": "[color=#00ff00]+4[/color] % Crit Chance\n[color=#00ff00]+2[/color] Elemental Damage\n[color=red]-2[/color] Ranged Damage"
+  },
+  "item_exoskeleton": {
+    "icon": "res://items/all/exoskeleton/exoskeleton_icon.png",
+    "tier": 3,
+    "name": "Exoskeleton",
+    "effects_text": "[color=#00ff00]+5[/color] Armor\n[color=#00ff00]+5[/color] % Crit Chance\n[color=#00ff00]+5[/color] Engineering\n[color=#00ff00]+5[/color] % Speed\n[color=red]-2[/color] HP Regeneration\n[color=red]-2[/color] % Life Steal"
+  },
+  "item_eyes_surgery": {
+    "icon": "res://items/all/eyes_surgery/eye_surgery_icon.png",
+    "tier": 1,
+    "name": "Eyes Surgery",
+    "effects_text": "Burning activates [color=#00ff00]10%[/color] faster\n[color=red]-10[/color] Range"
+  },
+  "item_fertilizer": {
+    "icon": "res://items/all/fertilizer/fertilizer_icon.png",
+    "tier": 0,
+    "name": "Fertilizer",
+    "effects_text": "[color=#00ff00]+8[/color] Harvesting\n[color=red]-1[/color] Melee Damage"
+  },
+  "item_fin": {
+    "icon": "res://items/all/fin/fin_icon.png",
+    "tier": 2,
+    "name": "Fin",
+    "effects_text": "[color=#00ff00]+10[/color] % Speed\n[color=#00ff00]+3[/color] % Life Steal\n[color=red]-8[/color] Luck"
+  },
+  "item_focus": {
+    "icon": "res://items/all/focus/focus_icon.png",
+    "tier": 3,
+    "name": "Focus",
+    "effects_text": "[color=#00ff00]+30[/color] % Damage\n[color=red]-3[/color] [color=red]% Attack Speed[/color] for every different weapon you have [+0]"
+  },
+  "item_fuel_tank": {
+    "icon": "res://items/all/fuel_tank/fuel_tank_icon.png",
+    "tier": 1,
+    "name": "Fuel Tank",
+    "effects_text": "[color=#00ff00]+4[/color] Elemental Damage\n[color=red]-1[/color] Melee Damage\n[color=red]-1[/color] Ranged Damage"
+  },
+  "item_gambling_token": {
+    "icon": "res://items/all/gambling_token/gambling_token_icon.png",
+    "tier": 1,
+    "name": "Gambling Token",
+    "effects_text": "[color=#00ff00]+8[/color] % Dodge\n[color=red]-1[/color] Armor"
+  },
+  "item_gentle_alien": {
+    "icon": "res://items/all/gentle_alien/gentle_alien_icon.png",
+    "tier": 0,
+    "name": "Gentle Alien",
+    "effects_text": "[color=#00ff00]+2[/color] Max HP\n[color=#00ff00]+5[/color] % Damage\n+5% Enemies"
+  },
+  "item_glasses": {
+    "icon": "res://items/all/glasses/glasses_icon.png",
+    "tier": 0,
+    "name": "Glasses",
+    "effects_text": "[color=#00ff00]+20[/color] Range"
+  },
+  "item_glass_cannon": {
+    "icon": "res://items/all/glass_cannon/glass_cannon_icon.png",
+    "tier": 2,
+    "name": "Glass Cannon",
+    "effects_text": "[color=#00ff00]+25[/color] % Damage\n[color=red]-3[/color] Armor"
+  },
+  "item_gnome": {
+    "icon": "res://items/all/gnome/gnome_icon.png",
+    "tier": 3,
+    "name": "Gnome",
+    "effects_text": "[color=#00ff00]+10[/color] Melee Damage\n[color=#00ff00]+10[/color] Elemental Damage\n[color=red]-20[/color] Range\n[color=red]-20%[/color] pickup range"
+  },
+  "item_goat_skull": {
+    "icon": "res://items/all/goat_skull/goat_skull_icon.png",
+    "tier": 0,
+    "name": "Goat Skull",
+    "effects_text": "[color=#00ff00]+3[/color] Melee Damage\n[color=red]-2[/color] % Crit Chance"
+  },
+  "item_gummy_berserker": {
+    "icon": "res://items/all/gummy_berserker/gummy_berserker_icon.png",
+    "tier": 0,
+    "name": "Gummy Berserker",
+    "effects_text": "[color=#00ff00]+5[/color] % Attack Speed\n[color=#00ff00]+15[/color] Range\n[color=red]-1[/color] Armor"
+  },
+  "item_handcuffs": {
+    "icon": "res://items/all/handcuffs/handcuffs_icon.png",
+    "tier": 2,
+    "name": "Handcuffs",
+    "effects_text": "[color=#00ff00]+8[/color] Melee Damage\n[color=#00ff00]+8[/color] Ranged Damage\n[color=#00ff00]+8[/color] Elemental Damage\nYour Max HP is capped at its current value [[color=#00ff00]10[/color]]"
+  },
+  "item_head_injury": {
+    "icon": "res://items/all/head_injury/head_injury_icon.png",
+    "tier": 0,
+    "name": "Head Injury",
+    "effects_text": "[color=#00ff00]+6[/color] % Damage\n[color=red]-8[/color] Range"
+  },
+  "item_heavy_bullets": {
+    "icon": "res://items/all/heavy_bullets/heavy_bullets_icon.png",
+    "tier": 3,
+    "name": "Heavy Bullets",
+    "effects_text": "[color=#00ff00]+5[/color] Ranged Damage\n[color=#00ff00]+10[/color] % Damage\n[color=#00ff00]+10[/color] Range\n[color=red]-5[/color] % Attack Speed\n[color=red]-5[/color] % Crit Chance"
+  },
+  "item_hedgehog": {
+    "icon": "res://items/all/hedgehog/hedgehog_icon.png",
+    "tier": 0,
+    "name": "Hedgehog",
+    "effects_text": "[color=#00ff00]+2[/color] Melee Damage\n[color=#00ff00]+1[/color] Ranged Damage\n[color=red]-1[/color] HP Regeneration"
+  },
+  "item_helmet": {
+    "icon": "res://items/all/helmet/helmet_icon.png",
+    "tier": 0,
+    "name": "Helmet",
+    "effects_text": "[color=#00ff00]+1[/color] Armor\n[color=red]-2[/color] % Speed"
+  },
+  "item_hunting_trophy": {
+    "icon": "res://items/all/hunting_trophy/hunting_trophy_icon.png",
+    "tier": 2,
+    "name": "Hunting Trophy",
+    "effects_text": "[color=#00ff00]33%[/color] chance to gain 1 material when killing an enemy with a critical hit",
+    "tracking_text": "Materials gained: {0}"
+  },
+  "item_injection": {
+    "icon": "res://items/all/injection/injection_icon.png",
+    "tier": 0,
+    "name": "Injection",
+    "effects_text": "[color=#00ff00]+7[/color] % Damage\n[color=red]-2[/color] Max HP"
+  },
+  "item_insanity": {
+    "icon": "res://items/all/insanity/insanity_icon.png",
+    "tier": 0,
+    "name": "Insanity",
+    "effects_text": "[color=#00ff00]+6[/color] % Crit Chance\n[color=red]-3[/color] % Damage"
+  },
+  "item_jetpack": {
+    "icon": "res://items/all/jetpack/jetpack_icon.png",
+    "tier": 3,
+    "name": "Jet Pack",
+    "effects_text": "[color=#00ff00]+15[/color] % Speed\n[color=#00ff00]+10[/color] % Dodge\n[color=red]-5[/color] Max HP\n[color=red]-1[/color] Armor"
+  },
+  "item_landmines": {
+    "icon": "res://items/all/landmines/landmines_icon.png",
+    "tier": 0,
+    "name": "Landmines",
+    "effects_text": "A landmine spawns every [color=#00ff00]12[/color] seconds dealing [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_leather_vest": {
+    "icon": "res://items/all/leather_vest/leather_vest_icon.png",
+    "tier": 1,
+    "name": "Leather Vest",
+    "effects_text": "[color=#00ff00]+2[/color] Armor\n[color=#00ff00]+6[/color] % Dodge\n[color=red]-3[/color] Max HP"
+  },
+  "item_lemonade": {
+    "icon": "res://items/all/lemonade/lemonade_icon.png",
+    "tier": 0,
+    "name": "Lemonade",
+    "effects_text": "[color=#00ff00]+1[/color] HP recovered from consumables"
+  },
+  "item_lens": {
+    "icon": "res://items/all/lens/lens_icon.png",
+    "tier": 0,
+    "name": "Lens",
+    "effects_text": "[color=#00ff00]+1[/color] Ranged Damage\n[color=red]-5[/color] Range"
+  },
+  "item_little_frog": {
+    "icon": "res://items/all/little_frog/little_frog_icon.png",
+    "tier": 1,
+    "name": "Little Frog",
+    "effects_text": "[color=#00ff00]+20%[/color] pickup range\n[color=#00ff00]+10[/color] Harvesting\n[color=red]-5[/color] % Dodge"
+  },
+  "item_little_muscley_dude": {
+    "icon": "res://items/all/little_muscley_dude/little_muscley_dude_icon.png",
+    "tier": 1,
+    "name": "Little Muscley Dude",
+    "effects_text": "[color=#00ff00]+3[/color] Melee Damage\n[color=#00ff00]+5[/color] Max HP\n[color=red]-15[/color] Range"
+  },
+  "item_lost_duck": {
+    "icon": "res://items/all/lost_duck/lost_duck_icon.png",
+    "tier": 0,
+    "name": "Lost Duck",
+    "effects_text": "[color=#00ff00]+10[/color] Luck\n[color=red]-1[/color] Elemental Damage"
+  },
+  "item_lucky_charm": {
+    "icon": "res://items/all/lucky_charm/lucky_charm_icon.png",
+    "tier": 2,
+    "name": "Lucky Charm",
+    "effects_text": "[color=#00ff00]+30[/color] Luck\n[color=red]-2[/color] Melee Damage\n[color=red]-1[/color] Ranged Damage"
+  },
+  "item_lumberjack_shirt": {
+    "icon": "res://items/all/lumberjack_shirt/lumberjack_shirt_icon.png",
+    "tier": 0,
+    "name": "Lumberjack Shirt",
+    "effects_text": "Trees die in one hit"
+  },
+  "item_mammoth": {
+    "icon": "res://items/all/mammoth/mammoth_icon.png",
+    "tier": 3,
+    "name": "Mammoth",
+    "effects_text": "[color=#00ff00]+20[/color] Melee Damage\n[color=#00ff00]+5[/color] HP Regeneration\n[color=red]-8[/color] % Damage\n[color=red]-3[/color] % Speed"
+  },
+  "item_mastery": {
+    "icon": "res://items/all/mastery/mastery_icon.png",
+    "tier": 1,
+    "name": "Mastery",
+    "effects_text": "[color=#00ff00]+6[/color] Melee Damage\n[color=red]-3[/color] Ranged Damage"
+  },
+  "item_medal": {
+    "icon": "res://items/all/medal/medal_icon.png",
+    "tier": 1,
+    "name": "Medal",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\n[color=#00ff00]+3[/color] % Damage\n[color=#00ff00]+1[/color] Armor\n[color=#00ff00]+3[/color] % Speed\n[color=red]-4[/color] % Crit Chance"
+  },
+  "item_medikit": {
+    "icon": "res://items/all/medikit/medikit_icon.png",
+    "tier": 3,
+    "name": "Medikit",
+    "effects_text": "[color=#00ff00]+10[/color] HP Regeneration\n[color=#00ff00]+2[/color] [color=#00ff00]HP Regeneration[/color] every 5 seconds until the end of the wave\n[color=red]-10[/color] Luck"
+  },
+  "item_metal_detector": {
+    "icon": "res://items/all/metal_detector/metal_detector_icon.png",
+    "tier": 1,
+    "name": "Metal Detector",
+    "effects_text": "[color=#00ff00]+5%[/color] chance to double the value of picked up materials\n[color=#00ff00]+6[/color] Luck\n[color=#00ff00]+2[/color] Engineering\n[color=red]-5[/color] % Damage",
+    "tracking_text": "Materials gained: {0}"
+  },
+  "item_metal_plate": {
+    "icon": "res://items/all/metal_plate/metal_plate_icon.png",
+    "tier": 1,
+    "name": "Metal Plate",
+    "effects_text": "[color=#00ff00]+2[/color] Armor\n[color=red]-3[/color] % Damage"
+  },
+  "item_missile": {
+    "icon": "res://items/all/missile/missile_icon.png",
+    "tier": 1,
+    "name": "Missile",
+    "effects_text": "[color=#00ff00]+10[/color] % Damage\n[color=red]-4[/color] % Attack Speed"
+  },
+  "item_mouse": {
+    "icon": "res://items/all/mouse/mouse_icon.png",
+    "tier": 2,
+    "name": "Mouse",
+    "effects_text": "[color=#00ff00]+5[/color] % Life Steal\n+10% Enemies\n[color=red]-5[/color] Harvesting"
+  },
+  "item_mushroom": {
+    "icon": "res://items/all/mushroom/mushroom_icon.png",
+    "tier": 0,
+    "name": "Mushroom",
+    "effects_text": "[color=#00ff00]+3[/color] HP Regeneration\n[color=red]-2[/color] Luck"
+  },
+  "item_mutation": {
+    "icon": "res://items/all/mutation/mutation_icon.png",
+    "tier": 0,
+    "name": "Mutation",
+    "effects_text": "[color=#00ff00]+1[/color] Ranged Damage\n[color=#00ff00]+1[/color] Elemental Damage\n[color=red]-3[/color] % Speed"
+  },
+  "item_night_goggles": {
+    "icon": "res://items/all/night_goggles/night_goggles_icon.png",
+    "tier": 3,
+    "name": "Night Goggles",
+    "effects_text": "[color=#00ff00]+15[/color] % Crit Chance\n[color=#00ff00]+50[/color] Range\n[color=red]-3[/color] Max HP\n[color=red]-1[/color] Armor"
+  },
+  "item_octopus": {
+    "icon": "res://items/all/octopus/octopus_icon.png",
+    "tier": 3,
+    "name": "Octopus",
+    "effects_text": "[color=#00ff00]+12[/color] Max HP\n[color=#00ff00]+5[/color] HP Regeneration\n[color=#00ff00]+3[/color] % Life Steal\n[color=red]-8[/color] % Crit Chance"
+  },
+  "item_padding": {
+    "icon": "res://items/all/padding/padding_icon.png",
+    "tier": 1,
+    "name": "Padding",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\n[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] for every [color=#00ff00]100[/color] [color=#00ff00]Materials[/color] you have [[color=#00ff00]+1000[/color]]\n[color=red]-5[/color] % Speed"
+  },
+  "item_panda": {
+    "icon": "res://items/all/panda/panda_icon.png",
+    "tier": 3,
+    "name": "Panda",
+    "effects_text": "[color=#00ff00]+12[/color] Max HP\n[color=#00ff00]+25[/color] Luck\n[color=red]-5[/color] % Damage"
+  },
+  "item_peaceful_bee": {
+    "icon": "res://items/all/peaceful_bee/peaceful_bee_icon.png",
+    "tier": 0,
+    "name": "Peaceful Bee",
+    "effects_text": "[color=#00ff00]+4[/color] % Dodge\n[color=#00ff00]+4[/color] Harvesting\n[color=red]-1[/color] Melee Damage\n[color=red]-1[/color] Ranged Damage"
+  },
+  "item_pencil": {
+    "icon": "res://items/all/pencil/pencil_icon.png",
+    "tier": 0,
+    "name": "Pencil",
+    "effects_text": "[color=#00ff00]+2[/color] Engineering\n[color=red]-1[/color] % Attack Speed\n[color=red]-1[/color] % Crit Chance"
+  },
+  "item_piggy_bank": {
+    "icon": "res://items/all/piggy_bank/piggy_bank_icon.png",
+    "tier": 1,
+    "name": "Piggy Bank",
+    "effects_text": "[color=#00ff00]+20%[/color] of your materials at the start of waves (stops working at wave 20)",
+    "tracking_text": "Materials gained: {0}"
+  },
+  "item_plant": {
+    "icon": "res://items/all/plant/plant_icon.png",
+    "tier": 0,
+    "name": "Plant",
+    "effects_text": "[color=#00ff00]+3[/color] HP Regeneration\n[color=red]-1[/color] % Life Steal"
+  },
+  "item_plastic_explosive": {
+    "icon": "res://items/all/plastic_explosive/plastic_explosive_icon.png",
+    "tier": 2,
+    "name": "Plastic Explosive",
+    "effects_text": "[color=#00ff00]+25[/color] % Explosion Size"
+  },
+  "item_poisonous_tonic": {
+    "icon": "res://items/all/poisonous_tonic/poisonous_tonic_icon.png",
+    "tier": 2,
+    "name": "Poisonous Tonic",
+    "effects_text": "[color=#00ff00]+10[/color] % Attack Speed\n[color=#00ff00]+5[/color] % Crit Chance\n[color=#00ff00]+15[/color] Range\n[color=red]-2[/color] HP Regeneration"
+  },
+  "item_potato": {
+    "icon": "res://items/all/potato/potato_icon.png",
+    "tier": 3,
+    "name": "Potato",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\n[color=#00ff00]+2[/color] HP Regeneration\n[color=#00ff00]+1[/color] % Life Steal\n[color=#00ff00]+5[/color] % Damage\n[color=#00ff00]+5[/color] % Attack Speed\n[color=#00ff00]+3[/color] % Speed\n[color=#00ff00]+3[/color] % Dodge\n[color=#00ff00]+1[/color] Armor\n[color=#00ff00]+5[/color] Luck"
+  },
+  "item_power_generator": {
+    "icon": "res://items/all/power_generator/power_generator_icon.png",
+    "tier": 2,
+    "name": "Power Generator",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Damage[/color] for every permanent [color=#00ff00]1[/color] [color=#00ff00]% Speed[/color] you have [+0]\n[color=red]-5[/color] % Damage"
+  },
+  "item_propeller_hat": {
+    "icon": "res://items/all/propeller_hat/propeller_hat_icon.png",
+    "tier": 0,
+    "name": "Propeller Hat",
+    "effects_text": "[color=#00ff00]+10[/color] Luck\n[color=red]-2[/color] % Damage"
+  },
+  "item_pumpkin": {
+    "icon": "res://items/all/pumpkin/pumpkin_icon.png",
+    "tier": 1,
+    "name": "Pumpkin",
+    "effects_text": "[color=#00ff00]+15%[/color] Piercing Damage. Can't go above base damage\n[color=red]-2[/color] % Damage"
+  },
+  "item_recycling_machine": {
+    "icon": "res://items/all/recycling_machine/recycling_machine_icon.png",
+    "tier": 1,
+    "name": "Recycling Machine",
+    "effects_text": "Gain [color=#00ff00]35%[/color] more materials from recycling items",
+    "tracking_text": "Materials gained: {0}"
+  },
+  "item_retromations_hoodie": {
+    "icon": "res://items/all/retromations_hoodie/retromations_hoodie_icon.png",
+    "tier": 3,
+    "name": "Retromation’s Hoodie",
+    "effects_text": "[color=#00ff00]+2[/color] [color=#00ff00]% Attack Speed[/color] for every [color=#00ff00]1[/color] [color=#00ff00]% Dodge[/color] you have [+0]\n[color=red]-80[/color] Range"
+  },
+  "item_ricochet": {
+    "icon": "res://items/all/ricochet/ricochet_icon.png",
+    "tier": 3,
+    "name": "Ricochet",
+    "effects_text": "Your projectiles gain [color=#00ff00]1[/color] bounce\n[color=red]-25[/color] % Damage"
+  },
+  "item_rip_and_tear": {
+    "icon": "res://items/all/rip_and_tear/rip_and_tear_icon.png",
+    "tier": 2,
+    "name": "Rip and Tear",
+    "effects_text": "Enemies have a [color=#00ff00]20%[/color] chance to explode for [color=#00ff00]10[/color] ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/melee_damage.png[/img][/color]) damage when they die\n[color=red]-12[/color] Harvesting",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_ritual": {
+    "icon": "res://items/all/ritual/ritual_icon.png",
+    "tier": 1,
+    "name": "Ritual",
+    "effects_text": "[color=#00ff00]+6[/color] % Damage\n[color=#00ff00]+2[/color] % Life Steal\n[color=red]-2[/color] Engineering"
+  },
+  "item_robot_arm": {
+    "icon": "res://items/all/robot_arm/robot_arm_icon.png",
+    "tier": 3,
+    "name": "Robot Arm",
+    "effects_text": "[color=#00ff00]+6[/color] Armor\n[color=#00ff00]+6[/color] Engineering\n[color=red]-2[/color] HP Regeneration\n[color=red]-2[/color] % Life Steal"
+  },
+  "item_sad_tomato": {
+    "icon": "res://items/all/sad_tomato/sad_tomato_icon.png",
+    "tier": 2,
+    "name": "Sad Tomato",
+    "effects_text": "[color=#00ff00]+8[/color] HP Regeneration\nStart waves with [color=red]-50%[/color] HP"
+  },
+  "item_scar": {
+    "icon": "res://items/all/scar/scar_icon.png",
+    "tier": 0,
+    "name": "Scar",
+    "effects_text": "[color=#00ff00]+20[/color] % XP Gain\n[color=red]-8[/color] Range"
+  },
+  "item_scared_sausage": {
+    "icon": "res://items/all/scared_sausage/scared_sausage_icon.png",
+    "tier": 0,
+    "name": "Scared Sausage",
+    "effects_text": "Attacks have a [color=#00ff00]25%[/color] chance to deal [color=#00ff00]1[/color]x[color=#00ff00]3[/color] ([color=#00ff00][img=20x20]res://items/stats/elemental_damage.png[/img][/color]) burning damage",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_scope": {
+    "icon": "res://items/all/scope/scope_icon.png",
+    "tier": 1,
+    "name": "Scope",
+    "effects_text": "[color=#00ff00]+2[/color] Ranged Damage\n[color=#00ff00]+25[/color] Range\n[color=red]-7[/color] % Attack Speed"
+  },
+  "item_shady_potion": {
+    "icon": "res://items/all/shady_potion/shady_potion_icon.png",
+    "tier": 1,
+    "name": "Shady Potion",
+    "effects_text": "[color=#00ff00]+20[/color] Luck\n[color=red]-2[/color] HP Regeneration"
+  },
+  "item_shmoop": {
+    "icon": "res://items/all/shmoop/shmoop_icon.png",
+    "tier": 2,
+    "name": "Shmoop",
+    "effects_text": "[color=#00ff00]+6[/color] Max HP\n[color=#00ff00]+2[/color] HP Regeneration\n[color=red]-2[/color] Melee Damage\n[color=red]-1[/color] Ranged Damage"
+  },
+  "item_small_magazine": {
+    "icon": "res://items/all/small_magazine/small_magazine_icon.png",
+    "tier": 1,
+    "name": "Small Magazine",
+    "effects_text": "[color=#00ff00]+2[/color] Ranged Damage\n[color=#00ff00]+10[/color] % Attack Speed\n[color=red]-6[/color] % Damage"
+  },
+  "item_snail": {
+    "icon": "res://items/all/snail/snail_icon.png",
+    "tier": 1,
+    "name": "Snail",
+    "effects_text": "[color=#00ff00]-5[/color] % Enemy Speed\n[color=red]-3[/color] % Speed"
+  },
+  "item_snake": {
+    "icon": "res://items/all/snake/snake_icon.png",
+    "tier": 0,
+    "name": "Snake",
+    "effects_text": "Burning spreads to an additional nearby enemy\n[color=red]-1[/color] Max HP"
+  },
+  "item_spider": {
+    "icon": "res://items/all/spider/spider_icon.png",
+    "tier": 3,
+    "name": "Spider",
+    "effects_text": "[color=#00ff00]+12[/color] % Damage\n[color=#00ff00]+6[/color] [color=#00ff00]% Attack Speed[/color] for every different weapon you have [+0]\n[color=red]-3[/color] % Dodge\n[color=red]-5[/color] Harvesting"
+  },
+  "item_statue": {
+    "icon": "res://items/all/statue/statue_icon.png",
+    "tier": 2,
+    "name": "Statue",
+    "effects_text": "[color=#00ff00]+40[/color] [color=#00ff00]% Attack Speed[/color] while standing still\n[color=red]-10[/color] % Speed"
+  },
+  "item_sunglasses": {
+    "icon": "res://items/all/sunglasses/sunglasses_icon.png",
+    "tier": 1,
+    "name": "Sunglasses",
+    "effects_text": "[color=#00ff00]+10[/color] % Crit Chance\n[color=red]-1[/color] Armor"
+  },
+  "item_terrified_onion": {
+    "icon": "res://items/all/terrified_onion/terrified_onion_icon.png",
+    "tier": 0,
+    "name": "Terrified Onion",
+    "effects_text": "[color=#00ff00]+4[/color] % Speed\n[color=red]-6[/color] Luck"
+  },
+  "item_toolbox": {
+    "icon": "res://items/all/toolbox/toolbox_icon.png",
+    "tier": 2,
+    "name": "Toolbox",
+    "effects_text": "[color=#00ff00]+6[/color] Engineering\n[color=red]-8[/color] % Attack Speed"
+  },
+  "item_torture": {
+    "icon": "res://items/all/torture/torture_icon.png",
+    "tier": 3,
+    "name": "Torture",
+    "effects_text": "[color=#00ff00]+15[/color] Max HP\nRestore 4 HP per second. Cannot heal any other way."
+  },
+  "item_toxic_sludge": {
+    "icon": "res://items/all/toxic_sludge/toxic_sludge_icon.png",
+    "tier": 0,
+    "name": "Toxic Sludge",
+    "effects_text": "[color=#00ff00]+2[/color] Elemental Damage\n[color=red]-2[/color] % Dodge"
+  },
+  "item_tractor": {
+    "icon": "res://items/all/tractor/tractor_icon.png",
+    "tier": 2,
+    "name": "Tractor",
+    "effects_text": "[color=#00ff00]+40[/color] Harvesting\n[color=red]-8[/color] % Damage"
+  },
+  "item_tree": {
+    "icon": "res://items/all/tree/tree_icon.png",
+    "tier": 0,
+    "name": "Tree",
+    "effects_text": "More trees spawn"
+  },
+  "item_triangle_of_power": {
+    "icon": "res://items/all/triangle_of_power/triangle_of_power_icon.png",
+    "tier": 2,
+    "name": "Triangle of Power",
+    "effects_text": "[color=#00ff00]+20[/color] % Damage\n[color=#00ff00]+1[/color] Armor\n[color=red]-2[/color] [color=red]% Damage[/color] when you take damage until the end of the wave"
+  },
+  "item_turret": {
+    "icon": "res://items/all/turret/turret_icon.png",
+    "tier": 0,
+    "name": "Turret",
+    "effects_text": "Spawns a turret that shoots bullets dealing [color=#00ff00]10[/color] ([color=#00ff00][color=white]80%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) damage",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_turret_flame": {
+    "icon": "res://items/all/turret_flame/turret_flame_icon.png",
+    "tier": 1,
+    "name": "Incendiary Turret",
+    "effects_text": "Spawns a turret that shoots flames dealing [color=#00ff00]5[/color]x[color=#00ff00]8[/color] ([color=#00ff00][color=white]33%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) burning damage",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_turret_healing": {
+    "icon": "res://items/all/turret_healing/turret_healing_icon.png",
+    "tier": 1,
+    "name": "Medical Turret",
+    "effects_text": "Spawns a medical turret that shoots bullets healing [color=#00ff00]3[/color] ([color=#00ff00][color=white]5%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) HP",
+    "tracking_text": "HP recovered: {0}"
+  },
+  "item_turret_laser": {
+    "icon": "res://items/all/turret_laser/turret_laser_icon.png",
+    "tier": 2,
+    "name": "Laser Turret",
+    "effects_text": "Spawns a turret that shoots piercing bullets dealing [color=#00ff00]20[/color] ([color=#00ff00][color=white]125%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) damage",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_turret_rocket": {
+    "icon": "res://items/all/turret_rocket/turret_rocket_icon.png",
+    "tier": 3,
+    "name": "Explosive Turret",
+    "effects_text": "Spawns a turret that shoots explosive bullets dealing [color=#00ff00]25[/color] ([color=#00ff00][color=white]150%[/color][img=20x20]res://items/stats/engineering.png[/img][/color]) damage in an area",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_ugly_tooth": {
+    "icon": "res://items/all/ugly_tooth/ugly_tooth_icon.png",
+    "tier": 0,
+    "name": "Ugly Tooth",
+    "effects_text": "Hitting an enemy removes [color=#00ff00]10%[/color] of their speed. Max [color=#00ff00]30%[/color]\n[color=red]-3[/color] % Speed"
+  },
+  "item_vigilante_ring": {
+    "icon": "res://items/all/vigilante_ring/vigilante_ring_icon.png",
+    "tier": 2,
+    "name": "Vigilante Ring",
+    "effects_text": "[color=#00ff00]+3[/color] [color=#00ff00]% Damage[/color] at the end of a wave",
+    "tracking_text": "Stats gained: {0}"
+  },
+  "item_warrior_helmet": {
+    "icon": "res://items/all/warrior_helmet/warrior_helmet_icon.png",
+    "tier": 2,
+    "name": "Warrior Helmet",
+    "effects_text": "[color=#00ff00]+3[/color] Armor\n[color=#00ff00]+5[/color] Max HP\n[color=red]-5[/color] % Speed"
+  },
+  "item_weird_food": {
+    "icon": "res://items/all/weird_food/weird_food_icon.png",
+    "tier": 0,
+    "name": "Weird Food",
+    "effects_text": "[color=#00ff00]+2[/color] HP recovered from consumables\n[color=red]-2[/color] % Dodge"
+  },
+  "item_weird_ghost": {
+    "icon": "res://items/all/weird_ghost/weird_ghost_icon.png",
+    "tier": 0,
+    "name": "Weird Ghost",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\nStart the next wave with 1 HP"
+  },
+  "item_wheat": {
+    "icon": "res://items/all/wheat/wheat_icon.png",
+    "tier": 2,
+    "name": "Wheat",
+    "effects_text": "[color=#00ff00]+4[/color] Melee Damage\n[color=#00ff00]+2[/color] Ranged Damage\n[color=#00ff00]+10[/color] Harvesting\n[color=red]-2[/color] Elemental Damage"
+  },
+  "item_wheelbarrow": {
+    "icon": "res://items/all/wheelbarrow/wheelbarrow_icon.png",
+    "tier": 1,
+    "name": "Wheelbarrow",
+    "effects_text": "[color=#00ff00]+16[/color] Harvesting\n[color=red]-1[/color] Armor"
+  },
+  "item_whetstone": {
+    "icon": "res://items/all/whetstone/whetstone_icon.png",
+    "tier": 1,
+    "name": "Whetstone",
+    "effects_text": "[color=#00ff00]+4[/color] % Life Steal\n[color=red]-3[/color] Knockback"
+  },
+  "item_white_flag": {
+    "icon": "res://items/all/white_flag/white_flag_icon.png",
+    "tier": 1,
+    "name": "White Flag",
+    "effects_text": "[color=#00ff00]+5[/color] Harvesting\n-5% Enemies"
+  },
+  "item_wings": {
+    "icon": "res://items/all/wings/wings_icon.png",
+    "tier": 2,
+    "name": "Wings",
+    "effects_text": "[color=#00ff00]+10[/color] % Speed\n[color=#00ff00]+30[/color] Range\n[color=red]-2[/color] Elemental Damage"
+  },
+  "item_wisdom": {
+    "icon": "res://items/all/wisdom/wisdom_icon.png",
+    "tier": 2,
+    "name": "Wisdom",
+    "effects_text": "[color=#00ff00]+5[/color] [color=#00ff00]% Damage[/color] every 5 seconds until the end of the wave\n[color=red]-20[/color] % Damage"
+  },
+  "item_wolf_helmet": {
+    "icon": "res://items/all/wolf_helmet/wolf_helmet_icon.png",
+    "tier": 3,
+    "name": "Wolf Helmet",
+    "effects_text": "[color=#00ff00]+10[/color] Elemental Damage\n[color=#00ff00]+20[/color] Luck\n[color=red]-5[/color] Engineering"
+  },
+  "item_tyler": {
+    "icon": "res://items/all/tyler/tyler_icon.png",
+    "tier": 2,
+    "name": "Tyler",
+    "effects_text": "Spawns a little guy that slowly shoots [color=#00ff00]10[/color] piercing lightning projectiles around him for [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/engineering.png[/img][/color]) damage each",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_wandering_bot": {
+    "icon": "res://items/all/wandering_bot/wandering_bot_icon.png",
+    "tier": 2,
+    "name": "Wandering Bot",
+    "effects_text": "Spawns a little bot that slows down nearby enemies"
+  },
+  "item_dangerous_bunny": {
+    "icon": "res://items/all/dangerous_bunny/dangerous_bunny_icon.png",
+    "tier": 1,
+    "name": "Dangerous Bunny",
+    "effects_text": "[color=#00ff00]+1[/color] free reroll in the shop",
+    "tracking_text": "Materials saved: {0}"
+  },
+  "item_sifds_relic": {
+    "icon": "res://items/all/sifds_relic/sifds_relic_icon.png",
+    "tier": 3,
+    "name": "Sifd’s Relic",
+    "effects_text": "[color=#00ff00]+100%[/color] chance to instantly attract a material when it’s dropped"
+  },
+  "item_estys_couch": {
+    "icon": "res://items/all/estys_couch/estys_couch_icon.png",
+    "tier": 3,
+    "name": "Esty’s Couch",
+    "effects_text": "[color=#00ff00]+5[/color] Max HP\n[color=#00ff00]+2[/color] [color=#00ff00]HP Regeneration[/color] for every permanent [color=red]-1[/color] [color=red]% Speed[/color] you have [+-0]\n[color=red]-15[/color] % Speed"
+  },
+  "item_explosive_shells": {
+    "icon": "res://items/all/explosive_shells/explosive_shells_icon.png",
+    "tier": 3,
+    "name": "Explosive Shells",
+    "effects_text": "[color=#00ff00]+60[/color] % Explosion Damage\n[color=#00ff00]+15[/color] % Explosion Size\n[color=red]-15[/color] % Damage"
+  },
+  "item_tardigrade": {
+    "icon": "res://items/all/tardigrade/tardigrade_icon.png",
+    "tier": 2,
+    "name": "Tardigrade",
+    "effects_text": "Nullifies the damage of one hit taken every wave"
+  },
+  "item_strange_book": {
+    "icon": "res://items/all/strange_book/strange_book_icon.png",
+    "tier": 2,
+    "name": "Strange Book",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Engineering[/color] for every [color=#00ff00]1[/color] [color=#00ff00]Elemental Damage[/color] you have [+0]\n[color=red]-1[/color] Melee Damage\n[color=red]-1[/color] Ranged Damage"
+  },
+  "item_grinds_magical_leaf": {
+    "icon": "res://items/all/grinds_magical_leaf/grinds_magical_leaf_icon.png",
+    "tier": 3,
+    "name": "Grind's Magical Leaf",
+    "effects_text": "[color=#00ff00]+3[/color] [color=#00ff00]Max HP[/color] at the end of a wave\n[color=#00ff00]+1[/color] [color=#00ff00]HP Regeneration[/color] at the end of a wave\n[color=#00ff00]+1[/color] [color=#00ff00]% Life Steal[/color] at the end of a wave",
+    "tracking_text": "Stats gained: {0}"
+  },
+  "item_potion": {
+    "icon": "res://items/all/potion/potion_icon.png",
+    "tier": 3,
+    "name": "Regeneration Potion",
+    "effects_text": "HP Regeneration is doubled when you have less than 50% health\n[color=#00ff00]+3[/color] HP Regeneration"
+  },
+  "item_anvil": {
+    "icon": "res://items/all/anvil/anvil_icon.png",
+    "tier": 3,
+    "name": "Anvil",
+    "effects_text": "A random weapon is upgraded when entering a shop. If you have no weapon to upgrade, you gain [color=#00ff00]+2[/color] [color=#00ff00]Armor[/color] instead.",
+    "tracking_text": "Stats gained: {0}"
+  },
+  "item_community_support": {
+    "icon": "res://items/all/community_support/community_support_icon.png",
+    "tier": 2,
+    "name": "Community Support",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]% Attack Speed[/color] for every current living enemy [[color=#00ff00]+0[/color]]\n[color=red]-2[/color] Armor"
+  },
+  "item_adrenaline": {
+    "icon": "res://items/all/adrenaline/adrenaline_icon.png",
+    "tier": 2,
+    "name": "Adrenaline",
+    "effects_text": "[color=#00ff00]+5[/color] % Dodge\n[color=#00ff00]50%[/color] chance to heal [color=#00ff00]5[/color] HP when dodging an attack",
+    "tracking_text": "HP recovered: {0}"
+  },
+  "item_bait": {
+    "icon": "res://items/all/bait/bait_icon.png",
+    "tier": 1,
+    "name": "Bait",
+    "effects_text": "[color=#00ff00]+8[/color] % Damage\nSpecial enemies appear at the beginning of the next wave"
+  },
+  "item_bloody_hand": {
+    "icon": "res://items/all/bloody_hand/bloody_hand_icon.png",
+    "tier": 3,
+    "name": "Bloody Hand",
+    "effects_text": "[color=#00ff00]+12[/color] % Life Steal\n[color=#00ff00]+2[/color] [color=#00ff00]% Damage[/color] for every [color=#00ff00]1[/color] [color=#00ff00]% Life Steal[/color] you have [+0]\nYou take [color=red]1[/color] damage per second (does not give invulnerability time)"
+  },
+  "item_extra_stomach": {
+    "icon": "res://items/all/extra_stomach/extra_stomach_icon.png",
+    "tier": 3,
+    "name": "Extra Stomach",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] when picking up a consumable while at maximum health (max [color=#00ff00]+10[/color] per wave)",
+    "tracking_text": "Stats gained: {0}"
+  },
+  "item_garden": {
+    "icon": "res://items/all/garden/garden_icon.png",
+    "tier": 1,
+    "name": "Garden",
+    "effects_text": "Spawns a garden that creates a fruit every [color=#00ff00]15[/color] seconds"
+  },
+  "item_giant_belt": {
+    "icon": "res://items/all/giant_belt/giant_belt_icon.png",
+    "tier": 3,
+    "name": "Giant Belt",
+    "effects_text": "Critical hits deal [color=#00ff00]10%[/color] of an enemy’s current health as bonus damage ([color=#00ff00]1%[/color] for bosses and elites)",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_improved_tools": {
+    "icon": "res://items/all/improved_tools/improved_tools_icon.png",
+    "tier": 2,
+    "name": "Improved Tools",
+    "effects_text": "[color=#00ff00]+10[/color] % Attack Speed\nReduces the attack cooldown of your structures by 0% ([color=#00ff00][color=white]50%[/color][img=20x20]res://items/stats/attack_speed.png[/img][/color])"
+  },
+  "item_peacock": {
+    "icon": "res://items/all/peacock/peacock_icon.png",
+    "tier": 2,
+    "name": "Peacock",
+    "effects_text": "[color=#00ff00]+25[/color] % XP Gain\n[color=#00ff00]+100[/color] [color=#00ff00]% XP Gain[/color] during the next wave\n[color=red]+50[/color] [color=red]% Enemy damage[/color] during the next wave"
+  },
+  "item_riposte": {
+    "icon": "res://items/all/riposte/riposte_icon.png",
+    "tier": 1,
+    "name": "Riposte",
+    "effects_text": "[color=#00ff00]+2[/color] Melee Damage\n[color=#00ff00]100%[/color] chance to deal [color=#00ff00]1[/color] ([color=#00ff00][color=white]300%[/color][img=20x20]res://items/stats/melee_damage.png[/img][/color]) damage to an enemy when dodging their attack",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_silver_bullet": {
+    "icon": "res://items/all/silver_bullet/silver_bullet_icon.png",
+    "tier": 2,
+    "name": "Silver Bullet",
+    "effects_text": "[color=#00ff00]+25%[/color] damage against bosses and elites"
+  },
+  "item_spicy_sauce": {
+    "icon": "res://items/all/spicy_sauce/spicy_sauce_icon.png",
+    "tier": 1,
+    "name": "Spicy Sauce",
+    "effects_text": "[color=#00ff00]+3[/color] Max HP\nConsumables have a [color=#00ff00]25%[/color] chance to explode for [color=#00ff00]10[/color] ([color=#00ff00][img=20x20]res://items/stats/max_hp.png[/img][/color]) damage when picked up",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_tentacle": {
+    "icon": "res://items/all/tentacle/tentacle_icon.png",
+    "tier": 1,
+    "name": "Tentacle",
+    "effects_text": "[color=#00ff00]+3[/color] % Crit Chance\n[color=#00ff00]+20%[/color] chance to heal 1 HP when killing an enemy with a critical hit",
+    "tracking_text": "HP recovered: {0}"
+  },
+  "item_lucky_coin": {
+    "icon": "res://items/all/lucky_coin/lucky_coin_icon.png",
+    "tier": 3,
+    "name": "Lucky Coin",
+    "effects_text": "[color=#00ff00]+2[/color] [color=#00ff00]Luck[/color] for every [color=#00ff00]1[/color] [color=#00ff00]% Crit Chance[/color] you have [+0]\n[color=red]-2[/color] Armor"
+  },
+  "item_fairy": {
+    "icon": "res://items/all/fairy/fairy_icon.png",
+    "tier": 2,
+    "name": "Fairy",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]HP Regeneration[/color] for every different [color=#00ff00]Tier I item[/color] you have [+0]\n[color=red]-2[/color] [color=red]HP Regeneration[/color] for every different [color=red]Tier IV item[/color] you have [+0]"
+  },
+  "item_lure": {
+    "icon": "res://items/all/lure/lure_icon.png",
+    "tier": 1,
+    "name": "Lure",
+    "effects_text": "[color=#00ff00]+3[/color] HP Regeneration\n[color=#00ff00]2[/color] additional loot aliens appear during the next wave"
+  },
+  "item_pocket_factory": {
+    "icon": "res://items/all/pocket_factory/pocket_factory_icon.png",
+    "tier": 1,
+    "name": "Pocket Factory",
+    "effects_text": "[color=#00ff00]+2[/color] Engineering\nKilling a tree spawns a turret",
+    "tracking_text": "Damage dealt: {0}"
+  },
+  "item_shackles": {
+    "icon": "res://items/all/shackles/shackles_icon.png",
+    "tier": 2,
+    "name": "Shackles",
+    "effects_text": "[color=#00ff00]+8[/color] HP Regeneration\n[color=#00ff00]+8[/color] Engineering\n[color=#00ff00]+80[/color] Range\nYour Speed is capped at its current value [[color=#00ff00]0[/color]]"
+  },
+  "item_sharp_bullet": {
+    "icon": "res://items/all/sharp_bullet/sharp_bullet_icon.png",
+    "tier": 0,
+    "name": "Sharp Bullet",
+    "effects_text": "Projectiles pierce through [color=#00ff00]1[/color] additional target\n[color=red]-20%[/color] Piercing Damage\n[color=red]-5[/color] % Damage"
+  },
+  "item_stone_skin": {
+    "icon": "res://items/all/stone_skin/stone_skin_icon.png",
+    "tier": 2,
+    "name": "Stone Skin",
+    "effects_text": "[color=#00ff00]+1[/color] [color=#00ff00]Max HP[/color] for every permanent [color=#00ff00]1[/color] [color=#00ff00]Armor[/color] you have [+0]\n[color=red]-2[/color] Armor"
+  }
+}

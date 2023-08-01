@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/padding/padding_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/padding/padding_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/padding/padding_effect_1.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/padding/padding_appearance.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/padding/padding_effect_0.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_padding"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "ITEM_PADDING"
+tier = 1
+value = 45
+effects = [ ExtResource( 6 ), ExtResource( 4 ), ExtResource( 3 ) ]
+tracking_text = ""
+max_nb = 3
+item_appearances = [ ExtResource( 5 ) ]
+tags = [ "saving" ]

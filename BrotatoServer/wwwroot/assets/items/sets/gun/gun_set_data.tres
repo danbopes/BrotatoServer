@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/sets/set_data.gd" type="Script" id=1]
+[ext_resource path="res://items/sets/gun/3/set_3_effect_1.tres" type="Resource" id=2]
+[ext_resource path="res://items/sets/gun/2/set_2_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/sets/gun/6/set_6_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/gun/4/set_4_effect_1.tres" type="Resource" id=11]
+[ext_resource path="res://items/sets/gun/5/set_5_effect_1.tres" type="Resource" id=15]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "set_gun"
+name = "WEAPON_CLASS_GUN"
+set_bonuses = [ [ ExtResource( 3 ) ], [ ExtResource( 2 ) ], [ ExtResource( 11 ) ], [ ExtResource( 15 ) ], [ ExtResource( 6 ) ] ]

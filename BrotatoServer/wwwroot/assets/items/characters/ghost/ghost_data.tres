@@ -1,0 +1,31 @@
+[gd_resource type="Resource" load_steps=12 format=2]
+
+[ext_resource path="res://items/characters/character_data.gd" type="Script" id=1]
+[ext_resource path="res://items/characters/ghost/ghost_eyes_appearance.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/melee/ghost_flint/1/ghost_flint_data.tres" type="Resource" id=3]
+[ext_resource path="res://items/characters/ghost/ghost_effect_4.tres" type="Resource" id=4]
+[ext_resource path="res://items/characters/ghost/ghost_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/characters/ghost/ghost_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/characters/ghost/ghost_mouth_appearance.tres" type="Resource" id=7]
+[ext_resource path="res://items/characters/ghost/ghost_effect_3.tres" type="Resource" id=8]
+[ext_resource path="res://items/characters/ghost/ghost_icon.png" type="Texture" id=9]
+[ext_resource path="res://weapons/melee/ghost_axe/1/ghost_axe_data.tres" type="Resource" id=10]
+[ext_resource path="res://weapons/ranged/ghost_scepter/1/ghost_scepter_data.tres" type="Resource" id=11]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "character_ghost"
+unlocked_by_default = false
+icon = ExtResource( 9 )
+name = "CHARACTER_GHOST"
+tier = 0
+value = 1
+effects = [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 4 ) ]
+has_gameplay_modifications = false
+tracking_text = ""
+unique = false
+max_nb = -1
+item_appearances = [ ExtResource( 2 ), ExtResource( 7 ) ]
+tags = [  ]
+wanted_tags = [ "stat_dodge" ]
+starting_weapons = [ ExtResource( 3 ), ExtResource( 10 ), ExtResource( 11 ) ]

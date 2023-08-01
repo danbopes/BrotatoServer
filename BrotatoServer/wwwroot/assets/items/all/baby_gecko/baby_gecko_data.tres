@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/all/baby_gecko/baby_gecko_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=2]
+[ext_resource path="res://items/all/baby_gecko/baby_gecko_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/baby_gecko/baby_gecko_effect_1.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/baby_gecko/baby_gecko_effect_2.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "item_baby_gecko"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_BABY_GECKO"
+tier = 0
+value = 18
+effects = [ ExtResource( 4 ), ExtResource( 5 ) ]
+tracking_text = ""
+max_nb = 5
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "pickup" ]

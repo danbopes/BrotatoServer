@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://effects/items/structure_effect.gd" type="Script" id=1]
+[ext_resource path="res://entities/structures/landmine/landmine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://items/all/landmines/landmine_stats.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/landmines/landmine_exploding_effect.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+key = ""
+text_key = "effect_landmines"
+value = 1
+custom_key = ""
+storage_method = 0
+effect_sign = 3
+custom_args = [  ]
+spawn_cooldown = 6
+scene = ExtResource( 2 )
+stats = ExtResource( 3 )
+effects = [ ExtResource( 4 ) ]
+spawn_around_player = -1
+can_be_grouped = false

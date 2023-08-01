@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://items/all/medal/medal_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=2]
+[ext_resource path="res://items/all/medal/medal_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/medal/medal_effect_5.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/medal/medal_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/medal/medal_effect_4.tres" type="Resource" id=6]
+[ext_resource path="res://items/all/medal/medal_effect_3.tres" type="Resource" id=7]
+[ext_resource path="res://items/all/medal/medal_effect_2.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "item_medal"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_MEDAL"
+tier = 1
+value = 55
+effects = [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 4 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_max_hp", "stat_percent_damage", "stat_armor", "stat_speed" ]

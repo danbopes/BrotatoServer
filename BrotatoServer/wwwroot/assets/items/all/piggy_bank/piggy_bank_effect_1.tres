@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://items/global/effect.gd" type="Script" id=1]
+[ext_resource path="res://items/global/custom_arg.gd" type="Script" id=2]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 2 )
+arg_index = 1
+arg_sign = 2
+arg_value = 8
+arg_format = 0
+
+[resource]
+script = ExtResource( 1 )
+key = "gain_pct_gold_start_wave"
+text_key = "effect_gain_pct_gold_start_wave_limited"
+value = 20
+custom_key = ""
+storage_method = 0
+effect_sign = 3
+custom_args = [ SubResource( 1 ) ]

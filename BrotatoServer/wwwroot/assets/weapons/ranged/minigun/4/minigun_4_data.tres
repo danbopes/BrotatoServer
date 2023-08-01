@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/minigun/minigun_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/ranged/minigun/minigun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/minigun/4/minigun_4_stats.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/gun/gun_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/heavy/heavy_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_minigun_4"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_MINIGUN"
+tier = 3
+value = 255
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_minigun"
+type = 1
+sets = [ ExtResource( 6 ), ExtResource( 5 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/slingshot/slingshot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://weapons/ranged/slingshot/2/slingshot_2_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/ranged/slingshot/3/slingshot_3_data.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/primitive/primitive_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/ranged/slingshot/slingshot_icon.png" type="Texture" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_slingshot_2"
+unlocked_by_default = true
+icon = ExtResource( 6 )
+name = "WEAPON_SLINGSHOT"
+tier = 1
+value = 31
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_slingshot"
+type = 1
+sets = [ ExtResource( 5 ) ]
+scene = ExtResource( 2 )
+stats = ExtResource( 3 )
+upgrades_into = ExtResource( 4 )

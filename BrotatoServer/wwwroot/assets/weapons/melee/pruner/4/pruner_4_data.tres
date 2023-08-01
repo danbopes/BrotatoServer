@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/pruner/pruner.tscn" type="PackedScene" id=2]
+[ext_resource path="res://weapons/melee/pruner/4/pruner_4_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/pruner/pruner_icon.png" type="Texture" id=4]
+[ext_resource path="res://weapons/melee/pruner/4/pruner_4_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/support/support_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_pruner_4"
+unlocked_by_default = true
+icon = ExtResource( 4 )
+name = "WEAPON_PRUNER"
+tier = 3
+value = 95
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_pruner"
+type = 0
+sets = [ ExtResource( 6 ) ]
+scene = ExtResource( 2 )
+stats = ExtResource( 3 )

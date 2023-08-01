@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://weapons/ranged/sniper_gun/4/sniper_gun_4_data.tres" type="Resource" id=1]
+[ext_resource path="res://weapons/ranged/sniper_gun/3/sniper_gun_3_stats.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/ranged/sniper_gun/sniper.tscn" type="PackedScene" id=3]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=4]
+[ext_resource path="res://weapons/ranged/sniper_gun/3/sniper_gun_3_effect.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/ranged/sniper_gun/sniper_icon.png" type="Texture" id=6]
+[ext_resource path="res://items/sets/gun/gun_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/precise/precise_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "weapon_sniper_gun_3"
+unlocked_by_default = false
+icon = ExtResource( 6 )
+name = "WEAPON_SNIPER_GUN"
+tier = 2
+value = 115
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_sniper_gun"
+type = 1
+sets = [ ExtResource( 7 ), ExtResource( 8 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 2 )
+upgrades_into = ExtResource( 1 )

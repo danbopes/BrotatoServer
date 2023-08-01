@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gun_pistol_shot_05.wav-db321ad3e5178485b57de23923a78202.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/pistol/gun_pistol_shot_05.wav"
+dest_files=[ "res://.import/gun_pistol_shot_05.wav-db321ad3e5178485b57de23923a78202.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

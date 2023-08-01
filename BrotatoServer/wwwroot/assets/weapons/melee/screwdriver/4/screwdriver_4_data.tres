@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/screwdriver/4/screwdriver_4_stats.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/melee/screwdriver/screwdriver.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/screwdriver/screwdriver_icon.png" type="Texture" id=4]
+[ext_resource path="res://weapons/melee/screwdriver/4/screwdriver_4_effect.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/tool/tool_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_screwdriver_4"
+unlocked_by_default = true
+icon = ExtResource( 4 )
+name = "WEAPON_SCREWDRIVER"
+tier = 3
+value = 91
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_screwdriver"
+type = 0
+sets = [ ExtResource( 7 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 2 )

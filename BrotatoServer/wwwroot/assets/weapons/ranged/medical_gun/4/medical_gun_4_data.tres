@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/medical_gun/4/medical_gun_4_stats.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/ranged/medical_gun/medical_gun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/medical_gun/medical_gun_icon.png" type="Texture" id=4]
+[ext_resource path="res://items/sets/gun/gun_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/medical/medical_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_medical_gun_4"
+unlocked_by_default = true
+icon = ExtResource( 4 )
+name = "WEAPON_MEDICAL_GUN"
+tier = 3
+value = 122
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_medical_gun"
+type = 1
+sets = [ ExtResource( 6 ), ExtResource( 5 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 2 )

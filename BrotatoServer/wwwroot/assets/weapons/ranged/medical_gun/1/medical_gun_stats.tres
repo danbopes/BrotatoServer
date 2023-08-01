@@ -1,0 +1,37 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://weapons/weapon_stats/ranged_weapon_stats.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/medical_gun/weapon_fun_pea_shooter_01.wav" type="AudioStream" id=2]
+[ext_resource path="res://weapons/ranged/medical_gun/weapon_fun_small_zapper_02.wav" type="AudioStream" id=3]
+[ext_resource path="res://weapons/ranged/medical_gun/weapon_fun_pea_shooter_02.wav" type="AudioStream" id=4]
+[ext_resource path="res://projectiles/bullet_medical/bullet_medical.tscn" type="PackedScene" id=7]
+
+[resource]
+script = ExtResource( 1 )
+cooldown = 45
+damage = 10
+accuracy = 0.9
+crit_chance = 0.03
+crit_damage = 2.0
+min_range = 0
+max_range = 400
+knockback = 0
+effect_scale = 1.0
+scaling_stats = [ [ "stat_ranged_damage", 1.0 ] ]
+lifesteal = 0.4
+shooting_sounds = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
+sound_db_mod = -8
+is_healing = false
+recoil = 25
+recoil_duration = 0.1
+additional_cooldown_every_x_shots = -1
+additional_cooldown_multiplier = -1.0
+nb_projectiles = 1
+projectile_spread = 0.0
+piercing = 0
+piercing_dmg_reduction = 0.5
+bounce = 0
+bounce_dmg_reduction = 0.5
+projectile_speed = 2000
+increase_projectile_speed_with_range = false
+projectile_scene = ExtResource( 7 )

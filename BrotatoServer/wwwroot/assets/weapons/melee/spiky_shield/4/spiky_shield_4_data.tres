@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/spiky_shield/spiky_shield_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/spiky_shield/4/spiky_shield_4_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/spiky_shield/spiky_shield.tscn" type="PackedScene" id=4]
+[ext_resource path="res://items/sets/blunt/blunt_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/medieval/medieval_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_spiky_shield_4"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "WEAPON_SPIKY_SHIELD"
+tier = 3
+value = 122
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_spiky_shield"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 5 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 3 )

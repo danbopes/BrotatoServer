@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://effects/items/item_exploding_effect.gd" type="Script" id=1]
+[ext_resource path="res://projectiles/explosion.tscn" type="PackedScene" id=2]
+
+[resource]
+script = ExtResource( 1 )
+key = ""
+text_key = ""
+value = 0
+custom_key = ""
+storage_method = 0
+effect_sign = 3
+custom_args = [  ]
+chance = 1.0
+explosion_scene = ExtResource( 2 )
+scale = 1.75
+base_smoke_amount = 40
+sound_db_mod = -10
+tracking_text = ""

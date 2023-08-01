@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/stick/2/stick_2_data.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/melee/stick/stick.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/stick/stick_icon.png" type="Texture" id=4]
+[ext_resource path="res://weapons/melee/stick/1/stick_stats.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/melee/stick/1/stick_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/primitive/primitive_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_stick_1"
+unlocked_by_default = true
+icon = ExtResource( 4 )
+name = "WEAPON_STICK"
+tier = 0
+value = 10
+effects = [ ExtResource( 6 ) ]
+tracking_text = ""
+weapon_id = "weapon_stick"
+type = 0
+sets = [ ExtResource( 7 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 5 )
+upgrades_into = ExtResource( 2 )

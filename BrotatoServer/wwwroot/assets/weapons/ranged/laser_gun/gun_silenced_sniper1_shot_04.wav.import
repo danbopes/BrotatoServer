@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/gun_silenced_sniper1_shot_04.wav-b6347a1139e6f86163d905738394dafd.sample"
+
+[deps]
+
+source_file="res://weapons/ranged/laser_gun/gun_silenced_sniper1_shot_04.wav"
+dest_files=[ "res://.import/gun_silenced_sniper1_shot_04.wav-b6347a1139e6f86163d905738394dafd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://items/difficulties/difficulty_data.gd" type="Script" id=1]
+[ext_resource path="res://items/difficulties/0/difficulty_0_effect_1.tres" type="Resource" id=2]
+[ext_resource path="res://ui/menus/run/difficulty_selection/difficulty_icons/0.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "difficulty_0"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "DIFFICULTY_NB"
+tier = 0
+value = 0
+effects = [ ExtResource( 2 ) ]
+tracking_text = ""

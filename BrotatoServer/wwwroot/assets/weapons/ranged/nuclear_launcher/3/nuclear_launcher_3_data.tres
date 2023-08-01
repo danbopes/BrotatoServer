@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://weapons/ranged/nuclear_launcher/3/nuclear_launcher_3_stats.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/ranged/nuclear_launcher/nuclear_launcher.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/nuclear_launcher/nuclear_launcher_icon.png" type="Texture" id=4]
+[ext_resource path="res://weapons/ranged/nuclear_launcher/4/nuclear_launcher_4_data.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/ranged/nuclear_launcher/3/nuclear_launcher_3_effect.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/heavy/heavy_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/explosive/explosive_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "weapon_nuclear_launcher_3"
+unlocked_by_default = false
+icon = ExtResource( 4 )
+name = "WEAPON_NUCLEAR_LAUNCHER"
+tier = 2
+value = 144
+effects = [ ExtResource( 6 ) ]
+tracking_text = ""
+weapon_id = "weapon_nuclear_launcher"
+type = 1
+sets = [ ExtResource( 7 ), ExtResource( 8 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 1 )
+upgrades_into = ExtResource( 5 )

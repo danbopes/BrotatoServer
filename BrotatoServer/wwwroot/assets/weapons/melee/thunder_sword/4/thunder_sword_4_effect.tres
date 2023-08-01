@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://weapons/melee/thunder_sword/thunder_sword_projectile_stats.tres" type="Resource" id=1]
+[ext_resource path="res://effects/weapons/projectiles_on_hit_effect.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+key = "EFFECT_SLOW_PROJECTILES_ON_HIT"
+text_key = ""
+value = 4
+effect_sign = 3
+weapon_stats = ExtResource( 1 )
+auto_target_enemy = false

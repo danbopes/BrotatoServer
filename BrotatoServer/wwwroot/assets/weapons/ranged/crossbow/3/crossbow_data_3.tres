@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://weapons/ranged/crossbow/4/crossbow_data_4.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/ranged/crossbow/3/crossbow_stats_3.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/ranged/crossbow/3/crossbow_effect_3.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/ranged/crossbow/crossbow_icon.png" type="Texture" id=5]
+[ext_resource path="res://weapons/ranged/crossbow/crossbow.tscn" type="PackedScene" id=6]
+[ext_resource path="res://items/sets/precise/precise_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/medieval/medieval_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "weapon_crossbow_3"
+unlocked_by_default = true
+icon = ExtResource( 5 )
+name = "WEAPON_CROSSBOW"
+tier = 2
+value = 66
+effects = [ ExtResource( 4 ) ]
+tracking_text = ""
+weapon_id = "weapon_crossbow"
+type = 1
+sets = [ ExtResource( 7 ), ExtResource( 8 ) ]
+scene = ExtResource( 6 )
+stats = ExtResource( 3 )
+upgrades_into = ExtResource( 1 )

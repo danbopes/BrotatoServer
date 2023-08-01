@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://items/upgrades/upgrade_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/baby_elephant/baby_elephant_icon.png" type="Texture" id=2]
+
+[resource]
+script = ExtResource( 1 )
+icon = ExtResource( 2 )
+name = "UPGRADE_TO_PROCESS"
+tier = 0
+value = 1
+item_appearances = [  ]
+effects = [  ]

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/drill/drill_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/drill/4/drill_4_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/drill/drill.tscn" type="PackedScene" id=4]
+[ext_resource path="res://weapons/melee/drill/4/drill_effect.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/legendary/legendary_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/precise/precise_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://weapons/melee/drill/4/drill_effect_2.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_drill_4"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_DRILL"
+tier = 3
+value = 250
+effects = [ ExtResource( 5 ), ExtResource( 8 ) ]
+tracking_text = "MATERIALS_GAINED"
+weapon_id = "weapon_drill"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 7 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 3 )

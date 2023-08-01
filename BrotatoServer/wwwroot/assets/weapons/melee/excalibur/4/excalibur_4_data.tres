@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/excalibur/excalibur_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/excalibur/excalibur.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/excalibur/4/excalibur_4_stats.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/blade/blade_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/legendary/legendary_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://weapons/melee/excalibur/4/excalibur_effect_1.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_excalibur_4"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "WEAPON_EXCALIBUR"
+tier = 3
+value = 260
+effects = [ ExtResource( 7 ) ]
+tracking_text = ""
+weapon_id = "weapon_excalibur"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 5 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )

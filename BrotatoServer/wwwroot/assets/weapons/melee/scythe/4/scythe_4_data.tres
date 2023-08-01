@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/scythe/scythe_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/scythe/scythe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/scythe/4/scythe_4_stats.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/legendary/legendary_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/ethereal/ethereal_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://weapons/melee/scythe/4/scythe_effect.tres" type="Resource" id=7]
+[ext_resource path="res://weapons/melee/scythe/4/scythe_effect_2.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_scythe_4"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_SCYTHE"
+tier = 3
+value = 260
+effects = [ ExtResource( 7 ), ExtResource( 8 ) ]
+tracking_text = ""
+weapon_id = "weapon_scythe"
+type = 0
+sets = [ ExtResource( 5 ), ExtResource( 6 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )

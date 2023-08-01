@@ -1,0 +1,25 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/knife/knife_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/melee/knife/knife.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/knife/3/knife_3_stats.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/melee/knife/4/knife_4_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/precise/precise_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_knife_3"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_KNIFE"
+tier = 2
+value = 61
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_knife"
+type = 0
+sets = [ ExtResource( 6 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
+upgrades_into = ExtResource( 5 )

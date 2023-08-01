@@ -1,0 +1,33 @@
+[gd_resource type="Resource" load_steps=14 format=2]
+
+[ext_resource path="res://items/characters/character_data.gd" type="Script" id=1]
+[ext_resource path="res://items/characters/engineer/engineer_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/characters/engineer/engineer_effect_4.tres" type="Resource" id=3]
+[ext_resource path="res://items/characters/engineer/engineer_eyes_appearance.tres" type="Resource" id=4]
+[ext_resource path="res://items/characters/engineer/engineer_mouth_appearance.tres" type="Resource" id=5]
+[ext_resource path="res://items/characters/engineer/engineer_effect_3.tres" type="Resource" id=6]
+[ext_resource path="res://items/characters/engineer/engineer_effect_1.tres" type="Resource" id=7]
+[ext_resource path="res://items/characters/engineer/engineer_effect_2.tres" type="Resource" id=8]
+[ext_resource path="res://weapons/melee/wrench/1/wrench_data.tres" type="Resource" id=9]
+[ext_resource path="res://weapons/melee/screwdriver/1/screwdriver_data.tres" type="Resource" id=10]
+[ext_resource path="res://weapons/melee/hammer/2/hammer_2_data.tres" type="Resource" id=11]
+[ext_resource path="res://items/characters/engineer/engineer_effect_1b.tres" type="Resource" id=12]
+[ext_resource path="res://weapons/melee/plank/1/plank_data.tres" type="Resource" id=13]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "character_engineer"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "CHARACTER_ENGINEER"
+tier = 0
+value = 1
+effects = [ ExtResource( 7 ), ExtResource( 12 ), ExtResource( 8 ), ExtResource( 6 ), ExtResource( 3 ) ]
+has_gameplay_modifications = false
+tracking_text = ""
+unique = false
+max_nb = -1
+item_appearances = [ ExtResource( 4 ), ExtResource( 5 ) ]
+tags = [  ]
+wanted_tags = [ "stat_engineering" ]
+starting_weapons = [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 13 ), ExtResource( 11 ) ]

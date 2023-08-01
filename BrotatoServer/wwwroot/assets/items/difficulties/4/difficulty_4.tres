@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/difficulties/difficulty_data.gd" type="Script" id=1]
+[ext_resource path="res://items/difficulties/4/difficulty_4_effect_1.tres" type="Resource" id=2]
+[ext_resource path="res://items/difficulties/4/difficulty_4_effect_3.tres" type="Resource" id=3]
+[ext_resource path="res://items/difficulties/4/difficulty_4_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/difficulties/4/difficulty_4_effect_0.tres" type="Resource" id=5]
+[ext_resource path="res://ui/menus/run/difficulty_selection/difficulty_icons/4.png" type="Texture" id=6]
+[ext_resource path="res://items/difficulties/4/difficulty_4_effect_4.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "difficulty_4"
+unlocked_by_default = false
+icon = ExtResource( 6 )
+name = "DIFFICULTY_NB"
+tier = 4
+value = 4
+effects = [ ExtResource( 5 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ), ExtResource( 7 ) ]
+tracking_text = ""

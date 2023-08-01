@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/all/jetpack/jetpack_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=2]
+[ext_resource path="res://items/all/jetpack/jetpack_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/jetpack/jetpack_effect_4.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/jetpack/jetpack_effect_3.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/jetpack/jetpack_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/all/jetpack/jetpack_effect_2.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "item_jetpack"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_JETPACK"
+tier = 3
+value = 100
+effects = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 5 ), ExtResource( 4 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_speed", "stat_dodge" ]

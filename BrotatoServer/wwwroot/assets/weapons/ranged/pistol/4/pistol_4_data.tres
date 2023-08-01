@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://weapons/ranged/pistol/4/pistol_4_stats.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/ranged/pistol/pistol.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/pistol/pistol_icon.png" type="Texture" id=4]
+[ext_resource path="res://items/sets/gun/gun_set_data.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "weapon_pistol_4"
+unlocked_by_default = true
+icon = ExtResource( 4 )
+name = "WEAPON_PISTOL"
+tier = 3
+value = 91
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_pistol"
+type = 1
+sets = [ ExtResource( 5 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 1 )

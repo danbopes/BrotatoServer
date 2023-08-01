@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://weapons/melee/rock/4/rock_4_effect_1.tres" type="Resource" id=1]
+[ext_resource path="res://weapons/melee/rock/4/rock_4_stats.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/melee/rock/4/rock_4_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/rock/rock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=5]
+[ext_resource path="res://weapons/melee/rock/rock_icon.png" type="Texture" id=6]
+[ext_resource path="res://items/sets/blunt/blunt_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/primitive/primitive_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 5 )
+my_id = "weapon_rock_4"
+unlocked_by_default = true
+icon = ExtResource( 6 )
+name = "WEAPON_ROCK"
+tier = 3
+value = 91
+effects = [ ExtResource( 3 ), ExtResource( 1 ) ]
+tracking_text = ""
+weapon_id = "weapon_rock"
+type = 0
+sets = [ ExtResource( 8 ), ExtResource( 7 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 2 )

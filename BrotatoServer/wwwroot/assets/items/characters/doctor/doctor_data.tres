@@ -1,0 +1,32 @@
+[gd_resource type="Resource" load_steps=13 format=2]
+
+[ext_resource path="res://items/characters/character_data.gd" type="Script" id=1]
+[ext_resource path="res://items/characters/doctor/doctor_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/characters/doctor/doctor_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/characters/doctor/doctor_eyes_appearance.tres" type="Resource" id=4]
+[ext_resource path="res://items/characters/doctor/doctor_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/characters/doctor/doctor_effect_3.tres" type="Resource" id=6]
+[ext_resource path="res://items/characters/doctor/doctor_mouth_appearance.tres" type="Resource" id=7]
+[ext_resource path="res://items/characters/doctor/doctor_effect_4.tres" type="Resource" id=8]
+[ext_resource path="res://items/characters/doctor/doctor_effect_5.tres" type="Resource" id=9]
+[ext_resource path="res://weapons/melee/scissors/1/scissors_data.tres" type="Resource" id=10]
+[ext_resource path="res://weapons/ranged/medical_gun/1/medical_gun_data.tres" type="Resource" id=11]
+[ext_resource path="res://items/characters/doctor/doctor_effect_6.tres" type="Resource" id=12]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "character_doctor"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "CHARACTER_DOCTOR"
+tier = 0
+value = 1
+effects = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ) ]
+has_gameplay_modifications = false
+tracking_text = ""
+unique = false
+max_nb = -1
+item_appearances = [ ExtResource( 4 ), ExtResource( 7 ) ]
+tags = [  ]
+wanted_tags = [ "stat_hp_regeneration" ]
+starting_weapons = [ ExtResource( 10 ), ExtResource( 11 ) ]

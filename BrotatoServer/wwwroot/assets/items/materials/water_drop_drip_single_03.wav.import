@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/water_drop_drip_single_03.wav-d161a80cd00f1de688b4ceb0960e4fbd.sample"
+
+[deps]
+
+source_file="res://items/materials/water_drop_drip_single_03.wav"
+dest_files=[ "res://.import/water_drop_drip_single_03.wav-d161a80cd00f1de688b4ceb0960e4fbd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/scared_sausage/scared_sausage_appearance.tres" type="Resource" id=2]
+[ext_resource path="res://items/all/scared_sausage/scared_sausage_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/scared_sausage/scared_sausage_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_scared_sausage"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_SCARED_SAUSAGE"
+tier = 0
+value = 25
+effects = [ ExtResource( 5 ) ]
+tracking_text = "DAMAGE_DEALT"
+max_nb = 4
+item_appearances = [ ExtResource( 2 ) ]
+tags = [ "stat_elemental_damage" ]

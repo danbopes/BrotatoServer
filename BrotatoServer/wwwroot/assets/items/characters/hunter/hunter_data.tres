@@ -1,0 +1,34 @@
+[gd_resource type="Resource" load_steps=17 format=2]
+
+[ext_resource path="res://weapons/ranged/shuriken/1/shuriken_data.tres" type="Resource" id=1]
+[ext_resource path="res://items/characters/character_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/melee/dagger/1/dagger_data.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/spear/1/spear_data.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/ranged/crossbow/1/crossbow_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/characters/hunter/hunter_hat_appearance.tres" type="Resource" id=6]
+[ext_resource path="res://items/characters/hunter/hunter_eyes_appearance.tres" type="Resource" id=7]
+[ext_resource path="res://items/characters/hunter/hunter_mouth_appearance.tres" type="Resource" id=8]
+[ext_resource path="res://items/characters/hunter/hunter_icon.png" type="Texture" id=9]
+[ext_resource path="res://items/characters/hunter/hunter_effect_2.tres" type="Resource" id=10]
+[ext_resource path="res://items/characters/hunter/hunter_effect_1.tres" type="Resource" id=11]
+[ext_resource path="res://items/characters/hunter/hunter_effect_4.tres" type="Resource" id=12]
+[ext_resource path="res://items/characters/hunter/hunter_effect_0.tres" type="Resource" id=13]
+[ext_resource path="res://weapons/melee/cactus_mace/1/cactus_mace_data.tres" type="Resource" id=14]
+[ext_resource path="res://items/characters/hunter/hunter_effect_5.tres" type="Resource" id=15]
+[ext_resource path="res://weapons/melee/claw/1/claw_data.tres" type="Resource" id=16]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "character_hunter"
+unlocked_by_default = false
+icon = ExtResource( 9 )
+name = "CHARACTER_HUNTER"
+tier = 0
+value = 1
+effects = [ ExtResource( 13 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 15 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
+tags = [  ]
+wanted_tags = [ "stat_range", "stat_crit_chance" ]
+starting_weapons = [ ExtResource( 14 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 16 ), ExtResource( 1 ), ExtResource( 5 ) ]

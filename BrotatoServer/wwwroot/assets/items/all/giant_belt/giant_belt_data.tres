@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/giant_belt/giant_belt_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/giant_belt/giant_belt_effect_1.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/giant_belt/giant_belt_appearance.tres" type="Resource" id=4]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_giant_belt"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "ITEM_GIANT_BELT"
+tier = 3
+value = 100
+effects = [ ExtResource( 3 ) ]
+tracking_text = "DAMAGE_DEALT"
+max_nb = 1
+item_appearances = [ ExtResource( 4 ) ]
+tags = [ "stat_crit_chance" ]

@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/spider/spider_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/spider/spider_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/spider/spider_effect_3.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/spider/spider_effect_4.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/spider/spider_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/all/spider/spider_appearance.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_spider"
+unlocked_by_default = false
+icon = ExtResource( 2 )
+name = "ITEM_SPIDER"
+tier = 3
+value = 120
+effects = [ ExtResource( 6 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 7 ) ]
+tags = [ "stat_percent_damage", "stat_attack_speed" ]

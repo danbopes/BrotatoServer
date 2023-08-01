@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/grinds_magical_leaf/grinds_magical_leaf_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/grinds_magical_leaf/grinds_magical_leaf_appearance.tres" type="Resource" id=3]
+[ext_resource path="res://items/all/grinds_magical_leaf/grinds_magical_leaf_effect_3.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/grinds_magical_leaf/grinds_magical_leaf_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/grinds_magical_leaf/grinds_magical_leaf_effect_1.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_grinds_magical_leaf"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_GRINDS_MAGICAL_LEAF"
+tier = 3
+value = 100
+effects = [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ) ]
+tracking_text = "STATS_GAINED"
+max_nb = -1
+item_appearances = [ ExtResource( 3 ) ]
+tags = [ "stat_max_hp", "stat_hp_regeneration", "stat_lifesteal" ]

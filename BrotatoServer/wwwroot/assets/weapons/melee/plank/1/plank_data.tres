@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://weapons/melee/plank/plank_icon.png" type="Texture" id=1]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/melee/plank/plank.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/plank/1/plank_stats.tres" type="Resource" id=4]
+[ext_resource path="res://weapons/melee/plank/1/plank_exploding_effect.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/melee/plank/2/plank_2_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/fire/fire_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/explosive/explosive_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "weapon_plank_1"
+unlocked_by_default = true
+icon = ExtResource( 1 )
+name = "WEAPON_PLANK"
+tier = 0
+value = 15
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_plank"
+type = 0
+sets = [ ExtResource( 8 ), ExtResource( 7 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
+upgrades_into = ExtResource( 6 )

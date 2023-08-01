@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/all/alien_eyes/alien_eyes_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/alien_eyes/alien_eyes_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=4]
+[ext_resource path="res://items/all/alien_eyes/alien_eyes_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "item_alien_eyes"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_ALIEN_EYES"
+tier = 1
+value = 50
+effects = [ ExtResource( 5 ) ]
+tracking_text = "DAMAGE_DEALT"
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_max_hp" ]

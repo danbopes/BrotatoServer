@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/all/bag/bag_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/all/bag/bag_icon.png" type="Texture" id=2]
+[ext_resource path="res://items/all/bag/bag_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=4]
+[ext_resource path="res://items/all/bag/bag_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 4 )
+my_id = "item_bag"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "ITEM_BAG"
+tier = 0
+value = 15
+effects = [ ExtResource( 5 ), ExtResource( 3 ) ]
+tracking_text = "MATERIALS_GAINED"
+max_nb = 3
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_luck", "exploration", "economy" ]

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://items/upgrades/upgrade_data.gd" type="Script" id=1]
+[ext_resource path="res://items/upgrades/attack_speed/2/attack_speed_2_effect.tres" type="Resource" id=2]
+[ext_resource path="res://items/upgrades/attack_speed/attack_speed.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "upgrade_attack_speed_2"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "UPGRADE_ATTACK_SPEED"
+tier = 1
+value = 1
+effects = [ ExtResource( 2 ) ]
+has_gameplay_modifications = false
+tracking_text = ""
+unique = false
+max_nb = -1
+item_appearances = [  ]
+tags = [  ]
+upgrade_id = "upgrade_attack_speed"

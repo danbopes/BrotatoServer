@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=11 format=2]
+
+[ext_resource path="res://items/sets/medieval/6/set_6_effect_1.tres" type="Resource" id=1]
+[ext_resource path="res://items/sets/medieval/5/set_5_effect_1.tres" type="Resource" id=2]
+[ext_resource path="res://items/sets/medieval/3/set_3_effect_2.tres" type="Resource" id=3]
+[ext_resource path="res://items/sets/medieval/4/set_4_effect_1.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/medieval/2/set_2_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/medieval/3/set_3_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/medieval/6/set_6_effect_2.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/medieval/4/set_4_effect_2.tres" type="Resource" id=8]
+[ext_resource path="res://items/sets/medieval/5/set_5_effect_2.tres" type="Resource" id=9]
+[ext_resource path="res://items/sets/set_data.gd" type="Script" id=13]
+
+[resource]
+script = ExtResource( 13 )
+my_id = "set_medieval"
+name = "WEAPON_CLASS_MEDIEVAL"
+set_bonuses = [ [ ExtResource( 5 ) ], [ ExtResource( 6 ), ExtResource( 3 ) ], [ ExtResource( 4 ), ExtResource( 8 ) ], [ ExtResource( 2 ), ExtResource( 9 ) ], [ ExtResource( 1 ), ExtResource( 7 ) ] ]

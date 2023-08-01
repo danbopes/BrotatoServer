@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=6 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/rip_and_tear/rip_and_tear_appearance.tres" type="Resource" id=2]
+[ext_resource path="res://items/all/rip_and_tear/rip_and_tear_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/rip_and_tear/rip_and_tear_effect_2.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/rip_and_tear/rip_and_tear_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_rip_and_tear"
+unlocked_by_default = false
+icon = ExtResource( 3 )
+name = "ITEM_RIP_AND_TEAR"
+tier = 2
+value = 65
+effects = [ ExtResource( 5 ), ExtResource( 4 ) ]
+tracking_text = "DAMAGE_DEALT"
+max_nb = 5
+item_appearances = [ ExtResource( 2 ) ]
+tags = [ "stat_melee_damage", "explosive" ]

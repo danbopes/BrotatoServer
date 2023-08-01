@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=5 format=2]
+
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=1]
+[ext_resource path="res://items/all/vigilante_ring/vigilante_ring_appearance.tres" type="Resource" id=2]
+[ext_resource path="res://items/all/vigilante_ring/vigilante_ring_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/vigilante_ring/vigilante_ring_effect_1.tres" type="Resource" id=5]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "item_vigilante_ring"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_VIGILANTE_RING"
+tier = 2
+value = 92
+effects = [ ExtResource( 5 ) ]
+tracking_text = "STATS_GAINED"
+max_nb = -1
+item_appearances = [ ExtResource( 2 ) ]
+tags = [ "stat_percent_damage" ]

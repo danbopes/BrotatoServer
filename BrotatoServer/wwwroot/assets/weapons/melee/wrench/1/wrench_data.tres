@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/wrench/2/wrench_2_data.tres" type="Resource" id=2]
+[ext_resource path="res://weapons/melee/wrench/1/wrench_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/wrench/wrench.tscn" type="PackedScene" id=4]
+[ext_resource path="res://items/all/turret/turret_effect_1.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/melee/wrench/wrench_icon.png" type="Texture" id=6]
+[ext_resource path="res://items/sets/tool/tool_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_wrench_1"
+unlocked_by_default = true
+icon = ExtResource( 6 )
+name = "WEAPON_WRENCH"
+tier = 0
+value = 20
+effects = [ ExtResource( 5 ) ]
+tracking_text = ""
+weapon_id = "weapon_wrench"
+type = 0
+sets = [ ExtResource( 7 ) ]
+scene = ExtResource( 4 )
+stats = ExtResource( 3 )
+upgrades_into = ExtResource( 2 )

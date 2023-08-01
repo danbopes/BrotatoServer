@@ -1,0 +1,23 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/all/shmoop/shmoop_appearance.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/item_data.gd" type="Script" id=2]
+[ext_resource path="res://items/all/shmoop/shmoop_icon.png" type="Texture" id=3]
+[ext_resource path="res://items/all/shmoop/shmoop_effect_3.tres" type="Resource" id=4]
+[ext_resource path="res://items/all/shmoop/shmoop_effect_2.tres" type="Resource" id=5]
+[ext_resource path="res://items/all/shmoop/shmoop_effect_1.tres" type="Resource" id=6]
+[ext_resource path="res://items/all/shmoop/shmoop_effect_4.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "item_shmoop"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "ITEM_SHMOOP"
+tier = 2
+value = 60
+effects = [ ExtResource( 6 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 7 ) ]
+tracking_text = ""
+max_nb = -1
+item_appearances = [ ExtResource( 1 ) ]
+tags = [ "stat_max_hp", "stat_hp_regeneration" ]

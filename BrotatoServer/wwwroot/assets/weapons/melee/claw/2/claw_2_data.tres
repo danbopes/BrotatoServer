@@ -1,0 +1,26 @@
+[gd_resource type="Resource" load_steps=8 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/melee/claw/claw.tscn" type="PackedScene" id=2]
+[ext_resource path="res://weapons/melee/claw/2/claw_2_stats.tres" type="Resource" id=3]
+[ext_resource path="res://weapons/melee/claw/claw_icon.png" type="Texture" id=4]
+[ext_resource path="res://weapons/melee/claw/3/claw_3_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/unarmed/unarmed_set_data.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/precise/precise_set_data.tres" type="Resource" id=7]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_claw_2"
+unlocked_by_default = false
+icon = ExtResource( 4 )
+name = "WEAPON_CLAW"
+tier = 1
+value = 28
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_claw"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 7 ) ]
+scene = ExtResource( 2 )
+stats = ExtResource( 3 )
+upgrades_into = ExtResource( 5 )

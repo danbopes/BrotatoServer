@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://weapons/melee/circular_saw/circular_saw_icon.png" type="Texture" id=1]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/melee/circular_saw/circular_saw.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/melee/circular_saw/4/circular_saw_4_stats.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/medical/medical_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/blade/blade_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "weapon_circular_saw_4"
+unlocked_by_default = true
+icon = ExtResource( 1 )
+name = "WEAPON_CIRCULAR_SAW"
+tier = 3
+value = 173
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_circular_saw"
+type = 0
+sets = [ ExtResource( 6 ), ExtResource( 5 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )

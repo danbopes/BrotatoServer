@@ -1,0 +1,22 @@
+[gd_resource type="Resource" load_steps=4 format=2]
+
+[ext_resource path="res://items/upgrades/upgrade_data.gd" type="Script" id=1]
+[ext_resource path="res://items/upgrades/armor/3/armor_3_effect.tres" type="Resource" id=2]
+[ext_resource path="res://items/upgrades/armor/flat_dmg_reduction.png" type="Texture" id=3]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "upgrade_armor_3"
+unlocked_by_default = true
+icon = ExtResource( 3 )
+name = "UPGRADE_ARMOR"
+tier = 2
+value = 1
+effects = [ ExtResource( 2 ) ]
+has_gameplay_modifications = false
+tracking_text = ""
+unique = false
+max_nb = -1
+item_appearances = [  ]
+tags = [  ]
+upgrade_id = "upgrade_armor"

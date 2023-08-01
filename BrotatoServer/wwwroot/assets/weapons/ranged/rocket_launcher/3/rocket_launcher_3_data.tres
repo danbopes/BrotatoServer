@@ -1,0 +1,27 @@
+[gd_resource type="Resource" load_steps=9 format=2]
+
+[ext_resource path="res://weapons/ranged/rocket_launcher/4/rocket_launcher_4_data.tres" type="Resource" id=1]
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=2]
+[ext_resource path="res://weapons/ranged/rocket_launcher/rocket_launcher.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/rocket_launcher/rocket_launcher_icon.png" type="Texture" id=4]
+[ext_resource path="res://weapons/ranged/rocket_launcher/3/rocket_launcher_3_stats.tres" type="Resource" id=5]
+[ext_resource path="res://weapons/ranged/rocket_launcher/rocket_launcher_effect.tres" type="Resource" id=6]
+[ext_resource path="res://items/sets/heavy/heavy_set_data.tres" type="Resource" id=7]
+[ext_resource path="res://items/sets/explosive/explosive_set_data.tres" type="Resource" id=8]
+
+[resource]
+script = ExtResource( 2 )
+my_id = "weapon_rocket_launcher_3"
+unlocked_by_default = true
+icon = ExtResource( 4 )
+name = "WEAPON_ROCKET_LAUNCHER"
+tier = 2
+value = 103
+effects = [ ExtResource( 6 ) ]
+tracking_text = ""
+weapon_id = "weapon_rocket_launcher"
+type = 1
+sets = [ ExtResource( 7 ), ExtResource( 8 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 5 )
+upgrades_into = ExtResource( 1 )

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=7 format=2]
+
+[ext_resource path="res://items/global/weapon_data.gd" type="Script" id=1]
+[ext_resource path="res://weapons/ranged/gatling_laser/gatling_laser_icon.png" type="Texture" id=2]
+[ext_resource path="res://weapons/ranged/gatling_laser/gatling_laser.tscn" type="PackedScene" id=3]
+[ext_resource path="res://weapons/ranged/gatling_laser/4/gatling_laser_4_stats.tres" type="Resource" id=4]
+[ext_resource path="res://items/sets/legendary/legendary_set_data.tres" type="Resource" id=5]
+[ext_resource path="res://items/sets/heavy/heavy_set_data.tres" type="Resource" id=6]
+
+[resource]
+script = ExtResource( 1 )
+my_id = "weapon_gatling_laser_4"
+unlocked_by_default = true
+icon = ExtResource( 2 )
+name = "WEAPON_GATLING_LASER"
+tier = 3
+value = 300
+effects = [  ]
+tracking_text = ""
+weapon_id = "weapon_gatling_laser"
+type = 1
+sets = [ ExtResource( 5 ), ExtResource( 6 ) ]
+scene = ExtResource( 3 )
+stats = ExtResource( 4 )
