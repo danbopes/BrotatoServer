@@ -10,7 +10,7 @@
 
 <PageTitle>Current Run</PageTitle>
 
-@if (IsConnected)
+@if (IsConnected && fetched)
 {
     @if (runInfo != null)
     {
@@ -22,6 +22,7 @@
         <p>Character: 
             <a href="https://brotato.wiki.spellsandguns.com/@niceCharName" target="_blank">
                 <img src="assets/items/characters/@charName/@(charName)_icon.png" />
+                @niceCharName
             </a>
         </p>
 
@@ -62,6 +63,7 @@ else
     private RunInformation? runInfo;
     private string? userInput;
     private string? messageInput;
+    private bool fetched;
 
     protected override async Task OnInitializedAsync()
     {
@@ -72,6 +74,7 @@ else
         hubConnection.On<RunInformation>(nameof(IRunHub.RunUpdate), (runInfo) =>
         {
             JS.InvokeVoidAsync("console.log", runInfo);
+            this.fetched = true;
             this.runInfo = runInfo;
             InvokeAsync(StateHasChanged);
         });

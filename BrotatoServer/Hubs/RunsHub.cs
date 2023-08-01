@@ -1,7 +1,5 @@
 ﻿using BrotatoServer.Models.JSON;
 using Microsoft.AspNetCore.SignalR;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace BrotatoServer.Hubs;
 
@@ -45,11 +43,7 @@ public class RunsHub : Hub<IRunHub>
 
     public override async Task OnConnectedAsync()
     {
-        if (_currentRun.Current != null)
-        {
-            await Clients.Caller.RunUpdate(_currentRun.Current);
-        }
-
+        await Clients.Caller.RunUpdate(_currentRun.Current);
         await base.OnConnectedAsync();
     }
 }
