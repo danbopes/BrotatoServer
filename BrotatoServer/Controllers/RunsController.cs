@@ -75,14 +75,8 @@ namespace BrotatoServer.Controllers
 
         // POST: api/Runs
         [HttpPost]
-        public async Task<IActionResult> PostRun([FromBody] RunInformation runInfo)
+        public async Task<IActionResult> PostRun([FromBody] RunInformation runInfo, [FromServices] CurrentRun currentRun)
         {
-            /*using var reader = new StreamReader(Request.Body, Encoding.UTF8);
-            var rawJson = await reader.ReadToEndAsync();
-            var jsonData = JObject.Parse(rawJson);*/
-
-            //var created = jsonData.Value<long>("created");
-
             var run = new Run
             {
                 Id = Guid.NewGuid(),
@@ -94,6 +88,8 @@ namespace BrotatoServer.Controllers
             _context.Run.Add(run);
 
             await _context.SaveChangesAsync();
+
+            await currentRun.UpdateRun(null);
 
             return CreatedAtAction("GetRun", new { id = run.Id }, run);
         }
@@ -107,7 +103,10 @@ namespace BrotatoServer.Controllers
 
             _log.LogInformation("Update Run: {Run}", runInfo.RunData?.Character);
 
-            await run.UpdateRun(runInfo);
+            var updated = await run.UpdateRun(runInfo);
+
+            if (!updated)
+                return Conflict();
 
             return Ok();
         }

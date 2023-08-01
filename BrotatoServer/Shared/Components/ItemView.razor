@@ -6,6 +6,10 @@
         <div class="item inventory @TierClass">
             <a href="@WikiUrl" target="_blank">
                 <img src="@Icon" title="@Name" />
+                @if (Count > 1)
+                {
+                    <div class="count">@("x" + Count)</div>
+                }
             </a>
         </div>
     </TriggerContent>
@@ -19,14 +23,14 @@
 </Popover>
 
 @code {
-    [Parameter]
-    public string Id { get; set; }
+    [Parameter, EditorRequired]
+    public string Id { get; set; } = null!;
 
-    [Parameter]
+    [Parameter, EditorRequired]
     public int Count { get; set; } = 1;
 
-    [Parameter]
-    public RunData RunData { get; set; }
+    [Parameter, EditorRequired]
+    public RunData RunData { get; set; } = null!;
 
     public Item Item { get; private set; }
 
@@ -63,6 +67,19 @@
         return thisRoundEffect;
     }
 
+    public decimal? GetLastTrackingInfo()
+    {
+        for (var i = RunData.Wave; i > 0; i--)
+        {
+            var thisRoundEffect = GetTrackingInfoForWave(i);
+            if (thisRoundEffect is null)
+                continue;
+            return thisRoundEffect;
+        }
+
+        return null;
+    }
+
     private IEnumerable<string> GetLast3TrackingInfo()
     {
         for (var wave = RunData.Wave; wave > 0 && wave > RunData.Wave - 3; wave--)
@@ -79,7 +96,7 @@
             yield return $"<br /><span style=\"color: #ffeae2b0\">Wave #{wave} " + string.Format(Item.TrackingText, waveRoundEffect) + "</span>";
         }
 
-        var totalTracking = GetTrackingInfoForWave(RunData.Wave) ?? 0;
+        var totalTracking = GetLastTrackingInfo() ?? 0;
 
         yield return $"<br /><span style=\"color: #ffeae2b0\">Total " + string.Format(Item.TrackingText, totalTracking) + "</span>";
     }

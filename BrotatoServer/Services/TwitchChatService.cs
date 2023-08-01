@@ -80,7 +80,7 @@ public class TwitchChatService : BackgroundService
                     }
                     break;
                 }
-            /*case "!tater":
+            case "!tater":
                 {
                     var runData = _currentRun.Current?.RunData;
 
@@ -92,7 +92,7 @@ public class TwitchChatService : BackgroundService
                         _client.SendMessage(e.ChatMessage.Channel, $"{niceCharName} - https://brotato.celerity.tv/current_run");
                     }
                     break;
-                }*/
+                }
         }
     }
 

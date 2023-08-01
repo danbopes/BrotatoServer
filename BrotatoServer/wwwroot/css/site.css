@@ -75,8 +75,8 @@ main p {
     color: #fff;
 }
 
-main a {
-    color: #fff;
+main a, main a:hover {
+    color: #fff !important;
     text-decoration: none;
 }
 
@@ -96,6 +96,16 @@ main a {
     margin: 2px;
     border-radius: 10px;
     border: 2px solid black;
+}
+
+.item .count {
+    font-family: 'Anybody', cursive;
+    position: absolute;
+    bottom: 2px;
+    right: 10px;
+    font-size: 35px;
+    text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
+    line-height: 35px;
 }
 
 :root {

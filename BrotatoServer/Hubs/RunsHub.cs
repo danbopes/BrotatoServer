@@ -13,8 +13,12 @@ public class CurrentRun
         _runHub = runHub;
     }
     
-    public async Task UpdateRun(RunInformation? newRun)
+    public async Task<bool> UpdateRun(RunInformation? newRun)
     {
+        if (Current is not null && newRun is not null)
+            if (newRun.Created < Current.Created && newRun.Ticks < Current.Ticks)
+                return false;
+
         Current = newRun;
 
         if (Current is not null)
@@ -24,6 +28,8 @@ public class CurrentRun
         }
 
         await _runHub.Clients.All.RunUpdate(Current);
+
+        return true;
     }
 }
 
