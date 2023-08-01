@@ -15,12 +15,13 @@
     @if (runInfo != null)
     {
         var charName = runInfo.RunData.Character.Replace("character_", "");
-        var niceCharName = string.Join('_', charName.Split('_').Select(word => word.UcFirst()));
+        var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
+        var wikiName = niceCharName.Replace(' ', '_');
 
         <StatContainer RunData="@runInfo.RunData" />
 
-        <p>Character: 
-            <a href="https://brotato.wiki.spellsandguns.com/@niceCharName" target="_blank">
+        <p>Character:
+            <a href="https://brotato.wiki.spellsandguns.com/@wikiName" target="_blank">
                 <img src="assets/items/characters/@charName/@(charName)_icon.png" />
                 @niceCharName
             </a>

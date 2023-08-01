@@ -71,6 +71,15 @@ main {
     background-image: url('/assets/shop_background.png')
 }
 
+main p {
+    color: #fff;
+}
+
+main a {
+    color: #fff;
+    text-decoration: none;
+}
+
 .weapon {
     width: 96px;
     height: 96px;

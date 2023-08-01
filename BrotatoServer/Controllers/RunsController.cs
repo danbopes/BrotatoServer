@@ -112,6 +112,17 @@ namespace BrotatoServer.Controllers
             return Ok();
         }
 
+        [HttpDelete]
+        [Route("current")]
+        public async Task<IActionResult> PostCurrentRun([FromServices] CurrentRun run)
+        {
+            _log.LogInformation("Delete Current Run Request");
+
+            await run.UpdateRun(null);
+
+            return Ok();
+        }
+
         // DELETE: api/Runs/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRun(Guid id)
