@@ -87,7 +87,7 @@ public class TwitchChatService : BackgroundService
                     if (runData is not null)
                     {
                         var charName = runData.Character.Replace("character_", "");
-                        var niceCharName = string.Join('_', charName.Split('_').Select(word => word.UcFirst()));
+                        var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
 
                         _client.SendMessage(e.ChatMessage.Channel, $"{niceCharName} - https://brotato.celerity.tv/current_run");
                     }
