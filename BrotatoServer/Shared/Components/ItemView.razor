@@ -32,7 +32,7 @@
     [Parameter, EditorRequired]
     public RunData RunData { get; set; } = null!;
 
-    public Item Item { get; private set; }
+    public Item Item { get; private set; } = null!;
 
     public int Tier => Item.Tier;
     public string TierClass => $"tier-{Item.Tier}";

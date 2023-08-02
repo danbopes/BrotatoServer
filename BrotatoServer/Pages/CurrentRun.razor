@@ -1,11 +1,14 @@
 ﻿@page "/current_run"
 
+@using BrotatoServer.Data;
 @using BrotatoServer.Hubs;
 @using BrotatoServer.Models.JSON;
+@using BrotatoServer.Models;
 @using BrotatoServer.Utilities;
 @using Microsoft.AspNetCore.SignalR.Client
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
+@inject IRunRepository RunRepository
 @implements IAsyncDisposable
 
 <PageTitle>Current Run</PageTitle>
@@ -14,42 +17,27 @@
 {
     @if (runInfo != null)
     {
-        var charName = runInfo.RunData.Character.Replace("character_", "");
-        var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
-        var wikiName = niceCharName.Replace(' ', '_');
-
-        <StatContainer RunData="@runInfo.RunData" />
-
-        <p>Character:
-            <a href="https://brotato.wiki.spellsandguns.com/@wikiName" target="_blank">
-                <img src="assets/items/characters/@charName/@(charName)_icon.png" />
-                @niceCharName
-            </a>
-        </p>
-
-
-        <p>Weapons:</p>
-        var i = 1;
-        foreach (var weapon in runInfo.RunData.Weapons)
-        {
-            var key = $"{i++}-{weapon}";
-            <WeaponView @key="key" Id="@weapon" />
-        }
-
-        <p>Items:</p>
-
-        i = 1;
-        foreach (var item in runInfo.RunData.Items.AsEnumerable().Reverse().Where(i => i.StartsWith("item_")).GroupBy(item => item))
-        {
-            var count = item.Count();
-            var key = $"{i++}-{item.First()}-{count}";
-
-            <ItemView @key="key" Id="@item.First()" Count="@count" RunData="@runInfo.RunData" />
-        }
+        <RunDataView RunData="runInfo.RunData" />
     }
     else
     {
-            <p>No current run :(</p>
+        <p>No current run. You can check out these latest runs</p>
+        @foreach (var run in latestRuns)
+        {
+            var charName = run.RunData.RunData.Character.Replace("character_", "");
+            <a href="runs/@run.Id">
+            <div class="run-wrapper">
+                <div class="image">
+                    <img src="assets/items/characters/@charName/@(charName)_icon.png" />
+                </div>
+                <div class="title">
+                        Wave @run.RunData.RunData.Wave - LV. @run.RunData.RunData.Level <br />
+                        @run.RunData.RunData.Character.CharIdToNiceName()
+                </div>
+            </div>
+            </a>
+            <br />
+        }
     }
 }
 else
@@ -62,9 +50,8 @@ else
 @code {
     private HubConnection? hubConnection;
     private RunInformation? runInfo;
-    private string? userInput;
-    private string? messageInput;
     private bool fetched;
+    private List<FullRun> latestRuns;
 
     protected override async Task OnInitializedAsync()
     {
@@ -72,9 +59,14 @@ else
             .WithUrl(Navigation.ToAbsoluteUri("/runsHub"))
             .Build();
 
-        hubConnection.On<RunInformation>(nameof(IRunHub.RunUpdate), (runInfo) =>
+        hubConnection.On<RunInformation>(nameof(IRunHub.RunUpdate), async (runInfo) =>
         {
             JS.InvokeVoidAsync("console.log", runInfo);
+
+            if (runInfo is null)
+            {
+                this.latestRuns = await RunRepository.GetLatestRunsAsync(5).ToListAsync();
+            }
             this.fetched = true;
             this.runInfo = runInfo;
             InvokeAsync(StateHasChanged);
@@ -83,22 +75,12 @@ else
         await hubConnection.StartAsync();
     }
 
-    private async Task Send()
-    {
-        if (hubConnection is not null)
-        {
-            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
-        }
-    }
-
     public bool IsConnected =>
         hubConnection?.State == HubConnectionState.Connected;
 
     public async ValueTask DisposeAsync()
     {
         if (hubConnection is not null)
-        {
             await hubConnection.DisposeAsync();
-        }
     }
 }

@@ -4,6 +4,7 @@ using BrotatoServer.Hubs;
 using BrotatoServer.SearchEngine;
 using BrotatoServer.Services;
 using BrotatoServer.Utilities;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
 const string API_KEY = "240ea58c-2870-4676-829a-6cbefaf950f8";
@@ -15,14 +16,23 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<BrotatoServerContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("BrotatoServerContext") ?? throw new InvalidOperationException("Connection string 'BrotatoServerContext' not found.")));
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
-builder.Services.AddSingleton<CurrentRun>();
+
+builder.Services
+    .AddScoped<IRunRepository, RunRepository>()
+    .AddSingleton<CurrentRun>();
 builder.Services.AddControllers()
     .AddNewtonsoftJson();
 builder.Services.AddSignalR();
 
-builder.Services.AddHostedService<TwitchChatService>();
+builder.Services
+    .AddSingleton<TwitchChatService>()
+    .AddHostedService(sp => sp.GetRequiredService<TwitchChatService>());
 builder.Services.AddSingleton<BrotatoItemEngine>();
+builder.Services.AddResponseCompression(opts =>
+{
+    opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
+          new[] { "application/octet-stream" });
+});
 
 var app = builder.Build();
 

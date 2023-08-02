@@ -17,6 +17,17 @@ public static class StringExtensions
         return str.Replace("res://", "assets/");
     }
 
+    public static string CharIdToNiceName(this string charId)
+    {
+        if (charId == "character_well_rounded")
+            return "Well-Rounded";
+
+        var charName = charId.Replace("character_", "");
+        var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
+
+        return niceCharName;
+    }
+
     /*private static readonly BbParser _bbParser = new BbParser(new[] {
         new Tag("color", "<span style=\"color: {value}\">", "</span>", withAttribute: true, secure: false),
     }, new Dictionary<string, string>(), new Dictionary<string, string>()

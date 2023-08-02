@@ -1,0 +1,47 @@
+﻿@using BrotatoServer.Models.JSON;
+@using BrotatoServer.Utilities;
+
+<StatContainer RunData="@RunData" />
+
+<p>
+    Character:
+    <a href="https://brotato.wiki.spellsandguns.com/@wikiName" target="_blank">
+        <img src="assets/items/characters/@charName/@(charName)_icon.png" />
+        @niceCharName
+    </a>
+</p>
+
+
+<p>Weapons:</p>
+@foreach (var weapon in RunData.Weapons.WithIdx())
+{
+    <WeaponView @key="weapon.Key" Id="@weapon.Value" />
+}
+
+<p>Items:</p>
+
+@foreach (var item in RunData.Items.AsEnumerable().Reverse().Where(i => i.StartsWith("item_")).GroupBy(item => item).WithIdx())
+{
+    var count = item.Value.Count();
+    var key = $"{item.Key}-{item.Value.First()}-{count}";
+
+    <ItemView @key="key" Id="@item.Value.First()" Count="@count" RunData="@RunData" />
+}
+
+
+@code {
+    [Parameter]
+    public RunData RunData { get; set; }
+
+    private string wikiName;
+    private string niceCharName;
+    private string charName;
+
+
+    protected override void OnParametersSet()
+    {
+        charName = RunData.Character.Replace("character_", "");
+        niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
+        wikiName = niceCharName.Replace(' ', '_');
+    }
+}

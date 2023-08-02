@@ -12,7 +12,9 @@ public class BrotatoItemEngine : WebEngine<BrotatoItem>
 
     public override string Name => "BrotatoItems";
 
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     protected override async IAsyncEnumerable<BrotatoItem> InitializeCardsAsync()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
         foreach (var (key, item) in Assets.Items)
         {

@@ -1,12 +1,10 @@
 ﻿using BrotatoServer.Hubs;
 using BrotatoServer.SearchEngine;
 using BrotatoServer.Utilities;
-using System.Net;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
 using TwitchLib.Communication.Clients;
-using TwitchLib.Communication.Interfaces;
 using TwitchLib.Communication.Models;
 
 namespace BrotatoServer.Services;
@@ -15,11 +13,18 @@ public class TwitchChatService : BackgroundService
 {
     private readonly ILogger<TwitchChatService> _log;
     private readonly BrotatoItemEngine _itemSearchEngine;
-    private readonly CurrentRun _currentRun;
+    private readonly IServiceProvider _serviceProvider;
     private readonly TwitchClient _client;
     private readonly ConnectionCredentials _credentials;
 
-    public TwitchChatService(ILogger<TwitchChatService> log, BrotatoItemEngine itemSearchEngine, CurrentRun currentRun)
+#if DEBUG
+    private const string PREFIX_CHAR = ";";
+#else
+    private const string PREFIX_CHAR = "!";
+#endif
+
+
+    public TwitchChatService(ILogger<TwitchChatService> log, BrotatoItemEngine itemSearchEngine, IServiceProvider serviceProvider)
     {
         _credentials = new ConnectionCredentials("the_brotato_bot", "oauth:gx244vysokmuqcunclv8fovswigefo");
         var clientOptions = new ClientOptions
@@ -31,26 +36,20 @@ public class TwitchChatService : BackgroundService
         _client = new TwitchClient(customClient);
         _log = log;
         _itemSearchEngine = itemSearchEngine;
-        _currentRun = currentRun;
+        _serviceProvider = serviceProvider;
     }
 
-    private void Client_OnLog(object sender, OnLogArgs e)
+    private void Client_OnLog(object? sender, OnLogArgs e)
     {
-        Console.WriteLine($"{e.DateTime.ToString()}: {e.BotUsername} - {e.Data}");
+        _log.LogTrace($"{e.DateTime}: {e.BotUsername} - {e.Data}");
     }
 
-    private void Client_OnConnected(object sender, OnConnectedArgs e)
+    private void Client_OnConnected(object? sender, OnConnectedArgs e)
     {
-        Console.WriteLine($"Connected to {e.AutoJoinChannel}");
+        _log.LogInformation($"Connected to {e.AutoJoinChannel}");
     }
 
-    private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
-    {
-        Console.WriteLine("Hey guys! I am a bot connected via TwitchLib!");
-        //client.SendMessage(e.Channel, "Hey guys! I am a bot connected via TwitchLib!");
-    }
-
-    private async void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
+    private async void Client_OnMessageReceived(object? sender, OnMessageReceivedArgs e)
     {
         if (string.IsNullOrEmpty(e.ChatMessage.Message))
             return;
@@ -59,7 +58,7 @@ public class TwitchChatService : BackgroundService
 
         switch (words[0])
         {
-            case "!item":
+            case PREFIX_CHAR + "item":
                 {
                     if (words.Length < 2)
                         return;
@@ -80,9 +79,10 @@ public class TwitchChatService : BackgroundService
                     }
                     break;
                 }
-            case "!tater":
+            case PREFIX_CHAR + "tater":
                 {
-                    var runData = _currentRun.Current?.RunData;
+                    var currentRun = _serviceProvider.GetRequiredService<CurrentRun>();
+                    var runData = currentRun.Current?.RunData;
 
                     if (runData is not null)
                     {
@@ -98,17 +98,18 @@ public class TwitchChatService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-#if DEBUG
-        return;
-#endif
         _client.Initialize(_credentials, "celerity");
 
         _client.OnLog += Client_OnLog;
-        _client.OnJoinedChannel += Client_OnJoinedChannel;
         _client.OnMessageReceived += Client_OnMessageReceived;
         _client.OnConnected += Client_OnConnected;
 
         _client.Connect();
         await _itemSearchEngine.InitializeAsync();
+    }
+
+    public void SendMessage(string chan, string message)
+    {
+        _client.SendMessage(chan, message);
     }
 }
