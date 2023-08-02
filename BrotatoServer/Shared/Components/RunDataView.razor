@@ -15,7 +15,8 @@
 <p>Weapons:</p>
 @foreach (var weapon in RunData.Weapons.WithIdx())
 {
-    <WeaponView @key="weapon.Key" Id="@weapon.Value" />
+    var key = $"{weapon.Key}-{weapon.Value}";
+    <WeaponView @key="key" Id="@weapon.Value" />
 }
 
 <p>Items:</p>
