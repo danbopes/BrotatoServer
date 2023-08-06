@@ -263,3 +263,5 @@ FakesAssemblies/
 *.opt
 
 !BrotatoServer/steam_api64.dll
+
+BrotatoServer/steam_appid.txt

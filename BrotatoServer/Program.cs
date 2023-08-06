@@ -1,4 +1,5 @@
 using System.Net;
+using System.Text;
 using BrotatoServer;
 using BrotatoServer.Data;
 using BrotatoServer.Hubs;
@@ -12,7 +13,6 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Steamworks;
 
-Console.WriteLine("Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -182,9 +182,14 @@ using (var scope = app.Services.CreateScope())
         return;
     }
     
-    const int OTHER_APP_ID = 480;
+#if DEBUG
+    const int APP_ID = 480;
+#else
+    const int APP_ID = 1942280;
+#endif
+    File.WriteAllText("steam_appid.txt", APP_ID.ToString(), Encoding.ASCII);
     log.LogInformation("Initializing Steam - Init");
-    SteamServer.Init(OTHER_APP_ID, new SteamServerInit
+    SteamServer.Init(APP_ID, new SteamServerInit
     {
         
         DedicatedServer = true,
