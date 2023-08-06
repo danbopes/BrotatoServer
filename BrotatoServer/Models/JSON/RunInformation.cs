@@ -2,7 +2,7 @@
 
 namespace BrotatoServer.Models.JSON;
 
-public class RunInformation
+public record RunInformation
 {
     [JsonProperty("version")]
     public string Version { get; set; }
@@ -13,8 +13,8 @@ public class RunInformation
     [JsonProperty("ticks")]
     public long Ticks { get; set; }
 
-    [JsonProperty("user_id", NullValueHandling = NullValueHandling.Ignore)]
-    public string? UserId { get; set; }
+    [JsonProperty("user_id")]
+    public ulong UserId { get; set; }
 
     [JsonProperty("streak_enabled", NullValueHandling = NullValueHandling.Ignore)]
     public bool? StreakEnabled { get; set; }

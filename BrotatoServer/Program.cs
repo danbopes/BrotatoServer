@@ -1,28 +1,105 @@
+using System.Net;
+using BrotatoServer;
 using BrotatoServer.Data;
-using BrotatoServer.Data.Game;
 using BrotatoServer.Hubs;
 using BrotatoServer.SearchEngine;
 using BrotatoServer.Services;
 using BrotatoServer.Utilities;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Steamworks;
 
-const string API_KEY = "240ea58c-2870-4676-829a-6cbefaf950f8";
-
+Console.WriteLine("Starting...");
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo("db/data_protection_keys"));
+
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<BrotatoServerContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("BrotatoServerContext") ?? throw new InvalidOperationException("Connection string 'BrotatoServerContext' not found.")));
+
+
 builder.Services.AddServerSideBlazor();
 
+//builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+
+builder.Services
+    .AddAuthentication("cookie")
+    .AddCookie("cookie", o =>
+    {
+        o.LoginPath = "/setup";
+    })
+    .AddSteam(options =>
+    {
+        options.SignInScheme = "cookie";
+        options.CallbackPath = "/oauth/steam-callback";
+        options.ApplicationKey = "EBDE5FDBBABC696473B3B4D7AD59AE60";
+
+        options.Events.OnAuthenticated = async ctx =>
+        {
+            var schemeProvider = ctx.HttpContext.RequestServices.GetRequiredService<IAuthenticationSchemeProvider>();
+            var defaultAuthenticate = await schemeProvider.GetDefaultAuthenticateSchemeAsync();
+            var authType = ctx.Ticket.Principal!.Identity!.AuthenticationType;
+
+            if (defaultAuthenticate != null)
+            {
+                var result = await ctx.HttpContext.AuthenticateAsync(defaultAuthenticate.Name);
+
+                if (result?.Principal != null)
+                {
+                    var clone = result.Principal.Clone();
+
+                    ctx.Ticket.Principal!.AddIdentities(clone.Identities.Where(identity => identity.AuthenticationType != authType));
+                }
+            }
+        };
+    })
+    .AddTwitch(options =>
+    {
+        options.SignInScheme = "cookie";
+        options.CallbackPath = "/oauth/twitch-callback";
+        options.ClientId = "l4dww9mvnhwx2ws9a56501g3rj3x6m";
+        options.ClientSecret = "dikrcgrlj886k7qx14bvs1b6gxzsjw";
+        options.Scope.Add("clips:edit");
+
+        options.Events.OnCreatingTicket = async ctx =>
+        {
+            var schemeProvider = ctx.HttpContext.RequestServices.GetRequiredService<IAuthenticationSchemeProvider>();
+            var defaultAuthenticate = await schemeProvider.GetDefaultAuthenticateSchemeAsync();
+            var authType = ctx.Principal!.Identity!.AuthenticationType;
+
+            if (defaultAuthenticate != null)
+            {
+                var result = await ctx.HttpContext.AuthenticateAsync(defaultAuthenticate.Name);
+
+                if (result?.Principal != null)
+                {
+                    var clone = result.Principal.Clone();
+
+                    ctx.Principal!.AddIdentities(clone.Identities.Where(identity => identity.AuthenticationType != authType));
+                }
+            }
+        };
+    })
+    .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationSchemeHandler>("ApiKey", o => { });
+
+builder.Services.AddAuthorization(o =>
+{
+    o.AddPolicy(AuthPolicies.TWITCH_USER, p => p.RequireAssertion(ctx => ctx.User.Identities.Any(identity => identity.AuthenticationType == "Twitch")));
+});
 builder.Services
     .AddScoped<IRunRepository, RunRepository>()
-    .AddSingleton<CurrentRun>();
+    .AddScoped<IUserRepository, UserRepository>()
+    .AddSingleton<CurrentRunProvider>();
 builder.Services.AddControllers()
     .AddNewtonsoftJson();
 builder.Services.AddSignalR();
+builder.Services.AddRequestDecompression();
 
 builder.Services
     .AddSingleton<TwitchChatService>()
@@ -33,18 +110,21 @@ builder.Services.AddResponseCompression(opts =>
     opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
           new[] { "application/octet-stream" });
 });
+builder.Services.AddScoped<SessionStorage>();
 
 var app = builder.Build();
+
+app.UseRequestDecompression();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    //app.UseHsts();
+    app.UseHsts();
 }
 
-
+/*
 app.Use((context, next) =>
 {
     // Check if the request is for an API endpoint
@@ -62,11 +142,15 @@ app.Use((context, next) =>
     // If the API key is valid or the request is not for an API endpoint, continue to the next middleware
     return next();
 });
+*/
 //app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
@@ -77,6 +161,8 @@ app.MapHub<RunsHub>("/runsHub");
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
+    var log = services.GetRequiredService<ILogger<Program>>();
+    
     try
     {
         var dbContext = services.GetRequiredService<BrotatoServerContext>(); // Replace 'YourDbContext' with your actual DbContext class.
@@ -85,8 +171,28 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         // Handle the exception as needed (e.g., log or display an error message).
-        Console.WriteLine("Error occurred while applying migrations: " + ex.Message);
+        log.LogCritical(ex, "Error occurred while applying migrations: ");
+        return;
     }
+    
+    const int OTHER_APP_ID = 480;
+    log.LogInformation("Initializing Steam - Init");
+    SteamServer.Init(OTHER_APP_ID, new SteamServerInit
+    {
+        
+        DedicatedServer = true,
+        IpAddress = IPAddress.Loopback,
+        VersionString = "0.0.1"
+    });
+    log.LogInformation("Initializing Steam - Logging On");
+    SteamServer.LogOnAnonymous();
 }
 
-app.Run();
+try
+{
+    app.Run();
+}
+finally
+{
+    SteamServer.Shutdown();
+}

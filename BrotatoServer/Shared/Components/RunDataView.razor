@@ -5,44 +5,28 @@
 
 <p>
     Character:
-    <a href="https://brotato.wiki.spellsandguns.com/@wikiName" target="_blank">
-        <img src="assets/items/characters/@charName/@(charName)_icon.png" />
-        @niceCharName
-    </a>
+    <CharacterView Character="@RunData.Character" CharacterData="@RunData.Items.Values.FirstOrDefault(item => item.Id == RunData.Character)"></CharacterView>
 </p>
 
 
 <p>Weapons:</p>
-@foreach (var weapon in RunData.Weapons.WithIdx())
+@foreach (var (key, weapon) in RunData.Weapons)
 {
-    var key = $"{weapon.Key}-{weapon.Value}";
-    <WeaponView @key="key" Id="@weapon.Value" />
+    <WeaponView @key="key" Weapon="@weapon" />
 }
 
 <p>Items:</p>
 
-@foreach (var item in RunData.Items.AsEnumerable().Reverse().Where(i => i.StartsWith("item_")).GroupBy(item => item).WithIdx())
+@foreach (var item in RunData.Items
+    .AsEnumerable()
+    .Reverse()
+    .Where(i => i.Value.Id.StartsWith("item_")))
 {
-    var count = item.Value.Count();
-    var key = $"{item.Key}-{item.Value.First()}-{count}";
-
-    <ItemView @key="key" Id="@item.Value.First()" Count="@count" RunData="@RunData" />
+    <ItemView @key="item.Key" Item="@item.Value" />
 }
 
 
 @code {
     [Parameter]
     public RunData RunData { get; set; }
-
-    private string wikiName;
-    private string niceCharName;
-    private string charName;
-
-
-    protected override void OnParametersSet()
-    {
-        charName = RunData.Character.Replace("character_", "");
-        niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
-        wikiName = niceCharName.Replace(' ', '_');
-    }
 }

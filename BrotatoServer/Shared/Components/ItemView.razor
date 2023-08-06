@@ -18,35 +18,32 @@
             @Name
         </div>
         @EffectsHtml
-        @GetTrackingString()
     </PopoverContent>
 </Popover>
 
 @code {
     [Parameter, EditorRequired]
-    public string Id { get; set; } = null!;
+    public ItemData Item { get; set; } = null!;
 
-    [Parameter, EditorRequired]
-    public int Count { get; set; } = 1;
-
-    [Parameter, EditorRequired]
-    public RunData RunData { get; set; } = null!;
-
-    public Item Item { get; private set; } = null!;
-
+    public int Count => Item.Count;
     public int Tier => Item.Tier;
     public string TierClass => $"tier-{Item.Tier}";
     public string Name => Item.Name;
     public string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Item.Name.Replace(' ', '_');
-    public string Icon => Item.Icon.GetAssetPath();
-    public MarkupString EffectsHtml => Item.EffectsText.ParseBBCodeText();
+    public string Icon { get; set; }
+    public MarkupString EffectsHtml => Item.Hover.ParseBBCodeText();
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Item = Assets.Items[Id];
+
+        if (Assets.Items.TryGetValue(Item.Id, out var assetItem))
+        {
+            Icon = assetItem.Icon.GetAssetPath();
+        }
     }
 
+    /*
     private MarkupString GetTrackingString()
     {
         if (Item.TrackingText is null)
@@ -100,4 +97,5 @@
 
         yield return $"<br /><span style=\"color: #ffeae2b0\">Total " + string.Format(Item.TrackingText, totalTracking) + "</span>";
     }
+    */
 }

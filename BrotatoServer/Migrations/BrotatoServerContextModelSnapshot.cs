@@ -29,13 +29,51 @@ namespace BrotatoServer.Migrations
                     b.Property<DateTimeOffset>("Date")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("RunData")
+                    b.Property<string>("RunInformation")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<ulong>("UserId")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("Run");
+                });
+
+            modelBuilder.Entity("BrotatoServer.Models.User", b =>
+                {
+                    b.Property<ulong>("SteamId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("ApiKey")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("JoinedChat")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<ulong?>("TwitchId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("TwitchUsername")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("SteamId");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("BrotatoServer.Models.Run", b =>
+                {
+                    b.HasOne("BrotatoServer.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

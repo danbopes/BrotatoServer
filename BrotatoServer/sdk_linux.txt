@@ -1,0 +1,7 @@
+@ShutdownOnFailedCommand 1
+@NoPromptForPassword 1
+@sSteamCmdForcePlatformType linux
+login anonymous
+force_install_dir ../sdk_lin
+app_update 1007 validate
+quit

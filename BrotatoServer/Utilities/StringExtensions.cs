@@ -5,6 +5,17 @@ namespace BrotatoServer.Utilities;
 
 public static class StringExtensions
 {
+    public static string GetWebUrlForUser(this string user)
+    {
+        return user == "celerity"
+            ? "https://brotato.celerity.tv/"
+            : AppConstants.HOST_BASE_URL;
+    }
+
+    public static string GetCurrentRunUrlForUser(this string user)
+    {
+        return $"{user.GetWebUrlForUser()}{user}/runs/current";
+    }
     public static string UcFirst(this string str) => str switch
     {
         null => throw new ArgumentNullException(nameof(str)),

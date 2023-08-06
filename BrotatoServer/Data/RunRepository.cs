@@ -14,25 +14,24 @@ public class RunRepository : IRunRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<FullRun>> GetAllRunsAsync()
+    public async IAsyncEnumerable<FullRun> GetAllRunsAsync(string twitchUsername)
     {
-        var runs = await _context.Run.ToListAsync();
+        var runs = _context.Run
+            .Where(run => run.User!.TwitchUsername == twitchUsername)
+            .AsAsyncEnumerable();
 
-        return runs.Select(run =>
+        await foreach (var run in runs)
         {
-            var runData = JsonConvert.DeserializeObject<RunInformation>(run.RunData)!;
+            var runInfo = JsonConvert.DeserializeObject<RunInformation>(run.RunInformation)!;
 
-            runData.UserId = null;
-            runData.Mods = null;
-
-            return new FullRun
+            yield return new FullRun
             {
                 Id = run.Id,
                 Date = run.Date,
                 CurrentRotation = run.CurrentRotation,
-                RunData = runData
+                RunData = runInfo.RunData
             };
-        }).ToList();
+        }
     }
 
     public async Task<FullRun?> GetRunAsync(Guid id)
@@ -42,17 +41,14 @@ public class RunRepository : IRunRepository
         if (run is null)
             return null;
 
-        var runData = JsonConvert.DeserializeObject<RunInformation>(run.RunData)!;
-
-        runData.UserId = null;
-        runData.Mods = null;
+        var runInfo = JsonConvert.DeserializeObject<RunInformation>(run.RunInformation)!;
 
         return new FullRun
         {
             Id = run.Id,
             Date = run.Date,
             CurrentRotation = run.CurrentRotation,
-            RunData = runData
+            RunData = runInfo.RunData
         };
     }
 
@@ -63,7 +59,7 @@ public class RunRepository : IRunRepository
             Id = Guid.NewGuid(),
             Date = DateTimeOffset.FromUnixTimeSeconds(runInfo.Created),
             CurrentRotation = true,
-            RunData = JsonConvert.SerializeObject(runInfo)
+            RunInformation = JsonConvert.SerializeObject(runInfo)
         };
 
         _context.Run.Add(run);
@@ -102,26 +98,23 @@ public class RunRepository : IRunRepository
         return true;
     }
 
-    public async IAsyncEnumerable<FullRun> GetLatestRunsAsync(int amount = 3)
+    public async IAsyncEnumerable<FullRun> GetLatestRunsAsync(string twitchUsername, int amount = 3)
     {
-        var runs = (await _context.Run
-            .ToListAsync())
-            .OrderByDescending(run => run.Date)
-            .Take(amount);
-
-        foreach (var run in runs)
+        var runs = _context.Run
+            .Where(run => run.User!.TwitchUsername == twitchUsername)
+            .Take(amount)
+            .AsAsyncEnumerable();
+        
+        await foreach (var run in runs)
         {
-            var runData = JsonConvert.DeserializeObject<RunInformation>(run.RunData)!;
-
-            runData.UserId = null;
-            runData.Mods = null;
+            var runInfo = JsonConvert.DeserializeObject<RunInformation>(run.RunInformation)!;
 
             yield return new FullRun
             {
                 Id = run.Id,
                 Date = run.Date,
                 CurrentRotation = run.CurrentRotation,
-                RunData = runData
+                RunData = runInfo.RunData
             };
         }
     }

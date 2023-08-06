@@ -1,4 +1,9 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using BrotatoServer.Shared.Components
+@inject AuthenticationStateProvider _authStateProvider
+@inject IAuthorizationService _authService
+@implements IDisposable
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Brotato Tracker</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -14,26 +19,72 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
+        @if (!string.IsNullOrEmpty(lastTwitchUsername))
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="@($"{lastTwitchUsername}/runs/current")" Match="NavLinkMatch.All">
+                    <span class="oi oi-person" aria-hidden="true"></span> Current Run
+                </NavLink>
+            </div>
+            
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="@($"{lastTwitchUsername}/runs")" Match="NavLinkMatch.All">
+                    <span class="oi oi-list" aria-hidden="true"></span> Previous Runs
+                </NavLink>
+            </div>
+        }
+        
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="current_run">
-                <span class="oi oi-person" aria-hidden="true"></span> Current Run
+            <NavLink class="nav-link" href="setup">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Setup
             </NavLink>
         </div>
-        @*<div class="nav-item px-3">
-            <NavLink class="nav-link" href="fetchdata">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-            </NavLink>
-        </div>*@
+        @if (loggedIn)
+        {
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="settings">
+                    <span class="oi oi-cog" aria-hidden="true"></span> Settings
+                </NavLink>
+            </div>
+        }
     </nav>
 </div>
 
 @code {
+    [CascadingParameter]
+    public TwitchUsernameStateProvider TwitchUsernameStateProvider { get; set; } = null!;
+    
     private bool collapseNavMenu = true;
 
     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private bool loggedIn = false;
+    private string? lastTwitchUsername => TwitchUsernameStateProvider.LastTwitchUsername;
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _authStateProvider.AuthenticationStateChanged += UpdateLoggedInStatus;
+
+        var stateNow = _authStateProvider.GetAuthenticationStateAsync();
+        UpdateLoggedInStatus(stateNow);
+    }
+
+    private async void UpdateLoggedInStatus(Task<AuthenticationState> getNewState)
+    {
+        var state = await getNewState;
+        var authorized = await _authService.AuthorizeAsync(state.User, null, "TwitchUser");
+
+        loggedIn = authorized.Succeeded;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        _authStateProvider.AuthenticationStateChanged -= UpdateLoggedInStatus;
+    }
+
 }

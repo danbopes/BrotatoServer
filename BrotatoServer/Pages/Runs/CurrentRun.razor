@@ -1,0 +1,116 @@
+﻿@page "/{TwitchUsername}/runs/current"
+
+@using BrotatoServer.Data;
+@using BrotatoServer.Hubs;
+@using BrotatoServer.Models.JSON;
+@using BrotatoServer.Models;
+@using Microsoft.AspNetCore.SignalR.Client
+@using Microsoft.AspNetCore.WebUtilities
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+@inject IRunRepository RunRepository
+@implements IAsyncDisposable
+
+<PageTitle>Current Run</PageTitle>
+
+@if (IsConnected && Fetched)
+{
+    @if (RunData != null)
+    {
+        <RunDataView RunData="RunData" />
+    }
+    else
+    {
+        <p>No current run. In the meantime, you can check out these latest runs:</p>
+        
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-2">
+                @foreach (var run in LatestRuns)
+                {
+                    var charName = run.RunData.Character.Replace("character_", "");
+                    var niceName = run.RunData.Character.CharIdToNiceName();
+                    <a href="runs/@run.Id">
+                        <div class="col mb-3 run-wrapper">
+                            <div class="image">
+                                <img src="assets/items/characters/@charName/@(charName)_icon.png" alt="@niceName"/>
+                            </div>
+                            <div class="title">
+                                Wave @run.RunData.Wave - LV. @run.RunData.Level <br/>
+                                @niceName <br />
+                                @run.Date.TimeAgo()
+                            </div>
+                        </div>
+                    </a>
+                    <br/>
+                }
+            </div>
+            
+        </div>
+    }
+}
+else
+{
+    <p>Loading...</p>
+}
+
+
+
+@code {
+    [Parameter]
+    public string TwitchUsername { get; set; } = null!;
+    
+    [CascadingParameter]
+    public TwitchUsernameStateProvider TwitchUsernameStateProvider { get; set; } = null!;
+    private HubConnection? HubConnection { get; set; }
+    private RunData? RunData { get; set; }
+    private bool Fetched { get; set; }
+    private List<FullRun> LatestRuns { get; set; } = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var url = QueryHelpers.AddQueryString("/runsHub", "twitchUsername", TwitchUsername);
+        HubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri(url))
+            .Build();
+
+        HubConnection.On<RunData?>(nameof(IRunHub.RunUpdate), async (runInfo) =>
+        {
+            await JS.InvokeVoidAsync("console.log", "Current Run", runInfo);
+
+            if (runInfo is null)
+            {
+                try
+                {
+                    this.LatestRuns = await RunRepository.GetLatestRunsAsync(TwitchUsername, 10).ToListAsync();
+                }
+                catch (ObjectDisposedException)
+                {
+                    return;
+                }
+            }
+            Fetched = true;
+            RunData = runInfo;
+            await InvokeAsync(StateHasChanged);
+        });
+
+        await HubConnection.StartAsync();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await TwitchUsernameStateProvider.UpdateUsernameAsync(TwitchUsername);
+        }
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    private bool IsConnected =>
+        HubConnection?.State == HubConnectionState.Connected;
+
+    public async ValueTask DisposeAsync()
+    {
+        if (HubConnection is not null)
+            await HubConnection.DisposeAsync();
+    }
+}

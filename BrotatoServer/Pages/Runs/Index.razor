@@ -1,0 +1,52 @@
+﻿@page "/{TwitchUsername}/runs"
+
+@using BrotatoServer.Models
+@using BrotatoServer.Data
+
+@inject IRunRepository RunRepository
+<div class="container-fluid">
+        @foreach (var run in latestRuns)
+        {
+            var charName = run.RunData.Character.Replace("character_", "");
+            
+            <a href="runs/@run.Id">
+                <div class="row run-wrapper mb-4">
+                    <!-- First column (always shown) -->
+                    <div class="col-auto">
+                        <div class="image">
+                            <img src="assets/items/characters/@charName/@(charName)_icon.png" alt=""/>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <div class="title">
+                            Wave @run.RunData.Wave - LV. @run.RunData.Level <br/>
+                            @run.RunData.Character.CharIdToNiceName()
+                        </div>
+                    </div>
+
+                    <!-- Second column (hidden on screens md or smaller) -->
+                    <div class="col d-none d-lg-block flex-grow-1">
+                        <div class="d-flex flex-wrap">
+                            @foreach (var (key, weapon) in run.RunData.Weapons)
+                            {
+                                <WeaponView @key="key" Weapon="@weapon" Simple="@true" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+</div>
+
+@code {
+    [Parameter]
+    public string TwitchUsername { get; set; }
+    private List<FullRun> latestRuns { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        latestRuns = await RunRepository.GetLatestRunsAsync(TwitchUsername, 50).ToListAsync();
+        await base.OnInitializedAsync();
+    }
+
+}

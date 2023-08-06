@@ -1,0 +1,12 @@
+﻿.info-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: blue;
+    color: #fff;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    cursor: pointer;
+}

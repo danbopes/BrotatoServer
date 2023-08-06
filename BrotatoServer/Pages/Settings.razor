@@ -1,0 +1,94 @@
+﻿@page "/settings"
+
+@using Microsoft.Extensions.Logging
+@using BrotatoServer.Data
+@inject ILogger<Settings> Logger
+@attribute [Authorize(Policy = AuthPolicies.TWITCH_USER)]
+
+<PageTitle>Settings</PageTitle>
+
+<EditForm Model="@SettingsModel" OnSubmit="@HandleSubmit">
+    <div class="container mt-5">
+        <form>
+            <div class="mb-3">
+                <label for="run-started-message" class="form-label">
+                    <i class="oi oi-info info-circle"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#run-started-message-description-start" aria-expanded="false"
+                       aria-controls="description-start"></i>
+                    Message on Run Started 
+                </label>
+                <div class="collapse description-container" id="run-started-message-description-start">
+                    <small class="form-text text-muted">
+                        Sends a message at the start of wave #1. Leave empty to not send any message. The following variables can be used:
+                        <ul>
+                            <li><code>%link%</code>: The link to the tracker for the current run</li>
+                            <li><code>%character%</code>: The name of the character</li>
+                        </ul>
+                    </small>
+                </div>
+                <InputText type="text" id="run-started-message" class="form-control" @bind-Value="SettingsModel.OnRunStartedMessage"/>
+            </div>
+            
+            <div class="mb-3">
+                <label for="run-won-message" class="form-label">
+                    <i class="oi oi-info info-circle"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#run-won-message-description-start" aria-expanded="false"
+                       aria-controls="description-start"></i>
+                    Message on Run Won
+                </label>
+                <div class="collapse description-container" id="run-won-message-description-start">
+                    <small class="form-text text-muted">
+                        Sends a message when you've won the run. Leave empty to not send any message. The following variables can be used:
+                        <ul>
+                            <li><code>%character%</code>: The name of the character</li>
+                        </ul>
+                    </small>
+                </div>
+                <InputText type="text" id="run-won-message" class="form-control" @bind-Value="SettingsModel.OnRunWonMessage"/>
+            </div>
+
+            <div class="mb-3">
+                <label for="run-lost-message" class="form-label">
+                    <i class="oi oi-info info-circle"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#run-lost-message-description-start" aria-expanded="false"
+                       aria-controls="description-start"></i>
+                    Message on Run Lost
+                </label>
+                <div class="collapse description-container" id="run-lost-message-description-start">
+                    <small class="form-text text-muted">
+                        Sends a message when you've lost the run. Leave empty to not send any message. The following variables can be used:
+                        <ul>
+                            <li><code>%character%</code>: The name of the character</li>
+                        </ul>
+                    </small>
+                </div>
+                <InputText type="text" id="run-lost-message" class="form-control" @bind-Value="SettingsModel.OnRunWonMessage"/>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    
+    @*
+    <div class="mb-3">
+        <label for="onRunStartedMessageInput" class="form-label">Run Started Message</label>
+        <InputText type="text" class="form-control" @bind-Value="settingsModel.OnRunStartedMessage"/>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>*@
+</EditForm>
+
+@code {
+    private SettingsModel SettingsModel { get; set; }= new();
+
+    private void HandleSubmit()
+    {
+        Logger.LogInformation("HandleSubmit called");
+        
+        
+    }
+
+}
+

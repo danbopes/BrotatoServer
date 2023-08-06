@@ -56,10 +56,10 @@ public class RunData
     public List<AppearancesDisplayed> AppearancesDisplayed { get; set; }
 
     [JsonProperty("weapons")]
-    public List<string> Weapons { get; set; }
+    public Dictionary<int, ItemData> Weapons { get; set; }
 
     [JsonProperty("items")]
-    public List<string> Items { get; set; }
+    public Dictionary<int, ItemData> Items { get; set; }
 
     [JsonProperty("challenges_completed_this_run")]
     public List<string> ChallengesCompletedThisRun { get; set; }
@@ -79,5 +79,3 @@ public class RunData
     [JsonProperty("rounds")]
     public Dictionary<int, Dictionary<string, decimal>> Rounds { get; set; }
 }
-
-

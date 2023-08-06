@@ -1,0 +1,46 @@
+﻿@namespace BrotatoServer.Shared.Components
+@using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage
+@inject ProtectedLocalStorage ProtectedSessionStore
+
+<CascadingValue Value="@this">
+    @ChildContent
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    public string? LastTwitchUsername { get; private set; }
+
+    private bool _loaded = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (!firstRender || _loaded)
+            return;
+    
+        var result = await ProtectedSessionStore.GetAsync<string?>("LastTwitchUsername");
+        /*
+         * To prevent race condition with UpdateUsernameAsync, if another "On After Render Async" attempts to update username
+         * we don't want to update LastTwitchUsername back to null. Don't bother updating
+         */
+
+        if (_loaded)
+            return;
+        
+        LastTwitchUsername = result.Success ? result.Value : null;
+        _loaded = true;
+        StateHasChanged();
+    }
+
+    public async Task UpdateUsernameAsync(string newUsername)
+    {
+        if (newUsername == LastTwitchUsername)
+            return;
+
+        LastTwitchUsername = newUsername;
+        _loaded = true;
+        await ProtectedSessionStore.SetAsync("LastTwitchUsername", LastTwitchUsername);
+        StateHasChanged();
+    }
+}

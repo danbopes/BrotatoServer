@@ -11,5 +11,6 @@ namespace BrotatoServer.Data
         }
 
         public DbSet<Run> Run { get; set; } = default!;
+        public DbSet<User> Users { get; set; } = default!;
     }
 }

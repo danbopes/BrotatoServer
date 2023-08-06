@@ -1,0 +1,195 @@
+﻿@page "/setup"
+@using BrotatoServer.Models;
+@using Microsoft.AspNetCore.Authentication;
+@using Microsoft.AspNetCore.Identity;
+@using Microsoft.AspNetCore.Mvc;
+@using System.Security.Claims;
+@using BrotatoServer.Data
+@using BrotatoServer.Services
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject NavigationManager NavigationManager;
+@inject TwitchChatService TwitchChatService
+@inject IJSRuntime JsRuntime;
+@inject IUserRepository UserRepo
+
+<h4>Want to run the tracker on your stream? Follow these steps to get started!</h4>
+
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        Step 1: Authenticate
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+            <li>
+                @if (twitchIdentity is not null)
+                {
+                    <p>You are already authenticated with Twitch as @twitchIdentity.Name</p>
+                }
+                else
+                {
+                    <button class="btn btn-primary" @onclick="@(() => LoginWithProvider("twitch"))">
+                        Login with Twitch
+                    </button>
+                }
+            </li>
+            <li>
+                @if (steamIdentity is not null)
+                {
+                    <p>You are already authenticated with Steam as @steamIdentity.Name</p>
+                }
+                else
+                {
+                    <button class="btn btn-primary" @onclick="@(() => LoginWithProvider("steam"))">
+                        Login with Steam
+                    </button>
+                }
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Step 2: Download the mod
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        Download the mod from the community page here.
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">
+        Step 3: Have brotato bot join your chat (optional)
+      </button>
+    </h2>
+    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <p>Click <button class="btn btn-sm btn-success" @onclick="JoinChat">here</button> to have <code>@AppConstants.BOT_NAME</code> join your chat.</p>
+          
+          <code>@AppConstants.BOT_NAME</code> currently has the following commands:
+          <ul>
+              <li><code>!tater</code> - Displays the current character, and link to the current run.</li>
+              <li><code>!item</code> - Looks up an item and displays stats/link to wiki.</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingFour">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
+        Step 4: Configure brotato bot (optional)
+      </button>
+    </h2>
+    <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+          <p>If you've added @AppConstants.BOT_NAME to your chat, you can configure various settings over on our <a href="settings" style="text-decoration: underline">Settings page</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1>Claims View</h1>
+
+@if (user != null)
+{
+    <h2>Claims Principals:</h2>
+    <ul>
+        @foreach (var principal in user.Identities)
+        {
+            <li>
+                <strong>AuthenticationType:</strong> @principal.AuthenticationType
+            </li>
+            <li>
+                <strong>IsAuthenticated:</strong> @principal.IsAuthenticated
+            </li>
+            <li>
+                <strong>Name:</strong> @principal.Name
+            </li>
+            <li>
+                <strong>Claims:</strong>
+                <ul>
+                    @foreach (var claim in principal.Claims)
+                    {
+                        <li>@claim.Type: @claim.Value</li>
+                    }
+                </ul>
+            </li>
+            <br />
+        }
+    </ul>
+}
+else
+{
+    <p>No Claims Principals available.</p>
+}
+@code {
+    private ClaimsPrincipal? user;
+
+    private ClaimsIdentity? twitchIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Twitch");
+    private ClaimsIdentity? steamIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Steam");
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        user = authState.User;
+
+        if (twitchIdentity is not null && steamIdentity is not null)
+        {
+            await UserRepo.EnsureUserAsync(new User
+            {
+                TwitchId = user.GetTwitchId(),
+                TwitchUsername = user.GetTwitchName(),
+                SteamId = user.GetSteamId(),
+                ApiKey = Guid.NewGuid(),
+                JoinedChat = false
+            });
+        }
+    }
+
+    private async Task JoinChat()
+    {
+        if (user is null || twitchIdentity is null || steamIdentity is null)
+        {
+            JsRuntime.Toast("Please authenticate with Twitch and Steam in step 1 to continue.", ToastType.Error);
+            return;
+        }
+
+        var dbUser = await UserRepo.GetUserAsync(user.GetSteamId());
+
+        if (dbUser is null)
+        {
+            JsRuntime.Toast("An unknown error happened. Please contact Danbopes.", ToastType.Error);
+            return;
+        }
+
+        if (dbUser.JoinedChat)
+        {
+            JsRuntime.Toast($"{AppConstants.BOT_NAME} should already be in your chat. If it's not responding, please contact Danbopes.", ToastType.Warning);
+            return;
+        }
+
+        dbUser.JoinedChat = true;
+
+        await UserRepo.UpdateUserAsync(dbUser);
+        
+        TwitchChatService.JoinChat(dbUser.TwitchUsername!);
+
+        await Task.Delay(2000);
+        JsRuntime.Toast($"{AppConstants.BOT_NAME} should now be in your chat. If it's not responding, please contact Danbopes.");
+    }
+
+    private void LoginWithProvider(string provider)
+    {
+        NavigationManager.NavigateTo($"/api/setup/{provider}", true);
+    }
+}

@@ -1,72 +1,62 @@
-﻿using BrotatoServer.Models.JSON;
+﻿using System.Collections.Concurrent;
+using BrotatoServer.Models.JSON;
 using BrotatoServer.Services;
 using BrotatoServer.Utilities;
 using Microsoft.AspNetCore.SignalR;
 
 namespace BrotatoServer.Hubs;
 
-public class CurrentRun
+public class CurrentRunProvider
 {
     private readonly IHubContext<RunsHub, IRunHub> _runHub;
-    private readonly TwitchChatService _twitchChatService;
 
-    public RunInformation? Current { get; private set; }
+    public ConcurrentDictionary<string, RunData?> Current { get; } = new();
 
-    public CurrentRun(IHubContext<RunsHub, IRunHub> runHub, TwitchChatService twitchChatService)
+    public CurrentRunProvider(IHubContext<RunsHub, IRunHub> runHub)
     {
         _runHub = runHub;
-        _twitchChatService = twitchChatService;
     }
     
-    public async Task<bool> UpdateRun(RunInformation? newRun)
+    public async Task UpdateRun(string twitchUsername, RunData? newRun)
     {
-        if (Current is not null && newRun is not null)
+        RunData? update = null;
+        if (newRun is not null)
         {
-            if (newRun.Created < Current.Created && newRun.Ticks < Current.Ticks)
-                return false;
+            update = newRun;
         }
+        
+        Current[twitchUsername] = update;
 
-#if !DEBUG
-        if (Current is null && newRun is not null)
-        {
-            var runMessage = $"New %character% run started! Follow along here: %link%"
-                .Replace("%character%", newRun.RunData.Character.CharIdToNiceName())
-                .Replace("%link%", $"https://brotato.celerity.tv/current_run");
-
-            _twitchChatService.SendMessage("celerity", runMessage);
-        }
-#endif
-        Current = newRun;
-
-        if (Current is not null)
-        {
-            Current.UserId = null;
-            Current.Mods = null;
-        }
-
-        await _runHub.Clients.All.RunUpdate(Current);
-
-        return true;
+        await _runHub.Clients.Group(twitchUsername).RunUpdate(update);
     }
 }
 
 public interface IRunHub
 {
-    Task RunUpdate(RunInformation? newRun);
+    Task RunUpdate(RunData? newRun);
 }
 
 public class RunsHub : Hub<IRunHub>
 {
-    private readonly CurrentRun _currentRun;
+    private readonly CurrentRunProvider _currentRunProvider;
 
-    public RunsHub(CurrentRun currentRun)
+    public RunsHub(CurrentRunProvider currentRunProvider)
     {
-        _currentRun = currentRun;
+        _currentRunProvider = currentRunProvider;
     }
 
     public override async Task OnConnectedAsync()
     {
-        await Clients.Caller.RunUpdate(_currentRun.Current);
+        var twitchUsername = Context.GetHttpContext()?.Request.Query["twitchUsername"];
+
+        if (string.IsNullOrEmpty(twitchUsername))
+            throw new InvalidOperationException("No twitchUsername was provided.");
+        
+        await Groups.AddToGroupAsync(Context.ConnectionId, twitchUsername!);
+        
+        _currentRunProvider.Current.TryGetValue(twitchUsername!, out var currentRun);
+        
+        await Clients.Caller.RunUpdate(currentRun);
         await base.OnConnectedAsync();
     }
 }

@@ -1,4 +1,5 @@
-﻿using BrotatoServer.Hubs;
+﻿using BrotatoServer.Data;
+using BrotatoServer.Hubs;
 using BrotatoServer.SearchEngine;
 using BrotatoServer.Utilities;
 using TwitchLib.Client;
@@ -26,7 +27,7 @@ public class TwitchChatService : BackgroundService
 
     public TwitchChatService(ILogger<TwitchChatService> log, BrotatoItemEngine itemSearchEngine, IServiceProvider serviceProvider)
     {
-        _credentials = new ConnectionCredentials("the_brotato_bot", "oauth:gx244vysokmuqcunclv8fovswigefo");
+        _credentials = new ConnectionCredentials(AppConstants.BOT_NAME, "oauth:gx244vysokmuqcunclv8fovswigefo");
         var clientOptions = new ClientOptions
         {
             MessagesAllowedInPeriod = 750,
@@ -46,7 +47,7 @@ public class TwitchChatService : BackgroundService
 
     private void Client_OnConnected(object? sender, OnConnectedArgs e)
     {
-        _log.LogInformation($"Connected to {e.AutoJoinChannel}");
+        _log.LogInformation("Connected to Twitch");
     }
 
     private async void Client_OnMessageReceived(object? sender, OnMessageReceivedArgs e)
@@ -81,24 +82,40 @@ public class TwitchChatService : BackgroundService
                 }
             case PREFIX_CHAR + "tater":
                 {
-                    var currentRun = _serviceProvider.GetRequiredService<CurrentRun>();
-                    var runData = currentRun.Current?.RunData;
+                    var runProvider = _serviceProvider.GetRequiredService<CurrentRunProvider>();
+                    runProvider.Current.TryGetValue(e.ChatMessage.Channel, out var currentRun);
 
-                    if (runData is not null)
+                    if (currentRun is not null)
                     {
-                        var charName = runData.Character.Replace("character_", "");
+                        var charName = currentRun.Character.Replace("character_", "");
                         var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
 
-                        _client.SendMessage(e.ChatMessage.Channel, $"{niceCharName} - https://brotato.celerity.tv/current_run");
+                        _client.SendMessage(e.ChatMessage.Channel,
+                            $"{niceCharName} - {e.ChatMessage.Channel.GetCurrentRunUrlForUser()}");
+                    }
+                    else
+                    {
+                        _client.SendMessage(e.ChatMessage.Channel, "There is no Brotato run currently in progress");
                     }
                     break;
                 }
         }
     }
 
+    public void JoinChat(string channel)
+    {
+        _client.JoinChannel(channel);
+    }
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _client.Initialize(_credentials, "celerity");
+        await using var scope = _serviceProvider.CreateAsyncScope();
+
+        var userRepo = scope.ServiceProvider.GetRequiredService<IUserRepository>();
+
+        var channels = await userRepo.GetAllChatUsersAsync(stoppingToken).ToListAsync(stoppingToken);
+        
+        _client.Initialize(_credentials, channels);
 
         _client.OnLog += Client_OnLog;
         _client.OnMessageReceived += Client_OnMessageReceived;

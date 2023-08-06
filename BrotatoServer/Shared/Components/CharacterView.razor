@@ -1,0 +1,37 @@
+﻿@using BrotatoServer.Models.JSON
+<Popover Class="inventory-popup tier-0">
+    <TriggerContent>
+        <a href="@WikiUrl" target="_blank">
+            <img src="assets/items/characters/@CharName/@(CharName)_icon.png" />
+            @NiceCharName
+        </a>
+    </TriggerContent>
+    <PopoverContent>
+        <div class="title">
+            @NiceCharName
+        </div>
+        @EffectsHtml
+    </PopoverContent>
+</Popover>
+
+@code {
+    [Parameter, EditorRequired] public string Character { get; set; } = null!;
+
+    [Parameter, EditorRequired] public ItemData? CharacterData { get; set; }
+
+    private string WikiUrl { get; set; }
+    private string NiceCharName { get; set; }
+    private string CharName { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        CharName = Character.Replace("character_", "");
+        NiceCharName = CharacterData?.Name ?? string.Join(' ', CharName.Split('_').Select(word => word.UcFirst()));
+        WikiUrl = "https://brotato.wiki.spellsandguns.com/" + NiceCharName.Replace(' ', '_').Replace('-', '_');
+
+        base.OnParametersSet();
+    }
+
+    public MarkupString? EffectsHtml => CharacterData?.Hover.ParseBBCodeText();
+}

@@ -5,11 +5,11 @@ namespace BrotatoServer.Data;
 
 public interface IRunRepository
 {
-    Task<IEnumerable<FullRun>> GetAllRunsAsync();
+    IAsyncEnumerable<FullRun> GetAllRunsAsync(string twitchUsername);
     Task<FullRun?> GetRunAsync(Guid id);
     Task<Run> AddRunAsync(RunInformation runInfo);
     Task<bool> UpdateCurrentRunAsync(RunInformation runInfo);
     Task<bool> DeleteCurrentRunAsync();
     Task<bool> DeleteRunAsync(Guid id);
-    IAsyncEnumerable<FullRun> GetLatestRunsAsync(int amount);
+    IAsyncEnumerable<FullRun> GetLatestRunsAsync(string twitchUsername, int amount);
 }

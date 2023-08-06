@@ -1,31 +1,58 @@
 ﻿@using BrotatoServer.Data.Game;
+@using BrotatoServer.Models.JSON
 
-<div class="weapon inventory tier-@Tier"
-    <a href="@WikiUrl" target="_blank">
-        <img src="@Icon" title="@Name" />
-    </a>
-</div>
+@if (Simple)
+{
+    <div class="weapon inventory @TierClass">
+        <a href="@WikiUrl" target="_blank">
+            <img src="@Icon" title="@Name" alt="@Name" />
+        </a>
+    </div>
+}
+else
+{
+    <Popover Class="@("inventory-popup " + TierClass)">
+        <TriggerContent>
+            <div class="weapon inventory @TierClass">
+                <a href="@WikiUrl" target="_blank">
+                    <img src="@Icon" title="@Name" alt="@Name" />
+                </a>
+            </div>
+        </TriggerContent>
+        <PopoverContent>
+            <div class="title">
+                @Name
+            </div>
+            @Weapon.Hover.ParseBBCodeText()
+        </PopoverContent>
+    </Popover>
+}
 
 @code {
+    [Parameter, EditorRequired]
+    public ItemData Weapon { get; set; } = null!;
+    
     [Parameter]
-    public string Id { get; set; }
+    public bool Simple { get; set; } = false;
 
-    public Weapon Weapon { get; private set; }
-
-    public int Tier => Weapon.Tier;
-    public string Name => Weapon.Name + Weapon.Tier switch
+    private int Tier => Weapon.Tier;
+    private string TierClass => $"tier-{Weapon.Tier}";
+    private string Name => Weapon.Name + Weapon.Tier switch
     {
         1 => " II",
         2 => " III",
         3 => " IV",
         _ => "",
     };
-    public string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Weapon.Name.Replace(' ', '_');
-    public string Icon => Weapon.Icon.GetAssetPath();
+    private string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Weapon.Name.Replace(' ', '_');
+    private string? Icon { get; set; }
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        Weapon = Assets.Weapons[Id];
+        if (Assets.Weapons.TryGetValue(Weapon.Id, out var assetWeapon))
+        {
+            Icon = assetWeapon.Icon.GetAssetPath();
+        }
     }
 }
