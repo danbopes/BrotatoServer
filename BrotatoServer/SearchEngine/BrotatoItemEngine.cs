@@ -24,7 +24,7 @@ public class BrotatoItemEngine : WebEngine<BrotatoItem>
                 Culture = "en-US",
                 Id = key,
                 Name = item.Name,
-                TextOutput = item.EffectsText.Replace("\n", " | ").StripBBCodeText() + $" | {wikiUrl}"
+                TextOutput = $"{item.Name} | {item.EffectsText.Replace("\n", " | ").StripBBCodeText()} | {wikiUrl}"
             };
         }
     }

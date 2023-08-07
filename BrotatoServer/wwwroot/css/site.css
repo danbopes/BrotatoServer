@@ -73,7 +73,7 @@ a, .btn-link {
 }
 
 main {
-    background-image: url('/assets/shop_background.png')
+    background: linear-gradient(to bottom, #595959, #2F2F2F);
 }
 
 main p {
@@ -263,11 +263,11 @@ main a, main a:hover {
 }
 
 .stats-container .neg {
-    color: red;
+    color: #f00;
 }
 
 .stats-container .pos {
-    color: green;
+    color: #0f0;
 }
 
 .stats img {
