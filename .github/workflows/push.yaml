@@ -23,6 +23,9 @@ jobs:
     name: Build and Deploy to Github Registry
     runs-on: ubuntu-latest
 
+    outputs:
+      image_tag: ${{ steps.prep.outputs.BUILD_ID }}
+    
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -89,7 +92,7 @@ jobs:
         run: |
           cd k8s/
           kustomize create --autodetect
-          kustomize edit set image ghcr.io/danbopes/brotatoserver:${{ needs.build-push.outputs.BUILD_ID }}
+          kustomize edit set image ghcr.io/danbopes/brotatoserver:${{ needs.build-push.outputs.image_tag }}
           if [[ ${{ github.ref }} == "refs/heads/main" || ${{ github.ref }} == "refs/heads/master" ]]; then
             kustomize edit set namespace brotato
           else
