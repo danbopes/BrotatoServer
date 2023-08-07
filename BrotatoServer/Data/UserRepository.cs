@@ -17,6 +17,7 @@ public class UserRepository : IUserRepository
     public async IAsyncEnumerable<string> GetAllChatUsersAsync([EnumeratorCancellation] CancellationToken ct)
     {
         await foreach (var user in _db.Users
+                           .AsNoTracking()
                            .Where(user => user.TwitchUsername != null && user.JoinedChat)
                            .Select(user => user.TwitchUsername)
                            .AsAsyncEnumerable()
@@ -34,6 +35,7 @@ public class UserRepository : IUserRepository
         {
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
+            _db.Entry(user).State = EntityState.Detached;
             return;
         }
 
@@ -44,6 +46,7 @@ public class UserRepository : IUserRepository
             dbUser.TwitchAccessToken = user.TwitchAccessToken;
             _db.Entry(dbUser).State = EntityState.Modified;
             await _db.SaveChangesAsync();
+            _db.Entry(dbUser).State = EntityState.Detached;
             return;
         }
     }
@@ -61,6 +64,8 @@ public class UserRepository : IUserRepository
         _db.Entry(user).State = EntityState.Modified;
 
         await _db.SaveChangesAsync();
+
+        _db.Entry(user).State = EntityState.Detached;
     }
 
     public async Task SaveSettingsAsync(UserSettings userSettings)
