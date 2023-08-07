@@ -49,6 +49,7 @@ public class UserRepository : IUserRepository
             _db.Entry(dbUser).State = EntityState.Detached;
             return;
         }
+        _db.Entry(dbUser).State = EntityState.Detached;
     }
 
     public async Task<User?> GetUserAsync(ulong steamId)
