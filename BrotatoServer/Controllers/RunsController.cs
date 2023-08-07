@@ -3,6 +3,7 @@ using BrotatoServer.Models;
 using BrotatoServer.Hubs;
 using BrotatoServer.Models.JSON;
 using BrotatoServer.Data;
+using BrotatoServer.Data.Game;
 using BrotatoServer.Models.DB;
 using BrotatoServer.Services;
 using BrotatoServer.Utilities;
@@ -127,10 +128,24 @@ namespace BrotatoServer.Controllers
             _currentRunProvider.Current.TryGetValue(user.TwitchUsername, out var currentRun);
             if (currentRun is null)
                 return Conflict("No run currently happening.");
-            
+
+            var weaponName = "Unknown Weapon";
+
+            var weaponId = currentRun.StartingWeapon;
+
+            if (string.IsNullOrEmpty(weaponId))
+            {
+                weaponName = "Their Body";
+            }
+            else if (Assets.Weapons.TryGetValue(weaponId, out var weaponData))
+            {
+                weaponName = weaponData.Name;
+            }
+
             var runMessage = user.Settings.OnRunStartedMessage
                 .Replace("%character%", currentRun.Character.CharIdToNiceName())
-                .Replace("%link%", user.TwitchUsername.GetCurrentRunUrlForUser());
+                .Replace("%link%", user.TwitchUsername.GetCurrentRunUrlForUser())
+                .Replace("%weapon%", weaponName);
 
             if (runMessage.Contains("%streak%"))
             {

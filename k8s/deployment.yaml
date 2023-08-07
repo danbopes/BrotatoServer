@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: brotato-tracker
+  labels:
+    app: brotato-tracker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: brotato-tracker
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: brotato-tracker
+    spec:
+      volumes:
+        - name: pvc
+          persistentVolumeClaim:
+            claimName: brotato-tracker
+      containers:
+        - name: brotato-tracker
+          image: ghcr.io/danbopes/brotatoserver:main-1691381626-937905e6
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 512Mi
+            requests:
+              cpu: 250m
+              memory: 64Mi
+          readinessProbe:  # Add this section for health check
+            httpGet:
+              path: /healthz
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          volumeMounts:
+            - name: pvc
+              mountPath: /app/db
+      imagePullSecrets:
+        - name: danbopes-github
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
