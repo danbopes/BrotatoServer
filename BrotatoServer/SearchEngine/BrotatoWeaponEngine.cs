@@ -5,19 +5,19 @@ using CardSearcher.CardSearchers.CardEngines;
 
 namespace BrotatoServer.SearchEngine;
 
-public class BrotatoItemEngine : WebEngine<BrotatoItem>
+public class BrotatoWeaponEngine : WebEngine<BrotatoItem>
 {
-    public BrotatoItemEngine(ILogger<WebEngine<BrotatoItem>> log) : base(log)
+    public BrotatoWeaponEngine(ILogger<WebEngine<BrotatoItem>> log) : base(log)
     {
     }
 
-    public override string Name => "BrotatoItems";
+    public override string Name => "BrotatoWeapons";
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
     protected override async IAsyncEnumerable<BrotatoItem> InitializeCardsAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
-        foreach (var (key, item) in Assets.Items)
+        foreach (var (key, item) in Assets.Weapons)
         {
             var wikiUrl = "https://brotato.wiki.spellsandguns.com/" + item.Name.Replace(' ', '_');
 

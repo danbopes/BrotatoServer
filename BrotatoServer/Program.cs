@@ -124,7 +124,9 @@ builder.Services.AddRequestDecompression();
 builder.Services
     .AddSingleton<TwitchService>()
     .AddHostedService(sp => sp.GetRequiredService<TwitchService>());
-builder.Services.AddSingleton<BrotatoItemEngine>();
+builder.Services
+    .AddSingleton<BrotatoItemEngine>()
+    .AddSingleton<BrotatoWeaponEngine>();
 builder.Services.AddResponseCompression(opts =>
 {
     opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(

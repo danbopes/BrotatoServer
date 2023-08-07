@@ -3,6 +3,7 @@ using BrotatoServer.Hubs;
 using BrotatoServer.Models.DB;
 using BrotatoServer.SearchEngine;
 using BrotatoServer.Utilities;
+using CardSearcher.CardSearchers.CardEngines;
 using Microsoft.EntityFrameworkCore;
 using TwitchLib.Api;
 using TwitchLib.Client;
@@ -17,6 +18,7 @@ public class TwitchService : BackgroundService
 {
     private readonly ILogger<TwitchService> _log;
     private readonly BrotatoItemEngine _itemSearchEngine;
+    private readonly BrotatoWeaponEngine _weaponSearchEngine;
     private readonly IServiceProvider _serviceProvider;
     private readonly TwitchClient _client;
     private readonly ConnectionCredentials _credentials;
@@ -29,7 +31,7 @@ public class TwitchService : BackgroundService
 #endif
 
 
-    public TwitchService(ILogger<TwitchService> log, ILoggerFactory loggerFactory, BrotatoItemEngine itemSearchEngine, IServiceProvider serviceProvider)
+    public TwitchService(ILogger<TwitchService> log, ILoggerFactory loggerFactory, BrotatoItemEngine itemSearchEngine, BrotatoWeaponEngine weaponSearchEngine, IServiceProvider serviceProvider)
     {
         _credentials = new ConnectionCredentials(AppConstants.BOT_NAME, "oauth:gx244vysokmuqcunclv8fovswigefo");
         var clientOptions = new ClientOptions
@@ -49,6 +51,7 @@ public class TwitchService : BackgroundService
         
         _log = log;
         _itemSearchEngine = itemSearchEngine;
+        _weaponSearchEngine = weaponSearchEngine;
         _serviceProvider = serviceProvider;
     }
 
@@ -72,26 +75,15 @@ public class TwitchService : BackgroundService
         switch (words[0])
         {
             case PREFIX_CHAR + "item":
-                {
-                    if (words.Length < 2)
-                        return;
-
-                    var param = string.Join(' ', words.Skip(1));
-
-                    var card = await _itemSearchEngine.FindAsync(param);
-
-                    var exactResults = card.Results.ToList();
-
-                    if (exactResults.Count == 0)
-                    {
-                        _client.SendMessage(e.ChatMessage.Channel, "No item found with that name");
-                    }
-                    else
-                    {
-                        _client.SendMessage(e.ChatMessage.Channel, exactResults.First().TextOutput);
-                    }
-                    break;
-                }
+            {
+                await HandleItemLookup(_itemSearchEngine, "item", e.ChatMessage.Channel, words);
+                break;
+            }
+            case PREFIX_CHAR + "weapon":
+            {
+                await HandleItemLookup(_weaponSearchEngine, "weapon", e.ChatMessage.Channel, words);
+                break;
+            }
             case PREFIX_CHAR + "tater":
                 {
                     var runProvider = _serviceProvider.GetRequiredService<CurrentRunProvider>();
@@ -112,6 +104,21 @@ public class TwitchService : BackgroundService
                     break;
                 }
         }
+    }
+
+    private async Task HandleItemLookup(WebEngine<BrotatoItem> engine, string engineType, string channel, string[] words)
+    {
+        if (words.Length < 2)
+            return;
+
+        var param = string.Join(' ', words.Skip(1));
+
+        var card = await engine.FindAsync(param);
+
+        var exactResults = card.Results.ToList();
+
+        _client.SendMessage(channel,
+            exactResults.Count == 0 ? $"No {engineType} found with that name" : exactResults.First().TextOutput);
     }
 
     public void JoinChat(string channel)
