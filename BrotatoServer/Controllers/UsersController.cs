@@ -6,7 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Buffers;
 using BrotatoServer.Models.DB;
+using BrotatoServer.Models.JSON;
 using Microsoft.AspNetCore.Authorization;
+using Newtonsoft.Json;
 
 namespace BrotatoServer.Controllers;
 
@@ -15,10 +17,12 @@ namespace BrotatoServer.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly BrotatoServerContext _db;
+    private readonly IUserRepository _userRepository;
 
-    public UsersController(BrotatoServerContext db)
+    public UsersController(BrotatoServerContext db, IUserRepository userRepository)
     {
         _db = db;
+        _userRepository = userRepository;
     }
 
     [HttpPost]
@@ -52,6 +56,18 @@ public class UsersController : ControllerBase
         }
 
         return Ok(user.ApiKey);
+    }
+
+    [HttpPost]
+    [Route("custom_data")]
+    [Authorize(AuthenticationSchemes = "ApiKey")]
+    public async Task<IActionResult> CustomData([FromBody] CustomData customData)
+    {
+        var user = HttpContext.GetUser();
+
+        await _userRepository.UpdateCustomDataAsync(user.SteamId, JsonConvert.SerializeObject(customData));
+
+        return Ok();
     }
 
     [HttpGet]

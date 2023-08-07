@@ -4,13 +4,24 @@
 <Popover Class="@("inventory-popup " + TierClass)">
     <TriggerContent>
         <div class="item inventory @TierClass">
-            <a href="@WikiUrl" target="_blank">
-                <img src="@Icon" title="@Name" />
-                @if (Count > 1)
+            @if (!IsCustom)
+            {
+                <a href="@WikiUrl" target="_blank">
+                    <img src="@Icon" title="@Name" alt="@Name"/>
+                    @if (Count > 1)
+                    {
+                        <div class="count">@("x" + Count)</div>
+                    }
+                </a>
+            }
+            else
+            {
+                <img src="@Icon" title="@Name" alt="@Name"/>
+                if (Count > 1)
                 {
                     <div class="count">@("x" + Count)</div>
                 }
-            </a>
+            }
         </div>
     </TriggerContent>
     <PopoverContent>
@@ -24,14 +35,18 @@
 @code {
     [Parameter, EditorRequired]
     public ItemData Item { get; set; } = null!;
+    
+    [CascadingParameter]
+    public CustomData? CustomData { get; set; } = null!;
 
-    public int Count => Item.Count;
-    public int Tier => Item.Tier;
-    public string TierClass => $"tier-{Item.Tier}";
-    public string Name => Item.Name;
-    public string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Item.Name.Replace(' ', '_');
-    public string Icon { get; set; }
-    public MarkupString EffectsHtml => Item.Hover.ParseBBCodeText();
+    private int Count => Item.Count;
+    private int Tier => Item.Tier;
+    private string TierClass => $"tier-{Item.Tier}";
+    private string Name => Item.Name;
+    private string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Item.Name.Replace(' ', '_');
+    private string Icon { get; set; }
+    private bool IsCustom { get; set; } = true;
+    private MarkupString EffectsHtml => Item.Hover.ParseBBCodeText();
 
     protected override void OnInitialized()
     {
@@ -40,6 +55,11 @@
         if (Assets.Items.TryGetValue(Item.Id, out var assetItem))
         {
             Icon = assetItem.Icon.GetAssetPath();
+            IsCustom = false;
+        }
+        else if (CustomData?.Items != null && CustomData.Items.TryGetValue(Item.Id, out var customData))
+        {
+            Icon = "data:image/png;base64," + customData.Icon;
         }
     }
 

@@ -9,4 +9,5 @@ public class FullRun
     public DateTimeOffset Date { get; set; }
     public bool CurrentRotation { get; set; }
     public RunData RunData { get; set; }
+    public CustomData? CustomData { get; set; }
 }

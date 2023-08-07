@@ -60,7 +60,7 @@ namespace BrotatoServer.Controllers
         {
             var user = HttpContext.GetUser();
             
-            var run = await _runRepository.AddRunAsync(user.SteamId, runInfo);
+            var run = await _runRepository.AddRunAsync(user.SteamId, runInfo, user.CustomData);
 
             if (user.TwitchUsername is not null)
             {

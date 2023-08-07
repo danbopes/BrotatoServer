@@ -9,19 +9,26 @@
         @foreach (var run in latestRuns)
         {
             var charName = run.RunData.Character.Replace("character_", "");
-            
+            var characterData = run.RunData.Items.Values.FirstOrDefault(item => item.Id == run.RunData.Character);
+            var niceName = characterData?.Name ?? charName;
+
             <a href="runs/@run.Id" style="text-decoration: none">
                 <div class="row run-wrapper mb-4">
                     <!-- First column (always shown) -->
                     <div class="col-auto">
                         <div class="image">
-                            <img src="assets/items/characters/@charName/@(charName)_icon.png" alt=""/>
+                            <CascadingValue Value="run.CustomData">
+                                <CharacterView
+                                    Character="@run.RunData.Character"
+                                    CharacterData="@characterData"
+                                    Simple="true"/>
+                            </CascadingValue>
                         </div>
                     </div>
                     <div class="col-auto">
                         <div class="title">
                             Wave @run.RunData.Wave - LV. @run.RunData.Level <br/>
-                            @run.RunData.Character.CharIdToNiceName()
+                            @niceName
                         </div>
                     </div>
 

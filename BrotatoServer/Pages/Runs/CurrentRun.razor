@@ -18,7 +18,7 @@
 {
     @if (RunData != null)
     {
-        <RunDataView RunData="RunData" />
+        <RunDataView RunData="RunData" CustomData="CustomData" />
     }
     else
     {
@@ -29,20 +29,28 @@
                 @foreach (var run in LatestRuns)
                 {
                     var charName = run.RunData.Character.Replace("character_", "");
-                    var niceName = run.RunData.Character.CharIdToNiceName();
-                    <a href="runs/@run.Id" style="text-decoration: none">
-                        <div class="col mb-3 run-wrapper">
-                            <div class="image">
-                                <img src="assets/items/characters/@charName/@(charName)_icon.png" alt="@niceName"/>
+                    var characterData = @run.RunData.Items.Values.FirstOrDefault(item => item.Id == run.RunData.Character);
+                    var niceName = characterData?.Name ?? charName;
+                    
+                    <CascadingValue Value="CustomData">
+                        <a href="runs/@run.Id" style="text-decoration: none">
+                            <div class="col mb-3 run-wrapper">
+                                <div class="image">
+                                    <CharacterView
+                                        Character="@run.RunData.Character"
+                                        CharacterData="@characterData"
+                                        Simple="true"
+                                        />
+                                </div>
+                                <div class="title">
+                                    Wave @run.RunData.Wave - LV. @run.RunData.Level <br/>
+                                    @niceName <br />
+                                    @run.Date.TimeAgo()
+                                </div>
                             </div>
-                            <div class="title">
-                                Wave @run.RunData.Wave - LV. @run.RunData.Level <br/>
-                                @niceName <br />
-                                @run.Date.TimeAgo()
-                            </div>
-                        </div>
-                    </a>
-                    <br/>
+                        </a>
+                        <br/>
+                    </CascadingValue>
                 }
             </div>
             
@@ -64,6 +72,7 @@ else
     public TwitchUsernameStateProvider TwitchUsernameStateProvider { get; set; } = null!;
     private HubConnection? HubConnection { get; set; }
     private RunData? RunData { get; set; }
+    private CustomData? CustomData { get; set; }
     private bool Fetched { get; set; }
     private List<FullRun> LatestRuns { get; set; } = null!;
 
@@ -74,6 +83,12 @@ else
             .WithUrl(Navigation.ToAbsoluteUri(url))
             .Build();
 
+        HubConnection.On<CustomData?>(nameof(IRunHub.CustomDataUpdate), async (customData) =>
+        {
+            await JS.InvokeVoidAsync("console.log", "Custom Data Update", customData);
+            CustomData = customData;
+            await InvokeAsync(StateHasChanged);
+        });
         HubConnection.On<RunData?>(nameof(IRunHub.RunUpdate), async (runInfo) =>
         {
             await JS.InvokeVoidAsync("console.log", "Current Run", runInfo);

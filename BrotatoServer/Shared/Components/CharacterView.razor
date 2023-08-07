@@ -1,34 +1,73 @@
 ﻿@using BrotatoServer.Models.JSON
-<Popover Class="inventory-popup tier-0">
-    <TriggerContent>
+
+@if (Simple)
+{
+    if (WikiUrl is not null)
+    {
         <a href="@WikiUrl" target="_blank">
-            <img src="assets/items/characters/@CharName/@(CharName)_icon.png" />
-            @NiceCharName
+            <img src="@Icon" alt="@NiceCharName"/>
         </a>
-    </TriggerContent>
-    <PopoverContent>
-        <div class="title">
-            @NiceCharName
-        </div>
-        @EffectsHtml
-    </PopoverContent>
-</Popover>
+    }
+    else
+    {
+        <img src="@Icon" alt="@NiceCharName"/>
+    }
+}
+else
+{
+    <Popover Class="inventory-popup tier-0">
+        <TriggerContent>
+            @if (WikiUrl is not null)
+            {
+                <a href="@WikiUrl" target="_blank">
+                    <img src="@Icon" alt="@NiceCharName"/>
+                    @NiceCharName
+                </a>
+            }
+            else
+            {
+                <img src="@Icon" alt="@NiceCharName"/>
+                @NiceCharName
+            }
+        </TriggerContent>
+        <PopoverContent>
+            <div class="title">
+                @NiceCharName
+            </div>
+            @EffectsHtml
+        </PopoverContent>
+    </Popover>
+}
 
 @code {
     [Parameter, EditorRequired] public string Character { get; set; } = null!;
 
     [Parameter, EditorRequired] public ItemData? CharacterData { get; set; }
+    
+    [CascadingParameter] public CustomData? CustomData { get; set; }
 
-    private string WikiUrl { get; set; }
+    [Parameter] public bool Simple { get; set; } = false;
+
+    private string? WikiUrl { get; set; }
     private string NiceCharName { get; set; }
     private string CharName { get; set; }
+    private string Icon { get; set; }
 
 
     protected override void OnParametersSet()
     {
         CharName = Character.Replace("character_", "");
         NiceCharName = CharacterData?.Name ?? string.Join(' ', CharName.Split('_').Select(word => word.UcFirst()));
-        WikiUrl = "https://brotato.wiki.spellsandguns.com/" + NiceCharName.Replace(' ', '_').Replace('-', '_');
+        Icon = $"assets/items/characters/{CharName}/{CharName}_icon.png";
+        
+        if (CustomData?.Characters?.TryGetValue(Character, out var customData) ?? false)
+        {
+            Icon = "data:image/png;base64," + customData.Icon;
+        }
+        else
+        {
+            WikiUrl = "https://brotato.wiki.spellsandguns.com/" + NiceCharName.Replace(' ', '_').Replace('-', '_');
+        }
 
         base.OnParametersSet();
     }

@@ -60,6 +60,15 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.SteamId == steamId);
     }
 
+    public async Task<User?> GetUserByTwitchUsername(string twitchUsername)
+    {
+        return await _db
+            .Users
+            .Include(user => user.Settings)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.TwitchUsername == twitchUsername);
+    }
+
     public async Task UpdateUserAsync(User user)
     {
         _db.Entry(user).State = EntityState.Modified;
@@ -83,5 +92,13 @@ public class UserRepository : IUserRepository
         await _db.SaveChangesAsync();
 
         _db.Entry(userSettings).State = EntityState.Detached;
+    }
+
+    public async Task UpdateCustomDataAsync(ulong userId, string customData)
+    {
+        await _db.Users
+            .Where(user => user.SteamId == userId)
+            .ExecuteUpdateAsync(setters =>
+                setters.SetProperty(r => r.CustomData, customData));
     }
 }

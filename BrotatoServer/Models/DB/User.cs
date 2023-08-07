@@ -15,4 +15,6 @@ public class User
     public Guid ApiKey { get; set; }
     
     public virtual UserSettings? Settings { get; set; }
+    
+    public string? CustomData { get; set; }
 }

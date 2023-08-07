@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
+using BrotatoServer.Data;
 using BrotatoServer.Models.JSON;
-using BrotatoServer.Services;
-using BrotatoServer.Utilities;
 using Microsoft.AspNetCore.SignalR;
+using Newtonsoft.Json;
 
 namespace BrotatoServer.Hubs;
 
@@ -34,29 +34,38 @@ public class CurrentRunProvider
 public interface IRunHub
 {
     Task RunUpdate(RunData? newRun);
+    Task CustomDataUpdate(CustomData? newCustomData);
 }
 
 public class RunsHub : Hub<IRunHub>
 {
     private readonly CurrentRunProvider _currentRunProvider;
+    private readonly IUserRepository _userRepo;
 
-    public RunsHub(CurrentRunProvider currentRunProvider)
+    public RunsHub(CurrentRunProvider currentRunProvider, IUserRepository userRepo)
     {
         _currentRunProvider = currentRunProvider;
+        _userRepo = userRepo;
     }
 
     public override async Task OnConnectedAsync()
     {
-        var twitchUsername = Context.GetHttpContext()?.Request.Query["twitchUsername"];
+        var twitchUsername = Context.GetHttpContext()?.Request.Query["twitchUsername"].FirstOrDefault();
 
         if (string.IsNullOrEmpty(twitchUsername))
             throw new InvalidOperationException("No twitchUsername was provided.");
         
-        await Groups.AddToGroupAsync(Context.ConnectionId, twitchUsername!);
+        await Groups.AddToGroupAsync(Context.ConnectionId, twitchUsername);
         
-        _currentRunProvider.Current.TryGetValue(twitchUsername!, out var currentRun);
+        _currentRunProvider.Current.TryGetValue(twitchUsername, out var currentRun);
+        
+        var user = await _userRepo.GetUserByTwitchUsername(twitchUsername);
+        if (user?.CustomData is not null)
+            await Clients.Caller.CustomDataUpdate(JsonConvert.DeserializeObject<CustomData>(user.CustomData));
+        
         
         await Clients.Caller.RunUpdate(currentRun);
+
         await base.OnConnectedAsync();
     }
 }

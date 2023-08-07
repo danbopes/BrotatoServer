@@ -3,54 +3,58 @@
 
 @inject NavigationManager NavManager
 
-<div class="container">
-    <div class="row">
-        <div>
-        <StatContainer RunData="@RunData"/>
-
-        <p>
-            Character:
-            <CharacterView Character="@RunData.Character" CharacterData="@RunData.Items.Values.FirstOrDefault(item => item.Id == RunData.Character)"></CharacterView>
-        </p>
-
-
-        <p>Weapons:</p>
-        @foreach (var (key, weapon) in RunData.Weapons)
-        {
-            <WeaponView @key="key" Weapon="@weapon"/>
-        }
-
-        <p>Items:</p>
-
-        @foreach (var item in RunData.Items
-            .AsEnumerable()
-            .Reverse()
-            .Where(i => i.Value.Id.StartsWith("item_")))
-        {
-            <ItemView @key="item.Key" Item="@item.Value"/>
-        }
-        </div>
-    </div>
+<CascadingValue Value="CustomData">
+    <div class="container">
+        <div class="row">
+            <div>
+            <StatContainer RunData="@RunData"/>
     
-@if (!string.IsNullOrEmpty(TwitchClip))
-{
-    <div class="row align-content-center mt-2">
-        <div style="width: 640px">
-            <iframe
-                src="@TwitchClip&parent=@(new Uri(NavManager.Uri).Host)"
-                height="360"
-                width="640"
-                allowfullscreen>
-            </iframe>
+            <p>
+                Character:
+                <CharacterView Character="@RunData.Character" CharacterData="@RunData.Items.Values.FirstOrDefault(item => item.Id == RunData.Character)"></CharacterView>
+            </p>
+    
+    
+            <p>Weapons:</p>
+            @foreach (var (key, weapon) in RunData.Weapons)
+            {
+                <WeaponView @key="key" Weapon="@weapon"/>
+            }
+    
+            <p>Items:</p>
+    
+            @foreach (var item in RunData.Items
+                .AsEnumerable()
+                .Reverse()
+                .Where(i => i.Value.Id.StartsWith("item_")))
+            {
+                <ItemView @key="item.Key" Item="@item.Value"/>
+            }
+            </div>
         </div>
+        
+    @if (!string.IsNullOrEmpty(TwitchClip))
+    {
+        <div class="row align-content-center mt-2">
+            <div style="width: 640px">
+                <iframe
+                    src="@TwitchClip&parent=@(new Uri(NavManager.Uri).Host)"
+                    height="360"
+                    width="640"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    }
     </div>
-}
-</div>
-
+</CascadingValue>
 
 @code {
     [Parameter]
     public RunData RunData { get; set; }
+    
+    [Parameter]
+    public CustomData? CustomData { get; set; }
     
     [Parameter]
     public string? TwitchClip { get; set; }

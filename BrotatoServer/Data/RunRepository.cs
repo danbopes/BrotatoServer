@@ -46,7 +46,7 @@ public class RunRepository : IRunRepository
         return run is null ? null : _mapper.Map<FullRun>(run);
     }
 
-    public async Task<Run> AddRunAsync(ulong userId, RunInformation runInfo)
+    public async Task<Run> AddRunAsync(ulong userId, RunInformation runInfo, string? customData)
     {
         var run = new Run
         {
@@ -55,7 +55,8 @@ public class RunRepository : IRunRepository
             Won = runInfo.RunData.Won,
             Date = DateTimeOffset.FromUnixTimeSeconds(runInfo.Created),
             CurrentRotation = true,
-            RunInformation = JsonConvert.SerializeObject(runInfo)
+            RunInformation = JsonConvert.SerializeObject(runInfo),
+            CustomData = customData
         };
 
         _context.Run.Add(run);

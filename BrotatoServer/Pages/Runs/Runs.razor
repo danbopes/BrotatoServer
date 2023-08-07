@@ -7,11 +7,11 @@
 
 <PageTitle>Current Run</PageTitle>
 
-@if (fetched)
+@if (Fetched)
 {
-    @if (runData != null)
+    @if (RunData != null)
     {
-        <RunDataView RunData="@runData" TwitchClip="@twitchClip" />
+        <RunDataView RunData="@RunData" CustomData="@CustomData" TwitchClip="@TwitchClip" />
     }
     else
     {
@@ -31,24 +31,26 @@ else
     [Parameter]
     public string RunId { get; set; }
 
-    private RunData? runData;
-    private string? twitchClip;
-    private bool fetched;
+    private RunData? RunData { get; set; }
+    private CustomData? CustomData { get; set; }
+    private string? TwitchClip { get; set; }
+    private bool Fetched { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         if (!Guid.TryParse(RunId, out var guid))
         {
-            fetched = true;
+            Fetched = true;
             return;
         }
 
         var run = await RunRepository.GetRunAsync(guid);
 
-        runData = run?.RunData;
-        twitchClip = run?.TwitchClip;
+        RunData = run?.RunData;
+        CustomData = run?.CustomData;
+        TwitchClip = run?.TwitchClip;
 
-        fetched = true;
+        Fetched = true;
 
     }
 }

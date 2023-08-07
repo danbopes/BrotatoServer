@@ -4,9 +4,16 @@
 @if (Simple)
 {
     <div class="weapon inventory @TierClass">
-        <a href="@WikiUrl" target="_blank">
-            <img src="@Icon" title="@Name" alt="@Name" />
-        </a>
+        @if (!IsCustom)
+        {
+            <a href="@WikiUrl" target="_blank">
+                <img src="@Icon" title="@Name" alt="@Name"/>
+            </a>
+        }
+        else
+        {
+            <img src="@Icon" title="@Name" alt="@Name"/>
+        }
     </div>
 }
 else
@@ -14,9 +21,16 @@ else
     <Popover Class="@("inventory-popup " + TierClass)">
         <TriggerContent>
             <div class="weapon inventory @TierClass">
-                <a href="@WikiUrl" target="_blank">
-                    <img src="@Icon" title="@Name" alt="@Name" />
-                </a>
+                @if (!IsCustom)
+                {
+                    <a href="@WikiUrl" target="_blank">
+                        <img src="@Icon" title="@Name" alt="@Name"/>
+                    </a>
+                }
+                else
+                {
+                    <img src="@Icon" title="@Name" alt="@Name"/>
+                }
             </div>
         </TriggerContent>
         <PopoverContent>
@@ -35,6 +49,9 @@ else
     [Parameter]
     public bool Simple { get; set; } = false;
 
+    [CascadingParameter]
+    public CustomData? CustomData { get; set; } = null!;
+    
     private int Tier => Weapon.Tier;
     private string TierClass => $"tier-{Weapon.Tier}";
     private string Name => Weapon.Name + Weapon.Tier switch
@@ -46,6 +63,7 @@ else
     };
     private string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Weapon.Name.Replace(' ', '_');
     private string? Icon { get; set; }
+    private bool IsCustom { get; set; } = true;
 
     protected override void OnInitialized()
     {
@@ -53,6 +71,11 @@ else
         if (Assets.Weapons.TryGetValue(Weapon.Id, out var assetWeapon))
         {
             Icon = assetWeapon.Icon.GetAssetPath();
+            IsCustom = false;
+        }
+        else if (CustomData?.Weapons != null && CustomData.Weapons.TryGetValue(Weapon.Id, out var customData))
+        {
+            Icon = "data:image/png;base64," + customData.Icon;
         }
     }
 }
