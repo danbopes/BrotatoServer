@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Buffers;
+using BrotatoServer.Models.DB;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BrotatoServer.Controllers;

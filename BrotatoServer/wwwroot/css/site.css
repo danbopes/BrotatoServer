@@ -82,7 +82,6 @@ main p {
 
 main a, main a:hover {
     color: #fff !important;
-    text-decoration: none;
 }
 
 .weapon {

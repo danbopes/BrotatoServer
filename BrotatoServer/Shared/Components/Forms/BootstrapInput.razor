@@ -1,0 +1,48 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+@inherits InputText
+
+<div class="mb-3">
+    <label for="@FieldIdentifier.FieldName.PascalToDashCase()" class="form-label">
+        @if (Description is not null)
+        {
+            <i class="oi oi-info info-circle"
+               data-bs-toggle="collapse"
+               data-bs-target="#@FieldIdentifier.FieldName.PascalToDashCase()-description-start" aria-expanded="false"
+               aria-controls="description-start"></i><text>&nbsp;</text>
+        }
+        @Title
+    </label>
+    @if (Description is not null)
+    {
+        <div class="collapse description-container" id="@FieldIdentifier.FieldName.PascalToDashCase()-description-start">
+            @Description
+        </div>
+    }
+    
+    @if (AdditionalAttributes.TryGetValue("type", out var inputType) && inputType.ToString() == "textarea")
+    {
+        <textarea @attributes="@AdditionalAttributes" class="@CssClass" id="@FieldIdentifier.FieldName.PascalToDashCase()" @bind="@CurrentValueAsString" @bind:event="oninput">
+        </textarea>
+    }
+    else
+    {
+        <input @attributes="@AdditionalAttributes" class="@CssClass" id="@FieldIdentifier.FieldName" @bind="@CurrentValueAsString" @bind:event="oninput">
+    }
+    
+    @if (EditContext.GetValidationMessages(FieldIdentifier).Any())
+    {
+        <div class="invalid-feedback" style="display: block">
+            @foreach (var message in EditContext.GetValidationMessages(FieldIdentifier))
+            {
+                @message<br />
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; } = null!;
+
+    [Parameter] public RenderFragment? Description { get; set; }
+}

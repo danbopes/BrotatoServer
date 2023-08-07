@@ -5,11 +5,12 @@
 @using Microsoft.AspNetCore.Mvc;
 @using System.Security.Claims;
 @using BrotatoServer.Data
+@using BrotatoServer.Models.DB
 @using BrotatoServer.Services
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager;
-@inject TwitchChatService TwitchChatService
+@inject TwitchService TwitchService
 @inject IJSRuntime JsRuntime;
 @inject IUserRepository UserRepo
 
@@ -61,7 +62,7 @@
     </h2>
     <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-        Download the mod from the community page here.
+          Subscribe to the mod from the community page <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3015805686" style="text-decoration: underline" target="_blank">here</a>. Verify "Run Uploader" by Danbopes shows up under mods. No further setup is required.
       </div>
     </div>
   </div>
@@ -97,41 +98,50 @@
   </div>
 </div>
 
-<h1>Claims View</h1>
+@if (showClaims)
+{
+    <h1>Claims View</h1>
 
-@if (user != null)
-{
-    <h2>Claims Principals:</h2>
-    <ul>
-        @foreach (var principal in user.Identities)
-        {
-            <li>
-                <strong>AuthenticationType:</strong> @principal.AuthenticationType
-            </li>
-            <li>
-                <strong>IsAuthenticated:</strong> @principal.IsAuthenticated
-            </li>
-            <li>
-                <strong>Name:</strong> @principal.Name
-            </li>
-            <li>
-                <strong>Claims:</strong>
-                <ul>
-                    @foreach (var claim in principal.Claims)
-                    {
-                        <li>@claim.Type: @claim.Value</li>
-                    }
-                </ul>
-            </li>
-            <br />
-        }
-    </ul>
+    @if (user != null)
+    {
+        <h2>Claims Principals:</h2>
+        <ul>
+            @foreach (var principal in user.Identities)
+            {
+                <li>
+                    <strong>AuthenticationType:</strong> @principal.AuthenticationType
+                </li>
+                <li>
+                    <strong>IsAuthenticated:</strong> @principal.IsAuthenticated
+                </li>
+                <li>
+                    <strong>Name:</strong> @principal.Name
+                </li>
+                <li>
+                    <strong>Claims:</strong>
+                    <ul>
+                        @foreach (var claim in principal.Claims)
+                        {
+                            <li>@claim.Type: @claim.Value</li>
+                        }
+                    </ul>
+                </li>
+                <br />
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No Claims Principals available.</p>
+    }
 }
-else
-{
-    <p>No Claims Principals available.</p>
-}
+
 @code {
+#if DEBUG
+    private const bool showClaims = true;
+#else
+    private const bool showClaims = false;
+#endif
     private ClaimsPrincipal? user;
 
     private ClaimsIdentity? twitchIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Twitch");
@@ -149,6 +159,7 @@ else
             {
                 TwitchId = user.GetTwitchId(),
                 TwitchUsername = user.GetTwitchName(),
+                TwitchAccessToken = user.GetTwitchRefreshToken(),
                 SteamId = user.GetSteamId(),
                 ApiKey = Guid.NewGuid(),
                 JoinedChat = false
@@ -182,7 +193,7 @@ else
 
         await UserRepo.UpdateUserAsync(dbUser);
         
-        TwitchChatService.JoinChat(dbUser.TwitchUsername!);
+        TwitchService.JoinChat(dbUser.TwitchUsername!);
 
         await Task.Delay(2000);
         JsRuntime.Toast($"{AppConstants.BOT_NAME} should now be in your chat. If it's not responding, please contact Danbopes.");

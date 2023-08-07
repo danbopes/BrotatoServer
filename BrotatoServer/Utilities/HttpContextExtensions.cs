@@ -1,4 +1,5 @@
 ﻿using BrotatoServer.Models;
+using BrotatoServer.Models.DB;
 
 namespace BrotatoServer.Utilities;
 

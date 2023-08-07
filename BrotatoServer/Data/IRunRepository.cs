@@ -1,5 +1,6 @@
 ﻿using BrotatoServer.Models.JSON;
 using BrotatoServer.Models;
+using BrotatoServer.Models.DB;
 
 namespace BrotatoServer.Data;
 
@@ -12,4 +13,5 @@ public interface IRunRepository
     Task<bool> DeleteCurrentRunAsync();
     Task<bool> DeleteRunAsync(Guid id);
     IAsyncEnumerable<FullRun> GetLatestRunsAsync(string twitchUsername, int amount);
+    Task<int> GetStreakAsync(string userTwitchUsername);
 }

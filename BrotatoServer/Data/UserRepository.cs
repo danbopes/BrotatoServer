@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using BrotatoServer.Models;
+using BrotatoServer.Models.DB;
 using Microsoft.EntityFrameworkCore;
 
 namespace BrotatoServer.Data;
@@ -36,10 +37,11 @@ public class UserRepository : IUserRepository
             return;
         }
 
-        if (user.TwitchUsername != dbUser.TwitchUsername || user.TwitchId != dbUser.TwitchId)
+        if (user.TwitchUsername != dbUser.TwitchUsername || user.TwitchId != dbUser.TwitchId || user.TwitchAccessToken != dbUser.TwitchAccessToken)
         {
             dbUser.TwitchUsername = user.TwitchUsername;
             dbUser.TwitchId = user.TwitchId;
+            dbUser.TwitchAccessToken = user.TwitchAccessToken;
             _db.Entry(dbUser).State = EntityState.Modified;
             await _db.SaveChangesAsync();
             return;
@@ -48,7 +50,10 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetUserAsync(ulong steamId)
     {
-        return await _db.Users.FindAsync(steamId);
+        return await _db.Users
+            .Include(user => user.Settings)
+            .AsNoTracking()
+            .FirstOrDefaultAsync(user => user.SteamId == steamId);
     }
 
     public async Task UpdateUserAsync(User user)
@@ -56,5 +61,21 @@ public class UserRepository : IUserRepository
         _db.Entry(user).State = EntityState.Modified;
 
         await _db.SaveChangesAsync();
+    }
+
+    public async Task SaveSettingsAsync(UserSettings userSettings)
+    {
+        if (await _db.UserSettings.AsNoTracking().AnyAsync(settings => settings.UserId == userSettings.UserId))
+        {
+            _db.Entry(userSettings).State = EntityState.Modified;
+        }
+        else
+        {
+            _db.UserSettings.Add(userSettings);
+        }
+        
+        await _db.SaveChangesAsync();
+
+        _db.Entry(userSettings).State = EntityState.Detached;
     }
 }

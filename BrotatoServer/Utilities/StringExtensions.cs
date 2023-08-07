@@ -38,6 +38,11 @@ public static class StringExtensions
 
         return niceCharName;
     }
+    
+    public static string PascalToDashCase(this string str)
+    {
+        return string.Concat(str.Select((x, i) => i > 0 && char.IsUpper(x) ? "-" + x.ToString() : x.ToString())).ToLower();
+    }
 
     /*private static readonly BbParser _bbParser = new BbParser(new[] {
         new Tag("color", "<span style=\"color: {value}\">", "</span>", withAttribute: true, secure: false),

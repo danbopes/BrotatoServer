@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+
+@inherits InputCheckbox
+
+<div class="mb-3">
+    <div class="form-check form-switch">
+        <input type="checkbox" @attributes="@AdditionalAttributes" class="form-check-input @CssClass" id="@FieldIdentifier.FieldName.PascalToDashCase()" @bind="@CurrentValue" @bind:event="onchange" />
+        <label for="@FieldIdentifier.FieldName.PascalToDashCase()" class="form-check-label">
+                @if (Description is not null)
+                {
+                    <i class="oi oi-info info-circle"
+                       data-bs-toggle="collapse"
+                       data-bs-target="#@FieldIdentifier.FieldName.PascalToDashCase()-description-start" aria-expanded="false"
+                       aria-controls="description-start"></i><text>&nbsp;</text>
+                }
+                @Title
+            </label>
+    </div>
+
+    
+    @if (Description is not null)
+    {
+        <div class="collapse description-container" id="@FieldIdentifier.FieldName.PascalToDashCase()-description-start">
+            @Description
+        </div>
+    }
+
+    @if (EditContext.GetValidationMessages(FieldIdentifier).Any())
+    {
+        <div class="invalid-feedback" style="display: block">
+            @foreach (var message in EditContext.GetValidationMessages(FieldIdentifier))
+            {
+                @message<br/>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter, EditorRequired] public string Title { get; set; } = null!;
+
+    [Parameter] public RenderFragment? Description { get; set; }
+}

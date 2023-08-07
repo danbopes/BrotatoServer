@@ -4,6 +4,7 @@
 @using BrotatoServer.Hubs;
 @using BrotatoServer.Models.JSON;
 @using BrotatoServer.Models;
+@using BrotatoServer.Models.DB
 @using Microsoft.AspNetCore.SignalR.Client
 @using Microsoft.AspNetCore.WebUtilities
 @inject NavigationManager Navigation
@@ -29,7 +30,7 @@
                 {
                     var charName = run.RunData.Character.Replace("character_", "");
                     var niceName = run.RunData.Character.CharIdToNiceName();
-                    <a href="runs/@run.Id">
+                    <a href="runs/@run.Id" style="text-decoration: none">
                         <div class="col mb-3 run-wrapper">
                             <div class="image">
                                 <img src="assets/items/characters/@charName/@(charName)_icon.png" alt="@niceName"/>

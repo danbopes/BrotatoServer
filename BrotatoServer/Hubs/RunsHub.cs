@@ -17,7 +17,7 @@ public class CurrentRunProvider
         _runHub = runHub;
     }
     
-    public async Task UpdateRun(string twitchUsername, RunData? newRun)
+    public async Task UpdateRunAsync(string twitchUsername, RunData? newRun)
     {
         RunData? update = null;
         if (newRun is not null)

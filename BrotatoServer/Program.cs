@@ -1,4 +1,5 @@
 using System.Net;
+using System.Security.Claims;
 using System.Text;
 using BrotatoServer;
 using BrotatoServer.Data;
@@ -69,8 +70,8 @@ builder.Services
     {
         options.SignInScheme = "cookie";
         options.CallbackPath = "/oauth/twitch-callback";
-        options.ClientId = "l4dww9mvnhwx2ws9a56501g3rj3x6m";
-        options.ClientSecret = "dikrcgrlj886k7qx14bvs1b6gxzsjw";
+        options.ClientId = AppConstants.TWITCH_CLIENT_ID;
+        options.ClientSecret = AppConstants.TWITCH_CLIENT_SECRET;
         options.Scope.Add("clips:edit");
 
         options.Events.OnCreatingTicket = async ctx =>
@@ -79,6 +80,8 @@ builder.Services
             var defaultAuthenticate = await schemeProvider.GetDefaultAuthenticateSchemeAsync();
             var authType = ctx.Principal!.Identity!.AuthenticationType;
 
+            ctx.Principal!.Identities.First().AddClaim(new Claim("TwitchRefreshToken", ctx.RefreshToken!));
+            
             if (defaultAuthenticate != null)
             {
                 var result = await ctx.HttpContext.AuthenticateAsync(defaultAuthenticate.Name);
@@ -97,19 +100,28 @@ builder.Services
 builder.Services.AddAuthorization(o =>
 {
     o.AddPolicy(AuthPolicies.TWITCH_USER, p => p.RequireAssertion(ctx => ctx.User.Identities.Any(identity => identity.AuthenticationType == "Twitch")));
+    o.AddPolicy(AuthPolicies.FULLY_AUTHED_USER,
+        p => p.RequireAssertion(ctx => 
+            ctx.User.Identities.Any(identity => identity.AuthenticationType == "Twitch") &&
+            ctx.User.Identities.Any(identity => identity.AuthenticationType == "Steam")));
 });
+
+builder.Services.AddAutoMapper(typeof(Program));
+
 builder.Services
     .AddScoped<IRunRepository, RunRepository>()
     .AddScoped<IUserRepository, UserRepository>()
     .AddSingleton<CurrentRunProvider>();
+
 builder.Services.AddControllers()
     .AddNewtonsoftJson();
+
 builder.Services.AddSignalR();
 builder.Services.AddRequestDecompression();
 
 builder.Services
-    .AddSingleton<TwitchChatService>()
-    .AddHostedService(sp => sp.GetRequiredService<TwitchChatService>());
+    .AddSingleton<TwitchService>()
+    .AddHostedService(sp => sp.GetRequiredService<TwitchService>());
 builder.Services.AddSingleton<BrotatoItemEngine>();
 builder.Services.AddResponseCompression(opts =>
 {

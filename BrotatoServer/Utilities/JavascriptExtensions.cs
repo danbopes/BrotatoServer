@@ -15,6 +15,6 @@ public static class JavascriptExtensions
     {
         var toastTypeStr = toastType.ToString().ToLowerInvariant();
 
-        runtime.InvokeVoidAsync($"toastr.{toastTypeStr}", message);
+        _ = runtime.InvokeVoidAsync($"toastr.{toastTypeStr}", message);
     }
 }

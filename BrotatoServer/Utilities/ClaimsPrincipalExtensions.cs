@@ -36,6 +36,19 @@ public static class ClaimsPrincipalExtensions
         return claim;
     }
 
+    public static string GetTwitchRefreshToken(this ClaimsPrincipal claimsPrincipal)
+    {
+        var claim = claimsPrincipal.Identities
+            .FirstOrDefault(identity => identity.AuthenticationType == "Twitch")?
+            .FindFirst(c => c.Type == "TwitchRefreshToken")
+            ?.Value;
+
+        if (claim is null)
+            throw new UnauthorizedAccessException("No claim Refresh Token for Twitch");
+
+        return claim;
+    }
+
     public static ulong GetTwitchId(this ClaimsPrincipal claimsPrincipal)
     {
         var claim = claimsPrincipal.Identities.FirstOrDefault(identity => identity.AuthenticationType == "Twitch")

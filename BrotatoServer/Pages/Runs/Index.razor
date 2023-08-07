@@ -2,6 +2,7 @@
 
 @using BrotatoServer.Models
 @using BrotatoServer.Data
+@using BrotatoServer.Models.DB
 
 @inject IRunRepository RunRepository
 <div class="container-fluid">
@@ -9,7 +10,7 @@
         {
             var charName = run.RunData.Character.Replace("character_", "");
             
-            <a href="runs/@run.Id">
+            <a href="runs/@run.Id" style="text-decoration: none">
                 <div class="row run-wrapper mb-4">
                     <!-- First column (always shown) -->
                     <div class="col-auto">

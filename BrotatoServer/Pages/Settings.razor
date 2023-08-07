@@ -2,76 +2,75 @@
 
 @using Microsoft.Extensions.Logging
 @using BrotatoServer.Data
+@using BrotatoServer.Models
+@using System.Security.Claims
+@using AutoMapper
+@using BrotatoServer.Models.DB
+@using BrotatoServer.Models.Views
+@inject IJSRuntime JS
 @inject ILogger<Settings> Logger
-@attribute [Authorize(Policy = AuthPolicies.TWITCH_USER)]
+@inject IUserRepository UserRepo
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IMapper Mapper
+@attribute [Authorize(Policy = AuthPolicies.FULLY_AUTHED_USER)]
 
 <PageTitle>Settings</PageTitle>
 
-<EditForm Model="@SettingsModel" OnSubmit="@HandleSubmit">
+<EditForm Model="@UserSettingsViewModel" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
     <div class="container mt-5">
-        <form>
-            <div class="mb-3">
-                <label for="run-started-message" class="form-label">
-                    <i class="oi oi-info info-circle"
-                       data-bs-toggle="collapse"
-                       data-bs-target="#run-started-message-description-start" aria-expanded="false"
-                       aria-controls="description-start"></i>
-                    Message on Run Started 
-                </label>
-                <div class="collapse description-container" id="run-started-message-description-start">
-                    <small class="form-text text-muted">
-                        Sends a message at the start of wave #1. Leave empty to not send any message. The following variables can be used:
-                        <ul>
-                            <li><code>%link%</code>: The link to the tracker for the current run</li>
-                            <li><code>%character%</code>: The name of the character</li>
-                        </ul>
-                    </small>
-                </div>
-                <InputText type="text" id="run-started-message" class="form-control" @bind-Value="SettingsModel.OnRunStartedMessage"/>
-            </div>
-            
-            <div class="mb-3">
-                <label for="run-won-message" class="form-label">
-                    <i class="oi oi-info info-circle"
-                       data-bs-toggle="collapse"
-                       data-bs-target="#run-won-message-description-start" aria-expanded="false"
-                       aria-controls="description-start"></i>
-                    Message on Run Won
-                </label>
-                <div class="collapse description-container" id="run-won-message-description-start">
-                    <small class="form-text text-muted">
-                        Sends a message when you've won the run. Leave empty to not send any message. The following variables can be used:
-                        <ul>
-                            <li><code>%character%</code>: The name of the character</li>
-                        </ul>
-                    </small>
-                </div>
-                <InputText type="text" id="run-won-message" class="form-control" @bind-Value="SettingsModel.OnRunWonMessage"/>
-            </div>
+        
+        <BootstrapInput type="textarea" class="form-control" Title="Message on Run Started" @bind-Value="UserSettingsViewModel.OnRunStartedMessage">
+            <Description>
+                <small class="form-text text-muted">
+                    Sends a message at the start of wave #1. Leave empty to not send any message. The following variables can be used:
+                    <ul>
+                        <li><code>%link%</code>: The link to the tracker for the current run</li>
+                        <li><code>%character%</code>: The name of the character</li>
+                        <li><code>%streak%</code>: Your current win streak</li>
+                    </ul>
+                </small>
+            </Description>
+        </BootstrapInput>
 
-            <div class="mb-3">
-                <label for="run-lost-message" class="form-label">
-                    <i class="oi oi-info info-circle"
-                       data-bs-toggle="collapse"
-                       data-bs-target="#run-lost-message-description-start" aria-expanded="false"
-                       aria-controls="description-start"></i>
-                    Message on Run Lost
-                </label>
-                <div class="collapse description-container" id="run-lost-message-description-start">
-                    <small class="form-text text-muted">
-                        Sends a message when you've lost the run. Leave empty to not send any message. The following variables can be used:
-                        <ul>
-                            <li><code>%character%</code>: The name of the character</li>
-                        </ul>
-                    </small>
-                </div>
-                <InputText type="text" id="run-lost-message" class="form-control" @bind-Value="SettingsModel.OnRunWonMessage"/>
-            </div>
+        <BootstrapInput type="textarea" class="form-control" Title="Message on Run Won" @bind-Value="UserSettingsViewModel.OnRunWonMessage">
+            <Description>
+                <small class="form-text text-muted">
+                    Sends a message when you've won the run. Leave empty to not send any message. The following variables can be used:
+                    <ul>
+                        <li><code>%character%</code>: The name of the character</li>
+                        <li><code>%streak%</code>: Your current win streak</li>
+                    </ul>
+                </small>
+            </Description>
+        </BootstrapInput>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <BootstrapInput type="textarea" class="form-control" Title="Message on Run Lost" @bind-Value="UserSettingsViewModel.OnRunLostMessage">
+            <Description>
+                <small class="form-text text-muted">
+                    Sends a message when you've lost the run. Leave empty to not send any message. The following variables can be used:
+                    <ul>
+                        <li><code>%character%</code>: The name of the character</li>
+                    </ul>
+                </small>
+            </Description>
+        </BootstrapInput>
+        
+        <BootstrapCheckbox Title="Create a clip on lost run" @bind-Value="UserSettingsViewModel.ClipOnRunLost" />
+        <BootstrapCheckbox Title="Create a clip on won run" @bind-Value="UserSettingsViewModel.ClipOnRunWon" />
+
+        <BootstrapInputNumber type="number" class="form-control" Title="Clip Delay Seconds" @bind-Value="UserSettingsViewModel.ClipDelaySeconds">
+            <Description>
+                <small class="form-text text-muted">
+                    If either of the 2 previous settings are enabled, this setting will determine how long the bot will wait before creating a clip. The clip length will be 90 seconds, and this setting will allow you to adjust how much post-run commentary to capture.
+                </small>
+            </Description>
+        </BootstrapInputNumber>
+        
+
+        <button type="submit" class="btn btn-primary">Submit</button>
     </div>
-    
+
     @*
     <div class="mb-3">
         <label for="onRunStartedMessageInput" class="form-label">Run Started Message</label>
@@ -81,14 +80,35 @@
 </EditForm>
 
 @code {
-    private SettingsModel SettingsModel { get; set; }= new();
+    private UserSettingsViewModel UserSettingsViewModel { get; set; }
+    private ClaimsPrincipal user { get; set; }
 
-    private void HandleSubmit()
+    protected override async Task OnInitializedAsync()
     {
-        Logger.LogInformation("HandleSubmit called");
-        
-        
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+
+        user = authState.User;
+
+        var dbUser = (await UserRepo.GetUserAsync(user.GetSteamId()))!;
+
+        if (dbUser.Settings is null)
+        {
+            UserSettingsViewModel = new();
+            return;
+        }
+
+        UserSettingsViewModel = Mapper.Map<UserSettingsViewModel>(dbUser.Settings);
     }
 
+
+    private async void HandleSubmit()
+    {
+        var userSettings = Mapper.Map<UserSettings>(UserSettingsViewModel);
+
+        userSettings.UserId = user.GetSteamId();
+        
+        await UserRepo.SaveSettingsAsync(userSettings);
+        JS.Toast("Settings have been saved!");
+    }
 }
 

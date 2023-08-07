@@ -3,6 +3,7 @@ using System;
 using BrotatoServer.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BrotatoServer.Migrations
 {
     [DbContext(typeof(BrotatoServerContext))]
-    partial class BrotatoServerContextModelSnapshot : ModelSnapshot
+    [Migration("20230806205913_UserSettings")]
+    partial class UserSettings
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.9");
@@ -26,20 +29,14 @@ namespace BrotatoServer.Migrations
                     b.Property<bool>("CurrentRotation")
                         .HasColumnType("INTEGER");
 
-                    b.Property<long>("Date")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTimeOffset>("Date")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RunInformation")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TwitchClip")
-                        .HasColumnType("TEXT");
-
                     b.Property<ulong>("UserId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("Won")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -59,9 +56,6 @@ namespace BrotatoServer.Migrations
 
                     b.Property<bool>("JoinedChat")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("TwitchAccessToken")
-                        .HasColumnType("TEXT");
 
                     b.Property<ulong?>("TwitchId")
                         .HasColumnType("INTEGER");

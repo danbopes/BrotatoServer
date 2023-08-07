@@ -3,6 +3,7 @@ using BrotatoServer.Models;
 using BrotatoServer.Hubs;
 using BrotatoServer.Models.JSON;
 using BrotatoServer.Data;
+using BrotatoServer.Models.DB;
 using BrotatoServer.Services;
 using BrotatoServer.Utilities;
 using Microsoft.AspNetCore.Authorization;
@@ -15,11 +16,19 @@ namespace BrotatoServer.Controllers
     {
         private readonly ILogger<RunsController> _log;
         private readonly IRunRepository _runRepository;
+        private readonly TwitchService _twitchService;
+        private readonly CurrentRunProvider _currentRunProvider;
 
-        public RunsController(ILogger<RunsController> log, IRunRepository runRepository)
+        public RunsController(
+            ILogger<RunsController> log,
+            IRunRepository runRepository,
+            TwitchService twitchService,
+            CurrentRunProvider currentRunProvider)
         {
             _log = log;
             _runRepository = runRepository;
+            _twitchService = twitchService;
+            _currentRunProvider = currentRunProvider;
         }
 
         // GET: api/Runs
@@ -46,42 +55,90 @@ namespace BrotatoServer.Controllers
         // POST: api/Runs
         [HttpPost]
         [Authorize(AuthenticationSchemes = "ApiKey")]
-        public async Task<IActionResult> PostRun([FromBody] RunInformation runInfo, [FromServices] CurrentRunProvider currentRunProvider)
+        public async Task<IActionResult> PostRun([FromBody] RunInformation runInfo)
         {
             var run = await _runRepository.AddRunAsync(runInfo);
 
             var user = HttpContext.GetUser();
 
             if (user.TwitchUsername is not null)
-                await currentRunProvider.UpdateRun(user.TwitchUsername, null);
+            {
+                await _currentRunProvider.UpdateRunAsync( user.TwitchUsername, null);
+                await HandleEndOfRoundEventsAsync(run.Id, runInfo);
+            }
 
             return CreatedAtAction("GetRun", new { id = run.Id }, run);
+        }
+
+        private async Task HandleEndOfRoundEventsAsync(Guid runId, RunInformation runInfo)
+        {
+            var user = HttpContext.GetUser();
+
+            if (user.Settings is null)
+                return;
+            
+            if (runInfo.RunData.Won && !string.IsNullOrEmpty(user.Settings.OnRunWonMessage))
+            {
+                var runMessage = user.Settings.OnRunWonMessage
+                    .Replace("%character%", runInfo.RunData.Character.CharIdToNiceName());
+
+                if (runMessage.Contains("%streak%"))
+                {
+                    var streak = await _runRepository.GetStreakAsync(user.TwitchUsername!);
+                    runMessage = runMessage.Replace("%streak%", streak.ToString());
+                }
+
+                _twitchService.SendMessage(user.TwitchUsername!, runMessage);
+            }
+            else if (!runInfo.RunData.Won && !string.IsNullOrEmpty(user.Settings.OnRunLostMessage))
+            {
+                var runMessage = user.Settings.OnRunLostMessage
+                    .Replace("%character%", runInfo.RunData.Character.CharIdToNiceName());
+                
+                _twitchService.SendMessage(user.TwitchUsername!, runMessage);
+            }
+
+            if (runInfo.RunData.Won && user.Settings.ClipOnRunWon ||
+                !runInfo.RunData.Won && user.Settings.ClipOnRunLost)
+            {
+                _ = Task.Run(async () =>
+                {
+                    if (user.Settings.ClipDelaySeconds > 0)
+                        await Task.Delay(TimeSpan.FromSeconds(user.Settings.ClipDelaySeconds));
+
+                    await _twitchService.TryClipAsync(runId, user);
+                });
+            }
         }
 
         [HttpPost]
         [Route("current/notify_start")]
         [Authorize(AuthenticationSchemes = "ApiKey")]
-        public async Task<IActionResult> PostCurrentNotifyStart([FromServices] CurrentRunProvider currentRunProvider, [FromServices] TwitchChatService twitchChatService)
+        public async Task<IActionResult> PostCurrentNotifyStart()
         {
-#if DEBUG
-            return Ok();
-#endif
-
             var user = HttpContext.GetUser();
+
+            if (user.Settings?.OnRunStartedMessage is null)
+                return Ok();
 
             if (user.TwitchUsername is null)
                 return Conflict("Twitch Username has not been set up");
 
-
-            currentRunProvider.Current.TryGetValue(user.TwitchUsername, out var currentRun);
+            _currentRunProvider.Current.TryGetValue(user.TwitchUsername, out var currentRun);
             if (currentRun is null)
                 return Conflict("No run currently happening.");
-
-            var runMessage = $"New %character% run started! Follow along here: %link%"
+            
+            var runMessage = user.Settings.OnRunStartedMessage
                 .Replace("%character%", currentRun.Character.CharIdToNiceName())
                 .Replace("%link%", user.TwitchUsername.GetCurrentRunUrlForUser());
 
-            twitchChatService.SendMessage(user.TwitchUsername, runMessage);
+            if (runMessage.Contains("%streak%"))
+            {
+                var streak = await _runRepository.GetStreakAsync(user.TwitchUsername);
+                runMessage = runMessage.Replace("%streak%", streak.ToString());
+            }
+
+            _twitchService.SendMessage(user.TwitchUsername, runMessage);
 
             return Ok();
         }
@@ -89,7 +146,7 @@ namespace BrotatoServer.Controllers
         [HttpPost]
         [Route("current")]
         [Authorize(AuthenticationSchemes = "ApiKey")]
-        public async Task<IActionResult> PostCurrentRun([FromServices] CurrentRunProvider currentRunProvider, [FromBody] RunInformation runInfo)
+        public async Task<IActionResult> PostCurrentRun([FromBody] RunInformation runInfo)
         {
             var user = HttpContext.GetUser();
 
@@ -98,7 +155,7 @@ namespace BrotatoServer.Controllers
             
             _log.LogInformation("Update Run: {Run}", runInfo.RunData?.Character);
 
-            await currentRunProvider.UpdateRun(user.TwitchUsername, runInfo.RunData);
+            await _currentRunProvider.UpdateRunAsync(user.TwitchUsername, runInfo.RunData);
 
             return Ok();
         }
@@ -106,7 +163,7 @@ namespace BrotatoServer.Controllers
         [HttpDelete]
         [Route("current")]
         [Authorize(AuthenticationSchemes = "ApiKey")]
-        public async Task<IActionResult> PostCurrentRun([FromServices] CurrentRunProvider currentRunProvider)
+        public async Task<IActionResult> PostCurrentRun()
         {
             var user = HttpContext.GetUser();
 
@@ -115,7 +172,7 @@ namespace BrotatoServer.Controllers
             
             _log.LogInformation("Delete Current Run Request");
 
-            await currentRunProvider.UpdateRun(user.TwitchUsername, null);
+            await _currentRunProvider.UpdateRunAsync(user.TwitchUsername, null);
 
             return Ok();
         }

@@ -1,5 +1,8 @@
-﻿using BrotatoServer.Models.JSON;
+﻿using AutoMapper;
+using BrotatoServer.Models.JSON;
 using BrotatoServer.Models;
+using BrotatoServer.Models.DB;
+using BrotatoServer.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
@@ -8,10 +11,12 @@ namespace BrotatoServer.Data;
 public class RunRepository : IRunRepository
 {
     private readonly BrotatoServerContext _context;
+    private readonly IMapper _mapper;
 
-    public RunRepository(BrotatoServerContext context)
+    public RunRepository(BrotatoServerContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     public async IAsyncEnumerable<FullRun> GetAllRunsAsync(string twitchUsername)
@@ -38,18 +43,7 @@ public class RunRepository : IRunRepository
     {
         var run = await _context.Run.FindAsync(id);
 
-        if (run is null)
-            return null;
-
-        var runInfo = JsonConvert.DeserializeObject<RunInformation>(run.RunInformation)!;
-
-        return new FullRun
-        {
-            Id = run.Id,
-            Date = run.Date,
-            CurrentRotation = run.CurrentRotation,
-            RunData = runInfo.RunData
-        };
+        return run is null ? null : _mapper.Map<FullRun>(run);
     }
 
     public async Task<Run> AddRunAsync(RunInformation runInfo)
@@ -57,6 +51,7 @@ public class RunRepository : IRunRepository
         var run = new Run
         {
             Id = Guid.NewGuid(),
+            Won = runInfo.RunData.Won,
             Date = DateTimeOffset.FromUnixTimeSeconds(runInfo.Created),
             CurrentRotation = true,
             RunInformation = JsonConvert.SerializeObject(runInfo)
@@ -98,24 +93,24 @@ public class RunRepository : IRunRepository
         return true;
     }
 
-    public async IAsyncEnumerable<FullRun> GetLatestRunsAsync(string twitchUsername, int amount = 3)
+    public IAsyncEnumerable<FullRun> GetLatestRunsAsync(string twitchUsername, int amount = 3)
     {
-        var runs = _context.Run
+        return _context.Run
             .Where(run => run.User!.TwitchUsername == twitchUsername)
+            .OrderByDescending(run => run.Date)
             .Take(amount)
-            .AsAsyncEnumerable();
-        
-        await foreach (var run in runs)
-        {
-            var runInfo = JsonConvert.DeserializeObject<RunInformation>(run.RunInformation)!;
+            .AsAsyncEnumerable()
+            .Select(run => _mapper.Map<FullRun>(run));
+    }
 
-            yield return new FullRun
-            {
-                Id = run.Id,
-                Date = run.Date,
-                CurrentRotation = run.CurrentRotation,
-                RunData = runInfo.RunData
-            };
-        }
+    public async Task<int> GetStreakAsync(string userTwitchUsername)
+    {
+        return await _context.Run
+            .Where(run => run.User!.TwitchUsername == userTwitchUsername 
+                          && run.Won &&
+                          run.Date > _context.Run
+                              .Where(run2 => run2.User!.TwitchUsername == userTwitchUsername && !run2.Won)
+                              .Max(run2 => run2.Date))
+            .CountAsync();
     }
 }

@@ -76,7 +76,7 @@
     private async void UpdateLoggedInStatus(Task<AuthenticationState> getNewState)
     {
         var state = await getNewState;
-        var authorized = await _authService.AuthorizeAsync(state.User, null, "TwitchUser");
+        var authorized = await _authService.AuthorizeAsync(state.User, null, AuthPolicies.FULLY_AUTHED_USER);
 
         loggedIn = authorized.Succeeded;
         StateHasChanged();

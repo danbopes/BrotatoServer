@@ -26,7 +26,10 @@ public class ApiKeyAuthenticationSchemeHandler : AuthenticationHandler<Authentic
 
         var db = Context.RequestServices.GetRequiredService<BrotatoServerContext>();
 
-        var user = await db.Users.FirstOrDefaultAsync(u => u.ApiKey == apiKeyGuid);
+        var user = await db.Users
+            .AsNoTracking()
+            .Include(user => user.Settings)
+            .FirstOrDefaultAsync(u => u.ApiKey == apiKeyGuid);
 
         if (user is null)
             return AuthenticateResult.Fail("That Api Key was not found.");

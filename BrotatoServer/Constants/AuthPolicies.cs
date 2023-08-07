@@ -7,4 +7,8 @@ public static class AuthPolicies
     /// has authenticated properly with Twitch
     /// </summary>
     public const string TWITCH_USER = "TwitchUser";
+
+    public const string STEAM_USER = "SteamUser";
+
+    public const string FULLY_AUTHED_USER = "FullyAuthedUser";
 }
