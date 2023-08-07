@@ -22,6 +22,10 @@ spec:
       containers:
         - name: brotato-tracker
           image: ghcr.io/danbopes/brotatoserver:main-1691381626-937905e6
+          lifecycle:
+            preStop:
+              exec:
+                command: ["sleep", "30"]
           ports:
             - containerPort: 80
               protocol: TCP
