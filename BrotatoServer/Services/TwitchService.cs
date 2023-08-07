@@ -20,6 +20,7 @@ public class TwitchService : BackgroundService
     private readonly IServiceProvider _serviceProvider;
     private readonly TwitchClient _client;
     private readonly ConnectionCredentials _credentials;
+    private readonly TwitchAPI _api;
 
 #if DEBUG
     private const string PREFIX_CHAR = ";";
@@ -28,7 +29,7 @@ public class TwitchService : BackgroundService
 #endif
 
 
-    public TwitchService(ILogger<TwitchService> log, BrotatoItemEngine itemSearchEngine, IServiceProvider serviceProvider)
+    public TwitchService(ILogger<TwitchService> log, ILoggerFactory loggerFactory, BrotatoItemEngine itemSearchEngine, IServiceProvider serviceProvider)
     {
         _credentials = new ConnectionCredentials(AppConstants.BOT_NAME, "oauth:gx244vysokmuqcunclv8fovswigefo");
         var clientOptions = new ClientOptions
@@ -38,6 +39,14 @@ public class TwitchService : BackgroundService
         };
         var customClient = new WebSocketClient(clientOptions);
         _client = new TwitchClient(customClient);
+        _api = new TwitchAPI(loggerFactory)
+        {
+            Settings =
+            {
+                ClientId = AppConstants.TWITCH_CLIENT_ID
+            }
+        };
+        
         _log = log;
         _itemSearchEngine = itemSearchEngine;
         _serviceProvider = serviceProvider;
@@ -138,19 +147,10 @@ public class TwitchService : BackgroundService
         try
         {
             await using var scope = _serviceProvider.CreateAsyncScope();
-            var twitchApi = new TwitchAPI(scope.ServiceProvider.GetRequiredService<ILoggerFactory>())
-            {
-                Settings =
-                {
-                    ClientId = AppConstants.TWITCH_CLIENT_ID
-                }
-            };
-
-            var accessToken = await twitchApi.Auth.RefreshAuthTokenAsync(user.TwitchAccessToken, AppConstants.TWITCH_CLIENT_SECRET);
+            
+            var accessToken = await _api.Auth.RefreshAuthTokenAsync(user.TwitchAccessToken, AppConstants.TWITCH_CLIENT_SECRET);
         
-            twitchApi.Settings.AccessToken = accessToken.AccessToken;
-
-            var createdResult = await twitchApi.Helix.Clips.CreateClipAsync(user.TwitchId.ToString());
+            var createdResult = await _api.Helix.Clips.CreateClipAsync(user.TwitchId.ToString(), accessToken.AccessToken);
 
             if (!createdResult.CreatedClips.Any())
             {
@@ -162,7 +162,7 @@ public class TwitchService : BackgroundService
 
             await Task.Delay(TimeSpan.FromSeconds(15));
             
-            var clipResult = await twitchApi.Helix.Clips.GetClipsAsync(new List<string>(new[] { newClip.Id }));
+            var clipResult = await _api.Helix.Clips.GetClipsAsync(new List<string>(new[] { newClip.Id }), accessToken: accessToken.AccessToken);
         
             if (!clipResult.Clips.Any())
             {
