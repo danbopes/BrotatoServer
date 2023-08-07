@@ -57,9 +57,9 @@ namespace BrotatoServer.Controllers
         [Authorize(AuthenticationSchemes = "ApiKey")]
         public async Task<IActionResult> PostRun([FromBody] RunInformation runInfo)
         {
-            var run = await _runRepository.AddRunAsync(runInfo);
-
             var user = HttpContext.GetUser();
+            
+            var run = await _runRepository.AddRunAsync(user.SteamId, runInfo);
 
             if (user.TwitchUsername is not null)
             {

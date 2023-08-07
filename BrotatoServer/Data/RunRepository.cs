@@ -46,11 +46,12 @@ public class RunRepository : IRunRepository
         return run is null ? null : _mapper.Map<FullRun>(run);
     }
 
-    public async Task<Run> AddRunAsync(RunInformation runInfo)
+    public async Task<Run> AddRunAsync(ulong userId, RunInformation runInfo)
     {
         var run = new Run
         {
             Id = Guid.NewGuid(),
+            UserId = userId,
             Won = runInfo.RunData.Won,
             Date = DateTimeOffset.FromUnixTimeSeconds(runInfo.Created),
             CurrentRotation = true,
