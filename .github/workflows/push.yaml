@@ -62,9 +62,6 @@ jobs:
         file: ./BrotatoServer/Dockerfile
         tags: |
           ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.prep.outputs.BUILD_ID }}
-    
-    - name: Set Image Tag Output
-      run: echo "IMAGE_TAG=${{ steps.build_and_publish.outputs.TAG }}" >> $GITHUB_OUTPUT
   
   update_k8s:
     runs-on: ubuntu-latest
@@ -92,11 +89,11 @@ jobs:
         run: |
           cd k8s/
           kustomize create --autodetect
-          kustomize edit set image ghcr.io/danbopes/brotatoserver:${{ needs.build-push.outputs.IMAGE_TAG }}
+          kustomize edit set image ghcr.io/danbopes/brotatoserver:${{ needs.build-push.outputs.BUILD_ID }}
           if [[ ${{ github.ref }} == "refs/heads/main" || ${{ github.ref }} == "refs/heads/master" ]]; then
-            kustomize edit set namespace=brotato
+            kustomize edit set namespace brotato
           else
-            kustomize edit set namespace=brotato-dev
+            kustomize edit set namespace brotato-dev
           fi
           kustomize build . > deploy.yaml
           kubectl apply -f deploy.yaml
