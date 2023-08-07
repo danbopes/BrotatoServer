@@ -63,6 +63,8 @@ jobs:
         push: true
         context: .
         file: ./BrotatoServer/Dockerfile
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
         tags: |
           ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.prep.outputs.BUILD_ID }}
   
