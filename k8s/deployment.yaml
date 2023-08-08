@@ -19,6 +19,9 @@ spec:
         - name: pvc
           persistentVolumeClaim:
             claimName: brotato-tracker
+        - name: config
+          configMap:
+            name: brotato-tracker-config
       containers:
         - name: brotato-tracker
           image: ghcr.io/danbopes/brotatoserver:main-1691381626-937905e6
@@ -46,6 +49,10 @@ spec:
           volumeMounts:
             - name: pvc
               mountPath: /app/db
+            - name: config
+              mountPath: /app/appsettings.json
+              subPath: appsettings.json
+      restartPolicy: Always
       imagePullSecrets:
         - name: danbopes-github
   strategy:
