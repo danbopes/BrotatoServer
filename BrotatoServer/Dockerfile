@@ -28,7 +28,7 @@ FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src
 COPY ["BrotatoServer/BrotatoServer.csproj", "BrotatoServer/"]
 COPY ["BrotatoServer.Tests/BrotatoServer.Tests.csproj", "BrotatoServer.Tests/"]
-COPY ["CollectibleCardEngine/CollectibleCardEngine.csproj", "CollectibleCardEngine/"]
+COPY ["SearchEngine/SearchEngine.csproj", "SearchEngine/"]
 RUN dotnet restore "BrotatoServer/BrotatoServer.csproj"
 RUN dotnet restore "BrotatoServer.Tests/BrotatoServer.Tests.csproj"
 COPY . .
