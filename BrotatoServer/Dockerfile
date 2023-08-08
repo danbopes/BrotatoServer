@@ -37,7 +37,7 @@ RUN dotnet build "BrotatoServer.csproj" -c Release -o /app/build
 
 FROM build AS test
 WORKDIR /src/BrotatoServer.Tests
-RUN dotnet test --logger:trx
+ENTRYPOINT ["dotnet", "test", "--logger:trx"]
 
 FROM build AS publish
 RUN dotnet publish "BrotatoServer.csproj" -c Release -o /app/publish /p:UseAppHost=false
