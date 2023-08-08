@@ -60,6 +60,24 @@ public class UserRepository : IUserRepository
             .FirstOrDefaultAsync(user => user.SteamId == steamId);
     }
 
+    public async Task<User> GetOrCreateUserAsync(ulong steamId)
+    {
+        var user = await GetUserAsync(steamId);
+        if (user is not null)
+            return user;
+        
+        user = new User
+        {
+            SteamId = steamId,
+            ApiKey = Guid.NewGuid()
+        };
+        _db.Users.Add(user);
+        await _db.SaveChangesAsync();
+        _db.Entry(user).State = EntityState.Detached;
+
+        return user;
+    }
+
     public async Task<User?> GetUserByTwitchUsername(string twitchUsername)
     {
         return await _db

@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrotatoServer", "BrotatoSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CollectibleCardEngine", "CollectibleCardEngine\CollectibleCardEngine.csproj", "{E5A998E2-116D-4BD6-9213-361898AE7944}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrotatoServer.Tests", "BrotatoServer.Tests\BrotatoServer.Tests.csproj", "{72B8BB5F-C798-4F4C-A71D-F55B1C517E1E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E5A998E2-116D-4BD6-9213-361898AE7944}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5A998E2-116D-4BD6-9213-361898AE7944}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5A998E2-116D-4BD6-9213-361898AE7944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72B8BB5F-C798-4F4C-A71D-F55B1C517E1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72B8BB5F-C798-4F4C-A71D-F55B1C517E1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72B8BB5F-C798-4F4C-A71D-F55B1C517E1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72B8BB5F-C798-4F4C-A71D-F55B1C517E1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

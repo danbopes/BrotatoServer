@@ -113,6 +113,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 builder.Services
     .AddScoped<IRunRepository, RunRepository>()
     .AddScoped<IUserRepository, UserRepository>()
+    .AddSingleton<ISteamworksService, SteamworksService>()
     .AddSingleton<CurrentRunProvider>();
 
 builder.Services.AddControllers()
@@ -198,23 +199,11 @@ using (var scope = app.Services.CreateScope())
         log.LogCritical(ex, "Error occurred while applying migrations: ");
         return;
     }
+
+    // Initialize steamworks service (Just need to create force new instance)
+    services.GetRequiredService<ISteamworksService>();
     
-#if DEBUG
-    const int APP_ID = 480;
-#else
-    const int APP_ID = 1942280;
-#endif
-    File.WriteAllText("steam_appid.txt", APP_ID.ToString(), Encoding.ASCII);
-    log.LogInformation("Initializing Steam - Init");
-    SteamServer.Init(APP_ID, new SteamServerInit
-    {
-        
-        DedicatedServer = true,
-        IpAddress = IPAddress.Loopback,
-        VersionString = "0.0.1"
-    });
-    log.LogInformation("Initializing Steam - Logging On");
-    SteamServer.LogOnAnonymous();
+    // 
 }
 
 try

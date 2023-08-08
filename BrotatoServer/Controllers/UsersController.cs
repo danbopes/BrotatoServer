@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Buffers;
 using BrotatoServer.Models.DB;
 using BrotatoServer.Models.JSON;
+using BrotatoServer.Services;
 using Microsoft.AspNetCore.Authorization;
 using Newtonsoft.Json;
 
@@ -16,13 +17,13 @@ namespace BrotatoServer.Controllers;
 [ApiController]
 public class UsersController : ControllerBase
 {
-    private readonly BrotatoServerContext _db;
     private readonly IUserRepository _userRepository;
+    private readonly ISteamworksService _steamworksService;
 
-    public UsersController(BrotatoServerContext db, IUserRepository userRepository)
+    public UsersController(IUserRepository userRepository, ISteamworksService steamworksService)
     {
-        _db = db;
         _userRepository = userRepository;
+        _steamworksService = steamworksService;
     }
 
     [HttpPost]
@@ -38,22 +39,12 @@ public class UsersController : ControllerBase
 
         await Request.Body.ReadExactlyAsync(ticketBuffer, 0, len.Value);
 
-        var res = await SteamworksUtilities.AuthenticateSession(ticketBuffer, steamId);
+        var res = await _steamworksService.AuthenticateSessionAsync(ticketBuffer, steamId);
 
         if (!res)
             return Unauthorized();
 
-        var user = await _db.Users.FirstOrDefaultAsync(u => u.SteamId == steamId);
-        if (user == null)
-        {
-            user = new User
-            {
-                SteamId = steamId,
-                ApiKey = Guid.NewGuid()
-            };
-            _db.Users.Add(user);
-            await _db.SaveChangesAsync();
-        }
+        var user = await _userRepository.GetOrCreateUserAsync(steamId);
 
         return Ok(user.ApiKey);
     }

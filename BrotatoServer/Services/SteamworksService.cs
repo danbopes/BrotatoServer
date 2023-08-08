@@ -1,11 +1,31 @@
-﻿using Azure;
+﻿using System.Net;
+using System.Text;
 using Steamworks;
 
-namespace BrotatoServer.Utilities;
+namespace BrotatoServer.Services;
 
-public static class SteamworksUtilities
+public class SteamworksService : ISteamworksService
 {
-    public static async Task<bool> AuthenticateSession(byte[] token, SteamId steamId)
+#if DEBUG
+    private const int APP_ID = 480;
+#else
+    private const int APP_ID = 1942280;
+#endif
+    public SteamworksService(ILogger<SteamworksService> log)
+    {
+        File.WriteAllText("steam_appid.txt", APP_ID.ToString(), Encoding.ASCII);
+        log.LogInformation("Initializing Steam - Init");
+        SteamServer.Init(APP_ID, new SteamServerInit
+        {
+        
+            DedicatedServer = true,
+            IpAddress = IPAddress.Loopback,
+            VersionString = "0.0.1"
+        });
+        log.LogInformation("Initializing Steam - Logging On");
+        SteamServer.LogOnAnonymous();
+    }
+    public async Task<bool> AuthenticateSessionAsync(byte[] token, SteamId steamId)
     {
         var tcs = new TaskCompletionSource<bool>();
         using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
