@@ -264,5 +264,7 @@ FakesAssemblies/
 
 !BrotatoServer/steam_api64.dll
 
-BrotatoServer/steam_appid.txt
-BrotatoServer/Indexes/
+/BrotatoServer/steam_appid.txt
+/BrotatoServer/Indexes/
+/BrotatoServer/appsettings.Development.json
+/BrotatoServer/appsettings.json
