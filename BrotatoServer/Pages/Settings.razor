@@ -18,8 +18,12 @@
 
 <EditForm Model="@UserSettingsViewModel" OnValidSubmit="@HandleSubmit">
     <DataAnnotationsValidator />
-    <div class="container mt-5">
         
+    <div class="container mt-2">
+        <p>Configure various settings for your integration. Click the <InfoIcon /> icons below for additional information related to each setting.</p>
+    </div>
+    <div class="container mt-4 p-2 border border-2 rounded">
+
         <BootstrapInput type="textarea" class="form-control" Title="Message on Run Started" @bind-Value="UserSettingsViewModel.OnRunStartedMessage">
             <Description>
                 <small class="form-text text-muted">
@@ -56,9 +60,9 @@
                 </small>
             </Description>
         </BootstrapInput>
-        
-        <BootstrapCheckbox Title="Create a clip on lost run" @bind-Value="UserSettingsViewModel.ClipOnRunLost" />
-        <BootstrapCheckbox Title="Create a clip on won run" @bind-Value="UserSettingsViewModel.ClipOnRunWon" />
+
+        <BootstrapCheckbox Title="Create a clip on lost run" @bind-Value="UserSettingsViewModel.ClipOnRunLost"/>
+        <BootstrapCheckbox Title="Create a clip on won run" @bind-Value="UserSettingsViewModel.ClipOnRunWon"/>
 
         <BootstrapInputNumber type="number" class="form-control" Title="Clip Delay Seconds" @bind-Value="UserSettingsViewModel.ClipDelaySeconds">
             <Description>
@@ -67,7 +71,7 @@
                 </small>
             </Description>
         </BootstrapInputNumber>
-        
+
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>

@@ -1,0 +1,6 @@
+﻿<i class="oi oi-info info-circle" @attributes="AdditionalAttributes"></i>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

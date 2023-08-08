@@ -7,10 +7,10 @@
     <label for="@FieldIdentifier.FieldName.PascalToDashCase()" class="form-label">
         @if (Description is not null)
         {
-            <i class="oi oi-info info-circle"
-               data-bs-toggle="collapse"
-               data-bs-target="#@FieldIdentifier.FieldName.PascalToDashCase()-description-start" aria-expanded="false"
-               aria-controls="description-start"></i><text>&nbsp;</text>
+            <InfoIcon
+                data-bs-toggle="collapse"
+                data-bs-target="@($"#{FieldIdentifier.FieldName.PascalToDashCase()}-description-start")" aria-expanded="false"
+                aria-controls="@($"{FieldIdentifier.FieldName.PascalToDashCase()}-description-start")" /><Text>&nbsp;</Text>
         }
         @Title
     </label>
