@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using BrotatoServer.Data.Game;
 using BrotatoServer.Utilities;
-using CardSearcher.CardSearchers.CardEngines;
+using SearchEngine;
 
 namespace BrotatoServer.SearchEngine;
 
@@ -14,7 +14,7 @@ public class BrotatoItemEngine : WebEngine<BrotatoItem>
     public override string Name => "BrotatoItems";
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-    protected override async IAsyncEnumerable<BrotatoItem> InitializeCardsAsync()
+    protected override async IAsyncEnumerable<BrotatoItem> InitializeObjectsAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
         foreach (var (key, item) in Assets.Items)

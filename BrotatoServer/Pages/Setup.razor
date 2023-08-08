@@ -1,18 +1,17 @@
 ﻿@page "/setup"
-@using BrotatoServer.Models;
-@using Microsoft.AspNetCore.Authentication;
-@using Microsoft.AspNetCore.Identity;
-@using Microsoft.AspNetCore.Mvc;
 @using System.Security.Claims;
+@using BrotatoServer.Config
 @using BrotatoServer.Data
 @using BrotatoServer.Models.DB
 @using BrotatoServer.Services
+@using Microsoft.Extensions.Options
 
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager;
 @inject TwitchService TwitchService
 @inject IJSRuntime JsRuntime;
 @inject IUserRepository UserRepo
+@inject IOptions<TwitchConfig> TwitchConfig
 
 <h4>Want to run the tracker on your stream? Follow these steps to get started!</h4>
 
@@ -74,9 +73,9 @@
     </h2>
     <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-          <p>Click <button class="btn btn-sm btn-success" @onclick="JoinChat">here</button> to have <code>@AppConstants.BOT_NAME</code> join your chat.</p>
+          <p>Click <button class="btn btn-sm btn-success" @onclick="JoinChat">here</button> to have <code>@BotName</code> join your chat. If it doesn't respond to commands, please ensure the bot is modded due to Twitch spam filters.</p>
           
-          <code>@AppConstants.BOT_NAME</code> currently has the following commands:
+          <code>@BotName</code> currently has the following commands:
           <ul>
               <li><code>!tater</code> - Displays the current character, and link to the current run.</li>
               <li><code>!item</code> - Looks up an item and displays stats/link to wiki.</li>
@@ -93,13 +92,13 @@
     </h2>
     <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
       <div class="accordion-body">
-          <p>If you've added @AppConstants.BOT_NAME to your chat, you can configure various settings over on our <a href="settings" style="text-decoration: underline">Settings page</a>.</p>
+          <p>If you've added @BotName to your chat, you can configure various settings over on our <a href="settings" style="text-decoration: underline">Settings page</a>.</p>
       </div>
     </div>
   </div>
 </div>
 
-@if (showClaims)
+@if (SHOW_CLAIMS)
 {
     <h1>Claims View</h1>
 
@@ -139,11 +138,12 @@
 
 @code {
 #if DEBUG
-    private const bool showClaims = true;
+    private const bool SHOW_CLAIMS = true;
 #else
-    private const bool showClaims = false;
+    private const bool SHOW_CLAIMS = false;
 #endif
     private ClaimsPrincipal? user;
+    private string BotName => TwitchConfig.Value.BotName;
 
     private ClaimsIdentity? twitchIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Twitch");
     private ClaimsIdentity? steamIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Steam");
@@ -186,7 +186,7 @@
 
         if (dbUser.JoinedChat)
         {
-            JsRuntime.Toast($"{AppConstants.BOT_NAME} should already be in your chat. If it's not responding, please contact Danbopes.", ToastType.Warning);
+            JsRuntime.Toast($"{BotName} should already be in your chat. If it's not responding, check to ensure it's modded, and please contact Danbopes.", ToastType.Warning);
             return;
         }
 
@@ -197,7 +197,7 @@
         TwitchService.JoinChat(dbUser.TwitchUsername!);
 
         await Task.Delay(2000);
-        JsRuntime.Toast($"{AppConstants.BOT_NAME} should now be in your chat. If it's not responding, please contact Danbopes.");
+        JsRuntime.Toast($"{BotName} should now be in your chat. If it's not responding, please contact Danbopes.");
     }
 
     private void LoginWithProvider(string provider)

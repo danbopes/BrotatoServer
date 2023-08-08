@@ -60,12 +60,4 @@ public class UsersController : ControllerBase
 
         return Ok();
     }
-
-    [HttpGet]
-    [Route("test")]
-    [Authorize(AuthenticationSchemes = "Twitch")]
-    public IActionResult Test()
-    {
-        return Ok();
-    }
 }

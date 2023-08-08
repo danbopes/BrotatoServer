@@ -1,4 +1,4 @@
-﻿namespace CollectibleCardEngine;
+﻿namespace SearchEngine;
 
 public enum ResultType
 {
@@ -8,7 +8,7 @@ public enum ResultType
     Initials = 3,
 }
 
-public interface ICardResults<out T> where T : ICollectibleCard
+public interface ISearchResults<out T> where T : ISearchableObject
 {
     string SearchTerm { get; }
     ResultType ResultType { get; }
@@ -17,7 +17,7 @@ public interface ICardResults<out T> where T : ICollectibleCard
     IEnumerable<T> Results { get; }
 }
 
-public class CardResults<T> : ICardResults<T> where T : ICollectibleCard
+public class SearchResults<T> : ISearchResults<T> where T : ISearchableObject
 {
     public string SearchTerm { get; }
     public ResultType ResultType { get; }
@@ -26,16 +26,16 @@ public class CardResults<T> : ICardResults<T> where T : ICollectibleCard
     {
         get
         {
-            return HasMultipleCards() ? Results.Where(c => c.Name.Equals(SearchTerm, StringComparison.InvariantCultureIgnoreCase)) : Results;
+            return HasMultipleObjects() ? Results.Where(c => c.Name.Equals(SearchTerm, StringComparison.InvariantCultureIgnoreCase)) : Results;
         }
     }
     public IEnumerable<T> Results { get; }
 
-    public CardResults(string searchTerm) : this(searchTerm, new List<T>(), 0) { }
+    public SearchResults(string searchTerm) : this(searchTerm, new List<T>(), 0) { }
 
-    public CardResults(string searchTerm, IEnumerable<T> results, int totalHits = 0) : this(searchTerm, ResultType.Contains, results, totalHits) { }
+    public SearchResults(string searchTerm, IEnumerable<T> results, int totalHits = 0) : this(searchTerm, ResultType.Contains, results, totalHits) { }
 
-    public CardResults(string searchTerm, ResultType type, IEnumerable<T> results, int totalHits = 0)
+    public SearchResults(string searchTerm, ResultType type, IEnumerable<T> results, int totalHits = 0)
     {
         results = results.ToList();
         ResultType = type;
@@ -44,13 +44,8 @@ public class CardResults<T> : ICardResults<T> where T : ICollectibleCard
         Results = results;
     }
 
-    private bool HasMultipleCards()
+    private bool HasMultipleObjects()
     {
         return Results.Any() && Results.Any(result => result.Name != Results.First().Name);
     }
-
-    /*public static implicit operator CardResults<CollectibleCard>(CardResults<T> result)
-    {
-        return result;
-    }*/
 }

@@ -1,8 +1,6 @@
-﻿using System.Net.Http;
+﻿using System.Diagnostics;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using CollectibleCardEngine;
-using CollectibleCardEngine.Utilities;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Core;
 using Lucene.Net.Analysis.Miscellaneous;
@@ -14,17 +12,19 @@ using Lucene.Net.Search;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
 using Microsoft.Extensions.Logging;
-using ICollectibleCard = CollectibleCardEngine.ICollectibleCard;
+using SearchEngine.Utilities;
 
-namespace CardSearcher.CardSearchers.CardEngines;
+namespace SearchEngine;
 
 /// <summary>
 /// Provides an easy way for cards to be populated into an indexed lucene database
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : notnull, ICollectibleCard
+public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : ISearchableObject
 {
     public abstract string Name { get; }
+    public bool InitialSearchEnabled { get; protected set; }
+    
     private readonly ILogger<WebEngine<T>> _log;
     private readonly FSDirectory _index;
     private readonly IndexWriter _writer;
@@ -37,17 +37,6 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
     private List<Analyzer> _analyzers = new();
 
     private const LuceneVersion LUCENE_VERSION = LuceneVersion.LUCENE_48;
-
-    protected class IndexedCard
-    {
-        public T Card { get; }
-        public bool Indexed { get; set; }
-
-        public IndexedCard(T card)
-        {
-            Card = card ?? throw new ArgumentNullException(nameof(card));
-        }
-    }
 
     protected WebEngine(ILogger<WebEngine<T>> log)
     {
@@ -96,7 +85,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         }
     }
 
-    protected abstract IAsyncEnumerable<T> InitializeCardsAsync();
+    protected abstract IAsyncEnumerable<T> InitializeObjectsAsync();
     
     protected async Task UpdateIndexAsync()
     {
@@ -104,22 +93,16 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
         try
         {
-            await foreach (var card in InitializeCardsAsync())
+            await foreach (var obj in InitializeObjectsAsync())
             {
-                if (!_cardsIds.Add(card.Id))
+                if (!_cardsIds.Add(obj.Id))
                     continue;
-
-                var nameClean = CleanRegex().Replace(card.Name.Replace("Æther", "Aether"), "");
-
-                var initials = string.Join("", nameClean.Split(' ')
-                    .Where(word => !string.IsNullOrWhiteSpace(word))
-                    .Select(word => word[0])).ToLowerInvariant();
 
                 var doc = new Document
                 {
-                    new StoredField("Id", card.Id),
-                    new StringField("Culture", card.Culture, Field.Store.YES),
-                    new Field("CIName", card.Name, new FieldType
+                    new StoredField("Id", obj.Id),
+                    new StringField("Culture", obj.Culture, Field.Store.YES),
+                    new Field("CIName", obj.Name, new FieldType
                     {
                         IsStored = true,
                         IsIndexed = true,
@@ -128,13 +111,12 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
                         StoreTermVectorPositions = true,
                         StoreTermVectorOffsets = true,
                     }),
-                    new Field("CINameNoPunctuation", card.Name.CleanPunctuation(), new FieldType
+                    new Field("CINameNoPunctuation", obj.Name.CleanPunctuation(), new FieldType
                     {
                         IsIndexed = true,
                         IsTokenized = true
                     }) {Boost = 0.5f},
-                    new StringField("CIInitials", initials, Field.Store.NO),
-                    new Field("SimpleName", card.Name.CleanPunctuation(), new FieldType
+                    new Field("SimpleName", obj.Name.CleanPunctuation(), new FieldType
                         {
                             IsIndexed = true,
                             IsTokenized = true,
@@ -142,8 +124,20 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
                             StoreTermVectorPositions = true,
                             StoreTermVectorOffsets = true,
                         }),
-                    new StoredField("Card", JsonSerializer.SerializeToUtf8Bytes(card))
+                    new StoredField("Card", JsonSerializer.SerializeToUtf8Bytes(obj))
                 };
+
+                if (InitialSearchEnabled)
+                {
+                    var nameClean = CleanRegex().Replace(obj.Name, "");
+
+                    var initials = string.Join("", nameClean.Split(' ')
+                            .Where(word => !string.IsNullOrWhiteSpace(word))
+                            .Select(word => word[0]))
+                        .ToLowerInvariant();
+                    
+                    doc.Add(new StringField("CIInitials", initials, Field.Store.NO));
+                }
                 _writer.AddDocument(doc);
             }
             _writer.Commit();
@@ -155,7 +149,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         }
     }
 
-    public IEnumerable<ICollectibleCard> GetResults(IndexSearcher searcher, IEnumerable<ScoreDoc> scoreDocs, string fetchCulture)
+    private static IEnumerable<ISearchableObject> GetResults(IndexSearcher searcher, IEnumerable<ScoreDoc> scoreDocs, string fetchCulture)
     {
         if (scoreDocs == null) throw new ArgumentNullException(nameof(scoreDocs));
         if (fetchCulture == null) throw new ArgumentNullException(nameof(fetchCulture));
@@ -203,7 +197,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         }
     }
 
-    public async Task<ICardResults<ICollectibleCard>> FindAsync(string cardName)
+    public async Task<ISearchResults<ISearchableObject>> FindAsync(string cardName)
     {
         ArgumentNullException.ThrowIfNull(cardName);
 
@@ -218,7 +212,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             if (searcher.IndexReader.NumDocs == 0)
             {
                 _log.LogWarning("Searcher has no cards to search.");
-                return new CardResults<ICollectibleCard>(cardName, Array.Empty<ICollectibleCard>(), 0);
+                return new SearchResults<ISearchableObject>(cardName, Array.Empty<ISearchableObject>(), 0);
             }
 
             cardName = cardName.Trim();
@@ -238,19 +232,20 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
             if (hits1.TotalHits > 0)
             {
-                return new CardResults<ICollectibleCard>(cardName, ResultType.StartsWith,
+                return new SearchResults<ISearchableObject>(cardName, ResultType.StartsWith,
                     GetResults(searcher, hits1.ScoreDocs, fetchCulture),
                     hits1.TotalHits
                 );
             }
 
-            if (cardName.Length < 5 && !cardName.Contains(" "))
+            
+            if (InitialSearchEnabled && cardName.Length < 5 && !cardName.Contains(" "))
             {
                 var initialHits = InitialSearch(searcher, cardName, cultureName);
 
                 if (initialHits.TotalHits > 0)
                 {
-                    return new CardResults<ICollectibleCard>(cardName, ResultType.Initials,
+                    return new SearchResults<ISearchableObject>(cardName, ResultType.Initials,
                             GetResults(searcher, initialHits.ScoreDocs, fetchCulture),
                             initialHits.TotalHits
                         );
@@ -260,7 +255,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             var hits2 = ContainSearch(searcher, cardName, cultureName);
             if (hits2.TotalHits > 0)
             {
-                return new CardResults<ICollectibleCard>(cardName, ResultType.Contains,
+                return new SearchResults<ISearchableObject>(cardName, ResultType.Contains,
                     GetResults(searcher, hits2.ScoreDocs, fetchCulture),
                     hits2.TotalHits
                 );
@@ -283,7 +278,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
             if (hits3.Any())
             {
-                return new CardResults<ICollectibleCard>(cardName, ResultType.Fuzzy,
+                return new SearchResults<ISearchableObject>(cardName, ResultType.Fuzzy,
                     GetResults(searcher, hits3, fetchCulture),
                     hits3.Length
                 );
@@ -292,14 +287,14 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             var hits4 = FuzzySearchAll(searcher, cardName, cultureName);
             if (hits4.ScoreDocs.Any(scoreDoc => scoreDoc.Score > 3))
             {
-                return new CardResults<ICollectibleCard>(cardName, ResultType.Fuzzy,
+                return new SearchResults<ISearchableObject>(cardName, ResultType.Fuzzy,
                     GetResults(searcher, hits4.ScoreDocs
                         .Where(scoreDoc => scoreDoc.Score > 3), fetchCulture),
                     hits4.TotalHits
                 );
             }
 
-            return new CardResults<ICollectibleCard>(cardName, Array.Empty<ICollectibleCard>(), 0);
+            return new SearchResults<ISearchableObject>(cardName, Array.Empty<ISearchableObject>(), 0);
         }
         finally
         {
@@ -378,23 +373,24 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
     private TopDocs InitialSearch(IndexSearcher searcher, string cardInitals, string cultureName)
     {
+        Debug.Assert(InitialSearchEnabled);
         using var analyzer = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
         var qp = new QueryParser(LUCENE_VERSION, "CIInitials", analyzer);
 
         var cultureQuery = new BooleanQuery
-                                   {
-                                       {
-                                           new TermQuery(new Term("Culture", cultureName)),
-                                           Occur.SHOULD
-                                       },
-                                       { new TermQuery(new Term("Culture", "en-US")), Occur.SHOULD }
-                                   };
+        {
+           {
+               new TermQuery(new Term("Culture", cultureName)),
+               Occur.SHOULD
+           },
+           { new TermQuery(new Term("Culture", "en-US")), Occur.SHOULD }
+        };
 
         var query = new BooleanQuery
-            {
-                {cultureQuery, Occur.MUST},
-                {qp.Parse(QueryParser.Escape(cardInitals)), Occur.MUST}
-            };
+        {
+            {cultureQuery, Occur.MUST},
+            {qp.Parse(QueryParser.Escape(cardInitals)), Occur.MUST}
+        };
 
         var hits = searcher.Search(query, 50);
 
@@ -534,7 +530,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         }
     }
 
-    public Task<ICollectibleCard?> GetRandomAsync()
+    public Task<ISearchableObject?> GetRandomAsync()
     {
         var searcher = _searcher.Acquire();
 
@@ -552,7 +548,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
                 var card = JsonSerializer.Deserialize<T>(bytes.Bytes)!;
 
                 if (card.Culture == "en-US")
-                    return Task.FromResult<ICollectibleCard?>(card);
+                    return Task.FromResult<ISearchableObject?>(card);
             }
         }
         finally
@@ -560,7 +556,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             _searcher.Release(searcher);
         }
 
-        return Task.FromResult<ICollectibleCard?>(null);
+        return Task.FromResult<ISearchableObject?>(null);
     }
 
     protected virtual void OnCardAdded(T card)

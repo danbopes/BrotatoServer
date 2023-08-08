@@ -1,11 +1,10 @@
-﻿using System.IO;
-using Lucene.Net.Analysis;
+﻿using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Core;
 using Lucene.Net.Util;
 
-namespace CollectibleCardEngine;
+namespace SearchEngine;
 
-public class CaseInsensitiveKeywordAnalyzer : Analyzer
+internal class CaseInsensitiveKeywordAnalyzer : Analyzer
 {
     private readonly LuceneVersion _matchVersion;
 

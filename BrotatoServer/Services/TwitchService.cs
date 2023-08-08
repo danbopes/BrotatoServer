@@ -1,10 +1,12 @@
-﻿using BrotatoServer.Data;
+﻿using BrotatoServer.Config;
+using BrotatoServer.Data;
 using BrotatoServer.Hubs;
 using BrotatoServer.Models.DB;
 using BrotatoServer.SearchEngine;
 using BrotatoServer.Utilities;
-using CardSearcher.CardSearchers.CardEngines;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using SearchEngine;
 using TwitchLib.Api;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
@@ -23,6 +25,7 @@ public class TwitchService : BackgroundService
     private readonly TwitchClient _client;
     private readonly ConnectionCredentials _credentials;
     private readonly TwitchAPI _api;
+    private readonly TwitchConfig _config;
 
 #if DEBUG
     private const string PREFIX_CHAR = ";";
@@ -31,9 +34,10 @@ public class TwitchService : BackgroundService
 #endif
 
 
-    public TwitchService(ILogger<TwitchService> log, ILoggerFactory loggerFactory, BrotatoItemEngine itemSearchEngine, BrotatoWeaponEngine weaponSearchEngine, IServiceProvider serviceProvider)
+    public TwitchService(ILogger<TwitchService> log, IOptions<TwitchConfig> twitchConfig, ILoggerFactory loggerFactory, BrotatoItemEngine itemSearchEngine, BrotatoWeaponEngine weaponSearchEngine, IServiceProvider serviceProvider)
     {
-        _credentials = new ConnectionCredentials(AppConstants.BOT_NAME, "oauth:gx244vysokmuqcunclv8fovswigefo");
+        _config = twitchConfig.Value;
+        _credentials = new ConnectionCredentials(_config.BotName, _config.BotOAuthToken);
         var clientOptions = new ClientOptions
         {
             MessagesAllowedInPeriod = 750,
@@ -45,7 +49,7 @@ public class TwitchService : BackgroundService
         {
             Settings =
             {
-                ClientId = AppConstants.TWITCH_CLIENT_ID
+                ClientId = _config.ClientId
             }
         };
         
@@ -155,7 +159,7 @@ public class TwitchService : BackgroundService
         {
             await using var scope = _serviceProvider.CreateAsyncScope();
             
-            var accessToken = await _api.Auth.RefreshAuthTokenAsync(user.TwitchAccessToken, AppConstants.TWITCH_CLIENT_SECRET);
+            var accessToken = await _api.Auth.RefreshAuthTokenAsync(user.TwitchAccessToken, _config.ClientSecret);
         
             var createdResult = await _api.Helix.Clips.CreateClipAsync(user.TwitchId.ToString(), accessToken.AccessToken);
 

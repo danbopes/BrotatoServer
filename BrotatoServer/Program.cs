@@ -2,6 +2,7 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using BrotatoServer;
+using BrotatoServer.Config;
 using BrotatoServer.Data;
 using BrotatoServer.Hubs;
 using BrotatoServer.SearchEngine;
@@ -33,9 +34,17 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
         ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
 });
 
-builder.Services.AddHealthChecks();
 
-//builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
+var twitchConfigSection = builder.Configuration.GetSection("Twitch");
+var twitchConfig = twitchConfigSection.Get<TwitchConfig>() ?? throw new InvalidOperationException("Twitch config not found.");
+var steamConfigSection = builder.Configuration.GetSection("Steam");
+var steamConfig = steamConfigSection.Get<SteamConfig>() ?? throw new InvalidOperationException("Steam config not found.");
+
+builder.Services
+    .Configure<SteamConfig>(steamConfigSection)
+    .Configure<TwitchConfig>(twitchConfigSection);
+
+builder.Services.AddHealthChecks();
 
 builder.Services
     .AddAuthentication("cookie")
@@ -47,7 +56,7 @@ builder.Services
     {
         options.SignInScheme = "cookie";
         options.CallbackPath = "/oauth/steam-callback";
-        options.ApplicationKey = "EBDE5FDBBABC696473B3B4D7AD59AE60";
+        options.ApplicationKey = steamConfig.AppKey;
 
         options.Events.OnAuthenticated = async ctx =>
         {
@@ -72,8 +81,8 @@ builder.Services
     {
         options.SignInScheme = "cookie";
         options.CallbackPath = "/oauth/twitch-callback";
-        options.ClientId = AppConstants.TWITCH_CLIENT_ID;
-        options.ClientSecret = AppConstants.TWITCH_CLIENT_SECRET;
+        options.ClientId = twitchConfig.ClientId;
+        options.ClientSecret = twitchConfig.ClientSecret;
         options.Scope.Add("clips:edit");
 
         options.Events.OnCreatingTicket = async ctx =>

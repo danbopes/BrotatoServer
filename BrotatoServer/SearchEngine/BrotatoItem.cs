@@ -1,8 +1,8 @@
-﻿using CollectibleCardEngine;
+﻿using SearchEngine;
 
 namespace BrotatoServer.SearchEngine;
 
-public class BrotatoItem : ICollectibleCard
+public class BrotatoItem : ISearchableObject
 {
     public required string Culture { get; init; }
 

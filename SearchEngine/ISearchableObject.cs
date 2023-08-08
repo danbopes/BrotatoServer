@@ -1,6 +1,6 @@
-﻿namespace CollectibleCardEngine;
+﻿namespace SearchEngine;
 
-public interface ICollectibleCard
+public interface ISearchableObject
 {
     string Culture { get; }
     string Id { get; }

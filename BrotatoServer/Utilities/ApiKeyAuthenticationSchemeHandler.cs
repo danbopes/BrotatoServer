@@ -1,13 +1,11 @@
-﻿
+﻿using System.Security.Claims;
+using System.Text.Encodings.Web;
 using BrotatoServer.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using Microsoft.Identity.Client;
-using System.Security.Claims;
-using System.Text.Encodings.Web;
 
-namespace BrotatoServer;
+namespace BrotatoServer.Utilities;
 
 public class ApiKeyAuthenticationSchemeHandler : AuthenticationHandler<AuthenticationSchemeOptions>
 {

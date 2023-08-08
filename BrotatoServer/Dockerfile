@@ -44,6 +44,5 @@ RUN dotnet publish "BrotatoServer.csproj" -c Release -o /app/publish /p:UseAppHo
 
 FROM base AS final
 WORKDIR /app
-RUN export LD_LIBRARY_PATH=/app/linux64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "BrotatoServer.dll"]
