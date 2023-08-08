@@ -16,7 +16,7 @@ env:
   REGISTRY: ghcr.io
   # github.repository as <account>/<repo>
   IMAGE_NAME: ${{ github.repository }}
-  TEST_TAG: ${{ github.repository }}-tests
+  TEST_TAG: unittests
 
 
 jobs:
