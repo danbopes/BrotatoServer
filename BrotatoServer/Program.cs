@@ -156,27 +156,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-/*
-app.Use((context, next) =>
-{
-    // Check if the request is for an API endpoint
-    if (context.Request.Path.StartsWithSegments("/api"))
-    {
-        // Check if the "ApiKey" header exists and its value matches the expected API key
-        if (!context.Request.Headers.TryGetValue("x-api-key", out var headerValue) || headerValue != API_KEY)
-        {
-            // If the API key is missing or doesn't match, return 401 Unauthorized
-            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
-            return Task.CompletedTask;
-        }
-    }
-
-    // If the API key is valid or the request is not for an API endpoint, continue to the next middleware
-    return next();
-});
-*/
-//app.UseHttpsRedirection();
-
 app.UseStaticFiles();
 
 app.UseRouting();
