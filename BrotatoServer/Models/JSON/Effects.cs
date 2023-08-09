@@ -155,97 +155,97 @@ public class Effects
     public int WanderingBots { get; set; }
 
     [JsonProperty("dmg_when_pickup_gold")]
-    public List<object> DmgWhenPickupGold { get; set; }
+    public List<object> DmgWhenPickupGold { get; set; } = new();
 
     [JsonProperty("dmg_when_death")]
-    public List<object> DmgWhenDeath { get; set; }
+    public List<object> DmgWhenDeath { get; set; } = new();
 
     [JsonProperty("dmg_when_heal")]
-    public List<object> DmgWhenHeal { get; set; }
+    public List<object> DmgWhenHeal { get; set; } = new();
 
     [JsonProperty("dmg_on_dodge")]
-    public List<object> DmgOnDodge { get; set; }
+    public List<object> DmgOnDodge { get; set; } = new();
 
     [JsonProperty("heal_on_dodge")]
-    public List<object> HealOnDodge { get; set; }
+    public List<object> HealOnDodge { get; set; } = new();
 
     [JsonProperty("remove_speed")]
-    public List<object> RemoveSpeed { get; set; }
+    public List<object> RemoveSpeed { get; set; } = new();
 
     [JsonProperty("starting_item")]
-    public List<object> StartingItem { get; set; }
+    public List<object> StartingItem { get; set; } = new();
 
     [JsonProperty("starting_weapon")]
-    public List<object> StartingWeapon { get; set; }
+    public List<object> StartingWeapon { get; set; } = new();
 
     [JsonProperty("projectiles_on_death")]
-    public List<object> ProjectilesOnDeath { get; set; }
+    public List<object> ProjectilesOnDeath { get; set; } = new();
 
     [JsonProperty("burn_chance")]
-    public BurnChance BurnChance { get; set; }
+    public BurnChance BurnChance { get; set; } = new();
 
     [JsonProperty("weapon_class_bonus")]
-    public List<object> WeaponClassBonus { get; set; }
+    public List<object> WeaponClassBonus { get; set; } = new();
 
     [JsonProperty("weapon_bonus")]
-    public List<object> WeaponBonus { get; set; }
+    public List<object> WeaponBonus { get; set; } = new();
 
     [JsonProperty("unique_weapon_effects")]
-    public List<object> UniqueWeaponEffects { get; set; }
+    public List<object> UniqueWeaponEffects { get; set; } = new();
 
     [JsonProperty("additional_weapon_effects")]
-    public List<object> AdditionalWeaponEffects { get; set; }
+    public List<object> AdditionalWeaponEffects { get; set; } = new();
 
     [JsonProperty("tier_iv_weapon_effects")]
-    public List<object> TierIvWeaponEffects { get; set; }
+    public List<object> TierIvWeaponEffects { get; set; } = new();
 
     [JsonProperty("tier_i_weapon_effects")]
-    public List<object> TierIWeaponEffects { get; set; }
+    public List<object> TierIWeaponEffects { get; set; } = new();
 
     [JsonProperty("gold_on_crit_kill")]
-    public List<object> GoldOnCritKill { get; set; }
+    public List<object> GoldOnCritKill { get; set; } = new();
 
     [JsonProperty("heal_on_crit_kill")]
     public int HealOnCritKill { get; set; }
 
     [JsonProperty("temp_stats_while_not_moving")]
-    public List<object> TempStatsWhileNotMoving { get; set; }
+    public List<object> TempStatsWhileNotMoving { get; set; } = new();
 
     [JsonProperty("temp_stats_while_moving")]
-    public List<object> TempStatsWhileMoving { get; set; }
+    public List<object> TempStatsWhileMoving { get; set; } = new();
 
     [JsonProperty("temp_stats_on_hit")]
-    public List<object> TempStatsOnHit { get; set; }
+    public List<object> TempStatsOnHit { get; set; } = new();
 
     [JsonProperty("temp_stats_stacking")]
-    public List<object> TempStatsStacking { get; set; }
+    public List<object> TempStatsStacking { get; set; } = new();
 
     [JsonProperty("stats_end_of_wave")]
-    public List<object> StatsEndOfWave { get; set; }
+    public List<object> StatsEndOfWave { get; set; } = new();
 
     [JsonProperty("stat_links")]
-    public List<List<object>> StatLinks { get; set; }
+    public List<List<object>> StatLinks { get; set; } = new();
 
     [JsonProperty("structures")]
-    public List<object> Structures { get; set; }
+    public List<object> Structures { get; set; } = new();
 
     [JsonProperty("explode_on_hit")]
-    public List<object> ExplodeOnHit { get; set; }
+    public List<object> ExplodeOnHit { get; set; } = new();
 
     [JsonProperty("convert_stats_end_of_wave")]
-    public List<object> ConvertStatsEndOfWave { get; set; }
+    public List<object> ConvertStatsEndOfWave { get; set; } = new();
 
     [JsonProperty("explode_on_death")]
-    public List<object> ExplodeOnDeath { get; set; }
+    public List<object> ExplodeOnDeath { get; set; } = new();
 
     [JsonProperty("alien_eyes")]
-    public List<object> AlienEyes { get; set; }
+    public List<object> AlienEyes { get; set; } = new();
 
     [JsonProperty("double_hp_regen_below_half_health")]
     public int DoubleHpRegenBelowHalfHealth { get; set; }
 
     [JsonProperty("upgrade_random_weapon")]
-    public List<object> UpgradeRandomWeapon { get; set; }
+    public List<object> UpgradeRandomWeapon { get; set; } = new();
 
     [JsonProperty("minimum_weapons_in_shop")]
     public int MinimumWeaponsInShop { get; set; }
@@ -260,31 +260,31 @@ public class Effects
     public int ExtraLootAliensNextWave { get; set; }
 
     [JsonProperty("stats_next_wave")]
-    public List<object> StatsNextWave { get; set; }
+    public List<object> StatsNextWave { get; set; } = new();
 
     [JsonProperty("consumable_stats_while_max")]
-    public List<object> ConsumableStatsWhileMax { get; set; }
+    public List<object> ConsumableStatsWhileMax { get; set; } = new();
 
     [JsonProperty("explode_on_consumable")]
-    public List<object> ExplodeOnConsumable { get; set; }
+    public List<object> ExplodeOnConsumable { get; set; } = new();
 
     [JsonProperty("structures_cooldown_reduction")]
-    public List<object> StructuresCooldownReduction { get; set; }
+    public List<object> StructuresCooldownReduction { get; set; } = new();
 
     [JsonProperty("temp_pct_stats_start_wave")]
-    public List<object> TempPctStatsStartWave { get; set; }
+    public List<object> TempPctStatsStartWave { get; set; } = new();
 
     [JsonProperty("temp_pct_stats_stacking")]
-    public List<object> TempPctStatsStacking { get; set; }
+    public List<object> TempPctStatsStacking { get; set; } = new();
 
     [JsonProperty("convert_stats_half_wave")]
-    public List<object> ConvertStatsHalfWave { get; set; }
+    public List<object> ConvertStatsHalfWave { get; set; } = new();
 
     [JsonProperty("stats_on_level_up")]
-    public List<object> StatsOnLevelUp { get; set; }
+    public List<object> StatsOnLevelUp { get; set; } = new();
 
     [JsonProperty("temp_stats_on_dodge")]
-    public List<object> TempStatsOnDodge { get; set; }
+    public List<object> TempStatsOnDodge { get; set; } = new();
 
     [JsonProperty("no_heal")]
     public int NoHeal { get; set; }
@@ -293,16 +293,16 @@ public class Effects
     public int TreeTurrets { get; set; }
 
     [JsonProperty("stats_below_half_health")]
-    public List<object> StatsBelowHalfHealth { get; set; }
+    public List<object> StatsBelowHalfHealth { get; set; } = new();
 
     [JsonProperty("guaranteed_shop_items")]
-    public List<object> GuaranteedShopItems { get; set; }
+    public List<object> GuaranteedShopItems { get; set; } = new();
 
     [JsonProperty("special_enemies_last_wave")]
     public int SpecialEnemiesLastWave { get; set; }
 
     [JsonProperty("specific_items_price")]
-    public List<object> SpecificItemsPrice { get; set; }
+    public List<object> SpecificItemsPrice { get; set; } = new();
 
     [JsonProperty("accuracy")]
     public int Accuracy { get; set; }

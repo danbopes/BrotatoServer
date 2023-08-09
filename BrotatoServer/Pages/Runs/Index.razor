@@ -1,6 +1,5 @@
 ﻿@page "/{TwitchUsername}/runs"
 
-@using BrotatoServer.Models
 @using BrotatoServer.Data
 @using BrotatoServer.Models.DB
 
@@ -8,23 +7,22 @@
 
 @inject IRunRepository RunRepository
 <div class="container-fluid">
-        @foreach (var run in latestRuns)
-        {
-            var charName = run.RunData.Character.Replace("character_", "");
-            var characterData = run.RunData.Items.Values.FirstOrDefault(item => item.Id == run.RunData.Character);
-            var niceName = characterData?.Name ?? charName;
+    @foreach (var run in LatestRuns)
+    {
+        var charName = run.RunData.Character.Replace("character_", "");
+        var characterData = run.RunData.Items.Values.FirstOrDefault(item => item.Id == run.RunData.Character);
+        var niceName = characterData?.Name ?? charName;
 
+        <CascadingValue Value="run.CustomData">
             <a href="runs/@run.Id" style="text-decoration: none">
                 <div class="row run-wrapper mb-4">
                     <!-- First column (always shown) -->
                     <div class="col-auto">
                         <div class="image">
-                            <CascadingValue Value="run.CustomData">
-                                <CharacterView
-                                    Character="@run.RunData.Character"
-                                    CharacterData="@characterData"
-                                    Simple="true"/>
-                            </CascadingValue>
+                            <CharacterView
+                                Character="@run.RunData.Character"
+                                CharacterData="@characterData"
+                                Simple="true"/>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -45,18 +43,18 @@
                     </div>
                 </div>
             </a>
-        }
+        </CascadingValue>
+    }
 </div>
 
 @code {
     [Parameter]
-    public string TwitchUsername { get; set; }
-    private List<FullRun> latestRuns { get; set; }
+    public string TwitchUsername { get; set; } = null!;
+    private List<FullRun> LatestRuns { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
-        latestRuns = await RunRepository.GetLatestRunsAsync(TwitchUsername, 50).ToListAsync();
+        LatestRuns = await RunRepository.GetLatestRunsAsync(TwitchUsername, 50).ToListAsync();
         await base.OnInitializedAsync();
     }
-
 }

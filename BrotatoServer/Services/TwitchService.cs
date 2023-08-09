@@ -69,7 +69,7 @@ public class TwitchService : BackgroundService
         _log.LogInformation("Connected to Twitch");
     }
 
-    private async void Client_OnMessageReceived(object? sender, OnMessageReceivedArgs e)
+    private void Client_OnMessageReceived(object? sender, OnMessageReceivedArgs e)
     {
         if (string.IsNullOrEmpty(e.ChatMessage.Message))
             return;
@@ -80,12 +80,12 @@ public class TwitchService : BackgroundService
         {
             case PREFIX_CHAR + "item":
             {
-                await HandleItemLookup(_itemSearchEngine, "item", e.ChatMessage.Channel, words);
+                HandleItemLookup(_itemSearchEngine, "item", e.ChatMessage.Channel, words);
                 break;
             }
             case PREFIX_CHAR + "weapon":
             {
-                await HandleItemLookup(_weaponSearchEngine, "weapon", e.ChatMessage.Channel, words);
+                HandleItemLookup(_weaponSearchEngine, "weapon", e.ChatMessage.Channel, words);
                 break;
             }
             case PREFIX_CHAR + "tater":
@@ -110,14 +110,14 @@ public class TwitchService : BackgroundService
         }
     }
 
-    private async Task HandleItemLookup(WebEngine<BrotatoItem> engine, string engineType, string channel, string[] words)
+    private void HandleItemLookup(ISearchEngine engine, string engineType, string channel, string[] words)
     {
         if (words.Length < 2)
             return;
 
         var param = string.Join(' ', words.Skip(1));
 
-        var card = await engine.FindAsync(param);
+        var card = engine.Find(param);
 
         var exactResults = card.Results.ToList();
 

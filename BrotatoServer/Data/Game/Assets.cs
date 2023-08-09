@@ -12,12 +12,12 @@ public static class Assets
     static Assets()
     {
         var weaponJson = File.ReadAllText("Data/Game/weapons.json");
-        Weapons = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Weapon>>(weaponJson);
+        Weapons = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Weapon>>(weaponJson)!;
 
         var itemJson = File.ReadAllText("Data/Game/items.json");
-        Items = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Item>>(itemJson);
+        Items = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Item>>(itemJson)!;
 
         var statJson = File.ReadAllText("Data/Game/stats.json");
-        Stats = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Stat>>(statJson);
+        Stats = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Stat>>(statJson)!;
     }
 }

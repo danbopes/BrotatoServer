@@ -28,9 +28,9 @@
       <div class="accordion-body">
         <ul>
             <li>
-                @if (twitchIdentity is not null)
+                @if (TwitchIdentity is not null)
                 {
-                    <p>You are already authenticated with Twitch as @twitchIdentity.Name</p>
+                    <p>You are already authenticated with Twitch as @TwitchIdentity.Name</p>
                 }
                 else
                 {
@@ -40,9 +40,9 @@
                 }
             </li>
             <li>
-                @if (steamIdentity is not null)
+                @if (SteamIdentity is not null)
                 {
-                    <p>You are already authenticated with Steam as @steamIdentity.Name</p>
+                    <p>You are already authenticated with Steam as @SteamIdentity.Name</p>
                 }
                 else
                 {
@@ -104,11 +104,11 @@
 {
     <h1>Claims View</h1>
 
-    @if (user != null)
+    @if (User is not null)
     {
         <h2>Claims Principals:</h2>
         <ul>
-            @foreach (var principal in user.Identities)
+            @foreach (var principal in User.Identities)
             {
                 <li>
                     <strong>AuthenticationType:</strong> @principal.AuthenticationType
@@ -144,26 +144,26 @@
 #else
     private const bool SHOW_CLAIMS = false;
 #endif
-    private ClaimsPrincipal? user;
+    private ClaimsPrincipal? User { get; set; }
     private string BotName => TwitchConfig.Value.BotName;
 
-    private ClaimsIdentity? twitchIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Twitch");
-    private ClaimsIdentity? steamIdentity => user?.Identities.FirstOrDefault(i => i.AuthenticationType == "Steam");
+    private ClaimsIdentity? TwitchIdentity => User?.Identities.FirstOrDefault(i => i.AuthenticationType == "Twitch");
+    private ClaimsIdentity? SteamIdentity => User?.Identities.FirstOrDefault(i => i.AuthenticationType == "Steam");
 
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-        user = authState.User;
+        User = authState.User;
 
-        if (twitchIdentity is not null && steamIdentity is not null)
+        if (TwitchIdentity is not null && SteamIdentity is not null)
         {
             await UserRepo.EnsureUserAsync(new User
             {
-                TwitchId = user.GetTwitchId(),
-                TwitchUsername = user.GetTwitchName(),
-                TwitchAccessToken = user.GetTwitchRefreshToken(),
-                SteamId = user.GetSteamId(),
+                TwitchId = User.GetTwitchId(),
+                TwitchUsername = User.GetTwitchName(),
+                TwitchAccessToken = User.GetTwitchRefreshToken(),
+                SteamId = User.GetSteamId(),
                 ApiKey = Guid.NewGuid(),
                 JoinedChat = false
             });
@@ -172,13 +172,13 @@
 
     private async Task JoinChat()
     {
-        if (user is null || twitchIdentity is null || steamIdentity is null)
+        if (User is null || TwitchIdentity is null || SteamIdentity is null)
         {
             JsRuntime.Toast("Please authenticate with Twitch and Steam in step 1 to continue.", ToastType.Error);
             return;
         }
 
-        var dbUser = await UserRepo.GetUserAsync(user.GetSteamId());
+        var dbUser = await UserRepo.GetUserAsync(User.GetSteamId());
 
         if (dbUser is null)
         {

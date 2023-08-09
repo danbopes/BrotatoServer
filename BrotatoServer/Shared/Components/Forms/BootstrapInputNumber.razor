@@ -21,7 +21,7 @@
         </div>
     }
     
-    @if (AdditionalAttributes.TryGetValue("type", out var inputType) && inputType.ToString() == "textarea")
+    @if ((AdditionalAttributes?.TryGetValue("type", out var inputType) ?? false) && inputType.ToString() == "textarea")
     {
         <textarea @attributes="@AdditionalAttributes" class="@CssClass" id="@FieldIdentifier.FieldName.PascalToDashCase()" @bind="@CurrentValueAsString" @bind:event="oninput">
         </textarea>

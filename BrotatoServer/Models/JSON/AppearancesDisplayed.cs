@@ -6,14 +6,14 @@ namespace BrotatoServer.Models.JSON;
 public class AppearancesDisplayed
 {
     [JsonProperty("position")]
-    public int Position { get; set; }
+    public required int Position { get; set; }
 
     [JsonProperty("display_priority")]
-    public int DisplayPriority { get; set; }
+    public required int DisplayPriority { get; set; }
 
     [JsonProperty("depth")]
-    public int Depth { get; set; }
+    public required int Depth { get; set; }
 
     [JsonProperty("sprite")]
-    public string Sprite { get; set; }
+    public required string Sprite { get; set; }
 }

@@ -49,9 +49,9 @@ else
     [Parameter] public bool Simple { get; set; } = false;
 
     private string? WikiUrl { get; set; }
-    private string NiceCharName { get; set; }
-    private string CharName { get; set; }
-    private string Icon { get; set; }
+    private string NiceCharName { get; set; } = null!;
+    private string CharName { get; set; } = null!;
+    private string Icon { get; set; } = null!;
 
 
     protected override void OnParametersSet()

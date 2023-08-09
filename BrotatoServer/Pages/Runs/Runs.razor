@@ -3,7 +3,6 @@
 @using BrotatoServer.Data;
 @using BrotatoServer.Models.JSON;
 @inject IRunRepository RunRepository
-@inject NavigationManager NavManager
 
 <AppPageTitle>View Run</AppPageTitle>
 
@@ -26,10 +25,8 @@ else
 
 
 @code {
-    [Parameter]
-    public string TwitchUsername { get; set; }
-    [Parameter]
-    public string RunId { get; set; }
+    [Parameter] public string TwitchUsername { get; set; } = null!;
+    [Parameter] public string RunId { get; set; } = null!;
 
     private RunData? RunData { get; set; }
     private CustomData? CustomData { get; set; }

@@ -19,24 +19,12 @@ public class RunRepository : IRunRepository
         _mapper = mapper;
     }
 
-    public async IAsyncEnumerable<FullRun> GetAllRunsAsync(string twitchUsername)
+    public IAsyncEnumerable<FullRun> GetAllRunsAsync(string twitchUsername)
     {
-        var runs = _context.Run
+        return _context.Run
             .Where(run => run.User!.TwitchUsername == twitchUsername)
-            .AsAsyncEnumerable();
-
-        await foreach (var run in runs)
-        {
-            var runInfo = JsonConvert.DeserializeObject<RunInformation>(run.RunInformation)!;
-
-            yield return new FullRun
-            {
-                Id = run.Id,
-                Date = run.Date,
-                CurrentRotation = run.CurrentRotation,
-                RunData = runInfo.RunData
-            };
-        }
+            .AsAsyncEnumerable()
+            .Select(run => _mapper.Map<FullRun>(run));
     }
 
     public async Task<FullRun?> GetRunAsync(Guid id)
@@ -63,22 +51,6 @@ public class RunRepository : IRunRepository
         await _context.SaveChangesAsync();
 
         return run;
-    }
-
-    public async Task<bool> UpdateCurrentRunAsync(RunInformation runInfo)
-    {
-        // The implementation of this method is not provided in the original code.
-        // You can implement the required logic to update the current run here.
-        // It should return true if the update is successful, otherwise false.
-        return false;
-    }
-
-    public async Task<bool> DeleteCurrentRunAsync()
-    {
-        // The implementation of this method is not provided in the original code.
-        // You can implement the required logic to delete the current run here.
-        // It should return true if the deletion is successful, otherwise false.
-        return false;
     }
 
     public async Task<bool> DeleteRunAsync(Guid id)

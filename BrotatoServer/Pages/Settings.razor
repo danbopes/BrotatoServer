@@ -1,14 +1,10 @@
 ﻿@page "/settings"
-
-@using Microsoft.Extensions.Logging
 @using BrotatoServer.Data
-@using BrotatoServer.Models
 @using System.Security.Claims
 @using AutoMapper
 @using BrotatoServer.Models.DB
 @using BrotatoServer.Models.Views
 @inject IJSRuntime JS
-@inject ILogger<Settings> Logger
 @inject IUserRepository UserRepo
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject IMapper Mapper
@@ -85,16 +81,16 @@
 </EditForm>
 
 @code {
-    private UserSettingsViewModel UserSettingsViewModel { get; set; }
-    private ClaimsPrincipal user { get; set; }
+    private UserSettingsViewModel UserSettingsViewModel { get; set; } = null!;
+    private ClaimsPrincipal User { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
 
-        user = authState.User;
+        User = authState.User;
 
-        var dbUser = (await UserRepo.GetUserAsync(user.GetSteamId()))!;
+        var dbUser = (await UserRepo.GetUserAsync(User.GetSteamId()))!;
 
         if (dbUser.Settings is null)
         {
@@ -110,7 +106,7 @@
     {
         var userSettings = Mapper.Map<UserSettings>(UserSettingsViewModel);
 
-        userSettings.UserId = user.GetSteamId();
+        userSettings.UserId = User.GetSteamId();
         
         await UserRepo.SaveSettingsAsync(userSettings);
         JS.Toast("Settings have been saved!");

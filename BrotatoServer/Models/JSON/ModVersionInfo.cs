@@ -5,7 +5,7 @@ namespace BrotatoServer.Models.JSON;
 public class ModVersionInfo
 {
     [JsonProperty("version")]
-    public string Version { get; set; }
+    public required string Version { get; set; }
 }
 
 

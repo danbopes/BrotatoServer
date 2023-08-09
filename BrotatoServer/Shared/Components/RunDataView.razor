@@ -50,12 +50,9 @@
 </CascadingValue>
 
 @code {
-    [Parameter]
-    public RunData RunData { get; set; }
+    [Parameter, EditorRequired] public RunData RunData { get; set; } = null!;
     
-    [Parameter]
-    public CustomData? CustomData { get; set; }
+    [Parameter, EditorRequired] public CustomData? CustomData { get; set; }
     
-    [Parameter]
-    public string? TwitchClip { get; set; }
+    [Parameter] public string? TwitchClip { get; set; }
 }

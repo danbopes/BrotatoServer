@@ -9,7 +9,7 @@
         <tr class="current-level">
             <td><img src="assets/items/upgrades/upgrade_icon.png" /></td>
             <td>Current Level</td>
-            <td align="right">@RunData.Level</td>
+            <td style="text-align: right">@RunData.Level</td>
         </tr>
         @foreach (var statId in _primaryStats)
         {
@@ -19,18 +19,17 @@
             var statClass = value > 0 ? "pos" : value < 0 ? "neg" : "";
 
             <tr class="@statClass">
-                <td><img src="@stat.SmallIcon.GetAssetPath()" /></td>
+                <td><img src="@stat.SmallIcon.GetAssetPath()" alt="@stat.Name" /></td>
                 <td>@stat.Name</td>
-                <td align="right">@value</td>
+                <td style="text-align: right">@value</td>
             </tr>
         }
     </table>
 </div>
 
 @code {
-    [Parameter]
-    public RunData RunData { get; set; }
-    public JObject EffectsAsJson { get; private set; }
+    [Parameter, EditorRequired] public RunData RunData { get; set; } = null!;
+    private JObject EffectsAsJson { get; set; } = null!;
 
     protected override void OnParametersSet()
     {
@@ -38,7 +37,7 @@
         base.OnParametersSet();
     }
 
-    private string[] _primaryStats = new[] {
+    private string[] _primaryStats = {
         "stat_max_hp", "stat_hp_regeneration", "stat_lifesteal", "stat_percent_damage", "stat_melee_damage",
         "stat_ranged_damage", "stat_elemental_damage", "stat_attack_speed", "stat_crit_chance", "stat_engineering",
         "stat_range", "stat_armor", "stat_dodge", "stat_speed", "stat_luck",

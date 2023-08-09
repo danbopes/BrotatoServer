@@ -7,7 +7,7 @@ public class Run
     public DateTimeOffset Date { get; set; }
     public bool CurrentRotation { get; set; }
     public bool Won { get; set; }
-    public string RunInformation { get; set; }
+    public string RunInformation { get; set; } = "";
     public string? CustomData { get; set; }
     public virtual User? User { get; set; }
     

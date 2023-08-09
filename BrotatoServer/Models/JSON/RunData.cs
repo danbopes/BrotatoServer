@@ -5,77 +5,77 @@ namespace BrotatoServer.Models.JSON;
 public class RunData
 {
     [JsonProperty("enemy_scaling")]
-    public EnemyScaling EnemyScaling { get; set; }
+    public required EnemyScaling EnemyScaling { get; set; }
 
     [JsonProperty("nb_of_waves")]
-    public int NbOfWaves { get; set; }
+    public required int NbOfWaves { get; set; }
 
     [JsonProperty("zone")]
-    public int Zone { get; set; }
+    public required int Zone { get; set; }
 
     [JsonProperty("level")]
-    public int Level { get; set; }
+    public required int Level { get; set; }
 
     [JsonProperty("xp")]
-    public decimal Xp { get; set; }
+    public required decimal Xp { get; set; }
 
     [JsonProperty("max_weapons")]
-    public int MaxWeapons { get; set; }
+    public required int MaxWeapons { get; set; }
 
     [JsonProperty("wave")]
-    public int Wave { get; set; }
+    public required int Wave { get; set; }
 
     [JsonProperty("gold")]
-    public int Gold { get; set; }
+    public required int Gold { get; set; }
 
     [JsonProperty("bonus_gold")]
-    public int BonusGold { get; set; }
+    public required int BonusGold { get; set; }
 
     [JsonProperty("won")]
-    public bool Won { get; set; }
+    public required bool Won { get; set; }
 
     [JsonProperty("endless")]
-    public bool Endless { get; set; }
+    public required bool Endless { get; set; }
 
     [JsonProperty("elites_spawn")]
-    public List<object> ElitesSpawn { get; set; }
+    public required List<object> ElitesSpawn { get; set; }
 
     [JsonProperty("character")]
-    public string Character { get; set; }
+    public required string Character { get; set; }
 
     [JsonProperty("current_background")]
-    public string CurrentBackground { get; set; }
+    public required string CurrentBackground { get; set; }
 
     [JsonProperty("difficulty_unlocked")]
-    public int DifficultyUnlocked { get; set; }
+    public required int DifficultyUnlocked { get; set; }
 
     [JsonProperty("max_endless_wave_record_beaten")]
-    public int MaxEndlessWaveRecordBeaten { get; set; }
+    public required int MaxEndlessWaveRecordBeaten { get; set; }
 
     [JsonProperty("appearances_displayed")]
-    public List<AppearancesDisplayed> AppearancesDisplayed { get; set; }
+    public required List<AppearancesDisplayed> AppearancesDisplayed { get; set; }
 
     [JsonProperty("weapons")]
-    public Dictionary<int, ItemData> Weapons { get; set; }
+    public required Dictionary<int, ItemData> Weapons { get; set; }
 
     [JsonProperty("items")]
-    public Dictionary<int, ItemData> Items { get; set; }
+    public required Dictionary<int, ItemData> Items { get; set; }
 
     [JsonProperty("challenges_completed_this_run")]
-    public List<string> ChallengesCompletedThisRun { get; set; }
+    public required List<string> ChallengesCompletedThisRun { get; set; }
 
     [JsonProperty("active_set_effects")]
-    public List<object> ActiveSetEffects { get; set; }
+    public required List<object> ActiveSetEffects { get; set; }
 
     [JsonProperty("effects")]
-    public Effects Effects { get; set; }
+    public required Effects Effects { get; set; }
 
     [JsonProperty("current_character")]
-    public string CurrentCharacter { get; set; }
+    public required string CurrentCharacter { get; set; }
 
     [JsonProperty("starting_weapon")]
-    public string? StartingWeapon { get; set; }
+    public required string? StartingWeapon { get; set; }
 
     [JsonProperty("rounds")]
-    public Dictionary<int, Dictionary<string, decimal>> Rounds { get; set; }
+    public required Dictionary<int, Dictionary<string, decimal>> Rounds { get; set; }
 }

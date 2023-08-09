@@ -44,7 +44,7 @@
     private string TierClass => $"tier-{Item.Tier}";
     private string Name => Item.Name;
     private string WikiUrl => "https://brotato.wiki.spellsandguns.com/" + Item.Name.Replace(' ', '_');
-    private string Icon { get; set; }
+    private string? Icon { get; set; }
     private bool IsCustom { get; set; } = true;
     private MarkupString EffectsHtml => Item.Hover.ParseBBCodeText();
 

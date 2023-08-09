@@ -5,23 +5,23 @@ namespace BrotatoServer.Models.JSON;
 public record RunInformation
 {
     [JsonProperty("version")]
-    public string Version { get; set; }
+    public required string Version { get; set; }
 
     [JsonProperty("created")]
-    public long Created { get; set; }
+    public required long Created { get; set; }
 
     [JsonProperty("ticks")]
-    public long Ticks { get; set; }
+    public required long Ticks { get; set; }
 
     [JsonProperty("user_id")]
-    public ulong UserId { get; set; }
+    public required ulong UserId { get; set; }
 
     [JsonProperty("streak_enabled", NullValueHandling = NullValueHandling.Ignore)]
-    public bool? StreakEnabled { get; set; }
+    public required bool? StreakEnabled { get; set; }
 
     [JsonProperty("mods", NullValueHandling = NullValueHandling.Ignore)]
-    public Dictionary<string, ModVersionInfo>? Mods { get; set; }
+    public required Dictionary<string, ModVersionInfo>? Mods { get; set; }
 
     [JsonProperty("run_data")]
-    public RunData RunData { get; set; }
+    public required RunData RunData { get; set; }
 }

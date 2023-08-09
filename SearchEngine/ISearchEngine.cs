@@ -1,10 +1,10 @@
 ﻿namespace SearchEngine;
 
-public interface ICardEngine
+public interface ISearchEngine
 {
-    int CardCount { get; }
+    int ItemCount { get; }
     public string Name { get; }
     Task InitializeAsync();
-    Task<ISearchResults<ISearchableObject>> FindAsync(string name);
+    ISearchResults<ISearchableObject> Find(string objName);
     Task<ISearchableObject?> GetRandomAsync();
 }
