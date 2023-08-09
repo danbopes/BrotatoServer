@@ -17,10 +17,10 @@ using SearchEngine.Utilities;
 namespace SearchEngine;
 
 /// <summary>
-/// Provides an easy way for cards to be populated into an indexed lucene database
+/// Provides an easy way for objects to be populated into an indexed lucene database
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : ISearchableObject
+public abstract partial class WebEngine<T> : ISearchEngine, IDisposable where T : ISearchableObject
 {
     public abstract string Name { get; }
     public bool InitialSearchEnabled { get; protected set; }
@@ -31,10 +31,10 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
     private readonly SearcherManager _searcher;
     private readonly SemaphoreSlim _indexLocker = new(1);
 
-    private HashSet<string> _cardsIds = new();
+    private readonly HashSet<string> _itemIds = new();
 
-    private string _indexDir => $"Indexes/{Name}";
-    private List<Analyzer> _analyzers = new();
+    private string IndexDir => $"Indexes/{Name}";
+    private readonly List<Analyzer> _analyzers = new();
 
     private const LuceneVersion LUCENE_VERSION = LuceneVersion.LUCENE_48;
 
@@ -43,12 +43,12 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         _log = log;
 
 #if !DEBUG
-        if (System.IO.Directory.Exists(_indexDir))
-            System.IO.Directory.Delete(_indexDir, true);
+        if (System.IO.Directory.Exists(IndexDir))
+            System.IO.Directory.Delete(IndexDir, true);
 #endif
 
-        var info = System.IO.Directory.CreateDirectory(_indexDir);
-        _index = new SimpleFSDirectory(_indexDir);
+        var info = System.IO.Directory.CreateDirectory(IndexDir);
+        _index = new SimpleFSDirectory(IndexDir);
         
         var standardAnalyzer = new StandardAnalyzer(LUCENE_VERSION);
         var ciKeywordAnalyzer = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
@@ -72,7 +72,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
     public async Task InitializeAsync()
     {
 #if DEBUG
-        if (System.IO.Directory.EnumerateFiles(_indexDir).Take(2).Count() > 1)
+        if (System.IO.Directory.EnumerateFiles(IndexDir).Take(2).Count() > 1)
             return;
 #endif
         try
@@ -95,7 +95,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         {
             await foreach (var obj in InitializeObjectsAsync())
             {
-                if (!_cardsIds.Add(obj.Id))
+                if (!_itemIds.Add(obj.Id))
                     continue;
 
                 var doc = new Document
@@ -124,7 +124,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
                             StoreTermVectorPositions = true,
                             StoreTermVectorOffsets = true,
                         }),
-                    new StoredField("Card", JsonSerializer.SerializeToUtf8Bytes(obj))
+                    new StoredField("Item", JsonSerializer.SerializeToUtf8Bytes(obj))
                 };
 
                 if (InitialSearchEnabled)
@@ -161,7 +161,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             // Already english?
             if (currentDoc.GetField("Culture").GetStringValue() == fetchCulture)
             {
-                var bytes = searcher.Doc(doc.Doc).GetField("Card").GetBinaryValue();
+                var bytes = searcher.Doc(doc.Doc).GetField("Item").GetBinaryValue();
                 yield return JsonSerializer.Deserialize<T>(bytes.Bytes)!;
             }
             else
@@ -174,13 +174,13 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
                 var hits = searcher.Search(search, 1);
                 var docId = hits.TotalHits > 0 ? hits.ScoreDocs[0].Doc : doc.Doc;
-                var bytes = searcher.Doc(docId).GetField("Card").GetBinaryValue();
+                var bytes = searcher.Doc(docId).GetField("Item").GetBinaryValue();
                 yield return JsonSerializer.Deserialize<T>(bytes.Bytes)!;
             }
         }
     }
 
-    public int CardCount
+    public int ItemCount
     {
         get
         {
@@ -197,9 +197,9 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         }
     }
 
-    public async Task<ISearchResults<ISearchableObject>> FindAsync(string cardName)
+    public ISearchResults<ISearchableObject> Find(string objName)
     {
-        ArgumentNullException.ThrowIfNull(cardName);
+        ArgumentNullException.ThrowIfNull(objName);
 
         var searcher = _searcher.Acquire();
 
@@ -211,57 +211,56 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
             if (searcher.IndexReader.NumDocs == 0)
             {
-                _log.LogWarning("Searcher has no cards to search.");
-                return new SearchResults<ISearchableObject>(cardName, Array.Empty<ISearchableObject>(), 0);
+                _log.LogWarning("Searcher has no items to search.");
+                return new SearchResults<ISearchableObject>(objName, Array.Empty<ISearchableObject>(), 0);
             }
 
-            cardName = cardName.Trim();
+            objName = objName.Trim();
 
             var fetchCulture = cultureName;
 
-            if (cardName.IndexOf("en ", StringComparison.CurrentCultureIgnoreCase) == 0)
+            if (objName.IndexOf("en ", StringComparison.CurrentCultureIgnoreCase) == 0)
             {
-                cardName = cardName[3..];
+                objName = objName[3..];
                 fetchCulture = "en-US";
             }
 
-            _log.LogDebug("Search: {CardName}", cardName);
-            FixSplitCardName(ref cardName);
+            _log.LogDebug("Search: {ObjectName}", objName);
 
-            var hits1 = await WildCardSearch(searcher, cardName, cultureName);
+            var hits1 = WildCardSearch(searcher, objName, cultureName);
 
             if (hits1.TotalHits > 0)
             {
-                return new SearchResults<ISearchableObject>(cardName, ResultType.StartsWith,
+                return new SearchResults<ISearchableObject>(objName, ResultType.StartsWith,
                     GetResults(searcher, hits1.ScoreDocs, fetchCulture),
                     hits1.TotalHits
                 );
             }
 
             
-            if (InitialSearchEnabled && cardName.Length < 5 && !cardName.Contains(" "))
+            if (InitialSearchEnabled && objName.Length < 5 && !objName.Contains(" "))
             {
-                var initialHits = InitialSearch(searcher, cardName, cultureName);
+                var initialHits = InitialSearch(searcher, objName, cultureName);
 
                 if (initialHits.TotalHits > 0)
                 {
-                    return new SearchResults<ISearchableObject>(cardName, ResultType.Initials,
+                    return new SearchResults<ISearchableObject>(objName, ResultType.Initials,
                             GetResults(searcher, initialHits.ScoreDocs, fetchCulture),
                             initialHits.TotalHits
                         );
                 }
             }
 
-            var hits2 = ContainSearch(searcher, cardName, cultureName);
+            var hits2 = ContainSearch(searcher, objName, cultureName);
             if (hits2.TotalHits > 0)
             {
-                return new SearchResults<ISearchableObject>(cardName, ResultType.Contains,
+                return new SearchResults<ISearchableObject>(objName, ResultType.Contains,
                     GetResults(searcher, hits2.ScoreDocs, fetchCulture),
                     hits2.TotalHits
                 );
             }
 
-            var hits3 = FuzzySearch(searcher, cardName, cultureName)
+            var hits3 = FuzzySearch(searcher, objName, cultureName)
                 .ScoreDocs
                 .Where(scoreDoc => scoreDoc.Score > 3)
                 .OrderByDescending(scoreDoc => scoreDoc.Score)
@@ -278,23 +277,23 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
 
             if (hits3.Any())
             {
-                return new SearchResults<ISearchableObject>(cardName, ResultType.Fuzzy,
+                return new SearchResults<ISearchableObject>(objName, ResultType.Fuzzy,
                     GetResults(searcher, hits3, fetchCulture),
                     hits3.Length
                 );
             }
 
-            var hits4 = FuzzySearchAll(searcher, cardName, cultureName);
+            var hits4 = FuzzySearchAll(searcher, objName, cultureName);
             if (hits4.ScoreDocs.Any(scoreDoc => scoreDoc.Score > 3))
             {
-                return new SearchResults<ISearchableObject>(cardName, ResultType.Fuzzy,
+                return new SearchResults<ISearchableObject>(objName, ResultType.Fuzzy,
                     GetResults(searcher, hits4.ScoreDocs
                         .Where(scoreDoc => scoreDoc.Score > 3), fetchCulture),
                     hits4.TotalHits
                 );
             }
 
-            return new SearchResults<ISearchableObject>(cardName, Array.Empty<ISearchableObject>(), 0);
+            return new SearchResults<ISearchableObject>(objName, Array.Empty<ISearchableObject>(), 0);
         }
         finally
         {
@@ -303,7 +302,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
     }
 
 
-    private async Task<TopDocs> WildCardSearch(IndexSearcher searcher, string cardName, string cultureName)
+    private TopDocs WildCardSearch(IndexSearcher searcher, string objName, string cultureName)
     {
         using var analyzer = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
         using var analyzer2 = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
@@ -316,19 +315,9 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             AllowLeadingWildcard = true
         };
 
+        var cleanName = objName.CleanPunctuation();
 
-        /*var term = new Term("Name", cardName + "*");
-        var term2 = new Term("NameNoCommas", cardName.Replace(",", "") + "*");
-
-        var query = new BooleanQuery()
-        {
-            {new WildcardQuery(term), Occur.MUST},
-            {new WildcardQuery(term2), Occur.MUST}
-        };*/
-
-        var cleanName = cardName.CleanPunctuation();
-
-        var escaped = QueryParserBase.Escape(cardName).Replace(" ", @"\ ");
+        var escaped = QueryParserBase.Escape(objName).Replace(" ", @"\ ");
         var escapedClean = QueryParserBase.Escape(cleanName).Replace(" ", @"\ ");
 
         var cultureQuery = new BooleanQuery
@@ -336,12 +325,6 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             { new TermQuery(new Term("Culture", cultureName)), Occur.SHOULD },
             { new TermQuery(new Term("Culture", "en-US")), Occur.SHOULD }
         };
-
-        // var cardQuery = new BooleanQuery
-        // {
-        //     { qp.Parse(escaped + "*"), Occur.SHOULD },
-        //     { qp2.Parse(escapedClean + "*"), Occur.SHOULD }
-        // };
 
         var query = new BooleanQuery
         {
@@ -371,7 +354,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         return hits2;
     }
 
-    private TopDocs InitialSearch(IndexSearcher searcher, string cardInitals, string cultureName)
+    private TopDocs InitialSearch(IndexSearcher searcher, string objInitals, string cultureName)
     {
         Debug.Assert(InitialSearchEnabled);
         using var analyzer = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
@@ -389,7 +372,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         var query = new BooleanQuery
         {
             {cultureQuery, Occur.MUST},
-            {qp.Parse(QueryParser.Escape(cardInitals)), Occur.MUST}
+            {qp.Parse(QueryParser.Escape(objInitals)), Occur.MUST}
         };
 
         var hits = searcher.Search(query, 50);
@@ -399,7 +382,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         return hits;
     }
 
-    private TopDocs ContainSearch(IndexSearcher searcher, string cardName, string cultureName)
+    private TopDocs ContainSearch(IndexSearcher searcher, string objName, string cultureName)
     {
         using var simpleAnalyzer = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
         var qp = new QueryParser(LUCENE_VERSION, "SimpleName", simpleAnalyzer)
@@ -407,7 +390,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             AllowLeadingWildcard = true
         };
 
-        var test = qp.Parse(QueryParserBase.Escape(cardName));
+        var test = qp.Parse(QueryParserBase.Escape(objName));
 
         if (string.IsNullOrEmpty(test.ToString()))
             return new TopDocs(0, Array.Empty<ScoreDoc>(), 0f);
@@ -418,7 +401,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             { new TermQuery(new Term("Culture", "en-US")), Occur.SHOULD }
         };
 
-        cardName = cardName
+        objName = objName
             .Replace("OR", "\\OR")
             .Replace("AND", "\\AND")
             .Replace("NOT", "\\NOT");
@@ -426,7 +409,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         var query = new BooleanQuery
         {
             {cultureQuery, Occur.MUST},
-            {qp.Parse(string.Join(" ", QueryParser.Escape(cardName).Split(' ').Select(c => "+*" + c + "*"))), Occur.MUST}
+            {qp.Parse(string.Join(" ", QueryParser.Escape(objName).Split(' ').Select(c => "+*" + c + "*"))), Occur.MUST}
         };
 
         var hits = searcher.Search(query, 50);
@@ -435,7 +418,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         return hits;
     }
 
-    private TopDocs FuzzySearch(IndexSearcher searcher, string cardName, string cultureName)
+    private TopDocs FuzzySearch(IndexSearcher searcher, string objName, string cultureName)
     {
         using var analyzer = new CaseInsensitiveKeywordAnalyzer(LUCENE_VERSION);
         var qp = new QueryParser(LUCENE_VERSION, "SimpleName", analyzer);
@@ -452,10 +435,8 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         var query = new BooleanQuery
         {
             {cultureQuery, Occur.MUST},
-            {qp.Parse(QueryParser.Escape(cardName).Replace(" ", @"\ ") + "~0.65"), Occur.MUST}
+            {qp.Parse(QueryParser.Escape(objName).Replace(" ", @"\ ") + "~0.65"), Occur.MUST}
         };
-
-        //var query = new FuzzyQuery(new Term("Name", QueryParser.Escape(cardName).ToLower()), 0.65f);
 
         var hits = searcher.Search(query, 50);
         _log.LogDebug("FuzzySearch: {Results}", FormatSearchResults(searcher, hits));
@@ -463,7 +444,7 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         return hits;
     }
 
-    private TopDocs FuzzySearchAll(IndexSearcher searcher, string cardName, string cultureName)
+    private TopDocs FuzzySearchAll(IndexSearcher searcher, string objName, string cultureName)
     {
         using var analyzer = new SimpleAnalyzer(LUCENE_VERSION);
         var qp = new QueryParser(LUCENE_VERSION, "SimpleName", analyzer);
@@ -474,14 +455,9 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             { new TermQuery(new Term("Culture", "en-US")), Occur.SHOULD }
         };
 
-        // cardName = cardName
-        //     .Replace("OR", "\\OR")
-        //     .Replace("AND", "\\AND")
-        //     .Replace("NOT", "\\NOT");
-
         var bq = new QueryBuilder(analyzer).CreateBooleanQuery("SimpleName",
             string.Join(" ",
-                cardName.Split(' ').Where(c => !string.IsNullOrWhiteSpace(c))
+                objName.Split(' ').Where(c => !string.IsNullOrWhiteSpace(c))
                     .Select(c => new FuzzyQuery(new Term("SimpleName", c), 2))));
 
         var query = new BooleanQuery
@@ -504,14 +480,6 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
                     $"{searcher.Doc(scoreDoc.Doc).GetField("CIName").GetStringValue()} ({scoreDoc.Score})"
             ).ToList()
         );
-    }
-
-    private static void FixSplitCardName(ref string cardName)
-    {
-        if (cardName.Contains("/"))
-        {
-            cardName = cardName.Replace("//", "/").Replace(" ", "").Replace("/", " // ");
-        }
     }
 
     protected virtual void Dispose(bool disposing)
@@ -542,13 +510,13 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
             {
                 var rand = Random.Shared.Next(searcher.IndexReader.MaxDoc);
 
-                var bytes = searcher.Doc(rand).GetField("Card").GetBinaryValue() ??
-                    throw new Exception("Card was null");
+                var bytes = searcher.Doc(rand).GetField("Item").GetBinaryValue() ??
+                    throw new Exception("Item was null");
 
-                var card = JsonSerializer.Deserialize<T>(bytes.Bytes)!;
+                var item = JsonSerializer.Deserialize<T>(bytes.Bytes)!;
 
-                if (card.Culture == "en-US")
-                    return Task.FromResult<ISearchableObject?>(card);
+                if (item.Culture == "en-US")
+                    return Task.FromResult<ISearchableObject?>(item);
             }
         }
         finally
@@ -557,10 +525,6 @@ public abstract partial class WebEngine<T> : ICardEngine, IDisposable where T : 
         }
 
         return Task.FromResult<ISearchableObject?>(null);
-    }
-
-    protected virtual void OnCardAdded(T card)
-    {
     }
 
     public void Dispose()

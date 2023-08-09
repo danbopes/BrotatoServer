@@ -17,7 +17,7 @@ public interface ISearchResults<out T> where T : ISearchableObject
     IEnumerable<T> Results { get; }
 }
 
-public class SearchResults<T> : ISearchResults<T> where T : ISearchableObject
+public sealed class SearchResults<T> : ISearchResults<T> where T : ISearchableObject
 {
     public string SearchTerm { get; }
     public ResultType ResultType { get; }
