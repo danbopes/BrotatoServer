@@ -4,6 +4,8 @@
 @using BrotatoServer.Data
 @using BrotatoServer.Models.DB
 
+<AppPageTitle>View Runs</AppPageTitle>
+
 @inject IRunRepository RunRepository
 <div class="container-fluid">
         @foreach (var run in latestRuns)

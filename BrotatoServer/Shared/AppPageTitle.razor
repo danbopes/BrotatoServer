@@ -1,0 +1,12 @@
+﻿@if (ChildContent is not null)
+{
+    <PageTitle>@this.ChildContent - Brotato Tracker</PageTitle>
+}
+else
+{
+    <PageTitle>Brotato Tracker</PageTitle>
+}
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+}

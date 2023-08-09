@@ -14,7 +14,7 @@
 @inject IMapper Mapper
 @attribute [Authorize(Policy = AuthPolicies.FULLY_AUTHED_USER)]
 
-<PageTitle>Settings</PageTitle>
+<AppPageTitle>Settings</AppPageTitle>
 
 <EditForm Model="@UserSettingsViewModel" OnValidSubmit="@HandleSubmit">
     <DataAnnotationsValidator />
