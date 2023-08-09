@@ -3,15 +3,12 @@ using BrotatoServer.Data;
 using BrotatoServer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using System.Web;
 using BrotatoServer.Models.DB;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
-using Moq;
+using NSubstitute;
 
 namespace BrotatoServer.Tests;
 
@@ -19,57 +16,54 @@ public class UsersControllerTests
 {
     private ControllerContext GetMockControllerContext(long? byteLen = 3)
     {
-        /*
-        var len = (int?)Request.Headers.ContentLength;
-
-        if (len is null or <= 0 or > 2048)
-            return BadRequest();
-
-        var ticketBuffer = new byte[len.Value];
-
-        await Request.Body.ReadExactlyAsync(ticketBuffer, 0, len.Value);
-        */
-
         var byteArray = new byte[byteLen ?? 3];
         var memoryStream = new MemoryStream(byteArray);
         memoryStream.Flush();
         memoryStream.Position = 0;
         
-        var mockHttpContext = new Mock<HttpContext>();
+        var mockHttpContext = Substitute.For<HttpContext>();
         mockHttpContext
-            .Setup(x => x.Request.Body)
-            .Returns(memoryStream);
+            .Request.Body.Returns(memoryStream);
+        
         mockHttpContext
-            .Setup(x => x.Request.Headers)
-            .Returns(new HeaderDictionary()
+            .Request.Headers.Returns(new HeaderDictionary()
             {
                 ContentLength = byteLen
             });
+        
         //var mockRequest = new Mock<HttpRequest>();
         //mockRequest.Setup(x => x.Body).Returns(memoryStream);
 
         return new ControllerContext(new ActionContext
         {
-            HttpContext = mockHttpContext.Object,
+            HttpContext = mockHttpContext,
             RouteData = new RouteData(),
             ActionDescriptor = new ControllerActionDescriptor()
         });
+    }
+    
+    private (IServiceProvider serviceProvider, ISteamworksService serviceMock) GetMockServiceProvider(bool authReturn = true)
+    {
+        var steamworksMock = Substitute.For<ISteamworksService>();
+        
+        steamworksMock
+            .AuthenticateSessionAsync(Arg.Any<byte[]>(), 1)
+            .Returns(Task.FromResult(authReturn));
+
+        var provider = DITools.CreateDefaultServiceProvider(services =>
+        {
+            services
+                .AddSingleton(steamworksMock);
+        });
+
+        return (provider, steamworksMock);
     }
     
     [Fact]
     public async Task ShouldCreateAndGetApiKeyForUser()
     {
         // Arrange
-        var steamworksMock = new Mock<ISteamworksService>();
-        steamworksMock
-            .Setup(service => service.AuthenticateSessionAsync(It.IsAny<byte[]>(), 1))
-            .ReturnsAsync(() => true);
-
-        var provider = DITools.CreateDefaultServiceProvider(services =>
-        {
-            services
-                .AddSingleton(steamworksMock.Object);
-        });
+        var (provider, steamworksMock) = GetMockServiceProvider();
 
         await using var scope = provider.CreateAsyncScope();
 
@@ -88,8 +82,9 @@ public class UsersControllerTests
         Assert.IsType<Guid>(okObjectResult.Value);
         var guid = (Guid) okObjectResult.Value;
 
-        steamworksMock
-            .Verify(x => x.AuthenticateSessionAsync(new byte[] {0, 0, 0}, 1), Times.Once);
+        await steamworksMock
+            .Received(1)
+            .AuthenticateSessionAsync(Arg.Is<byte[]>(arg => arg.SequenceEqual(new byte[] {0, 0, 0})), 1);
         
         var user = await db.Users.SingleAsync();
         Assert.Equal(guid, user.ApiKey);
@@ -101,16 +96,7 @@ public class UsersControllerTests
     public async Task ShouldReturnExistingApiKeyForUser()
     {
         // Arrange
-        var steamworksMock = new Mock<ISteamworksService>();
-        steamworksMock
-            .Setup(service => service.AuthenticateSessionAsync(It.IsAny<byte[]>(), 1))
-            .ReturnsAsync(() => true);
-
-        var provider = DITools.CreateDefaultServiceProvider(services =>
-        {
-            services
-                .AddSingleton(steamworksMock.Object);
-        });
+        var (provider, steamworksMock) = GetMockServiceProvider();
 
         await using var scope = provider.CreateAsyncScope();
 
@@ -140,8 +126,9 @@ public class UsersControllerTests
         var guid = (Guid) okObjectResult.Value;
         Assert.Equal(userGuid, guid);
         
-        steamworksMock
-            .Verify(x => x.AuthenticateSessionAsync(new byte[] {0, 0, 0}, 1), Times.Once);
+        await steamworksMock
+            .Received(1)
+            .AuthenticateSessionAsync(Arg.Is<byte[]>(arg => arg.SequenceEqual(new byte[] {0, 0, 0})), 1);
 
         var user = await db.Users.SingleAsync();
         Assert.Equal(guid, user.ApiKey);
@@ -153,16 +140,7 @@ public class UsersControllerTests
     public async Task ShouldReturnAuthFailure()
     {
         // Arrange
-        var steamworksMock = new Mock<ISteamworksService>();
-        steamworksMock
-            .Setup(service => service.AuthenticateSessionAsync(It.IsAny<byte[]>(), 1))
-            .ReturnsAsync(() => false);
-
-        var provider = DITools.CreateDefaultServiceProvider(services =>
-        {
-            services
-                .AddSingleton(steamworksMock.Object);
-        });
+        var (provider, steamworksMock) = GetMockServiceProvider(false);
 
         await using var scope = provider.CreateAsyncScope();
 
@@ -183,15 +161,16 @@ public class UsersControllerTests
     public async Task ShouldReturnBadRequestWhenBodyNotSpecifiedIsTooLarge(long? length)
     {
         // Arrange
-        var steamworksMock = new Mock<ISteamworksService>();
+        var steamworksMock = Substitute.For<ISteamworksService>();
+        
         steamworksMock
-            .Setup(service => service.AuthenticateSessionAsync(It.IsAny<byte[]>(), 1))
-            .ReturnsAsync(() => true);
+            .AuthenticateSessionAsync(Arg.Any<byte[]>(), 1)
+            .Returns(Task.FromResult(true));
 
         var provider = DITools.CreateDefaultServiceProvider(services =>
         {
             services
-                .AddSingleton(steamworksMock.Object);
+                .AddSingleton(steamworksMock);
         });
 
         await using var scope = provider.CreateAsyncScope();
