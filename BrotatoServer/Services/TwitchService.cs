@@ -95,11 +95,8 @@ public class TwitchService : BackgroundService
 
                     if (currentRun is not null)
                     {
-                        var charName = currentRun.Character.Replace("character_", "");
-                        var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
-
                         _client.SendMessage(e.ChatMessage.Channel,
-                            $"{niceCharName} - {e.ChatMessage.Channel.GetCurrentRunUrlForUser()}");
+                            $"{currentRun.CharacterName} - {e.ChatMessage.Channel.GetCurrentRunUrlForUser()}");
                     }
                     else
                     {

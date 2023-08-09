@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BrotatoServer.Utilities;
+using Newtonsoft.Json;
 
 namespace BrotatoServer.Models.JSON;
 
@@ -78,4 +79,22 @@ public class RunData
 
     [JsonProperty("rounds")]
     public required Dictionary<int, Dictionary<string, decimal>> Rounds { get; set; }
+
+    [JsonIgnore]
+    public string CharacterName {
+        get
+        {
+            var characterData = Items.Values.FirstOrDefault(item => item.Id == Character);
+            var niceName = characterData?.Name;
+        
+            if (niceName is not null)
+                return niceName;
+
+            // There should always be a character in the items list, but just in case
+            var charName = Character.Replace("character_", "");
+            var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
+
+            return niceCharName;
+        }
+    }
 }

@@ -1,4 +1,5 @@
-﻿using CodeKicker.BBCode;
+﻿using BrotatoServer.Models.JSON;
+using CodeKicker.BBCode;
 using Microsoft.AspNetCore.Components;
 
 namespace BrotatoServer.Utilities;
@@ -26,17 +27,6 @@ public static class StringExtensions
     public static string GetAssetPath(this string str)
     {
         return str.Replace("res://", "assets/");
-    }
-
-    public static string CharIdToNiceName(this string charId)
-    {
-        if (charId == "character_well_rounded")
-            return "Well-Rounded";
-
-        var charName = charId.Replace("character_", "");
-        var niceCharName = string.Join(' ', charName.Split('_').Select(word => word.UcFirst()));
-
-        return niceCharName;
     }
     
     public static string PascalToDashCase(this string str)

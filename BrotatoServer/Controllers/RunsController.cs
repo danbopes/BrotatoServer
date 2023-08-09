@@ -64,7 +64,7 @@ namespace BrotatoServer.Controllers
 
             if (user.TwitchUsername is not null)
             {
-                await _currentRunProvider.UpdateRunAsync( user.TwitchUsername, null);
+                await _currentRunProvider.UpdateRunAsync(user.TwitchUsername, null);
                 await HandleEndOfRoundEventsAsync(run.Id, runInfo);
             }
 
@@ -81,7 +81,7 @@ namespace BrotatoServer.Controllers
             if (runInfo.RunData.Won && !string.IsNullOrEmpty(user.Settings.OnRunWonMessage))
             {
                 var runMessage = user.Settings.OnRunWonMessage
-                    .Replace("%character%", runInfo.RunData.Character.CharIdToNiceName());
+                    .Replace("%character%", runInfo.RunData.CharacterName);
 
                 if (runMessage.Contains("%streak%"))
                 {
@@ -94,7 +94,7 @@ namespace BrotatoServer.Controllers
             else if (!runInfo.RunData.Won && !string.IsNullOrEmpty(user.Settings.OnRunLostMessage))
             {
                 var runMessage = user.Settings.OnRunLostMessage
-                    .Replace("%character%", runInfo.RunData.Character.CharIdToNiceName());
+                    .Replace("%character%", runInfo.RunData.CharacterName);
                 
                 _twitchService.SendMessage(user.TwitchUsername!, runMessage);
             }
@@ -143,7 +143,7 @@ namespace BrotatoServer.Controllers
             }
 
             var runMessage = user.Settings.OnRunStartedMessage
-                .Replace("%character%", currentRun.Character.CharIdToNiceName())
+                .Replace("%character%", currentRun.CharacterName)
                 .Replace("%link%", user.TwitchUsername.GetCurrentRunUrlForUser())
                 .Replace("%weapon%", weaponName);
 
