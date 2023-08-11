@@ -16,4 +16,8 @@ public class UserSettingsViewModel
     
     [Range(0, 80, ErrorMessage = "Clip Delay Seconds must be between 0 and 80 seconds.")]
     public int ClipDelaySeconds { get; set; } = 30;
+
+    [MaxLength(2048)]
+    // TODO Add validation for Url
+    public string WebhookUrl { get; set; } = "";
 }

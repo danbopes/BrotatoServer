@@ -20,4 +20,6 @@ public class UserSettings
     public bool ClipOnRunLost { get; set; } = false;
     
     public int ClipDelaySeconds { get; set; } = 30;
+    
+    public string WebhookUrl { get; set; } = "";
 }

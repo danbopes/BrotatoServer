@@ -19,17 +19,20 @@ namespace BrotatoServer.Controllers
         private readonly IRunRepository _runRepository;
         private readonly TwitchService _twitchService;
         private readonly CurrentRunProvider _currentRunProvider;
+        private readonly HttpClient _httpClient;
 
         public RunsController(
             ILogger<RunsController> log,
             IRunRepository runRepository,
             TwitchService twitchService,
-            CurrentRunProvider currentRunProvider)
+            CurrentRunProvider currentRunProvider,
+            HttpClient httpClient)
         {
             _log = log;
             _runRepository = runRepository;
             _twitchService = twitchService;
             _currentRunProvider = currentRunProvider;
+            _httpClient = httpClient;
         }
 
         // GET: api/Runs
@@ -109,6 +112,12 @@ namespace BrotatoServer.Controllers
 
                     await _twitchService.TryClipAsync(runId, user);
                 });
+            }
+
+            if (!string.IsNullOrEmpty(user.Settings.WebhookUrl) &&
+                Uri.TryCreate(user.Settings.WebhookUrl, UriKind.Absolute, out var uri))
+            {
+                using var res = _httpClient.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead);
             }
         }
 
