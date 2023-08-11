@@ -178,7 +178,7 @@ namespace BrotatoServer.Controllers
         [HttpDelete]
         [Route("current")]
         [Authorize(AuthenticationSchemes = "ApiKey")]
-        public async Task<IActionResult> PostCurrentRun()
+        public async Task<IActionResult> DeleteCurrentRun()
         {
             var user = HttpContext.GetUser();
 
@@ -192,8 +192,17 @@ namespace BrotatoServer.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        [Route("latest/{twitchUsername}")]
+        public async Task<IActionResult> GetRuns(string twitchUsername)
+        {
+            var runs = await _runRepository.GetLatestRunsAsync(twitchUsername, 100).ToListAsync();
+
+            return Ok(runs);
+        }
+
         // DELETE: api/Runs/5
-        [HttpDelete("{id:guid}")]
+        /*[HttpDelete("{id:guid}")]
         //[Authorize(AuthenticationSchemes = "ApiKey")]
         public async Task<IActionResult> DeleteRun(Guid id)
         {
@@ -204,6 +213,6 @@ namespace BrotatoServer.Controllers
             }
 
             return NoContent();
-        }
+        }*/
     }
 }
