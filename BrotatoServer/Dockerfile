@@ -9,7 +9,7 @@ RUN export LSB_RELEASE=$(dpkg --status tzdata|grep Provides|cut -f2 -d'-') && \
     echo steam steam/question select "I AGREE" | debconf-set-selections && \
     echo steam steam/license note '' | debconf-set-selections && \
     apt-get update && \
-    apt-get install steamcmd --yes && \
+    apt-get install steamcmd sqlite3 --yes && \
     apt-get clean autoclean && \
     apt-get autoremove --yes &&  \
     rm -rf /var/lib/{apt,dpkg,cache,log}/ \

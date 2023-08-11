@@ -84,7 +84,9 @@ else
 
         HubConnection.On<CustomData?>(nameof(IRunHub.CustomDataUpdate), async (customData) =>
         {
-            await JS.InvokeVoidAsync("console.log", "Custom Data Update", customData);
+            // Let's avoid sending this down to the client (It can be rather large with all the base64 encoded images)
+            await JS.InvokeVoidAsync("console.log", "Custom Data Update");
+            //await JS.InvokeVoidAsync("console.log", "Custom Data Update", customData);
             CustomData = customData;
             await InvokeAsync(StateHasChanged);
         });
