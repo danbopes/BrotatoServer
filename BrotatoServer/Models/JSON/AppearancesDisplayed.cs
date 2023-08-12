@@ -15,5 +15,5 @@ public class AppearancesDisplayed
     public required int Depth { get; set; }
 
     [JsonProperty("sprite")]
-    public required string Sprite { get; set; }
+    public required string? Sprite { get; set; }
 }
