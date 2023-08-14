@@ -7,21 +7,34 @@
 
     <table class="stats">
         <tr class="current-level">
-            <td><img src="assets/items/upgrades/upgrade_icon.png" /></td>
+            <td><img src="assets/items/upgrades/upgrade_icon.png" alt="" /></td>
             <td>Current Level</td>
             <td style="text-align: right">@RunData.Level</td>
         </tr>
+        
         @foreach (var statId in _primaryStats)
         {
             var stat = Assets.Stats[statId];
-            var value = EffectsAsJson.Value<int>(statId);
 
-            var statClass = value > 0 ? "pos" : value < 0 ? "neg" : "";
+            var statValue = GetStat(statId);
+            var valueText = statValue.ToString();
+            
+            if (statId == "stat_dodge")
+                if (statValue > EffectsAsJson.Value<decimal>("dodge_cap"))
+                    valueText += " | " + EffectsAsJson.Value<decimal>("dodge_cap");
+            
+            if (statId == "stat_max_hp" && EffectsAsJson.Value<decimal>("hp_cap") < 9999)
+                valueText += " | " + EffectsAsJson.Value<decimal>("hp_cap");
+            
+            if (statId == "stat_speed" && EffectsAsJson.Value<decimal>("speed_cap") < 9999)
+                valueText += " | " + EffectsAsJson.Value<decimal>("speed_cap");
+            
+            var statClass = statValue > 0 ? "pos" : statValue < 0 ? "neg" : "";
 
             <tr class="@statClass">
                 <td><img src="@stat.SmallIcon.GetAssetPath()" alt="@stat.Name" /></td>
                 <td>@stat.Name</td>
-                <td style="text-align: right">@value</td>
+                <td style="text-align: right">@valueText</td>
             </tr>
         }
     </table>
@@ -30,6 +43,8 @@
 @code {
     [Parameter, EditorRequired] public RunData RunData { get; set; } = null!;
     private JObject EffectsAsJson { get; set; } = null!;
+
+    private Dictionary<string, int>? Stats => RunData.Stats;
 
     protected override void OnParametersSet()
     {
@@ -43,4 +58,19 @@
         "stat_range", "stat_armor", "stat_dodge", "stat_speed", "stat_luck",
         "stat_harvesting"
     };
+
+    private int GetStat(string statName)
+    {
+        // New format
+        if (Stats is not null && Stats.TryGetValue(statName, out var statValue))
+            return statValue;
+        
+        var statEffect = !EffectsAsJson.ContainsKey(statName) ? 0 : EffectsAsJson.Value<decimal>(statName);
+        
+        var statGain = !EffectsAsJson.ContainsKey("gain_" + statName)
+            ? 1M
+            : 1M + (EffectsAsJson.Value<decimal>("gain_" + statName) / 100M);
+
+        return (int) (statEffect * statGain);
+    }
 }

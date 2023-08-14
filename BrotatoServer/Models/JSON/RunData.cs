@@ -70,6 +70,9 @@ public class RunData
 
     [JsonProperty("effects")]
     public required Effects Effects { get; set; }
+    
+    [JsonProperty("stats")]
+    public required Dictionary<string, int>? Stats { get; set; }
 
     [JsonProperty("current_character")]
     public required string CurrentCharacter { get; set; }
