@@ -1,5 +1,8 @@
-﻿namespace BrotatoServer.Models.DB;
+﻿using Microsoft.EntityFrameworkCore;
 
+namespace BrotatoServer.Models.DB;
+
+[Index(nameof(UserId), nameof(Date), AllDescending = true)]
 public class Run
 {
     public Guid Id { get; set; }

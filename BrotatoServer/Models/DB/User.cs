@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace BrotatoServer.Models.DB;
 
+[Index(nameof(TwitchUsername))]
+[Index(nameof(ApiKey), IsUnique = true)]
 public class User
 {
     [Key]
@@ -13,7 +16,6 @@ public class User
     public string? TwitchAccessToken { get; set; }
     public bool JoinedChat { get; set; } = false;
     public Guid ApiKey { get; set; }
-    
     public virtual UserSettings? Settings { get; set; }
     
     public string? CustomData { get; set; }
