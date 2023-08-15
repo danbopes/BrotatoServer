@@ -67,6 +67,10 @@ else
     [Parameter]
     public string TwitchUsername { get; set; } = null!;
     
+    [Parameter]
+    [SupplyParameterFromQuery(Name = "debug")]
+    public bool Debug { get; set; } = false;
+    
     [CascadingParameter]
     public TwitchUsernameStateProvider TwitchUsernameStateProvider { get; set; } = null!;
     private HubConnection? HubConnection { get; set; }
@@ -85,14 +89,17 @@ else
         HubConnection.On<CustomData?>(nameof(IRunHub.CustomDataUpdate), async (customData) =>
         {
             // Let's avoid sending this down to the client (It can be rather large with all the base64 encoded images)
-            await JS.InvokeVoidAsync("console.log", "Custom Data Update");
-            //await JS.InvokeVoidAsync("console.log", "Custom Data Update", customData);
+            //await JS.InvokeVoidAsync("console.log", "Custom Data Update");
+            if (Debug)
+                await JS.InvokeVoidAsync("console.log", "Custom Data Update", customData);
+            
             CustomData = customData;
             await InvokeAsync(StateHasChanged);
         });
         HubConnection.On<RunData?>(nameof(IRunHub.RunUpdate), async (runInfo) =>
         {
-            await JS.InvokeVoidAsync("console.log", "Current Run", runInfo);
+            if (Debug)
+                await JS.InvokeVoidAsync("console.log", "Current Run", runInfo);
 
             if (runInfo is null)
             {
