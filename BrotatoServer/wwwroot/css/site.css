@@ -244,37 +244,6 @@ main a, main a:hover {
     text-align: center;
 }
 
-/*
- * Stats
- */
-
-.stats-container {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    padding: 20px;
-    color: white;
-    width: 240px;
-    font-size: 16px;
-    float: right;
-}
-
-.stats-container tr.current-level td {
-    padding-bottom: 15px;
-}
-
-.stats-container .neg {
-    color: #f00;
-}
-
-.stats-container .pos {
-    color: #0f0;
-}
-
-.stats img {
-    width: 20px;
-    height: 20px;
-}
-
 .run-wrapper {
     background-color: #000;
     border-radius: 10px;
