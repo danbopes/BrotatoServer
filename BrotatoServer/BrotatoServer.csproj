@@ -51,6 +51,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.8" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="8.0.1" />
     <PackageReference Include="System.Linq.Async" Version="6.0.1" />
     <PackageReference Include="TwitchLib.Api" Version="3.9.0" />
     <PackageReference Include="TwitchLib.Client" Version="3.3.1" />

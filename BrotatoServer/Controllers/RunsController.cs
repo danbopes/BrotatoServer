@@ -209,19 +209,5 @@ namespace BrotatoServer.Controllers
 
             return Ok(runs);
         }
-
-        // DELETE: api/Runs/5
-        /*[HttpDelete("{id:guid}")]
-        //[Authorize(AuthenticationSchemes = "ApiKey")]
-        public async Task<IActionResult> DeleteRun(Guid id)
-        {
-            var deleted = await _runRepository.DeleteRunAsync(id);
-            if (!deleted)
-            {
-                return NotFound();
-            }
-
-            return NoContent();
-        }*/
     }
 }

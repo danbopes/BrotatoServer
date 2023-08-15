@@ -23,6 +23,7 @@ RUN /usr/games/steamcmd +runscript /root/steam_build/sdk_linux.txt && \
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
+EXPOSE 1234
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /src

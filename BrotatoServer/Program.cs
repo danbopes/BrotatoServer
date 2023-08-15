@@ -9,10 +9,12 @@ using BrotatoServer.SearchEngine;
 using BrotatoServer.Services;
 using BrotatoServer.Utilities;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Prometheus;
 using Steamworks;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -125,6 +127,13 @@ builder.Services
     .AddSingleton<ISteamworksService, SteamworksService>()
     .AddSingleton<CurrentRunProvider>();
 
+builder.Services.AddMetricServer(o =>
+{
+    o.Port = 1234;
+});
+
+builder.Services.AddSingleton<CircuitHandler>(new CircuitHandlerService());
+
 builder.Services.AddControllers()
     .AddNewtonsoftJson();
 
@@ -161,6 +170,8 @@ if (!app.Environment.IsDevelopment())
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseHttpMetrics();
 
 app.UseAuthentication();
 app.UseAuthorization();
