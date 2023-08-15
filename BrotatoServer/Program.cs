@@ -135,7 +135,23 @@ builder.Services.AddMetricServer(o =>
 builder.Services.AddSingleton<CircuitHandler>(new CircuitHandlerService());
 
 builder.Services.AddControllers()
-    .AddNewtonsoftJson();
+    .AddNewtonsoftJson(options =>
+    {
+        var loggerFactory = LoggerFactory
+            .Create(logBuilder =>
+            {
+                logBuilder.ClearProviders();
+                logBuilder.AddConsole();
+            });
+        
+        var logger = loggerFactory
+            .CreateLogger<Program>();
+        
+        options.SerializerSettings.Error = (_, args) =>
+        {
+            logger.LogWarning("Json Deserialization Exception: {Exception}\n {CurrentObject}", args.ErrorContext.Error.Message, args.CurrentObject);
+        };
+    });
 
 builder.Services.AddSignalR();
 builder.Services.AddRequestDecompression();
