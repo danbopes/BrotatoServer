@@ -31,7 +31,7 @@
                     var characterData = @run.RunData.Items.Values.FirstOrDefault(item => item.Id == run.RunData.Character);
                     var niceName = characterData?.Name ?? charName;
                     
-                    <CascadingValue Value="CustomData">
+                    <CascadingValue Value="run.CustomData">
                         <a href="runs/@run.Id" style="text-decoration: none">
                             <div class="col mb-3 run-wrapper">
                                 <div class="image">

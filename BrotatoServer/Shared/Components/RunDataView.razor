@@ -9,19 +9,17 @@
             <div>
             <StatContainer RunData="@RunData" />
     
-            <p>
-                Character:
-                <CharacterView Character="@RunData.Character" CharacterData="@RunData.Items.Values.FirstOrDefault(item => item.Id == RunData.Character)"></CharacterView>
-            </p>
+            <p>Character:</p>
+            <CharacterView Character="@RunData.Character" CharacterData="@RunData.Items.Values.FirstOrDefault(item => item.Id == RunData.Character)"></CharacterView>
     
     
-            <p>Weapons:</p>
+            <p class="mt-3 mb-0">Weapons:</p>
             @foreach (var (key, weapon) in RunData.Weapons)
             {
                 <WeaponView @key="key" Weapon="@weapon"/>
             }
     
-            <p>Items:</p>
+            <p class="mt-3 mb-0">Items:</p>
     
             @foreach (var item in RunData.Items
                 .AsEnumerable()

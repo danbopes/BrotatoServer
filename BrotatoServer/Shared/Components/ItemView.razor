@@ -3,26 +3,26 @@
 
 <Popover Class="@("inventory-popup " + TierClass)">
     <TriggerContent>
-        <div class="item inventory @TierClass">
             @if (!IsCustom)
             {
                 <a href="@WikiUrl" target="_blank">
-                    <img src="@Icon" title="@Name" alt="@Name"/>
-                    @if (Count > 1)
-                    {
-                        <div class="count">@("x" + Count)</div>
-                    }
+                    <div class="item inventory @TierClass" style="background-image: url(@Icon)">
+                        @if (Count > 1)
+                        {
+                            <div class="count">@("x" + Count)</div>
+                        }
+                    </div>
                 </a>
             }
             else
             {
-                <img src="@Icon" title="@Name" alt="@Name"/>
-                if (Count > 1)
-                {
-                    <div class="count">@("x" + Count)</div>
-                }
+                <div class="item inventory @TierClass" style="background-image: url(@Icon)">
+                    @if (Count > 1)
+                    {
+                        <div class="count">@("x" + Count)</div>
+                    }
+                </div>
             }
-        </div>
     </TriggerContent>
     <PopoverContent>
         <div class="title">

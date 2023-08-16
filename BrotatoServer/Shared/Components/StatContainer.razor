@@ -3,48 +3,81 @@
 @using Newtonsoft.Json.Linq;
 
 <div class="stats-container">
-    <h5>Primary Stats:</h5>
+    <h5>Stats:</h5>
+    
+    <div class="mb-3 text-center">
+        <button class="btn btn-brotato btn-sm @(DisplayPrimary ? "active" : "")" @onclick="@(() => DisplayPrimary = true)">Primary</button>
+        <button class="btn btn-brotato btn-sm @(!DisplayPrimary ? "active" : "")" @onclick="@(() => DisplayPrimary = false)">Secondary</button>
+    </div>
 
-    <table class="stats">
-        <tr class="current-level">
-            <td><img src="assets/items/upgrades/upgrade_icon.png" alt="" /></td>
-            <td>Current Level</td>
-            <td style="text-align: right">@RunData.Level</td>
-        </tr>
-        
-        @foreach (var statId in _primaryStats)
-        {
-            var stat = Assets.Stats[statId];
-
-            var statValue = GetStat(statId);
-            var valueText = statValue.ToString();
-            
-            if (statId == "stat_dodge")
-                if (statValue > EffectsAsJson.Value<decimal>("dodge_cap"))
-                    valueText += " | " + EffectsAsJson.Value<decimal>("dodge_cap");
-            
-            if (statId == "stat_max_hp" && EffectsAsJson.Value<decimal>("hp_cap") < 9999)
-                valueText += " | " + EffectsAsJson.Value<decimal>("hp_cap");
-            
-            if (statId == "stat_speed" && EffectsAsJson.Value<decimal>("speed_cap") < 9999)
-                valueText += " | " + EffectsAsJson.Value<decimal>("speed_cap");
-            
-            var statClass = statValue > 0 ? "pos" : statValue < 0 ? "neg" : "";
-
-            <tr class="@statClass">
-                <td><img src="@stat.SmallIcon.GetAssetPath()" alt="@stat.Name" /></td>
-                <td>@stat.Name</td>
-                <td class="stat-value">@valueText</td>
+    @if (DisplayPrimary)
+    {
+        <table class="stats primary">
+            <tr class="current-level">
+                <td><img src="assets/items/upgrades/upgrade_icon.png" alt="" /></td>
+                <td>Current Level</td>
+                <td style="text-align: right">@RunData.Level</td>
             </tr>
-        }
-    </table>
+            @foreach (var statId in _primaryStats)
+            {
+                var stat = Assets.Stats[statId];
+
+                var statValue = GetStat(statId);
+                var valueText = statValue.ToString();
+            
+                if (statId == "stat_dodge")
+                    if (statValue > EffectsAsJson.Value<decimal>("dodge_cap"))
+                        valueText += " | " + EffectsAsJson.Value<decimal>("dodge_cap");
+            
+                if (statId == "stat_max_hp" && EffectsAsJson.Value<decimal>("hp_cap") < 9999)
+                    valueText += " | " + EffectsAsJson.Value<decimal>("hp_cap");
+            
+                if (statId == "stat_speed" && EffectsAsJson.Value<decimal>("speed_cap") < 9999)
+                    valueText += " | " + EffectsAsJson.Value<decimal>("speed_cap");
+            
+                var statClass = statValue > 0 ? "pos" : statValue < 0 ? "neg" : "";
+
+                <tr class="@statClass">
+                    <td><img src="@stat.SmallIcon.GetAssetPath()" alt="@stat.Name" /></td>
+                    <td>@stat.Name</td>
+                    <td class="stat-value">@valueText</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <table class="stats secondary">
+            @foreach (var stat in _secondaryStats)
+            {
+                var statValue = GetStat(stat.Id);
+                var valueText = statValue.ToString();
+
+                string statClass;
+
+                if (stat.Reverse)
+                    statClass = statValue < 0 ? "pos" : statValue > 0 ? "neg" : "";
+                else
+                    statClass = statValue > 0 ? "pos" : statValue < 0 ? "neg" : "";
+
+                <tr class="@statClass">
+                    <td colspan="2">@stat.Name</td>
+                    <td class="stat-value">@valueText</td>
+                </tr>
+            }
+        </table>
+    }
 </div>
 
 @code {
     [Parameter, EditorRequired] public RunData RunData { get; set; } = null!;
     private JObject EffectsAsJson { get; set; } = null!;
 
+    private record SecondaryStat(string Id, string Name, bool Reverse = false);
+
     private Dictionary<string, int>? Stats => RunData.Stats;
+
+    private bool DisplayPrimary { get; set; } = true;
 
     protected override void OnParametersSet()
     {
@@ -57,6 +90,31 @@
         "stat_ranged_damage", "stat_elemental_damage", "stat_attack_speed", "stat_crit_chance", "stat_engineering",
         "stat_range", "stat_armor", "stat_dodge", "stat_speed", "stat_luck",
         "stat_harvesting"
+    };
+
+    private SecondaryStat[] _secondaryStats =
+    {
+        new("consumable_heal", "Consumable Heal"),
+        new("heal_when_pickup_goal", "% Materials Healing"),
+        new("xp_gain", "% XP Gain"),
+        new("pickup_range", "% Pickup Range"),
+        new("items_price", "% Items Price", true),
+        new("explosion_damage", "% Explosion Damage"),
+        new("explosion_size", "% Explosion Size"),
+        new("bounce", "Bounces"),
+        new("piercing", "Piercing"),
+        new("piercing_damage", "% Piercing Damage"),
+        new("damage_against_bosses", "% Damage Against Bosses"),
+        new("burning_cooldown_reduction", "% Burning Speed"),
+        new("burning_spread", "Burning Spread"),
+        new("knockback", "Knockback"),
+        new("chance_double_gold", "% Double Material Chance"),
+        new("item_box_gold", "Materials in Crates"),
+        new("free_rerolls", "Free Rerolls"),
+        new("trees", "Trees"),
+        new("number_of_enemies", "% Enemies"),
+        new("enemy_speed", "% Enemy Speed", true),
+        new("enemy_damage", "% Enemy Damage", true),
     };
 
     private int GetStat(string statName)

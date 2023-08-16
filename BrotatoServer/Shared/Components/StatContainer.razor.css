@@ -30,6 +30,14 @@
     white-space: nowrap;
 }
 
+.stats {
+    width: 100%;
+}
+
+.stats.secondary {
+    font-size: 14px;
+}
+
 .stats img {
     width: 20px;
     height: 20px;

@@ -202,48 +202,6 @@ main a, main a:hover {
     color: rgb(var(--tier-legendary-color));
 }
 
-/*
- * Popover functionality
- */
-
-.popover__title {
-    font-size: 24px;
-    line-height: 36px;
-    text-decoration: none;
-    color: rgb(228, 68, 68);
-    text-align: center;
-    padding: 15px 0;
-}
-
-.popover__wrapper {
-    position: relative;
-    margin-top: 1.5rem;
-    display: inline-block;
-}
-
-.popover__content {
-    opacity: 0;
-    visibility: hidden;
-    position: absolute;
-    transform: translate(0, 20px);
-    background-color: #bfbfbf;
-    padding: 1.5rem;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-    width: max-content;
-}
-
-.popover__wrapper:hover .popover__content {
-    z-index: 10;
-    opacity: 1;
-    visibility: visible;
-    transform: translate(0, 0px);
-    transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
-}
-
-.popover__message {
-    text-align: center;
-}
-
 .run-wrapper {
     background-color: #000;
     border-radius: 10px;
@@ -264,5 +222,22 @@ main a, main a:hover {
 
 .run-wrapper:hover
 {
+    background-color: #fff;
+}
+
+.btn-brotato.active {
+    background: none;
+}
+.btn-brotato
+{
+    font-family: 'Anybody', cursive;
+    font-size: 14px;
+    text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
+    line-height: 14px;
+    background-color: #000;
+    border: none !important;
+}
+
+.btn-brotato:hover {
     background-color: #fff;
 }
