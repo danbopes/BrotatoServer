@@ -37,10 +37,10 @@ spec:
           resources:
             limits:
               cpu: '1'
-              memory: 512Mi
+              memory: 1Gi
             requests:
-              cpu: 250m
-              memory: 64Mi
+              cpu: 100m
+              memory: 512Mi
           readinessProbe:  # Add this section for health check
             httpGet:
               path: /healthz
