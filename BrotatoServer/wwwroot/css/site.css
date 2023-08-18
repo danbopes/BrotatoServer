@@ -105,7 +105,7 @@ main a, main a:hover {
 .item .count {
     font-family: 'Anybody', cursive;
     position: absolute;
-    bottom: 2px;
+    bottom: 6px;
     right: 10px;
     font-size: 35px;
     text-shadow: 1px 1px 0px #000, -1px -1px 0px #000, 1px -1px 0px #000, -1px 1px 0px #000;
