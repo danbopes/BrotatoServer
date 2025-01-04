@@ -92,40 +92,40 @@ jobs:
         tags: |
           ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.prep.outputs.BUILD_ID }}
   
-  update_k8s:
-    runs-on: ubuntu-latest
-    needs: build-push
-
-    steps:
-      - name: Check if main/master branch
-        run: |
-          if [[ ${{ github.ref }} != "refs/heads/main" && ${{ github.ref }} != "refs/heads/master" && ${{ github.ref }} != "refs/heads/develop" ]]; then exit 0; fi
-
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Kubectl
-        uses: azure/k8s-set-context@v3
-        with:
-          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
-
-      - name: Install Kustomize
-        run: |
-          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
-          sudo mv kustomize /usr/local/bin
-          
-      - name: Update Kubernetes manifests
-        run: |
-          cd k8s/
-          kustomize create --autodetect
-          kustomize edit set image ghcr.io/danbopes/brotatoserver:${{ needs.build-push.outputs.image_tag }}
-          if [[ ${{ github.ref }} == "refs/heads/main" || ${{ github.ref }} == "refs/heads/master" ]]; then
-            kustomize edit set namespace brotato
-          else
-            kustomize edit set namespace brotato-dev
-          fi
-          kustomize build . > deploy.yaml
-          kubectl apply -f deploy.yaml
+#  update_k8s:
+#    runs-on: ubuntu-latest
+#    needs: build-push
+#
+#    steps:
+#      - name: Check if main/master branch
+#        run: |
+#          if [[ ${{ github.ref }} != "refs/heads/main" && ${{ github.ref }} != "refs/heads/master" && ${{ github.ref }} != "refs/heads/develop" ]]; then exit 0; fi
+#
+#      - name: Checkout code
+#        uses: actions/checkout@v3
+#
+#      - name: Set up Kubectl
+#        uses: azure/k8s-set-context@v3
+#        with:
+#          kubeconfig: ${{ secrets.KUBE_CONFIG_DATA }}
+#
+#      - name: Install Kustomize
+#        run: |
+#          curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+#          sudo mv kustomize /usr/local/bin
+#          
+#      - name: Update Kubernetes manifests
+#        run: |
+#          cd k8s/
+#          kustomize create --autodetect
+#          kustomize edit set image ghcr.io/danbopes/brotatoserver:${{ needs.build-push.outputs.image_tag }}
+#          if [[ ${{ github.ref }} == "refs/heads/main" || ${{ github.ref }} == "refs/heads/master" ]]; then
+#            kustomize edit set namespace brotato
+#          else
+#            kustomize edit set namespace brotato-dev
+#          fi
+#          kustomize build . > deploy.yaml
+#          kubectl apply -f deploy.yaml
 
 #      - name: Commit and Push changes
 #        run: |
