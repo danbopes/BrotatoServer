@@ -20,7 +20,7 @@
             </tr>
             @foreach (var statId in _primaryStats)
             {
-                var stat = Assets.Stats[statId];
+                var stat = BrotatoAssets.Stats[statId];
 
                 var statValue = GetStat(statId);
                 var valueText = statValue.ToString();

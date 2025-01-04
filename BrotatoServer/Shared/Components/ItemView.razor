@@ -52,7 +52,7 @@
     {
         base.OnInitialized();
 
-        if (Assets.Items.TryGetValue(Item.Id, out var assetItem))
+        if (BrotatoAssets.Items.TryGetValue(Item.Id, out var assetItem))
         {
             Icon = assetItem.Icon.GetAssetPath();
             IsCustom = false;

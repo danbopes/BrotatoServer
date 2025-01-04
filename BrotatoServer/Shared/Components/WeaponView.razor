@@ -68,7 +68,7 @@ else
     protected override void OnInitialized()
     {
         base.OnInitialized();
-        if (Assets.Weapons.TryGetValue(Weapon.Id, out var assetWeapon))
+        if (BrotatoAssets.Weapons.TryGetValue(Weapon.Id, out var assetWeapon))
         {
             Icon = assetWeapon.Icon.GetAssetPath();
             IsCustom = false;

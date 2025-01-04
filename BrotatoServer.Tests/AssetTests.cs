@@ -7,7 +7,7 @@ public class AssetTests
     [Fact]
     public void ShouldLoadWeaponsCorrectly()
     {
-        var weapons = Assets.Weapons;
+        var weapons = BrotatoAssets.Weapons;
         Assert.NotNull(weapons);
         Assert.NotEmpty(weapons);
         Assert.True(weapons.ContainsKey("weapon_fist_1"));
@@ -22,7 +22,7 @@ public class AssetTests
     [Fact]
     public void ShouldLoadItemsCorrectly()
     {
-        var items = Assets.Items;
+        var items = BrotatoAssets.Items;
         Assert.NotNull(items);
         Assert.NotEmpty(items);
         Assert.True(items.ContainsKey("item_acid"));
@@ -44,7 +44,7 @@ public class AssetTests
     "name": "Max HP"
   },
          */
-        var stats = Assets.Stats;
+        var stats = BrotatoAssets.Stats;
         Assert.NotNull(stats);
         Assert.NotEmpty(stats);
         Assert.True(stats.ContainsKey("stat_max_hp"));

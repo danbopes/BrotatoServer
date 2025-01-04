@@ -17,7 +17,7 @@ public class BrotatoItemEngine : WebEngine<BrotatoItem>
     protected override async IAsyncEnumerable<BrotatoItem> InitializeObjectsAsync()
 #pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
     {
-        foreach (var (key, item) in Assets.Items)
+        foreach (var (key, item) in BrotatoAssets.Items)
         {
             var wikiUrl = "https://brotato.wiki.spellsandguns.com/" + item.Name.Replace(' ', '_');
 

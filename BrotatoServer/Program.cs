@@ -1,6 +1,4 @@
-using System.Net;
 using System.Security.Claims;
-using System.Text;
 using BrotatoServer;
 using BrotatoServer.Config;
 using BrotatoServer.Data;
@@ -16,6 +14,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Prometheus;
 using Steamworks;
+using IPAddress = System.Net.IPAddress;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -89,6 +88,7 @@ builder.Services
         options.ClientId = twitchConfig.ClientId;
         options.ClientSecret = twitchConfig.ClientSecret;
         options.Scope.Add("clips:edit");
+        options.Scope.Add("channel:bot");
 
         options.Events.OnCreatingTicket = async ctx =>
         {
@@ -113,14 +113,11 @@ builder.Services
     })
     .AddScheme<AuthenticationSchemeOptions, ApiKeyAuthenticationSchemeHandler>("ApiKey", o => { });
 
-builder.Services.AddAuthorization(o =>
-{
-    o.AddPolicy(AuthPolicies.TWITCH_USER, p => p.RequireAssertion(ctx => ctx.User.Identities.Any(identity => identity.AuthenticationType == "Twitch")));
-    o.AddPolicy(AuthPolicies.FULLY_AUTHED_USER,
-        p => p.RequireAssertion(ctx => 
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy(AuthPolicies.TWITCH_USER, p => p.RequireAssertion(ctx => ctx.User.Identities.Any(identity => identity.AuthenticationType == "Twitch")))
+    .AddPolicy(AuthPolicies.FULLY_AUTHED_USER, p => p.RequireAssertion(ctx => 
             ctx.User.Identities.Any(identity => identity.AuthenticationType == "Twitch") &&
             ctx.User.Identities.Any(identity => identity.AuthenticationType == "Steam")));
-});
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -168,7 +165,7 @@ builder.Services
 builder.Services.AddResponseCompression(opts =>
 {
     opts.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(
-          new[] { "application/octet-stream" });
+          ["application/octet-stream"]);
 });
 
 builder.Services.AddHttpClient();
@@ -209,20 +206,17 @@ using (var scope = app.Services.CreateScope())
     
     try
     {
-        var dbContext = services.GetRequiredService<BrotatoServerContext>(); // Replace 'YourDbContext' with your actual DbContext class.
+        var dbContext = services.GetRequiredService<BrotatoServerContext>();
         dbContext.Database.Migrate();
     }
     catch (Exception ex)
     {
-        // Handle the exception as needed (e.g., log or display an error message).
-        log.LogCritical(ex, "Error occurred while applying migrations: ");
+        log.LogCritical(ex, "Error occurred while applying migrations");
         return;
     }
 
     // Initialize steamworks service (Just need to create force new instance)
     services.GetRequiredService<ISteamworksService>();
-    
-    // 
 }
 
 try

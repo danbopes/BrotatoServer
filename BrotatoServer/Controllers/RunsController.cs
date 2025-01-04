@@ -146,7 +146,7 @@ namespace BrotatoServer.Controllers
             {
                 weaponName = "Their Body";
             }
-            else if (Assets.Weapons.TryGetValue(weaponId, out var weaponData))
+            else if (BrotatoAssets.Weapons.TryGetValue(weaponId, out var weaponData))
             {
                 weaponName = weaponData.Name;
             }

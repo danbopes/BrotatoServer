@@ -23,7 +23,6 @@ public class TwitchService : BackgroundService
     private readonly BrotatoWeaponEngine _weaponSearchEngine;
     private readonly IServiceProvider _serviceProvider;
     private readonly TwitchClient _client;
-    private readonly ConnectionCredentials _credentials;
     private readonly TwitchAPI _api;
     private readonly TwitchConfig _config;
 
@@ -37,14 +36,6 @@ public class TwitchService : BackgroundService
     public TwitchService(ILogger<TwitchService> log, IOptions<TwitchConfig> twitchConfig, ILoggerFactory loggerFactory, BrotatoItemEngine itemSearchEngine, BrotatoWeaponEngine weaponSearchEngine, IServiceProvider serviceProvider)
     {
         _config = twitchConfig.Value;
-        _credentials = new ConnectionCredentials(_config.BotName, _config.BotOAuthToken);
-        var clientOptions = new ClientOptions
-        {
-            MessagesAllowedInPeriod = 750,
-            ThrottlingPeriod = TimeSpan.FromSeconds(30)
-        };
-        var customClient = new WebSocketClient(clientOptions);
-        _client = new TwitchClient(customClient);
         _api = new TwitchAPI(loggerFactory)
         {
             Settings =
@@ -52,6 +43,14 @@ public class TwitchService : BackgroundService
                 ClientId = _config.ClientId
             }
         };
+
+        var clientOptions = new ClientOptions
+        {
+            MessagesAllowedInPeriod = 750,
+            ThrottlingPeriod = TimeSpan.FromSeconds(30)
+        };
+        var customClient = new WebSocketClient(clientOptions);
+        _client = new TwitchClient(customClient);
         
         _log = log;
         _itemSearchEngine = itemSearchEngine;
@@ -61,7 +60,7 @@ public class TwitchService : BackgroundService
 
     private void Client_OnLog(object? sender, OnLogArgs e)
     {
-        _log.LogTrace($"{e.DateTime}: {e.BotUsername} - {e.Data}");
+        _log.LogTrace("{dateTime}: {botUsername} - {data}", e.DateTime, e.BotUsername, e.Data);
     }
 
     private void Client_OnConnected(object? sender, OnConnectedArgs e)
@@ -134,8 +133,12 @@ public class TwitchService : BackgroundService
         var userRepo = scope.ServiceProvider.GetRequiredService<IUserRepository>();
 
         var channels = await userRepo.GetAllChatUsersAsync(stoppingToken).ToListAsync(stoppingToken);
-        
-        _client.Initialize(_credentials, channels);
+
+        var token = await _api.Auth.RefreshAuthTokenAsync(_config.RefreshToken, _config.ClientSecret, _config.ClientId);
+
+        var credentials = new ConnectionCredentials(_config.BotName, token.AccessToken);
+
+        _client.Initialize(credentials, channels);
 
         _client.OnLog += Client_OnLog;
         _client.OnMessageReceived += Client_OnMessageReceived;

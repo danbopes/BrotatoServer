@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace BrotatoServer.Data.Game;
 
-public static class Assets
+public static class BrotatoAssets
 {
     public static ReadOnlyDictionary<string, Weapon> Weapons { get; }
     public static ReadOnlyDictionary<string, Item> Items { get; }
     public static ReadOnlyDictionary<string, Stat> Stats { get; }
 
-    static Assets()
+    static BrotatoAssets()
     {
         var weaponJson = File.ReadAllText("Data/Game/weapons.json");
         Weapons = JsonConvert.DeserializeObject<ReadOnlyDictionary<string, Weapon>>(weaponJson)!;
