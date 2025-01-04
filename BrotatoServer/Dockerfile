@@ -21,8 +21,7 @@ RUN /usr/games/steamcmd +runscript /root/steam_build/sdk_linux.txt && \
 #RUN mkdir -p /root/.steam/sdk64/
 #COPY BrotatoServer/linux64/steamclient.so /root/.steam/sdk64/steamclient.so
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
 EXPOSE 1234
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
